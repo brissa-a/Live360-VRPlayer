@@ -9,13 +9,13 @@
         <MenuItem Header="_File">
             <MenuItem Header="_Open..." Command="{Binding LoadCommand}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/fileopen.png" />
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/fileopen.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
             <MenuItem Header="E_xit" Command="{Binding ExitCommand}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/exit.png" />
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/exit.png" />
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
@@ -26,7 +26,7 @@
         <MenuItem Header="_?">
             <MenuItem Header="_About..." Command="{Binding AboutCommand}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/help.png" />
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/help.png" />
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>

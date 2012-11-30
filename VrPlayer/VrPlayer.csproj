@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Medias\aktion.ico</ApplicationIcon>
+    <ApplicationIcon>aktion.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MoveFramework CS">
@@ -161,13 +161,16 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Models\Shaders\BarrelWarp.fx" />
-    <Resource Include="Medias\player_pause.png" />
-    <Resource Include="Medias\player_play.png" />
-    <Resource Include="Medias\player_stop.png" />
-    <Resource Include="Medias\aktion.ico" />
-    <Resource Include="Medias\exit.png" />
-    <Resource Include="Medias\fileopen.png" />
-    <Resource Include="Medias\help.png" />
+    <Resource Include="aktion.ico" />
+    <Resource Include="Medias\Nuvola\aktion.ico" />
+    <Resource Include="Medias\Nuvola\exit.png" />
+    <Resource Include="Medias\Nuvola\fileopen.png" />
+    <Resource Include="Medias\Nuvola\help.png" />
+    <Resource Include="Medias\Nuvola\Nuvola-copyright.txt" />
+    <Resource Include="Medias\Nuvola\Nuvola-license.txt" />
+    <Resource Include="Medias\Nuvola\player_pause.png" />
+    <Resource Include="Medias\Nuvola\player_play.png" />
+    <Resource Include="Medias\Nuvola\player_stop.png" />
     <Content Include="Models\Shaders\BarrelWarpEffect.ps">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
