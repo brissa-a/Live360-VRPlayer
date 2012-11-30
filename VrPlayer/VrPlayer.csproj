@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D57FC621-BC2F-48B8-804C-F836C0BD1B3C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VrPlayer</RootNamespace>
+    <AssemblyName>VrPlayer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Medias\aktion.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MoveFramework CS">
+      <HintPath>Lib\PsMove\MoveFramework CS.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WiimoteLib">
+      <HintPath>Lib\Wiimote\WiimoteLib.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Helpers\Converters\CompareStringParameterConverter.cs" />
+    <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
+    <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
+    <Compile Include="Helpers\Mvvm\DelegateCommand.cs" />
+    <Compile Include="Helpers\MouseUtilities.cs" />
+    <Compile Include="Helpers\Mvvm\RelayCommand.cs" />
+    <Compile Include="Helpers\QuaternionHelper.cs" />
+    <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
+    <Compile Include="Models\Plugins\IPluginManager.cs" />
+    <Compile Include="Models\State\DefaultApplicationState.cs" />
+    <Compile Include="Models\State\IApplicationState.cs" />
+    <Compile Include="Models\Config\IApplicationConfig.cs" />
+    <Compile Include="Models\Plugins\IPlugin.cs" />
+    <Compile Include="Models\Plugins\PluginBase.cs" />
+    <Compile Include="Models\Plugins\StaticPluginManager.cs" />
+    <Compile Include="Models\Plugins\ShaderPlugin.cs" />
+    <Compile Include="Models\Plugins\TrackerPlugin.cs" />
+    <Compile Include="Models\Trackers\TrackerBase.cs" />
+    <Compile Include="Models\Plugins\WrapperPlugin.cs" />
+    <Compile Include="Models\Wrappers\CubeWrapper.cs" />
+    <Compile Include="Models\Wrappers\PlaneWrapper.cs" />
+    <Compile Include="Models\Wrappers\StereoMode.cs" />
+    <Compile Include="Models\Wrappers\WrapperBase.cs" />
+    <Compile Include="ViewModels\ViewPortViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\MediaViewModel.cs" />
+    <Compile Include="Models\Wrappers\IWrapper.cs" />
+    <Compile Include="Models\Wrappers\SphereWapper.cs" />
+    <Compile Include="Models\Shaders\BarrelWarpEffect.cs" />
+    <Compile Include="Models\Trackers\MouseTracker.cs" />
+    <Compile Include="Models\Trackers\ITracker.cs" />
+    <Compile Include="Models\Trackers\PsMoveTracker.cs" />
+    <Compile Include="Models\Trackers\WiimoteTracker.cs" />
+    <Compile Include="Helpers\Mvvm\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ViewModelFactory.cs" />
+    <Compile Include="Views\ControlPanel.xaml.cs">
+      <DependentUpon>ControlPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewPort.xaml.cs">
+      <DependentUpon>ViewPort.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\ControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewPort.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Models\Shaders\BarrelWarp.fx" />
+    <Resource Include="Medias\player_pause.png" />
+    <Resource Include="Medias\player_play.png" />
+    <Resource Include="Medias\player_stop.png" />
+    <Resource Include="Medias\aktion.ico" />
+    <Resource Include="Medias\exit.png" />
+    <Resource Include="Medias\fileopen.png" />
+    <Resource Include="Medias\help.png" />
+    <Content Include="Models\Shaders\BarrelWarpEffect.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Medias\Grid1000x1000.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
