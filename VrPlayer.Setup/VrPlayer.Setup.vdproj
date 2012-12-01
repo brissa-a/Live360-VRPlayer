@@ -200,11 +200,22 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C4F6BC19A96A42379C35F85062F51958"
+                    {
+                    "Name" = "8:VR Player"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_C0A894A2BD63449E9C2FAF0B05CE8B14"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_8CEC1D3E83204B208053FAF380BE0952"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder][ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -229,9 +240,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:VrPlayer.Setup"
+        "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{00423EED-6E42-4143-AF31-6B2B3A9B1B58}"
+        "PackageCode" = "8:{9E55FE38-AE53-4F66-9992-3DCE0B8BCBD8}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -239,12 +250,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Microsoft"
+        "Manufacturer" = "8:StephaneLX"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:VrPlayer.Setup"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Microsoft"
+        "ARPCONTACT" = "8:Stephane Levesque"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -351,6 +362,34 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_88FDB6B8204F4092BFD72AA688C4CF39"
+            {
+            "Name" = "8:VR Player"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:32512"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+            "Folder" = "8:_C4F6BC19A96A42379C35F85062F51958"
+            "WorkingFolder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Icon" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_DC62E98D92704BADB41DB98BB829A9DB"
+            {
+            "Name" = "8:VR Player"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:32512"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+            "Folder" = "8:_05E2C8FDAEC54D49AE91822BB2AF19AB"
+            "WorkingFolder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Icon" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -780,7 +819,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
             {
-            "SourcePath" = "8:..\\VrPlayer\\obj\\x86\\Debug\\VrPlayer.exe"
+            "SourcePath" = "8:..\\VrPlayer\\obj\\x86\\Release\\VrPlayer.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
