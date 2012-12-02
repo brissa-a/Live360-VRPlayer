@@ -80,16 +80,16 @@ namespace VrPlayer.Models.Wrappers
                 PointCollection textureCoordinates = new PointCollection();
 
                 //Left
-                textureCoordinates.Add(new Point(0, 1));
                 textureCoordinates.Add(new Point(1, 1));
-                textureCoordinates.Add(new Point(1, 0));
+                textureCoordinates.Add(new Point(0, 1));
                 textureCoordinates.Add(new Point(0, 0));
-
+                textureCoordinates.Add(new Point(1, 0));
+                
                 //Right
-                textureCoordinates.Add(new Point(0, 1));
                 textureCoordinates.Add(new Point(1, 1));
-                textureCoordinates.Add(new Point(1, 0));
+                textureCoordinates.Add(new Point(0, 1));
                 textureCoordinates.Add(new Point(0, 0));
+                textureCoordinates.Add(new Point(1, 0));
 
                 return textureCoordinates;
             }
@@ -102,16 +102,16 @@ namespace VrPlayer.Models.Wrappers
                 PointCollection textureCoordinates = new PointCollection();
 
                 //Left
-                textureCoordinates.Add(new Point(0, 0.5));
                 textureCoordinates.Add(new Point(1, 0.5));
-                textureCoordinates.Add(new Point(1, 0));
+                textureCoordinates.Add(new Point(0, 0.5));
                 textureCoordinates.Add(new Point(0, 0));
-
+                textureCoordinates.Add(new Point(1, 0));
+                
                 //Right
-                textureCoordinates.Add(new Point(0, 1));
                 textureCoordinates.Add(new Point(1, 1));
-                textureCoordinates.Add(new Point(1, 0.5));
+                textureCoordinates.Add(new Point(0, 1));
                 textureCoordinates.Add(new Point(0, 0.5));
+                textureCoordinates.Add(new Point(1, 0.5));
 
                 return textureCoordinates;
             }
@@ -124,16 +124,16 @@ namespace VrPlayer.Models.Wrappers
                 PointCollection textureCoordinates = new PointCollection();
 
                 //Left
-                textureCoordinates.Add(new Point(0, 1));
                 textureCoordinates.Add(new Point(0.5, 1));
-                textureCoordinates.Add(new Point(0.5, 0));
+                textureCoordinates.Add(new Point(0, 1));
                 textureCoordinates.Add(new Point(0, 0));
+                textureCoordinates.Add(new Point(0.5, 0));
 
                 //Right
-                textureCoordinates.Add(new Point(0.5, 1));
                 textureCoordinates.Add(new Point(1, 1));
-                textureCoordinates.Add(new Point(1, 0));
+                textureCoordinates.Add(new Point(0.5, 1));
                 textureCoordinates.Add(new Point(0.5, 0));
+                textureCoordinates.Add(new Point(1, 0));
 
                 return textureCoordinates;
             }
