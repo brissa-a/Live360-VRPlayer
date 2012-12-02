@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Views="clr-namespace:VrPlayer.Views" 
-		xmlns:Converters="clr-namespace:VrPlayer.Helpers.Converters" 
-        Icon="Medias/Nuvola/aktion.ico"
+		xmlns:Converters="clr-namespace:VrPlayer.Helpers.Converters"
+        Icon="vrplayer.ico"
         Title="VR Player">
     <Window.Resources>
         <Converters:InvertBooleanToVisibilityConverter x:Key="invBoolToVis"/>

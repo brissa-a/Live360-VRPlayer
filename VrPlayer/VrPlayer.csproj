@@ -52,7 +52,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>aktion.ico</ApplicationIcon>
+    <ApplicationIcon>vrplayer.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MoveFramework CS">
@@ -165,6 +165,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="vrplayer.ico" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -176,8 +177,6 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Models\Shaders\BarrelWarp.fx" />
-    <Resource Include="aktion.ico" />
-    <Resource Include="Medias\Nuvola\aktion.ico" />
     <Resource Include="Medias\Nuvola\exit.png" />
     <Resource Include="Medias\Nuvola\fileopen.png" />
     <Resource Include="Medias\Nuvola\help.png" />
@@ -186,18 +185,15 @@
     <Resource Include="Medias\Nuvola\player_pause.png" />
     <Resource Include="Medias\Nuvola\player_play.png" />
     <Resource Include="Medias\Nuvola\player_stop.png" />
-    <None Include="Lib\PsMove\MF_CWrapper.dll" />
+    <Content Include="Medias\Grid1000x1000.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Models\Shaders\BarrelWarpEffect.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Medias\Grid1000x1000.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
