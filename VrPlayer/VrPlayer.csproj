@@ -109,7 +109,7 @@
     <Compile Include="ViewModels\MediaViewModel.cs" />
     <Compile Include="Models\Wrappers\IWrapper.cs" />
     <Compile Include="Models\Wrappers\SphereWapper.cs" />
-    <Compile Include="Models\Shaders\BarrelWarpEffect.cs" />
+    <Compile Include="Models\Shaders\PincushionEffect.cs" />
     <Compile Include="Models\Trackers\MouseTracker.cs" />
     <Compile Include="Models\Trackers\ITracker.cs" />
     <Compile Include="Models\Trackers\PsMoveTracker.cs" />
@@ -176,7 +176,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Models\Shaders\BarrelWarp.fx" />
+    <None Include="Models\Shaders\Pincushion.fx" />
     <Resource Include="Medias\Nuvola\exit.png" />
     <Resource Include="Medias\Nuvola\fileopen.png" />
     <Resource Include="Medias\Nuvola\help.png" />
@@ -188,7 +188,7 @@
     <Content Include="Medias\Grid1000x1000.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Models\Shaders\BarrelWarpEffect.ps">
+    <Content Include="Models\Shaders\PincushionEffect.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

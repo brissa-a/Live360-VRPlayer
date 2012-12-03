@@ -18,7 +18,7 @@ float4 main(float2 uv : TEXCOORD) : COLOR
     return tex2D(inputSampler, warped);
 }
 
-technique RenderBarrelWarp
+technique RenderPincushion
 {
     pass p0
     {

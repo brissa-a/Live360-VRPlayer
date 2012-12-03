@@ -5,15 +5,15 @@ using System.Windows.Media.Effects;
 
 namespace VrPlayer.Models.Shaders
 {
-	public class BarrelWarpEffect : ShaderEffect 
+	public class PincushionEffect : ShaderEffect 
 	{
-		public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(BarrelWarpEffect), 0);
-		public static readonly DependencyProperty BarrelFactorProperty = DependencyProperty.Register("BarrelFactor", typeof(double), typeof(BarrelWarpEffect), new UIPropertyMetadata((0D), PixelShaderConstantCallback(0)));
+		public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(PincushionEffect), 0);
+		public static readonly DependencyProperty BarrelFactorProperty = DependencyProperty.Register("BarrelFactor", typeof(double), typeof(PincushionEffect), new UIPropertyMetadata((0D), PixelShaderConstantCallback(0)));
 		
-		public BarrelWarpEffect() 
+		public PincushionEffect() 
 		{
 			PixelShader pixelShader = new PixelShader();
-            pixelShader.UriSource = new Uri("pack://application:,,,/Models/Shaders/BarrelWarpEffect.ps");
+            pixelShader.UriSource = new Uri("pack://application:,,,/Models/Shaders/PincushionEffect.ps");
 			PixelShader = pixelShader;
 			UpdateShaderValue(InputProperty);
 			UpdateShaderValue(BarrelFactorProperty);

@@ -74,25 +74,25 @@ namespace VrPlayer.Models.Plugins
 
         private void LoadShaders()
         {
-            var lightBarrelWarpEffect = new BarrelWarpEffect();
-            lightBarrelWarpEffect.BarrelFactor = 10;
-            var lightBarrelWarpEffectPlugin = new ShaderPlugin(lightBarrelWarpEffect, "Light Barrel Warp");
-            _shaders.Add(lightBarrelWarpEffectPlugin);
+            var lightPincushionEffect = new PincushionEffect();
+            lightPincushionEffect.BarrelFactor = 10;
+            var lightPincushionEffectPlugin = new ShaderPlugin(lightPincushionEffect, "Light Pincushion Distortion");
+            _shaders.Add(lightPincushionEffectPlugin);
 
-            var mediumBarrelWarpEffect = new BarrelWarpEffect();
-            mediumBarrelWarpEffect.BarrelFactor = 3;
-            var mediumBarrelWarpEffectPlugin = new ShaderPlugin(mediumBarrelWarpEffect, "Medium Barrel Warp");
-            _shaders.Add(mediumBarrelWarpEffectPlugin);
+            var mediumPincushionEffect = new PincushionEffect();
+            mediumPincushionEffect.BarrelFactor = 3;
+            var mediumPincushionEffectPlugin = new ShaderPlugin(mediumPincushionEffect, "Medium Pincushion Distortion");
+            _shaders.Add(mediumPincushionEffectPlugin);
 
-            var heavyBarrelWarpEffect = new BarrelWarpEffect();
-            heavyBarrelWarpEffect.BarrelFactor = 1;
-            var heavyBarrelWarpEffectPlugin = new ShaderPlugin(heavyBarrelWarpEffect, "Heavy Barrel Warp");
-            _shaders.Add(heavyBarrelWarpEffectPlugin);
+            var heavyPincushionEffect = new PincushionEffect();
+            heavyPincushionEffect.BarrelFactor = 1;
+            var heavyPincushionEffectPlugin = new ShaderPlugin(heavyPincushionEffect, "Heavy Pincushion Distortion");
+            _shaders.Add(heavyPincushionEffectPlugin);
 
-            var customBarrelWarpEffect = new BarrelWarpEffect();
-            customBarrelWarpEffect.BarrelFactor = _config.CustomBarrelWrapFactor;
-            var customBarrelWarpEffectPlugin = new ShaderPlugin(customBarrelWarpEffect, "Custom Barrel Warp");
-            _shaders.Add(customBarrelWarpEffectPlugin);
+            var customPincushionEffect = new PincushionEffect();
+            customPincushionEffect.BarrelFactor = _config.CustomPincushionFactor;
+            var customPincushionEffectPlugin = new ShaderPlugin(customPincushionEffect, "Custom Pincushion Distortion");
+            _shaders.Add(customPincushionEffectPlugin);
         }
     }
 }
