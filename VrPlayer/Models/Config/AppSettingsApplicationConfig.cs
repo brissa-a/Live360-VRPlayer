@@ -7,7 +7,7 @@ namespace VrPlayer.Models.Config
         public AppSettingsApplicationConfig()
         {
             _defaultMediaFile = ConfigurationManager.AppSettings["DefaultMediaFile"];
-            _customPincushionFactor = int.Parse(ConfigurationManager.AppSettings["CustomPincushionFactor"]);
+            _customPincushionFactor = double.Parse(ConfigurationManager.AppSettings["CustomPincushionFactor"]);
             _cameraFieldOfView = int.Parse(ConfigurationManager.AppSettings["CameraFieldOfView"]);
             _mouseSensitivity = int.Parse(ConfigurationManager.AppSettings["MouseSensitivity"]);
         }
@@ -18,8 +18,8 @@ namespace VrPlayer.Models.Config
             get { return _defaultMediaFile; }
         }
 
-        private int _customPincushionFactor;
-        public int CustomPincushionFactor
+        private double _customPincushionFactor;
+        public double CustomPincushionFactor
         {
             get { return _customPincushionFactor; }
         }

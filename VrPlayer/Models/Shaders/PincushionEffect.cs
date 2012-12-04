@@ -31,7 +31,7 @@ namespace VrPlayer.Models.Shaders
 			}
 		}
 
-		public double BarrelFactor 
+		public double Factor 
 		{
 			get 
 			{

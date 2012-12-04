@@ -90,6 +90,7 @@
     <Compile Include="Helpers\QuaternionHelper.cs" />
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
     <Compile Include="Models\Plugins\IPluginManager.cs" />
+    <Compile Include="Models\Shaders\BarrelEffect.cs" />
     <Compile Include="Models\State\DefaultApplicationState.cs" />
     <Compile Include="Models\State\IApplicationState.cs" />
     <Compile Include="Models\Config\IApplicationConfig.cs" />
@@ -171,6 +172,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="Models\Shaders\Barrel.fx" />
+    <Content Include="Models\Shaders\BarrelEffect.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

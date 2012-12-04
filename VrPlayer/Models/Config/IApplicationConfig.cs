@@ -3,7 +3,7 @@
     public interface IApplicationConfig
     {
         string DefaultMediaFile { get; }
-        int CustomPincushionFactor { get; }
+        double CustomPincushionFactor { get; }
         int CameraFieldOfView { get; }
         int MouseSensitivity { get; }
     }

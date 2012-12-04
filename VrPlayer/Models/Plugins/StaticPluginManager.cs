@@ -74,23 +74,27 @@ namespace VrPlayer.Models.Plugins
 
         private void LoadShaders()
         {
+            var barrelEffect = new BarrelEffect();
+            var barrelEffectPlugin = new ShaderPlugin(barrelEffect, "Barrel Distortion");
+            _shaders.Add(barrelEffectPlugin);
+
             var lightPincushionEffect = new PincushionEffect();
-            lightPincushionEffect.BarrelFactor = 10;
+            lightPincushionEffect.Factor = 10;
             var lightPincushionEffectPlugin = new ShaderPlugin(lightPincushionEffect, "Light Pincushion Distortion");
             _shaders.Add(lightPincushionEffectPlugin);
 
             var mediumPincushionEffect = new PincushionEffect();
-            mediumPincushionEffect.BarrelFactor = 3;
+            mediumPincushionEffect.Factor = 3;
             var mediumPincushionEffectPlugin = new ShaderPlugin(mediumPincushionEffect, "Medium Pincushion Distortion");
             _shaders.Add(mediumPincushionEffectPlugin);
 
             var heavyPincushionEffect = new PincushionEffect();
-            heavyPincushionEffect.BarrelFactor = 1;
+            heavyPincushionEffect.Factor = 1;
             var heavyPincushionEffectPlugin = new ShaderPlugin(heavyPincushionEffect, "Heavy Pincushion Distortion");
             _shaders.Add(heavyPincushionEffectPlugin);
 
             var customPincushionEffect = new PincushionEffect();
-            customPincushionEffect.BarrelFactor = _config.CustomPincushionFactor;
+            customPincushionEffect.Factor = _config.CustomPincushionFactor;
             var customPincushionEffectPlugin = new ShaderPlugin(customPincushionEffect, "Custom Pincushion Distortion");
             _shaders.Add(customPincushionEffectPlugin);
         }

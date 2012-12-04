@@ -1,3 +1,5 @@
+//Based on https://github.com/josh-lieberman/Biclops/blob/master/Scene.fx
+
 texture input;
 
 sampler2D inputSampler : register(S0);
