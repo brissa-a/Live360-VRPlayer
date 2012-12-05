@@ -51,6 +51,10 @@ namespace VrPlayer.Models.Plugins
             var sphereWrapperPlugin = new WrapperPlugin(sphereWrapper, "Spherical Movie 360x180");
             _wrappers.Add(sphereWrapperPlugin);
 
+            var domeWrapper = new DomeWrapper();
+            var domeWrapperPlugin = new WrapperPlugin(domeWrapper, "Dome Movie 180x180");
+            _wrappers.Add(domeWrapperPlugin);
+
             var cubeWrapper = new CubeWrapper();
             var cubeWrapperPlugin = new WrapperPlugin(cubeWrapper, "Cave Simulator (6 sides)");
             _wrappers.Add(cubeWrapperPlugin);

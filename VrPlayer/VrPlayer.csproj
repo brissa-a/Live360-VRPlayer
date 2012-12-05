@@ -101,6 +101,7 @@
     <Compile Include="Models\Plugins\TrackerPlugin.cs" />
     <Compile Include="Models\Trackers\TrackerBase.cs" />
     <Compile Include="Models\Plugins\WrapperPlugin.cs" />
+    <Compile Include="Models\Wrappers\DomeWrapper.cs" />
     <Compile Include="Models\Wrappers\CubeWrapper.cs" />
     <Compile Include="Models\Wrappers\PlaneWrapper.cs" />
     <Compile Include="Models\Wrappers\StereoMode.cs" />
