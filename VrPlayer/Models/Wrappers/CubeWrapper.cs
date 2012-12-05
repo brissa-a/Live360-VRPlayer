@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
+using System.Collections;
 
 namespace VrPlayer.Models.Wrappers
 {
@@ -11,7 +13,7 @@ namespace VrPlayer.Models.Wrappers
 
         public override Point3DCollection Positions
         {
-            get 
+            get
             {
                 Point3DCollection positions = new Point3DCollection();
 
@@ -97,7 +99,7 @@ namespace VrPlayer.Models.Wrappers
 
         public override Int32Collection TriangleIndices
         {
-            get 
+            get
             {
                 Int32Collection triangleIndices = new Int32Collection();
 
@@ -207,223 +209,30 @@ namespace VrPlayer.Models.Wrappers
 
         public override PointCollection MonoTextureCoordinates
         {
-            get 
+            get
             {
-                PointCollection textureCoordinates = new PointCollection();
-
-                //Left cube
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                //Right cube
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                return textureCoordinates;
+                PointCollection textureCoordinates = GenerateTextureCoordinates(-1, -0.33, 0.33, 1, 1, 0, -1);
+                return new PointCollection(textureCoordinates.Concat<Point>(textureCoordinates));
             }
         }
 
         public override PointCollection OverUnderTextureCoordinates
         {
-            get 
+            get
             {
-                PointCollection textureCoordinates = new PointCollection();
-
-                //Left cube
-
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 0));
-
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 0));
-
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 0));
-
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 0));
-
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 0));
-
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 0));
-
-                //Right cube
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(1, 0));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(1, 0));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(1, 0));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(1, 0));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(1, 0));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, 0));
-                textureCoordinates.Add(new Point(1, 0));
-                textureCoordinates.Add(new Point(1, 1));
-
-                return textureCoordinates;
+                PointCollection leftTextureCoordinates = GenerateTextureCoordinates(-1, -0.33, 0.33, 1, 0, -0.5, -1);
+                PointCollection rightTextureCoordinates = GenerateTextureCoordinates(-1, -0.33, 0.33, 1, 1, 0.5, 0);   
+                return new PointCollection(leftTextureCoordinates.Concat<Point>(rightTextureCoordinates));
             }
         }
 
         public override PointCollection SideBySideTextureCoordinates
         {
-            get 
+            get
             {
-                PointCollection textureCoordinates = new PointCollection();
-                
-                //Left cube
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(0, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(0, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(0, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(0, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(0, 1));
-
-                textureCoordinates.Add(new Point(-1, 1));
-                textureCoordinates.Add(new Point(-1, -1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(0, 1));
-
-                //Right cube
-
-                textureCoordinates.Add(new Point(0, 1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(0, 1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(0, 1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(0, 1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(0, 1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                textureCoordinates.Add(new Point(0, 1));
-                textureCoordinates.Add(new Point(0, -1));
-                textureCoordinates.Add(new Point(1, -1));
-                textureCoordinates.Add(new Point(1, 1));
-
-                return textureCoordinates;
+                PointCollection leftTextureCoordinates = GenerateTextureCoordinates(-1, -0.66, -0.33, 0, 1, 0, -1);
+                PointCollection rightTextureCoordinates = GenerateTextureCoordinates(0, 0.33, 0.66, 1, 1, 0, -1);
+                return new PointCollection(leftTextureCoordinates.Concat<Point>(rightTextureCoordinates));
             }
         }
 
@@ -441,6 +250,49 @@ namespace VrPlayer.Models.Wrappers
             {
                 return new Vector3D(-_distance, 0, 0);
             }
+        }
+
+        private PointCollection GenerateTextureCoordinates(double left, double leftCenter, double rightCenter, double right, double top, double middle, double down)
+        {
+            PointCollection textureCoordinates = new PointCollection();
+                
+            //Bottom
+            textureCoordinates.Add(new Point(rightCenter, top));
+            textureCoordinates.Add(new Point(leftCenter, top));
+            textureCoordinates.Add(new Point(leftCenter, middle));
+            textureCoordinates.Add(new Point(rightCenter, middle));
+
+            //Front
+            textureCoordinates.Add(new Point(rightCenter, middle));
+            textureCoordinates.Add(new Point(leftCenter, middle));
+            textureCoordinates.Add(new Point(leftCenter, down));
+            textureCoordinates.Add(new Point(rightCenter, down));
+
+            //Left
+            textureCoordinates.Add(new Point(leftCenter, middle));
+            textureCoordinates.Add(new Point(left, middle));
+            textureCoordinates.Add(new Point(left, down));
+            textureCoordinates.Add(new Point(leftCenter, down));
+
+            //Top
+            textureCoordinates.Add(new Point(left, top));
+            textureCoordinates.Add(new Point(left, middle));
+            textureCoordinates.Add(new Point(leftCenter, middle));
+            textureCoordinates.Add(new Point(leftCenter, top));
+
+            //Right
+            textureCoordinates.Add(new Point(rightCenter, middle));
+            textureCoordinates.Add(new Point(rightCenter, down));
+            textureCoordinates.Add(new Point(right, down));
+            textureCoordinates.Add(new Point(right, middle));
+
+            //Back
+            textureCoordinates.Add(new Point(rightCenter, top));
+            textureCoordinates.Add(new Point(rightCenter, middle));
+            textureCoordinates.Add(new Point(right, middle));
+            textureCoordinates.Add(new Point(right, top));
+
+            return textureCoordinates;
         }
     }
 }
