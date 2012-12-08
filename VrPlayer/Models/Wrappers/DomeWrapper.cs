@@ -71,7 +71,7 @@ namespace VrPlayer.Models.Wrappers
 
         public override Point3DCollection Positions
         {
-            get 
+            get
             {
                 Point3DCollection positions = new Point3DCollection();
 
@@ -82,7 +82,7 @@ namespace VrPlayer.Models.Wrappers
                     double y = Radius * Math.Sin(phi);
                     double scale = -Radius * Math.Cos(phi);
 
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = Slices / 4; slice <= 3 * Slices / 4; slice++)
                     {
                         double theta = slice * 2 * Math.PI / Slices;
                         double x = scale * Math.Sin(theta) + Radius;
@@ -100,7 +100,7 @@ namespace VrPlayer.Models.Wrappers
                     double y = Radius * Math.Sin(phi);
                     double scale = -Radius * Math.Cos(phi);
 
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = Slices / 4; slice <= 3 * Slices / 4; slice++)
                     {
                         double theta = slice * 2 * Math.PI / Slices;
                         double x = scale * Math.Sin(theta) - Radius;
@@ -117,17 +117,17 @@ namespace VrPlayer.Models.Wrappers
 
         public override Int32Collection TriangleIndices
         {
-            get 
+            get
             {
                 Int32Collection triangleIndices = new Int32Collection();
 
                 //LEFT
-                for (int stack = 0; stack < Stacks; stack++)
+                for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    int top = (stack + 0) * (Slices + 1);
-                    int bot = (stack + 1) * (Slices + 1);
+                    int top = (stack + 0) * ((Slices / 2) + 1);
+                    int bot = (stack + 1) * ((Slices / 2) + 1);
 
-                    for (int slice = Slices / 4; slice < 3 * Slices / 4; slice++)
+                    for (int slice = 0; slice <= (Slices / 2); slice++)
                     {
                         if (stack != 0)
                         {
@@ -148,11 +148,11 @@ namespace VrPlayer.Models.Wrappers
                 // RIGHT
                 for (int stack = Stacks; stack <= (Stacks * 2); stack++)
                 {
-                    int top = (stack + 0) * (Slices + 1);
-                    int bot = (stack + 1) * (Slices + 1);
+                    int top = (stack + 0) * ((Slices / 2) + 1);
+                    int bot = (stack + 1) * ((Slices / 2) + 1);
 
-                for (int slice = Slices / 4; slice < 3 * Slices / 4; slice++)
-                        {
+                    for (int slice = 0; slice <= (Slices / 2); slice++)
+                    {
                         if (stack != 0)
                         {
                             triangleIndices.Add(top + slice);
@@ -182,10 +182,10 @@ namespace VrPlayer.Models.Wrappers
                 //Left
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = 0; slice <= Slices / 2; slice++)
                     {
                         textureCoordinates.Add(
-                                    new Point(((double)slice) / Slices,
+                                    new Point(((double)slice) / (Slices / 2),
                                               (double)stack / Stacks));
                     }
                 }
@@ -193,10 +193,10 @@ namespace VrPlayer.Models.Wrappers
                 //Right
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = 0; slice <= Slices / 2; slice++)
                     {
                         textureCoordinates.Add(
-                                    new Point((double)slice / Slices,
+                                    new Point((double)slice / (Slices / 2),
                                               (double)stack / Stacks));
                     }
                 }
@@ -214,10 +214,10 @@ namespace VrPlayer.Models.Wrappers
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = 0; slice <= Slices / 2; slice++)
                     {
                         textureCoordinates.Add(
-                                    new Point((double)slice / Slices,
+                                    new Point((double)slice / Slices / 2,
                                               (double)stack / Stacks / 2));
                     }
                 }
@@ -225,10 +225,10 @@ namespace VrPlayer.Models.Wrappers
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = 0; slice <= Slices / 2; slice++)
                     {
                         textureCoordinates.Add(
-                                    new Point((double)slice / Slices,
+                                    new Point((double)slice / Slices / 2,
                                               0.5 + (double)stack / Stacks / 2));
                     }
                 }
@@ -246,10 +246,10 @@ namespace VrPlayer.Models.Wrappers
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = 0; slice <= (Slices/2); slice++)
                     {
                         textureCoordinates.Add(
-                                    new Point((double)slice / Slices / 2,
+                                    new Point((double)slice / (Slices/2) / 2,
                                               (double)stack / Stacks));
                     }
                 }
@@ -257,10 +257,10 @@ namespace VrPlayer.Models.Wrappers
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = 0; slice <= (Slices/2); slice++)
                     {
                         textureCoordinates.Add(
-                                    new Point(0.5 + (double)slice / Slices / 2,
+                                    new Point(0.5 + (double)slice / (Slices/2) / 2,
                                               (double)stack / Stacks));
                     }
                 }
