@@ -182,17 +182,8 @@ namespace VrPlayer.Models.Wrappers
                 //Left
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
-                    double scale = -Radius * Math.Cos(phi);
-
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta);
-                        double z = scale * Math.Cos(theta);
-
-                        Vector3D normal = new Vector3D(x, y, z);
                         textureCoordinates.Add(
                                     new Point(((double)slice) / Slices,
                                               (double)stack / Stacks));
@@ -202,17 +193,8 @@ namespace VrPlayer.Models.Wrappers
                 //Right
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
-                    double scale = -Radius * Math.Cos(phi);
-
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta);
-                        double z = scale * Math.Cos(theta);
-
-                        Vector3D normal = new Vector3D(x, y, z);
                         textureCoordinates.Add(
                                     new Point((double)slice / Slices,
                                               (double)stack / Stacks));
@@ -232,17 +214,8 @@ namespace VrPlayer.Models.Wrappers
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
-                    double scale = -Radius * Math.Cos(phi);
-
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta) + Radius;
-                        double z = scale * Math.Cos(theta);
-
-                        Vector3D normal = new Vector3D(x, y, z);
                         textureCoordinates.Add(
                                     new Point((double)slice / Slices,
                                               (double)stack / Stacks / 2));
@@ -252,17 +225,8 @@ namespace VrPlayer.Models.Wrappers
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
-                    double scale = -Radius * Math.Cos(phi);
-
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta) - Radius;
-                        double z = scale * Math.Cos(theta);
-
-                        Vector3D normal = new Vector3D(x, y, z);
                         textureCoordinates.Add(
                                     new Point((double)slice / Slices,
                                               0.5 + (double)stack / Stacks / 2));
@@ -282,17 +246,8 @@ namespace VrPlayer.Models.Wrappers
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
-                    double scale = -Radius * Math.Cos(phi);
-
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta) + Radius;
-                        double z = scale * Math.Cos(theta);
-
-                        Vector3D normal = new Vector3D(x, y, z);
                         textureCoordinates.Add(
                                     new Point((double)slice / Slices / 2,
                                               (double)stack / Stacks));
@@ -302,17 +257,8 @@ namespace VrPlayer.Models.Wrappers
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
-                    double scale = -Radius * Math.Cos(phi);
-
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta) - Radius;
-                        double z = scale * Math.Cos(theta);
-
-                        Vector3D normal = new Vector3D(x, y, z);
                         textureCoordinates.Add(
                                     new Point(0.5 + (double)slice / Slices / 2,
                                               (double)stack / Stacks));
