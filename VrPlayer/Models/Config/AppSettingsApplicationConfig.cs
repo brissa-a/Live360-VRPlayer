@@ -10,6 +10,9 @@ namespace VrPlayer.Models.Config
             _customPincushionFactor = double.Parse(ConfigurationManager.AppSettings["CustomPincushionFactor"]);
             _cameraFieldOfView = int.Parse(ConfigurationManager.AppSettings["CameraFieldOfView"]);
             _mouseSensitivity = int.Parse(ConfigurationManager.AppSettings["MouseSensitivity"]);
+            _depthMapMaxOffset = double.Parse(ConfigurationManager.AppSettings["DepthMapMaxOffset"]);
+            _colorKeyAlphaColor = ConfigurationManager.AppSettings["ColorKeyAlphaColor"];
+            _colorKeyTolerance = double.Parse(ConfigurationManager.AppSettings["ColorKeyTolerance"]);
         }
 
         private string _defaultMediaFile;
@@ -34,6 +37,24 @@ namespace VrPlayer.Models.Config
         public int MouseSensitivity
         {
             get { return _mouseSensitivity; }
+        }
+
+        private double _depthMapMaxOffset;
+        public double DepthMapMaxOffset
+        {
+            get { return _depthMapMaxOffset; }
+        }
+
+        private string _colorKeyAlphaColor;
+        public string ColorKeyAlphaColor
+        {
+            get { return _colorKeyAlphaColor; }
+        }
+
+        private double _colorKeyTolerance;
+        public double ColorKeyTolerance
+        {
+            get { return _colorKeyTolerance; }
         }
     }
 }

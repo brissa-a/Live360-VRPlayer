@@ -52,14 +52,17 @@ namespace VrPlayer.Models.Plugins
 
         private void LoadEffects()
         {
+            var nullEffectPlugin = new EffectPlugin(null, "None");
+            _effects.Add(nullEffectPlugin);
+
             var depthMapSbsEffect = new DepthMapSbsEffect();
-            depthMapSbsEffect.MaxOffset = 0.05;
+            depthMapSbsEffect.MaxOffset = _config.DepthMapMaxOffset;
             var depthMapSbsEffectPlugin = new EffectPlugin(depthMapSbsEffect, "Depth Map SBS");
             _effects.Add(depthMapSbsEffectPlugin);
 
             var colorKeyAlphaEffect = new ColorKeyAlphaEffect();
-            colorKeyAlphaEffect.ColorKey = Color.FromRgb(0,255,0);
-            colorKeyAlphaEffect.Tolerance = 0.5;
+            colorKeyAlphaEffect.ColorKey = (Color)ColorConverter.ConvertFromString(_config.ColorKeyAlphaColor);
+            colorKeyAlphaEffect.Tolerance = _config.ColorKeyTolerance;
             var colorKeyAlphaEffectPlugin = new EffectPlugin(colorKeyAlphaEffect, "Color Key Alpha");
             _effects.Add(colorKeyAlphaEffectPlugin);
         }
@@ -101,28 +104,16 @@ namespace VrPlayer.Models.Plugins
 
         private void LoadShaders()
         {
+            var nullShaderPlugin = new ShaderPlugin(null, "None");
+            _shaders.Add(nullShaderPlugin);
+
             var barrelEffect = new BarrelEffect();
             var barrelEffectPlugin = new ShaderPlugin(barrelEffect, "Barrel Distortion");
             _shaders.Add(barrelEffectPlugin);
 
-            var lightPincushionEffect = new PincushionEffect();
-            lightPincushionEffect.Factor = 10;
-            var lightPincushionEffectPlugin = new ShaderPlugin(lightPincushionEffect, "Light Pincushion Distortion");
-            _shaders.Add(lightPincushionEffectPlugin);
-
-            var mediumPincushionEffect = new PincushionEffect();
-            mediumPincushionEffect.Factor = 3;
-            var mediumPincushionEffectPlugin = new ShaderPlugin(mediumPincushionEffect, "Medium Pincushion Distortion");
-            _shaders.Add(mediumPincushionEffectPlugin);
-
-            var heavyPincushionEffect = new PincushionEffect();
-            heavyPincushionEffect.Factor = 1;
-            var heavyPincushionEffectPlugin = new ShaderPlugin(heavyPincushionEffect, "Heavy Pincushion Distortion");
-            _shaders.Add(heavyPincushionEffectPlugin);
-
             var customPincushionEffect = new PincushionEffect();
             customPincushionEffect.Factor = _config.CustomPincushionFactor;
-            var customPincushionEffectPlugin = new ShaderPlugin(customPincushionEffect, "Custom Pincushion Distortion");
+            var customPincushionEffectPlugin = new ShaderPlugin(customPincushionEffect, "Pincushion Distortion");
             _shaders.Add(customPincushionEffectPlugin);
         }
     }
