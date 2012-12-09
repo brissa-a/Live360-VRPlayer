@@ -10,6 +10,7 @@ namespace VrPlayer.Models.State
     public interface IApplicationState
     {
         MediaElement Media { get; }
+        EffectPlugin EffectPlugin { get; set; }
         StereoMode StereoMode { get; set; }
         WrapperPlugin WrapperPlugin {get; set;}
         TrackerPlugin TrackerPlugin {get; set;}

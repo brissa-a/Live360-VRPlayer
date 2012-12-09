@@ -8,6 +8,7 @@ using VrPlayer.Models.Config;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Wrappers;
+using VrPlayer.Models.Shaders;
 
 namespace VrPlayer.Models.State
 {
@@ -35,6 +36,20 @@ namespace VrPlayer.Models.State
             {
                 _stereoMode = value;
                 OnPropertyChanged("StereoMode");
+            }
+        }
+
+        private EffectPlugin _effectPlugin;
+        public EffectPlugin EffectPlugin
+        {
+            get
+            {
+                return _effectPlugin;
+            }
+            set
+            {
+                _effectPlugin = value;
+                OnPropertyChanged("EffectPlugin");
             }
         }
 

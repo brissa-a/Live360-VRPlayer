@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <VisualBrush x:Key="Media">
             <VisualBrush.Visual>
-				<ContentControl Content="{Binding Path=Media}" />
+                <ContentControl Effect="{Binding Path=State.EffectPlugin.Effect}" Content="{Binding Path=Media}" />
             </VisualBrush.Visual>
         </VisualBrush>
     </UserControl.Resources>

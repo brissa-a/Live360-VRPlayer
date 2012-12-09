@@ -6,6 +6,8 @@ using VrPlayer.Models.Config;
 using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Shaders;
 using VrPlayer.Models.Wrappers;
+using VrPlayer.Models.Effects;
+using System.Windows.Media;
 
 namespace VrPlayer.Models.Plugins
 {
@@ -13,9 +15,15 @@ namespace VrPlayer.Models.Plugins
     {
         private readonly IApplicationConfig _config;
 
+        private readonly List<EffectPlugin> _effects = new List<EffectPlugin>();
         private readonly List<WrapperPlugin> _wrappers = new List<WrapperPlugin>();
         private readonly List<TrackerPlugin> _trackers = new List<TrackerPlugin>();
         private readonly List<ShaderPlugin> _shaders = new List<ShaderPlugin>();
+
+        public List<EffectPlugin> Effects
+        {
+            get { return _effects; }
+        }
 
         public List<WrapperPlugin> Wrappers
         {
@@ -36,9 +44,24 @@ namespace VrPlayer.Models.Plugins
         {
             _config = config;
 
+            LoadEffects();
             LoadWrappers();
             LoadTrackers();
             LoadShaders();
+        }
+
+        private void LoadEffects()
+        {
+            var depthMapSbsEffect = new DepthMapSbsEffect();
+            depthMapSbsEffect.MaxOffset = 0.05;
+            var depthMapSbsEffectPlugin = new EffectPlugin(depthMapSbsEffect, "Depth Map SBS");
+            _effects.Add(depthMapSbsEffectPlugin);
+
+            var colorKeyAlphaEffect = new ColorKeyAlphaEffect();
+            colorKeyAlphaEffect.ColorKey = Color.FromRgb(0,255,0);
+            colorKeyAlphaEffect.Tolerance = 0.5;
+            var colorKeyAlphaEffectPlugin = new EffectPlugin(colorKeyAlphaEffect, "Color Key Alpha");
+            _effects.Add(colorKeyAlphaEffectPlugin);
         }
 
         private void LoadWrappers()

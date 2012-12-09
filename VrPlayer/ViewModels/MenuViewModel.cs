@@ -26,6 +26,33 @@ namespace VrPlayer.ViewModels
 
         #region Data
 
+        public List<MenuItem> EffectsMenu
+        {
+            get
+            {
+                var menuItems = new List<MenuItem>();
+                foreach (var effectPlugin in _pluginManager.Effects)
+                {
+                    var menuItem = new MenuItem
+                    {
+                        Header = effectPlugin.Name,
+                        Command = new DelegateCommand(SetEffect),
+                        CommandParameter = effectPlugin,
+                    };
+                    var binding = new Binding
+                    {
+                        Source = _state,
+                        Path = new PropertyPath("EffectPlugin"),
+                        Converter = new CompareParameterConverter(),
+                        ConverterParameter = effectPlugin
+                    };
+                    menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
+                    menuItems.Add(menuItem);
+                }
+                return menuItems;
+            }
+        }
+
         public List<MenuItem> StereoModeMenu
         {
             get
@@ -170,6 +197,7 @@ namespace VrPlayer.ViewModels
 
             //Todo: Extract Default values
             _state.StereoMode = StereoMode.Mono;
+            _state.EffectPlugin = _pluginManager.Effects[0];
             _state.WrapperPlugin = _pluginManager.Wrappers[0];
             _state.TrackerPlugin = _pluginManager.Trackers[0];
             _state.ShaderPlugin = _pluginManager.Shaders[0];
@@ -193,6 +221,11 @@ namespace VrPlayer.ViewModels
         {
             //Todo: Close windows instead. Move to UI
             App.Current.Shutdown();
+        }
+
+        private void SetEffect(object o)
+        {
+            _state.EffectPlugin = (EffectPlugin)o;
         }
 
         private void SetStereoMode(object o)

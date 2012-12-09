@@ -89,8 +89,11 @@
     <Compile Include="Helpers\Mvvm\RelayCommand.cs" />
     <Compile Include="Helpers\QuaternionHelper.cs" />
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
+    <Compile Include="Models\Effects\ColorKeyAlphaEffect.cs" />
+    <Compile Include="Models\Plugins\EffectPlugin.cs" />
     <Compile Include="Models\Plugins\IPluginManager.cs" />
     <Compile Include="Models\Shaders\BarrelEffect.cs" />
+    <Compile Include="Models\Effects\DepthMapSbsEffect.cs" />
     <Compile Include="Models\State\DefaultApplicationState.cs" />
     <Compile Include="Models\State\IApplicationState.cs" />
     <Compile Include="Models\Config\IApplicationConfig.cs" />
@@ -173,8 +176,16 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="Models\Effects\ColorKeyAlphaEffect.fx" />
+    <Content Include="Models\Effects\ColorKeyAlphaEffect.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Models\Shaders\Barrel.fx" />
     <Content Include="Models\Shaders\BarrelEffect.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Models\Effects\DepthMapSbs.fx" />
+    <Content Include="Models\Effects\DepthMapSbsEffect.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\Settings.settings">

@@ -9,6 +9,7 @@ using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models;
 using VrPlayer.Models.State;
+using System.Windows.Media.Effects;
 
 namespace VrPlayer.ViewModels
 {
@@ -88,6 +89,12 @@ namespace VrPlayer.ViewModels
             get { return _seekCommand; }
         }
 
+        private readonly ICommand _setEffectCommand;
+        public ICommand SetEffectCommand
+        {
+            get { return _setEffectCommand; }
+        }
+
         #endregion
 
         public MediaViewModel(IApplicationState state)
@@ -104,6 +111,7 @@ namespace VrPlayer.ViewModels
             _pauseCommand = new RelayCommand(Pause, CanPause);
             _stopCommand = new RelayCommand(Stop, CanStop);
             _seekCommand = new RelayCommand(Seek, CanSeek);
+            _setEffectCommand = new RelayCommand(SetEffect);
 
             DispatcherTimer timer = new DispatcherTimer();
             timer = new DispatcherTimer();
@@ -201,6 +209,11 @@ namespace VrPlayer.ViewModels
         private bool CanSeek(object o)
         {
             return _state.Media.NaturalDuration.HasTimeSpan;
+        }
+
+        private void SetEffect(object o)
+        {
+            _state.Media.Effect = (Effect)o;
         }
 
         #endregion
