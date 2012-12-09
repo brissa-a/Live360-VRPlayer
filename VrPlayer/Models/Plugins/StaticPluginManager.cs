@@ -55,6 +55,11 @@ namespace VrPlayer.Models.Plugins
             var nullEffectPlugin = new EffectPlugin(null, "None");
             _effects.Add(nullEffectPlugin);
 
+            var depthMapOverUnderEffect = new DepthMapOverUnderEffect();
+            depthMapOverUnderEffect.MaxOffset = _config.DepthMapMaxOffset;
+            var depthMapOverUnderEffectPlugin = new EffectPlugin(depthMapOverUnderEffect, "Depth Map Over/Under");
+            _effects.Add(depthMapOverUnderEffectPlugin);
+
             var depthMapSbsEffect = new DepthMapSbsEffect();
             depthMapSbsEffect.MaxOffset = _config.DepthMapMaxOffset;
             var depthMapSbsEffectPlugin = new EffectPlugin(depthMapSbsEffect, "Depth Map SBS");
