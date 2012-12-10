@@ -70,6 +70,14 @@ namespace VrPlayer.Models.Plugins
             colorKeyAlphaEffect.Tolerance = _config.ColorKeyTolerance;
             var colorKeyAlphaEffectPlugin = new EffectPlugin(colorKeyAlphaEffect, "Color Key Alpha");
             _effects.Add(colorKeyAlphaEffectPlugin);
+
+            var unwrapFishEyeEffect = new UnwrapFishEyeEffect();
+            var unwrapFishEyeEffectPlugin = new EffectPlugin(unwrapFishEyeEffect, "Unwrap Fisheye");
+            _effects.Add(unwrapFishEyeEffectPlugin);
+
+            var unwrapFishEyeStereoEffect = new UnwrapFishEyeStereoEffect();
+            var unwrapFishEyeStereoEffectPlugin = new EffectPlugin(unwrapFishEyeStereoEffect, "Unwrap Stereo Fisheye");
+            _effects.Add(unwrapFishEyeStereoEffectPlugin);
         }
 
         private void LoadWrappers()

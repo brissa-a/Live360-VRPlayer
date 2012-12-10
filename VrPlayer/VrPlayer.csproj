@@ -91,6 +91,8 @@
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
     <Compile Include="Models\Effects\ColorKeyAlphaEffect.cs" />
     <Compile Include="Models\Effects\DepthMapOverUnderEffect.cs" />
+    <Compile Include="Models\Effects\UnwrapFishEyeEffect.cs" />
+    <Compile Include="Models\Effects\UnwrapFishEyeStereoEffect.cs" />
     <Compile Include="Models\Plugins\EffectPlugin.cs" />
     <Compile Include="Models\Plugins\IPluginManager.cs" />
     <Compile Include="Models\Shaders\BarrelEffect.cs" />
@@ -183,6 +185,14 @@
     </Content>
     <None Include="Models\Effects\DepthMapOverUnderEffect.fx" />
     <Content Include="Models\Effects\DepthMapOverUnderEffect.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Models\Effects\UnwrapFishEyeEffect.fx" />
+    <Content Include="Models\Effects\UnwrapFishEyeEffect.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Models\Effects\UnwrapFishEyeStereoEffect .fx" />
+    <Content Include="Models\Effects\UnwrapFishEyeStereoEffect.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Models\Shaders\Barrel.fx" />

@@ -19,11 +19,11 @@
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
+        <MenuItem Header="_Effect" ItemsSource="{Binding Path=EffectsMenu}"/>
         <MenuItem Header="3_D" ItemsSource="{Binding Path=StereoModeMenu}"/>
         <MenuItem Header="_Wrapper" ItemsSource="{Binding Path=WrappersMenu}"/>
-        <MenuItem Header="_Tracker" ItemsSource="{Binding Path=TrackersMenu}"/>
         <MenuItem Header="_Shader" ItemsSource="{Binding Path=ShadersMenu}"/>
-        <MenuItem Header="_Effect" ItemsSource="{Binding Path=EffectsMenu}"/>
+        <MenuItem Header="_Tracker" ItemsSource="{Binding Path=TrackersMenu}"/>
         <MenuItem Header="_?">
             <MenuItem Header="_About..." Command="{Binding AboutCommand}">
                 <MenuItem.Icon>
