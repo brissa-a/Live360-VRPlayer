@@ -8,8 +8,12 @@ namespace VrPlayer.Models.Config
         public AppSettingsApplicationConfig()
         {
             _defaultMediaFile = ConfigurationManager.AppSettings["DefaultMediaFile"];
+<<<<<<< HEAD
+            _customPincushionFactor = ParseDouble(ConfigurationManager.AppSettings["CustomPincushionFactor"]);
+=======
             _samplesFolder = ConfigurationManager.AppSettings["SamplesFolder"];
             _customPincushionFactor = double.Parse(ConfigurationManager.AppSettings["CustomPincushionFactor"]);
+>>>>>>> abf15fe... Sample menu
             _cameraFieldOfView = int.Parse(ConfigurationManager.AppSettings["CameraFieldOfView"]);
             _mouseSensitivity = int.Parse(ConfigurationManager.AppSettings["MouseSensitivity"]);
             _depthMapMaxOffset = ParseDouble(ConfigurationManager.AppSettings["DepthMapMaxOffset"]);

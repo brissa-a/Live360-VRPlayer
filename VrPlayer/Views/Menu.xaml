@@ -4,7 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:hlpr="clr-namespace:VrPlayer.Helpers"
+             xmlns:Converters="clr-namespace:VrPlayer.Helpers.Converters"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <Converters:CountToBooleanConverter x:Key="countToBool"/>
+    </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
             <MenuItem Header="_Open..." Command="{Binding LoadCommand}">
@@ -12,17 +16,23 @@
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/fileopen.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <Separator />
+			<Separator />
+            <MenuItem Header="_Samples" ItemsSource="{Binding Path=SamplesMenu}" IsEnabled="{Binding Path=SamplesMenu, Converter={StaticResource countToBool}}">
+				<MenuItem.Icon>
+					<Image Width="20" Height="20" Source="/Medias/Nuvola/edu_science.png" />
+				</MenuItem.Icon>
+			</MenuItem>
+			<Separator />
             <MenuItem Header="E_xit" Command="{Binding ExitCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/exit.png" />
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
-        <MenuItem Header="_Effect" ItemsSource="{Binding Path=EffectsMenu}"/>
         <MenuItem Header="3_D" ItemsSource="{Binding Path=StereoModeMenu}"/>
         <MenuItem Header="_Wrapper" ItemsSource="{Binding Path=WrappersMenu}"/>
         <MenuItem Header="_Shader" ItemsSource="{Binding Path=ShadersMenu}"/>
+        <MenuItem Header="_Effect" ItemsSource="{Binding Path=EffectsMenu}"/>
         <MenuItem Header="_Tracker" ItemsSource="{Binding Path=TrackersMenu}"/>
         <MenuItem Header="_?">
             <MenuItem Header="_About..." Command="{Binding AboutCommand}">

@@ -30,7 +30,7 @@ namespace VrPlayer.ViewModels
 
         public MenuViewModel CreateMenuViewModel()
         {
-            return new MenuViewModel(_state, _pluginManager);
+            return new MenuViewModel(_state, _pluginManager, _config);
         }
 
         public MediaViewModel CreateMediaViewModel()

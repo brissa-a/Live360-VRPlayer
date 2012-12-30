@@ -1,4 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -16,6 +19,7 @@ using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Wrappers;
+using VrPlayer.Models.Config;
 
 namespace VrPlayer.ViewModels
 {
@@ -23,8 +27,42 @@ namespace VrPlayer.ViewModels
 	{
         private readonly IApplicationState _state;
         private readonly IPluginManager _pluginManager;
+        private readonly IApplicationConfig _config;
 
         #region Data
+
+		public List<MenuItem> SamplesMenu
+		{
+			get
+			{
+                var menuItems = new List<MenuItem>();
+
+				string folder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + 
+                    Path.DirectorySeparatorChar + _config.SamplesFolder;
+
+                if (!Directory.Exists(folder))
+                    return menuItems;
+                
+                string[] files = Directory.GetFiles(folder);
+				foreach (var file in files)
+				{
+					var info = new FileInfo(file);
+					var menuItem = new MenuItem
+					{
+					    Header = info.Name,
+						Command = new DelegateCommand(Load),
+						CommandParameter = info.FullName/*
+						Icon = new Image{
+							Source = new BitmapImage(new Uri(info.FullName, UriKind.RelativeOrAbsolute)),
+							Width = 48,
+							Height = 48
+						}*/
+					};
+					menuItems.Add(menuItem);
+				}
+				return menuItems;
+			}
+		}
 
         public List<MenuItem> EffectsMenu
         {
@@ -185,13 +223,14 @@ namespace VrPlayer.ViewModels
 
         #endregion
 
-        public MenuViewModel(IApplicationState state, IPluginManager pluginManager)
+        public MenuViewModel(IApplicationState state, IPluginManager pluginManager, IApplicationConfig config)
         {
             _pluginManager = pluginManager;
             _state = state;
+            _config = config;
 
             //Commands
-            _loadCommand = new DelegateCommand(Load);
+            _loadCommand = new DelegateCommand(Open);
             _exitCommand = new DelegateCommand(Exit);
             _aboutCommand = new DelegateCommand(About);
 
@@ -205,17 +244,22 @@ namespace VrPlayer.ViewModels
 
         #region Logic
 
-        private void Load(object o)
+        private void Open(object o)
         {
             //Todo: Extract dialog to UI layer
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Movies|*.avi;*.mpeg;*.wmv;*.flv;*.mp4;*.mkv|Images|*.jpg;*.bmp;*.gif;*.png|All Files|*.*";
             if (openFileDialog.ShowDialog().Value)
             {
-                //Todo: Bind source change event?
-                _state.Media.Source = new Uri(openFileDialog.FileName, UriKind.Absolute);
+                Load(openFileDialog.FileName);
             }
         }
+
+		private void Load(object o)
+		{
+			string filePath = (string)o;
+			_state.Media.Source = new Uri(filePath, UriKind.Absolute);
+		}
 
         private void Exit(object o)
         {

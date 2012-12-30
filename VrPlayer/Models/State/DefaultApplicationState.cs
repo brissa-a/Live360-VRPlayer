@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Media.Effects;
 
@@ -103,9 +104,7 @@ namespace VrPlayer.Models.State
         {
             _media = new MediaUriElement();
             _media.BeginInit();
-            _media.Source = new Uri(config.DefaultMediaFile, UriKind.RelativeOrAbsolute);
             _media.EndInit();
-            _media.Play();
         }
     }
 }

@@ -85,6 +85,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\Converters\CompareStringParameterConverter.cs" />
+    <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
     <Compile Include="Helpers\Mvvm\DelegateCommand.cs" />
@@ -183,6 +184,10 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Models\Effects\ColorKeyAlphaEffect.fx" />
+    <Resource Include="Medias\Nuvola\edu_science.png" />
+    <Content Include="Medias\Samples\Grid1000x1000.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Models\Effects\ColorKeyAlphaEffect.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -220,9 +225,6 @@
     <Resource Include="Medias\Nuvola\player_pause.png" />
     <Resource Include="Medias\Nuvola\player_play.png" />
     <Resource Include="Medias\Nuvola\player_stop.png" />
-    <Content Include="Medias\Grid1000x1000.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Models\Shaders\PincushionEffect.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -252,6 +254,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)VrPlayer*.txt" "$(TargetDir)"
