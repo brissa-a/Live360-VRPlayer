@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Globalization;
 
 namespace VrPlayer.Models.Config
 {
@@ -7,12 +8,12 @@ namespace VrPlayer.Models.Config
         public AppSettingsApplicationConfig()
         {
             _defaultMediaFile = ConfigurationManager.AppSettings["DefaultMediaFile"];
-            _customPincushionFactor = double.Parse(ConfigurationManager.AppSettings["CustomPincushionFactor"]);
+            _customPincushionFactor = ParseDouble(ConfigurationManager.AppSettings["CustomPincushionFactor"]);
             _cameraFieldOfView = int.Parse(ConfigurationManager.AppSettings["CameraFieldOfView"]);
             _mouseSensitivity = int.Parse(ConfigurationManager.AppSettings["MouseSensitivity"]);
-            _depthMapMaxOffset = double.Parse(ConfigurationManager.AppSettings["DepthMapMaxOffset"]);
+            _depthMapMaxOffset = ParseDouble(ConfigurationManager.AppSettings["DepthMapMaxOffset"]);
             _colorKeyAlphaColor = ConfigurationManager.AppSettings["ColorKeyAlphaColor"];
-            _colorKeyTolerance = double.Parse(ConfigurationManager.AppSettings["ColorKeyTolerance"]);
+            _colorKeyTolerance = ParseDouble(ConfigurationManager.AppSettings["ColorKeyTolerance"]);
         }
 
         private string _defaultMediaFile;
@@ -55,6 +56,13 @@ namespace VrPlayer.Models.Config
         public double ColorKeyTolerance
         {
             get { return _colorKeyTolerance; }
+        }
+
+        private double ParseDouble(string value)
+        {
+            CultureInfo ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            return double.Parse(value, NumberStyles.Any, ci);
         }
     }
 }
