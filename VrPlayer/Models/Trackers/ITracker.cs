@@ -8,5 +8,6 @@ namespace VrPlayer.Models.Trackers
         Quaternion Quaternion { get; set; }
         Vector3D Position { get; set; }
         bool IsActive { get; set; }
+        bool IsEnabled { get; set; }
     }
 }

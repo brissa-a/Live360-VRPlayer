@@ -158,14 +158,23 @@ namespace VrPlayer.ViewModels
                         Command = new DelegateCommand(SetTracker),
                         CommandParameter = trackerPlugin,
                     };
-                    var binding = new Binding
+                    
+                    var activeBinding = new Binding
                     {
-						Source = _state,
+                        Source = _state,
                         Path = new PropertyPath("TrackerPlugin"),
                         Converter = new CompareParameterConverter(),
                         ConverterParameter = trackerPlugin
                     };
-                    menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
+                    menuItem.SetBinding(MenuItem.IsCheckedProperty, activeBinding);
+                    
+                    var enabledBinding = new Binding
+                    {
+                        Source = trackerPlugin.Tracker,
+                        Path = new PropertyPath("IsEnabled")
+                    };
+                    menuItem.SetBinding(MenuItem.IsEnabledProperty, enabledBinding);
+
                     menuItems.Add(menuItem);
                 }
                 return menuItems;

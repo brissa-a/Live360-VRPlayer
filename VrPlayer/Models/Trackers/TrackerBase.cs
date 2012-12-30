@@ -27,6 +27,20 @@ namespace VrPlayer.Models.Trackers
             }
         }
 
+        private bool _isEnabled;
+        public bool IsEnabled
+        {
+            get
+            {
+                return _isEnabled;
+            }
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged("IsEnabled");
+            }
+        }
+
         public abstract void Dispose();
     }
 }

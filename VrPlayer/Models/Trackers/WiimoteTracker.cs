@@ -16,14 +16,14 @@ namespace VrPlayer.Models.Trackers
             //Todo: Use a connecion method in the Tracker Interface
             try
             {
+                IsEnabled = true;
                 _wiimote.Connect();
                 _wiimote.InitializeMotionPlus();
                 _wiimote.WiimoteChanged += new EventHandler<WiimoteChangedEventArgs>(wiimote_WiimoteChanged);
             }
             catch (Exception exc)
             {
-                //Todo: Error handling
-                //throw new Exception("Error while initializing Wiimote tracker.", exc);
+                IsEnabled = false;
             }
         }
 

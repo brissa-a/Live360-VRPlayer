@@ -12,12 +12,13 @@ namespace VrPlayer.Models.Trackers
         {
             try
             {
+                IsEnabled = true;
                 init();
             }
             catch (Exception exc)
             {
-                throw new Exception("Error while initializing PsMove tracker.", exc);
-            }
+                IsEnabled = false;
+            }  
         }
 
         public void init()

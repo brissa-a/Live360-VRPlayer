@@ -39,6 +39,8 @@ namespace VrPlayer.Models.Trackers
 
             //Handlers
             Application.Current.Activated += new EventHandler(Current_Activated);
+
+            IsEnabled = true;
         }
 
         void Current_Activated(object sender, EventArgs e)
