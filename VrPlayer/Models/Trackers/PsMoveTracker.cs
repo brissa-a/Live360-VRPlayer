@@ -51,6 +51,7 @@ namespace VrPlayer.Models.Trackers
         void MoveUpdateCallback(int id, MoveWrapper.Vector3 position, MoveWrapper.Quaternion orientation, int trigger)
         {
             Quaternion = new Quaternion(orientation.x, orientation.y, orientation.z, orientation.w);
+            Position = new Vector3D(position.x, position.y, position.z);
         }
 
     	static void MoveKeyUpCallback(int id, int keyCode)

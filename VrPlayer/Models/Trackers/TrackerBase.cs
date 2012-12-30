@@ -11,6 +11,7 @@ namespace VrPlayer.Models.Trackers
     public abstract class TrackerBase: ViewModelBase
     {
         public Quaternion Quaternion { get; set; }
+        public Vector3D Position { get; set; }
         
         private bool _isActive;
         public bool IsActive

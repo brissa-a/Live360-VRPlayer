@@ -47,7 +47,36 @@ namespace VrPlayer.Models.Trackers
             {
                 _viewport = Application.Current.MainWindow;
                 _viewport.MouseMove += new MouseEventHandler(mouseZone_MouseMove);
+                _viewport.KeyDown += new KeyEventHandler(_viewport_KeyDown);
             }
+        }
+
+        void _viewport_KeyDown(object sender, KeyEventArgs e)
+        {
+            double moveFactor = 1;
+            Vector3D moveVector = new Vector3D();
+            switch (e.Key)
+            { 
+                case Key.Left:
+                    moveVector = new Vector3D(-moveFactor,0,0);
+                    break;
+                case Key.Right:
+                    moveVector = new Vector3D(moveFactor, 0, 0);
+                    break;
+                case Key.Up:
+                    moveVector = new Vector3D(0, 0, moveFactor);
+                    break;
+                case Key.Down:
+                    moveVector = new Vector3D(0, 0, -moveFactor);
+                    break;
+                case Key.PageUp:
+                    moveVector = new Vector3D(0, moveFactor, 0);
+                    break;
+                case Key.PageDown:
+                    moveVector = new Vector3D(0, -moveFactor, 0);
+                    break;
+            }
+            Position = Position + moveVector;
         }
 
         void mouseZone_MouseMove(object sender, MouseEventArgs e)
