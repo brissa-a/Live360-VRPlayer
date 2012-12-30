@@ -5,7 +5,7 @@ namespace VrPlayer.Models.Trackers
 {
     public interface ITracker: IDisposable
     {
-        Quaternion Quaternion { get; set; }
+        Quaternion Rotation { get; set; }
         Vector3D Position { get; set; }
         bool IsActive { get; set; }
         bool IsEnabled { get; set; }

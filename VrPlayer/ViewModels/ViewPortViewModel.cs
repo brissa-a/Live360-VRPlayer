@@ -98,7 +98,7 @@ namespace VrPlayer.ViewModels
         
         void timer_Tick(object sender, EventArgs e)
         {
-            CameraTransform = _state.TrackerPlugin.Tracker.Quaternion;
+            CameraTransform = _state.TrackerPlugin.Tracker.Rotation;
         }
 
         #region Logic

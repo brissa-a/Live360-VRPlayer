@@ -113,6 +113,10 @@ namespace VrPlayer.Models.Plugins
             var wiimoteTracker = new WiimoteTracker();
             var wiimoteTrackerPlugin = new TrackerPlugin(wiimoteTracker, "WiiMote + MotionPlus");
             _trackers.Add(wiimoteTrackerPlugin);
+
+            var razerTracker = new RazerHydraTracker();
+            var razerTrackerPlugin = new TrackerPlugin(razerTracker, "Razer Hydra");
+            _trackers.Add(razerTrackerPlugin);
         }
 
         private void LoadShaders()
