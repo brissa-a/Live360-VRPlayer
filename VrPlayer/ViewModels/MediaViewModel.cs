@@ -113,9 +113,8 @@ namespace VrPlayer.ViewModels
             _seekCommand = new RelayCommand(Seek, CanSeek);
             _setEffectCommand = new RelayCommand(SetEffect);
 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
+            DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.DataBind);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
 		}
@@ -124,23 +123,23 @@ namespace VrPlayer.ViewModels
 
         void timer_Tick(object sender, EventArgs e)
         {
-            if (_state.Media.NaturalDuration.HasTimeSpan)
+            if (_state.Media.MediaDuration > 0)
             {
-                Progress = _state.Media.Position.TotalSeconds / _state.Media.NaturalDuration.TimeSpan.TotalSeconds * 100;
+                Progress = _state.Media.MediaPosition / (double)_state.Media.MediaDuration * 100;
             }
             CommandManager.InvalidateRequerySuggested();
         }
 
         void _media_MediaOpened(object sender, RoutedEventArgs e)
         {
-            HasDuration = _state.Media.NaturalDuration.HasTimeSpan;
+            HasDuration = _state.Media.MediaDuration > 0;
             StopCommand.Execute(null);
             PlayCommand.Execute(null);
         }
 
         void _media_SourceUpdated(object sender, DataTransferEventArgs e)
         {
-            HasDuration = _state.Media.NaturalDuration.HasTimeSpan;
+            HasDuration = _state.Media.MediaDuration > 0;
             StopCommand.Execute(null);
             PlayCommand.Execute(null);
         }
@@ -193,7 +192,7 @@ namespace VrPlayer.ViewModels
 
         private bool CanStop(object o)
         {
-            return _state.Media.Position > TimeSpan.Zero;
+            return _state.Media.MediaPosition > 0;
         }
 
         private void Seek(object o)
@@ -201,14 +200,13 @@ namespace VrPlayer.ViewModels
             if (CanSeek(o))
             {
                 double percentComplete = (double)o;
-                int newPosition = (int)(_state.Media.NaturalDuration.TimeSpan.TotalMilliseconds * percentComplete);
-                _state.Media.Position = new TimeSpan(0, 0, 0, 0, newPosition);
+                _state.Media.MediaPosition = (long)(_state.Media.MediaDuration * percentComplete);
             }
         }
 
         private bool CanSeek(object o)
         {
-            return _state.Media.NaturalDuration.HasTimeSpan;
+            return _state.Media.MediaDuration > 0;
         }
 
         private void SetEffect(object o)

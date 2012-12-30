@@ -9,5 +9,6 @@
         double DepthMapMaxOffset { get; }
         string ColorKeyAlphaColor { get; }
         double ColorKeyTolerance { get; }
+        int OrientationRefreshRateInMS { get; }
     }
 }

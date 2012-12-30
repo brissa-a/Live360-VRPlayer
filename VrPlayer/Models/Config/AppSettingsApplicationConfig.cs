@@ -14,6 +14,7 @@ namespace VrPlayer.Models.Config
             _depthMapMaxOffset = ParseDouble(ConfigurationManager.AppSettings["DepthMapMaxOffset"]);
             _colorKeyAlphaColor = ConfigurationManager.AppSettings["ColorKeyAlphaColor"];
             _colorKeyTolerance = ParseDouble(ConfigurationManager.AppSettings["ColorKeyTolerance"]);
+            _orientationRefreshRateInMS = int.Parse(ConfigurationManager.AppSettings["OrientationRefreshRateInMS"]);
         }
 
         private string _defaultMediaFile;
@@ -56,6 +57,12 @@ namespace VrPlayer.Models.Config
         public double ColorKeyTolerance
         {
             get { return _colorKeyTolerance; }
+        }
+
+        private int _orientationRefreshRateInMS;
+        public int OrientationRefreshRateInMS
+        {
+            get { return _orientationRefreshRateInMS; }
         }
 
         private double ParseDouble(string value)

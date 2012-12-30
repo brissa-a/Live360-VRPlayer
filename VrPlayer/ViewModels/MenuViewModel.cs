@@ -209,7 +209,7 @@ namespace VrPlayer.ViewModels
         {
             //Todo: Extract dialog to UI layer
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Movies (*.mpeg,*.wmv,*.avi)|*.mpeg;*.wmv;*.avi|Images (*.jpg,*.png,*.bmp,*.gif)|*.jpg;*.bmp;*.gif;*.png|All Files (*.*)|*.*";
+            openFileDialog.Filter = "Movies|*.avi;*.mpeg;*.wmv;*.flv;*.mp4;*.mkv|Images|*.jpg;*.bmp;*.gif;*.png|All Files|*.*";
             if (openFileDialog.ShowDialog().Value)
             {
                 //Todo: Bind source change event?

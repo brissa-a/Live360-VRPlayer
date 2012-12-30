@@ -5,6 +5,8 @@ using System.Windows.Media.Effects;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
 
+using WPFMediaKit.DirectShow.Controls;
+
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.State;
@@ -22,7 +24,7 @@ namespace VrPlayer.ViewModels
 
         #region Fields
 
-		public MediaElement Media
+		public MediaUriElement Media
 		{
 			get
 			{
@@ -88,9 +90,8 @@ namespace VrPlayer.ViewModels
             //Commands
             _toggleNavigationCommand = new RelayCommand(ToggleNavigation);
 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 5);
+            DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Input);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, config.OrientationRefreshRateInMS);
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
         }

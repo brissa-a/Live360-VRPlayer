@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using System.Windows.Media.Effects;
 
+using WPFMediaKit.DirectShow.Controls;
+
 using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
@@ -16,8 +18,8 @@ namespace VrPlayer.Models.State
     {
         #region Fields
 
-        private MediaElement _media;
-        public MediaElement Media
+        private MediaUriElement _media;
+        public MediaUriElement Media
         {
             get
             {
@@ -99,10 +101,10 @@ namespace VrPlayer.Models.State
 
         public DefaultApplicationState(IApplicationConfig config)
         {
-            _media = new MediaElement();
-            _media.LoadedBehavior = MediaState.Manual;
-            _media.ScrubbingEnabled = true;
+            _media = new MediaUriElement();
+            _media.BeginInit();
             _media.Source = new Uri(config.DefaultMediaFile, UriKind.RelativeOrAbsolute);
+            _media.EndInit();
             _media.Play();
         }
     }
