@@ -9,7 +9,7 @@ namespace VrPlayer.Models.Trackers
 {
     public class WiimoteTracker : TrackerBase, ITracker
     {
-        private Wiimote _wiimote = new Wiimote();
+        private Wiimote _wiimote;
 
         public WiimoteTracker()
         {
@@ -17,12 +17,18 @@ namespace VrPlayer.Models.Trackers
             try
             {
                 IsEnabled = true;
+                _wiimote = new Wiimote();
                 _wiimote.Connect();
                 _wiimote.InitializeMotionPlus();
                 _wiimote.WiimoteChanged += new EventHandler<WiimoteChangedEventArgs>(wiimote_WiimoteChanged);
+
+                _wiimote.SetRumble(true);
+                _wiimote.SetLEDs(true, false, false, true);
+                _wiimote.SetRumble(false);
             }
             catch (Exception exc)
             {
+                _wiimote.SetLEDs(false, false, false, false);
                 IsEnabled = false;
             }
         }
@@ -37,6 +43,7 @@ namespace VrPlayer.Models.Trackers
 
         public override void Dispose()
         {
+            _wiimote.SetLEDs(false, false, false, false);
             _wiimote.Disconnect();
             _wiimote = null;
         }

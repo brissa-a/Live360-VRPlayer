@@ -40,9 +40,9 @@ namespace VrPlayer.Models.Trackers
             
             this.Rotation = new Quaternion(
                 _hydra.Data.rot_quat.x,
-                _hydra.Data.rot_quat.y,
+                -_hydra.Data.rot_quat.y,
                 _hydra.Data.rot_quat.z,
-                _hydra.Data.rot_quat.w);
+                -_hydra.Data.rot_quat.w);
 
             this.Position = new Vector3D(
                 _hydra.Data.pos.x,

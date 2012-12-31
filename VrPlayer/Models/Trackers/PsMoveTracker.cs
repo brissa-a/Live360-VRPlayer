@@ -29,30 +29,33 @@ namespace VrPlayer.Models.Trackers
 
             if (moveCount > 0)
             {
-				/*
-                bool buttonX = MoveWrapper.getButtonState(0, MoveButton.B_CROSS);
-                MoveWrapper.Quaternion q = MoveWrapper.getOrientation(0);
-                MoveWrapper.Vector3 v = MoveWrapper.getPosition(0);
-                int trigger = MoveWrapper.getTriggerValue(0);
-                */
 				MoveWrapper.setRumble(0, 255);
                 Thread.Sleep(40);
                 MoveWrapper.setRumble(0, 0);
-            }
-            MoveWrapper.subscribeMoveUpdate(
-				MoveUpdateCallback, 
-				MoveKeyDownCallback, 
-				MoveKeyUpCallback, 
-				NavUpdateCallback, 
-				NavKeyDownCallback, 
-				NavKeyUpCallback
-			);
+
+                MoveWrapper.subscribeMoveUpdate(
+                    MoveUpdateCallback,
+                    MoveKeyDownCallback,
+                    MoveKeyUpCallback,
+                    NavUpdateCallback,
+                    NavKeyDownCallback,
+                    NavKeyUpCallback
+                );
+            }   
         }
 
         void MoveUpdateCallback(int id, MoveWrapper.Vector3 position, MoveWrapper.Quaternion orientation, int trigger)
         {
-            Rotation = new Quaternion(orientation.x, orientation.y, orientation.z, orientation.w);
-            Position = new Vector3D(position.x, position.y, position.z);
+            Rotation = new Quaternion(
+                orientation.x, 
+                -orientation.y, 
+                orientation.z, 
+                -orientation.w);
+
+            Position = new Vector3D(
+                position.x, 
+                position.y, 
+                position.z);
         }
 
     	static void MoveKeyUpCallback(int id, int keyCode)
