@@ -51,14 +51,9 @@ namespace VrPlayer.ViewModels
 					{
 					    Header = info.Name,
 						Command = new DelegateCommand(Load),
-						CommandParameter = info.FullName/*
-						Icon = new Image{
-							Source = new BitmapImage(new Uri(info.FullName, UriKind.RelativeOrAbsolute)),
-							Width = 48,
-							Height = 48
-						}*/
+						CommandParameter = info.FullName
 					};
-					menuItems.Add(menuItem);
+                    menuItems.Add(menuItem);
 				}
 				return menuItems;
 			}
@@ -91,7 +86,7 @@ namespace VrPlayer.ViewModels
             }
         }
 
-        public List<MenuItem> StereoModeMenu
+        public List<MenuItem> StereoInputMenu
         {
             get
             {
@@ -101,13 +96,40 @@ namespace VrPlayer.ViewModels
                     var menuItem = new MenuItem
                     {
                         Header = stereoMode.ToString(),
-                        Command = new DelegateCommand(SetStereoMode),
+                        Command = new DelegateCommand(SetStereoInput),
                         CommandParameter = stereoMode,
                     };
                     var binding = new Binding
                     {
                         Source = _state,
-                        Path = new PropertyPath("StereoMode"),
+                        Path = new PropertyPath("StereoInput"),
+                        Converter = new CompareStringParameterConverter(),
+                        ConverterParameter = stereoMode
+                    };
+                    menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
+                    menuItems.Add(menuItem);
+                }
+                return menuItems;
+            }
+        }
+
+        public List<MenuItem> StereoOutputMenu
+        {
+            get
+            {
+                var menuItems = new List<MenuItem>();
+                foreach (var stereoMode in Enum.GetValues(typeof(StereoMode)))
+                {
+                    var menuItem = new MenuItem
+                    {
+                        Header = stereoMode.ToString(),
+                        Command = new DelegateCommand(SetStereoOutput),
+                        CommandParameter = stereoMode,
+                    };
+                    var binding = new Binding
+                    {
+                        Source = _state,
+                        Path = new PropertyPath("StereoOutput"),
                         Converter = new CompareStringParameterConverter(),
                         ConverterParameter = stereoMode
                     };
@@ -224,6 +246,12 @@ namespace VrPlayer.ViewModels
             get { return _exitCommand; }
         }
 
+        private readonly ICommand _debugCommand;
+        public ICommand DebugCommand
+        {
+            get { return _debugCommand; }
+        }
+
         private readonly ICommand _aboutCommand;
         public ICommand AboutCommand
         {
@@ -241,14 +269,20 @@ namespace VrPlayer.ViewModels
             //Commands
             _loadCommand = new DelegateCommand(Open);
             _exitCommand = new DelegateCommand(Exit);
-            _aboutCommand = new DelegateCommand(About);
+            _debugCommand = new DelegateCommand(ShowDebug);
+            _aboutCommand = new DelegateCommand(ShowAbout);
 
             //Todo: Extract Default values
-            _state.StereoMode = StereoMode.Mono;
+            _state.StereoInput = StereoMode.Mono;
+            _state.StereoOutput = StereoMode.SideBySide;
             _state.EffectPlugin = _pluginManager.Effects[0];
             _state.WrapperPlugin = _pluginManager.Wrappers[0];
             _state.TrackerPlugin = _pluginManager.Trackers[0];
             _state.ShaderPlugin = _pluginManager.Shaders[0];
+
+            //Todo: Should not set the media value directly
+            _state.Media.Source = new Uri(SamplesMenu[0].CommandParameter.ToString(), UriKind.RelativeOrAbsolute);
+            _state.Media.Play();
         }
 
         #region Logic
@@ -281,16 +315,21 @@ namespace VrPlayer.ViewModels
             _state.EffectPlugin = (EffectPlugin)o;
         }
 
-        private void SetStereoMode(object o)
+        private void SetStereoInput(object o)
         {
-            _state.StereoMode = (StereoMode)o;
-            _state.WrapperPlugin.Wrapper.StereoMode = _state.StereoMode;
+            _state.StereoInput = (StereoMode)o;
+            _state.WrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
+        }
+
+        private void SetStereoOutput(object o)
+        {
+            _state.StereoOutput = (StereoMode)o;
         }
 
         private void SetWrapper(object o)
         {
             WrapperPlugin wrapperPlugin = (WrapperPlugin)o;
-            wrapperPlugin.Wrapper.StereoMode = _state.StereoMode;
+            wrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
             _state.WrapperPlugin = wrapperPlugin;
         }
 
@@ -304,7 +343,13 @@ namespace VrPlayer.ViewModels
             _state.ShaderPlugin = (ShaderPlugin)o;
         }
 
-        private void About(object o)
+        private void ShowDebug(object o)
+        {
+            DebugWindow window = new DebugWindow();
+            window.Show();
+        }
+
+        private void ShowAbout(object o)
         {
             //Todo: Extract to UI layer
             MessageBox.Show(

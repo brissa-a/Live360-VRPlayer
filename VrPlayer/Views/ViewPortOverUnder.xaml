@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VrPlayer.Views.ViewPort"
+﻿<UserControl x:Class="VrPlayer.Views.ViewPortOverUnder"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,12 +14,12 @@
     </UserControl.Resources>
     <Border Background="Transparent" MouseDown="Border_MouseDown">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <!--LEFT-->
-            <Grid Grid.Column="0" Background="Black" Effect="{Binding Path=State.ShaderPlugin.Shader}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--TOP-->
+            <Grid Grid.Row="0" Background="Black" Effect="{Binding Path=State.ShaderPlugin.Shader}">
                 <Viewport3D Grid.Column="0">
                     <Viewport3D.Camera>
                         <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.WrapperPlugin.Wrapper.CameraLeftPosition}" FieldOfView="{Binding Path=Fov}" >
@@ -55,8 +55,8 @@
                     </ModelVisual3D>
                 </Viewport3D>
             </Grid>
-            <!--RIGHT-->
-            <Grid Grid.Column="1" Background="Black" Effect="{Binding Path=State.ShaderPlugin.Shader}">
+            <!--DOWN-->
+            <Grid Grid.Row="1" Background="Black" Effect="{Binding Path=State.ShaderPlugin.Shader}">
                 <Viewport3D>
                     <Viewport3D.Camera>
                         <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.WrapperPlugin.Wrapper.CameraRightPosition}" FieldOfView="{Binding Path=Fov}" >

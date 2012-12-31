@@ -10,9 +10,34 @@ namespace VrPlayer.Models.Trackers
 {
     public abstract class TrackerBase: ViewModelBase
     {
-        public Quaternion Rotation { get; set; }
-        public Vector3D Position { get; set; }
-        
+        private Vector3D _position;
+        public Vector3D Position
+        {
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                _position = value;
+                OnPropertyChanged("Position");
+            }
+        }
+
+        private Quaternion _rotation;
+        public Quaternion Rotation
+        {
+            get
+            {
+                return _rotation;
+            }
+            set
+            {
+                _rotation = value;
+                OnPropertyChanged("Rotation");
+            }
+        }
+
         private bool _isActive;
         public bool IsActive
         {

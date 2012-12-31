@@ -13,7 +13,8 @@ namespace VrPlayer.Models.State
     {
         MediaUriElement Media { get; }
         EffectPlugin EffectPlugin { get; set; }
-        StereoMode StereoMode { get; set; }
+        StereoMode StereoInput { get; set; }
+        StereoMode StereoOutput { get; set; }
         WrapperPlugin WrapperPlugin {get; set;}
         TrackerPlugin TrackerPlugin {get; set;}
         ShaderPlugin ShaderPlugin { get; set; }

@@ -29,12 +29,21 @@
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
-        <MenuItem Header="_Source" ItemsSource="{Binding Path=StereoModeMenu}"/>
+        <MenuItem Header="3_D">
+            <MenuItem Header="_Source" ItemsSource="{Binding Path=StereoInputMenu}"/>
+            <MenuItem Header="_Destination" ItemsSource="{Binding Path=StereoOutputMenu}"/>
+        </MenuItem>
         <MenuItem Header="_Projection" ItemsSource="{Binding Path=WrappersMenu}"/>
         <MenuItem Header="_Distortion" ItemsSource="{Binding Path=ShadersMenu}"/>
         <MenuItem Header="_Effect" ItemsSource="{Binding Path=EffectsMenu}"/>
         <MenuItem Header="_Tracker" ItemsSource="{Binding Path=TrackersMenu}"/>
         <MenuItem Header="_?">
+            <MenuItem Header="_Debug..." Command="{Binding DebugCommand}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kcontrol.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator />
             <MenuItem Header="_About..." Command="{Binding AboutCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/help.png" />

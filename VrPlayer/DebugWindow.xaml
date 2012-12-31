@@ -1,0 +1,44 @@
+﻿<Window x:Class="VrPlayer.DebugWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Debug" Height="300" Width="300" WindowStyle="ToolWindow" Topmost="True">
+    <TabControl>
+        <TabItem Header="Console">
+            <TextBox Text="VR Player" />
+        </TabItem>
+        <TabItem Header="Tracker">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Rotation" FontWeight="Bold"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="X:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.X}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Y:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.Y}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Z:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.Z}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="W:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.W}" IsEnabled="False"></Label>
+                </StackPanel>
+                <TextBlock Text="Position" FontWeight="Bold"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="X:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Position.X}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Y:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Position.Y}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Z:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Position.Z}" IsEnabled="False"></Label>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</Window>

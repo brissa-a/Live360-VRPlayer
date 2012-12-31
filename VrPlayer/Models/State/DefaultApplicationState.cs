@@ -28,17 +28,31 @@ namespace VrPlayer.Models.State
             }
         }
 
-        private StereoMode _stereoMode;
-        public StereoMode StereoMode
+        private StereoMode _stereoInput;
+        public StereoMode StereoInput
         {
             get
             {
-                return _stereoMode;
+                return _stereoInput;
             }
             set
             {
-                _stereoMode = value;
-                OnPropertyChanged("StereoMode");
+                _stereoInput = value;
+                OnPropertyChanged("StereoInput");
+            }
+        }
+
+        private StereoMode _stereoOutput;
+        public StereoMode StereoOutput
+        {
+            get
+            {
+                return _stereoOutput;
+            }
+            set
+            {
+                _stereoOutput = value;
+                OnPropertyChanged("StereoOutput");
             }
         }
 

@@ -5,11 +5,11 @@ using VrPlayer.ViewModels;
 
 namespace VrPlayer.Views
 {
-    public partial class ViewPort : UserControl
+    public partial class ViewPortOverUnder : UserControl
     {
         private readonly ViewPortViewModel _viewModel;
 
-        public ViewPort()
+        public ViewPortOverUnder()
         {
             InitializeComponent();
             try
