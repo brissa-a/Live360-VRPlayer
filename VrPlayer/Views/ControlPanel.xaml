@@ -8,7 +8,18 @@
         <BooleanToVisibilityConverter x:Key="boolToVis"/>
     </UserControl.Resources>
     <StatusBar Visibility="{Binding Path=HasDuration, Converter={StaticResource boolToVis}}">
-        <StatusBarItem DockPanel.Dock="Left">
+        <StatusBar.ItemsPanel>
+            <ItemsPanelTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </ItemsPanelTemplate>
+        </StatusBar.ItemsPanel>
+        <StatusBarItem>
             <WrapPanel>
 				<Button Height="25" Width="25" Command="{Binding PlayCommand}">
                     <Image Source="/Medias/Nuvola/player_play.png"></Image>
@@ -19,10 +30,15 @@
 				<Button Height="25" Width="25" Command="{Binding StopCommand}">
                     <Image Source="/Medias/Nuvola/player_stop.png"></Image>
 				</Button>
-			</WrapPanel>
+            </WrapPanel>
         </StatusBarItem>
-        <StatusBarItem HorizontalContentAlignment="Stretch">
-            <ProgressBar Height="25" HorizontalAlignment="Stretch" Value="{Binding Path=Progress}" Minimum="0" Maximum="100" MouseDown="ProgressBar_MouseDown" MouseMove="ProgressBar_MouseMove"/>
+        <StatusBarItem Grid.Column="1" HorizontalContentAlignment="Stretch">
+            <ProgressBar Height="25" Value="{Binding Path=Progress}" Minimum="0" Maximum="100" MouseDown="ProgressBar_MouseDown" MouseMove="ProgressBar_MouseMove"/>
+        </StatusBarItem>
+        <StatusBarItem Grid.Column="2">
+            <ToggleButton Height="25" Width="25" Command="{Binding LoopCommand}" CommandParameter="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}">
+                <Image Source="/Medias/Nuvola/noatunloopsong.png"></Image>
+            </ToggleButton>
         </StatusBarItem>
     </StatusBar>
 </UserControl>

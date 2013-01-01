@@ -95,6 +95,12 @@ namespace VrPlayer.ViewModels
             get { return _setEffectCommand; }
         }
 
+        private readonly ICommand _loopCommand;
+        public ICommand LoopCommand
+        {
+            get { return _loopCommand; }
+        }
+
         #endregion
 
         public MediaViewModel(IApplicationState state)
@@ -112,6 +118,7 @@ namespace VrPlayer.ViewModels
             _stopCommand = new RelayCommand(Stop, CanStop);
             _seekCommand = new RelayCommand(Seek, CanSeek);
             _setEffectCommand = new RelayCommand(SetEffect);
+            _loopCommand = new RelayCommand(Loop);
 
             DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.DataBind);
             timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
@@ -186,6 +193,7 @@ namespace VrPlayer.ViewModels
             if (CanStop(o))
             {
                 _state.Media.Stop();
+                _state.Media.MediaPosition = 0;
                 IsPlaying = false;
             }
         }
@@ -212,6 +220,12 @@ namespace VrPlayer.ViewModels
         private void SetEffect(object o)
         {
             _state.Media.Effect = (Effect)o;
+        }
+
+        private void Loop(object o)
+        { 
+            bool loop = (bool)o;
+            _state.Media.Loop = loop;
         }
 
         #endregion
