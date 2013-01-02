@@ -6,11 +6,19 @@
              xmlns:shdr="clr-namespace:VrPlayer.Models.Shaders"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <VisualBrush x:Key="Media">
+        <VisualBrush x:Key="Media"
+                     RenderOptions.CachingHint="Cache"
+                     RenderOptions.CacheInvalidationThresholdMaximum="2.0"
+                     RenderOptions.CacheInvalidationThresholdMinimum="0.5">
             <VisualBrush.Visual>
-                <ContentControl Effect="{Binding Path=State.EffectPlugin.Effect}" Content="{Binding Path=Media}" />
+                <ContentControl Effect="{Binding Path=State.EffectPlugin.Effect}" Content="{Binding Path=Media}" IsHitTestVisible="False" />
             </VisualBrush.Visual>
         </VisualBrush>
+        <GeometryModel3D x:Key="Geometry" Geometry="{Binding Path=State.WrapperPlugin.Wrapper.Geometry}">
+            <GeometryModel3D.BackMaterial>
+                <DiffuseMaterial Brush="{DynamicResource Media}"></DiffuseMaterial>
+            </GeometryModel3D.BackMaterial>
+        </GeometryModel3D>
     </UserControl.Resources>
     <Border Background="Transparent" MouseDown="Border_MouseDown">
         <Grid>
@@ -20,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <!--LEFT-->
             <Grid Grid.Column="0" Background="Black" Effect="{Binding Path=State.ShaderPlugin.Shader}">
-                <Viewport3D Grid.Column="0">
+                <Viewport3D IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased">
                     <Viewport3D.Camera>
                         <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.WrapperPlugin.Wrapper.CameraLeftPosition}" FieldOfView="{Binding Path=Fov}" >
                             <PerspectiveCamera.Transform>
@@ -44,20 +52,12 @@
                             <AmbientLight Color="White"></AmbientLight >
                         </ModelVisual3D.Content>
                     </ModelVisual3D>
-                    <ModelVisual3D>
-                        <ModelVisual3D.Content>
-                            <GeometryModel3D Geometry="{Binding Path=State.WrapperPlugin.Wrapper.Geometry}">
-                                <GeometryModel3D.BackMaterial>
-                                    <DiffuseMaterial Brush="{DynamicResource Media}"></DiffuseMaterial>
-                                </GeometryModel3D.BackMaterial>
-                            </GeometryModel3D>
-                        </ModelVisual3D.Content>
-                    </ModelVisual3D>
+                    <ModelVisual3D Content="{DynamicResource Geometry}" />
                 </Viewport3D>
             </Grid>
             <!--RIGHT-->
             <Grid Grid.Column="1" Background="Black" Effect="{Binding Path=State.ShaderPlugin.Shader}">
-                <Viewport3D>
+                <Viewport3D IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased">
                     <Viewport3D.Camera>
                         <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.WrapperPlugin.Wrapper.CameraRightPosition}" FieldOfView="{Binding Path=Fov}" >
                             <PerspectiveCamera.Transform>
@@ -81,15 +81,7 @@
                             <AmbientLight Color="White"></AmbientLight >
                         </ModelVisual3D.Content>
                     </ModelVisual3D>
-                    <ModelVisual3D>
-                        <ModelVisual3D.Content>
-                            <GeometryModel3D Geometry="{Binding Path=State.WrapperPlugin.Wrapper.Geometry}">
-                                <GeometryModel3D.BackMaterial>
-                                    <DiffuseMaterial Brush="{DynamicResource Media}"></DiffuseMaterial>
-                                </GeometryModel3D.BackMaterial>
-                            </GeometryModel3D>
-                        </ModelVisual3D.Content>
-                    </ModelVisual3D>
+                    <ModelVisual3D Content="{DynamicResource Geometry}" />
                 </Viewport3D>
             </Grid>
         </Grid>

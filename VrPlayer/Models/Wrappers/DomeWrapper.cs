@@ -9,7 +9,7 @@ namespace VrPlayer.Models.Wrappers
     public class DomeWrapper : WrapperBase, IWrapper
     {
         int _slices = 16;
-        int _stacks = 8;
+        int _stacks = 16;
         Point3D _center = new Point3D();
         double _radius = 1;
 

@@ -55,7 +55,7 @@ namespace VrPlayer.Models.Trackers
 
         void _viewport_KeyDown(object sender, KeyEventArgs e)
         {
-            double moveFactor = 1;
+            double moveFactor = 0.01;
             Vector3D moveVector = new Vector3D();
             switch (e.Key)
             { 
