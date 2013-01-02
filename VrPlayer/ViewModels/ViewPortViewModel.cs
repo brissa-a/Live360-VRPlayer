@@ -22,6 +22,12 @@ namespace VrPlayer.ViewModels
             get { return _state; }
         }
 
+        private readonly IApplicationConfig _config;
+        public IApplicationConfig Config
+        {
+            get { return _config; }
+        }
+
         #region Fields
 
 		public MediaUriElement Media
@@ -83,6 +89,7 @@ namespace VrPlayer.ViewModels
         public ViewPortViewModel(IApplicationState state, IApplicationConfig config)
         {
             _state = state;
+            _config = config;
 
             //Default Values
             Fov = config.CameraFieldOfView;

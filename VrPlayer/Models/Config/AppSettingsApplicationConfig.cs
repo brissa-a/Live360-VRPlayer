@@ -16,6 +16,8 @@ namespace VrPlayer.Models.Config
             _colorKeyAlphaColor = ConfigurationManager.AppSettings["ColorKeyAlphaColor"];
             _colorKeyTolerance = ParseDouble(ConfigurationManager.AppSettings["ColorKeyTolerance"]);
             _orientationRefreshRateInMS = int.Parse(ConfigurationManager.AppSettings["OrientationRefreshRateInMS"]);
+            _viewportCenterSpacing = int.Parse(ConfigurationManager.AppSettings["ViewportCenterSpacing"]);
+            _viewportSideSpacing = int.Parse(ConfigurationManager.AppSettings["ViewportSideSpacing"]);
         }
 
         private string _defaultMediaFile;
@@ -77,6 +79,18 @@ namespace VrPlayer.Models.Config
             CultureInfo ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();
             ci.NumberFormat.CurrencyDecimalSeparator = ".";
             return double.Parse(value, NumberStyles.Any, ci);
+        }
+
+        private int _viewportSideSpacing;
+        public int ViewportSideSpacing
+        {
+            get { return _viewportSideSpacing; }
+        }
+
+        private int _viewportCenterSpacing;
+        public int ViewportCenterSpacing
+        {
+            get { return _viewportCenterSpacing; }
         }
     }
 }
