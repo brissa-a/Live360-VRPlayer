@@ -274,7 +274,7 @@ namespace VrPlayer.ViewModels
 
             //Todo: Extract Default values
             _state.StereoInput = StereoMode.Mono;
-            _state.StereoOutput = StereoMode.SideBySide;
+            _state.StereoOutput = StereoMode.Mono;
             _state.EffectPlugin = _pluginManager.Effects[0];
             _state.WrapperPlugin = _pluginManager.Wrappers[0];
             _state.TrackerPlugin = _pluginManager.Trackers[0];

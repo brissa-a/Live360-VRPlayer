@@ -135,17 +135,11 @@
     <Compile Include="Views\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewPortOverMono.xaml.cs">
-      <DependentUpon>ViewPortOverMono.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ViewPortOverUnder.xaml.cs">
-      <DependentUpon>ViewPortOverUnder.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewPortSbs.xaml.cs">
-      <DependentUpon>ViewPortSbs.xaml</DependentUpon>
+    <Compile Include="Views\ViewPort.xaml.cs">
+      <DependentUpon>ViewPort.xaml</DependentUpon>
     </Compile>
     <Page Include="DebugWindow.xaml">
       <SubType>Designer</SubType>
@@ -168,19 +162,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ViewPortOverMono.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ViewPortOverUnder.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ViewPortSbs.xaml">
+    <Page Include="Views\ViewPort.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

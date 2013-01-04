@@ -6,10 +6,11 @@ using WPFMediaKit.DirectShow.Controls;
 using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.Wrappers;
+using System.ComponentModel;
 
 namespace VrPlayer.Models.State
 {
-    public interface IApplicationState
+    public interface IApplicationState : INotifyPropertyChanged
     {
         MediaUriElement Media { get; }
         EffectPlugin EffectPlugin { get; set; }

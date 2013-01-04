@@ -5,7 +5,7 @@
 		xmlns:Converters="clr-namespace:VrPlayer.Helpers.Converters"
         Icon="vrplayer.ico"
         Title="VR Player"
-        Background="Black">
+        Background="DarkGray">
     <Window.Resources>
         <Converters:InvertBooleanToVisibilityConverter x:Key="invBoolToVis"/>
     </Window.Resources>
@@ -16,6 +16,6 @@
         <Grid DockPanel.Dock="Bottom" Visibility="{Binding Path=State.TrackerPlugin.Tracker.IsActive, Converter={StaticResource invBoolToVis}}">
             <Views:ControlPanel />
         </Grid>
-        <Views:ViewPortSbs />
+        <Views:ViewPort />
     </DockPanel>
 </Window>
