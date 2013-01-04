@@ -11,7 +11,9 @@
         string ColorKeyAlphaColor { get; }
         double ColorKeyTolerance { get; }
         int OrientationRefreshRateInMS { get; }
-        int ViewportSideSpacing { get; }
-        int ViewportCenterSpacing { get; }
+        int ViewportLeftRightSpacing { get; }
+        int ViewportVerticalDistance { get; }
+        int ViewportTopBottomSpacing { get; }
+        int ViewportHorizontalDistance { get; }
     }
 }

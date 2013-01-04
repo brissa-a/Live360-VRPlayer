@@ -82,23 +82,39 @@
                 <DiffuseMaterial Brush="{DynamicResource Media}"></DiffuseMaterial>
             </GeometryModel3D.BackMaterial>
         </GeometryModel3D>
+        <Converters:CompareStringToVisibilityConverter x:Key="stringToVis" />
     </UserControl.Resources>
     <Border Background="Transparent" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{Binding Path=Config.ViewportSideSpacing}" />
+                <ColumnDefinition Width="{Binding Path=Config.ViewportLeftRightSpacing}" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="{Binding Path=Config.ViewportCenterSpacing}" />
+                <ColumnDefinition Width="{Binding Path=Config.ViewportHorizontalDistance}" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="{Binding Path=Config.ViewportSideSpacing}" />
+                <ColumnDefinition Width="{Binding Path=Config.ViewportLeftRightSpacing}" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="{Binding Path=Config.ViewportSideSpacing}" />
+                <RowDefinition Height="{Binding Path=Config.ViewportTopBottomSpacing}" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="{Binding Path=Config.ViewportCenterSpacing}" />
+                <RowDefinition Height="{Binding Path=Config.ViewportVerticalDistance}" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="{Binding Path=Config.ViewportSideSpacing}" />
+                <RowDefinition Height="{Binding Path=Config.ViewportTopBottomSpacing}" />
             </Grid.RowDefinitions>
+
+            <!--Experimetal smart grid-->
+            <!--<GridSplitter Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Width="5" Background="DarkGray" VerticalAlignment="Stretch" HorizontalAlignment="Right" />
+            <GridSplitter Grid.Column="4" Grid.Row="0" Grid.RowSpan="5" Width="5" Background="DarkGray" VerticalAlignment="Stretch" HorizontalAlignment="Left" />
+            <GridSplitter Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Height="5" Background="DarkGray" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" />
+            <GridSplitter Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Height="5" Background="DarkGray" VerticalAlignment="Top" HorizontalAlignment="Stretch" />
+            <GridSplitter Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" Width="5" Background="DarkGray" VerticalAlignment="Stretch" HorizontalAlignment="Left"
+                          Visibility="{Binding Path=State.StereoOutput, Converter={StaticResource stringToVis}, ConverterParameter=SideBySide}"/>
+            <GridSplitter Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" Width="5" Background="DarkGray" VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                          Visibility="{Binding Path=State.StereoOutput, Converter={StaticResource stringToVis}, ConverterParameter=SideBySide}"/>
+            <GridSplitter Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Height="5" Background="DarkGray" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                          Visibility="{Binding Path=State.StereoOutput, Converter={StaticResource stringToVis}, ConverterParameter=OverUnder}"/>
+            <GridSplitter Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Height="5" Background="DarkGray" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                          Visibility="{Binding Path=State.StereoOutput, Converter={StaticResource stringToVis}, ConverterParameter=OverUnder}"/>-->
+
             <!--ViewPort 1-->
             <Grid Background="Black" Effect="{Binding Path=State.ShaderPlugin.Shader}"
                     Grid.Column="{Binding Path=Viewport1Col}" 
@@ -113,8 +129,7 @@
                     Grid.ColumnSpan="{Binding Path=Viewport2ColSpan}" 
                     Grid.Row="{Binding Path=Viewport2Row}" 
                     Grid.RowSpan="{Binding Path=Viewport2RowSpan}">
-                <ContentControl Content="{StaticResource view2}">
-                </ContentControl>
+                <ContentControl Content="{StaticResource view2}"></ContentControl>
             </Grid>
         </Grid>
     </Border>

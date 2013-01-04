@@ -16,8 +16,10 @@ namespace VrPlayer.Models.Config
             _colorKeyAlphaColor = ConfigurationManager.AppSettings["ColorKeyAlphaColor"];
             _colorKeyTolerance = ParseDouble(ConfigurationManager.AppSettings["ColorKeyTolerance"]);
             _orientationRefreshRateInMS = int.Parse(ConfigurationManager.AppSettings["OrientationRefreshRateInMS"]);
-            _viewportCenterSpacing = int.Parse(ConfigurationManager.AppSettings["ViewportCenterSpacing"]);
-            _viewportSideSpacing = int.Parse(ConfigurationManager.AppSettings["ViewportSideSpacing"]);
+            _viewportLeftRightSpacing = int.Parse(ConfigurationManager.AppSettings["ViewportLeftRightSpacing"]);
+            _viewportVerticalDistance = int.Parse(ConfigurationManager.AppSettings["ViewportVerticalDistance"]);
+            _viewportTopBottomSpacing = int.Parse(ConfigurationManager.AppSettings["ViewportTopBottomSpacing"]);
+            _viewportHorizontalDistance = int.Parse(ConfigurationManager.AppSettings["ViewportHorizontalDistance"]);
         }
 
         private string _defaultMediaFile;
@@ -81,16 +83,28 @@ namespace VrPlayer.Models.Config
             return double.Parse(value, NumberStyles.Any, ci);
         }
 
-        private int _viewportSideSpacing;
-        public int ViewportSideSpacing
+        private int _viewportLeftRightSpacing;
+        public int ViewportLeftRightSpacing
         {
-            get { return _viewportSideSpacing; }
+            get { return _viewportLeftRightSpacing; }
         }
 
-        private int _viewportCenterSpacing;
-        public int ViewportCenterSpacing
+        private int _viewportVerticalDistance;
+        public int ViewportVerticalDistance
         {
-            get { return _viewportCenterSpacing; }
+            get { return _viewportVerticalDistance; }
+        }
+
+        private int _viewportTopBottomSpacing;
+        public int ViewportTopBottomSpacing
+        {
+            get { return _viewportTopBottomSpacing; }
+        }
+
+        private int _viewportHorizontalDistance;
+        public int ViewportHorizontalDistance
+        {
+            get { return _viewportHorizontalDistance; }
         }
     }
 }

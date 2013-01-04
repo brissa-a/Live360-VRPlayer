@@ -5,7 +5,7 @@
 		xmlns:Converters="clr-namespace:VrPlayer.Helpers.Converters"
         Icon="vrplayer.ico"
         Title="VR Player"
-        Background="DarkGray">
+        Background="Gray">
     <Window.Resources>
         <Converters:InvertBooleanToVisibilityConverter x:Key="invBoolToVis"/>
     </Window.Resources>
