@@ -57,7 +57,17 @@
                     <AmbientLight Color="White"></AmbientLight >
                 </ModelVisual3D.Content>
             </ModelVisual3D>
-            <ModelVisual3D Content="{DynamicResource Geometry}" />
+            <ModelVisual3D Content="{DynamicResource Geometry}">
+                <ModelVisual3D.Transform>
+                    <Transform3DGroup>
+                        <TranslateTransform3D
+                                    OffsetX="{Binding Path=State.TrackerPlugin.Tracker.Position.X}"
+                                    OffsetY="{Binding Path=State.TrackerPlugin.Tracker.Position.Y}"
+                                    OffsetZ="{Binding Path=State.TrackerPlugin.Tracker.Position.Z}">
+                        </TranslateTransform3D>
+                    </Transform3DGroup>
+                </ModelVisual3D.Transform>
+            </ModelVisual3D>
         </Viewport3D>
         <VisualBrush x:Key="Media"
                      RenderOptions.CachingHint="Cache"

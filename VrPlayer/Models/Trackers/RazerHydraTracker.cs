@@ -45,9 +45,9 @@ namespace VrPlayer.Models.Trackers
                 -_hydra.Data.rot_quat.w);
 
             this.Position = new Vector3D(
-                _hydra.Data.pos.x,
-                _hydra.Data.pos.y,
-                _hydra.Data.pos.z);
+                _hydra.Data.pos.x/1000,
+                _hydra.Data.pos.y/1000,
+                _hydra.Data.pos.z/1000-0.75);
         }
 
         public override void Dispose()
