@@ -26,55 +26,94 @@ namespace VrPlayer.Models.Config
         public string DefaultMediaFile
         {
             get { return _defaultMediaFile; }
+            set { _defaultMediaFile = value; }
         }
 
         private string _samplesFolder;
         public string SamplesFolder
         {
             get { return _samplesFolder; }
+            set { _samplesFolder = value; }
         }
 
         private double _customPincushionFactor;
         public double CustomPincushionFactor
         {
             get { return _customPincushionFactor; }
+            set { _customPincushionFactor = value; }
         }
 
         private int _cameraFieldOfView;
         public int CameraFieldOfView
         {
             get { return _cameraFieldOfView; }
+            set { _cameraFieldOfView = value; }
         }
 
         private int _mouseSensitivity;
         public int MouseSensitivity
         {
             get { return _mouseSensitivity; }
+            set { _mouseSensitivity = value; }
         }
 
         private double _depthMapMaxOffset;
         public double DepthMapMaxOffset
         {
             get { return _depthMapMaxOffset; }
+            set { _depthMapMaxOffset = value; }
         }
 
         private string _colorKeyAlphaColor;
         public string ColorKeyAlphaColor
         {
             get { return _colorKeyAlphaColor; }
+            set { _colorKeyAlphaColor = value; }
         }
 
         private double _colorKeyTolerance;
         public double ColorKeyTolerance
         {
             get { return _colorKeyTolerance; }
+            set { _colorKeyTolerance = value; }
         }
 
         private int _orientationRefreshRateInMS;
         public int OrientationRefreshRateInMS
         {
             get { return _orientationRefreshRateInMS; }
+            set { _orientationRefreshRateInMS = value; }
         }
+
+        private int _viewportLeftRightSpacing;
+        public int ViewportLeftRightSpacing
+        {
+            get { return _viewportLeftRightSpacing; }
+            set { _viewportLeftRightSpacing = value; }
+        }
+
+        private int _viewportVerticalDistance;
+        public int ViewportVerticalDistance
+        {
+            get { return _viewportVerticalDistance; }
+            set { _viewportVerticalDistance = value; }
+        }
+
+        private int _viewportTopBottomSpacing;
+        public int ViewportTopBottomSpacing
+        {
+            get { return _viewportTopBottomSpacing; }
+            set { _viewportTopBottomSpacing = value; }
+        }
+
+        private int _viewportHorizontalDistance;
+        public int ViewportHorizontalDistance
+        {
+            get { return _viewportHorizontalDistance; }
+            set { _viewportHorizontalDistance = value; }
+        }
+
+        #region Helpers
 
         private double ParseDouble(string value)
         {
@@ -83,28 +122,6 @@ namespace VrPlayer.Models.Config
             return double.Parse(value, NumberStyles.Any, ci);
         }
 
-        private int _viewportLeftRightSpacing;
-        public int ViewportLeftRightSpacing
-        {
-            get { return _viewportLeftRightSpacing; }
-        }
-
-        private int _viewportVerticalDistance;
-        public int ViewportVerticalDistance
-        {
-            get { return _viewportVerticalDistance; }
-        }
-
-        private int _viewportTopBottomSpacing;
-        public int ViewportTopBottomSpacing
-        {
-            get { return _viewportTopBottomSpacing; }
-        }
-
-        private int _viewportHorizontalDistance;
-        public int ViewportHorizontalDistance
-        {
-            get { return _viewportHorizontalDistance; }
-        }
+        #endregion
     }
 }

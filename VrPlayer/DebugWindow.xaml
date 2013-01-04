@@ -4,7 +4,7 @@
         Title="Debug" Height="300" Width="300" WindowStyle="ToolWindow" Topmost="True">
     <TabControl>
         <TabItem Header="Console">
-            <TextBox Text="VR Player" />
+            <TextBox Text="VR Player" VerticalScrollBarVisibility="Visible" />
         </TabItem>
         <TabItem Header="Tracker">
             <StackPanel Orientation="Vertical">
@@ -37,6 +37,27 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Z:"></Label>
                     <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Position.Z}" IsEnabled="False"></Label>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Config">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Viewport Spacing" FontWeight="Bold"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Left and Right:"></Label>
+                    <TextBox Text="{Binding Path=Config.ViewportLeftRightSpacing}" Width="50"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Top and Bottom:"></Label>
+                    <TextBox Text="{Binding Path=Config.ViewportTopBottomSpacing}" Width="50"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Horizontal distance:"></Label>
+                    <TextBox Text="{Binding Path=Config.ViewportHorizontalDistance}" Width="50"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Vertical distance:"></Label>
+                    <TextBox Text="{Binding Path=Config.ViewportVerticalDistance}" Width="50"></TextBox>
                 </StackPanel>
             </StackPanel>
         </TabItem>
