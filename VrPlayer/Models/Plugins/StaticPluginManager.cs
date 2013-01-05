@@ -107,6 +107,7 @@ namespace VrPlayer.Models.Plugins
             _trackers.Add(mouseTrackerPlugin);
 
             var psMoveTracker = new PsMoveTracker();
+            psMoveTracker.PositionScaleFactor = _config.PsMovePositionScaleFactor;
             var psMoveTrackerPlugin = new TrackerPlugin(psMoveTracker, "PlayStation Move");
             _trackers.Add(psMoveTrackerPlugin);
 
@@ -114,9 +115,10 @@ namespace VrPlayer.Models.Plugins
             var wiimoteTrackerPlugin = new TrackerPlugin(wiimoteTracker, "WiiMote + MotionPlus");
             _trackers.Add(wiimoteTrackerPlugin);
 
-            var razerTracker = new RazerHydraTracker();
-            var razerTrackerPlugin = new TrackerPlugin(razerTracker, "Razer Hydra");
-            _trackers.Add(razerTrackerPlugin);
+            var hydraTracker = new RazerHydraTracker();
+            hydraTracker.PositionScaleFactor = _config.HydraPositionScaleFactor;
+            var hydraTrackerPlugin = new TrackerPlugin(hydraTracker, "Razer Hydra");
+            _trackers.Add(hydraTrackerPlugin);
         }
 
         private void LoadShaders()

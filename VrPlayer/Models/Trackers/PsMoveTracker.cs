@@ -13,6 +13,7 @@ namespace VrPlayer.Models.Trackers
             try
             {
                 IsEnabled = true;
+                this.PositionScaleFactor = 0.01;
                 Init();
             }
             catch (Exception exc)
@@ -52,29 +53,36 @@ namespace VrPlayer.Models.Trackers
                 orientation.z, 
                 -orientation.w);
 
-            Position = new Vector3D(
-                position.x, 
-                position.y, 
-                position.z);
+            Vector3D scaledPos = new Vector3D(
+                position.x * PositionScaleFactor,
+                position.y * PositionScaleFactor,
+                position.z * PositionScaleFactor);
+
+            if (MoveWrapper.getButtonState(0, MoveButton.B_START))
+            {
+                this.BasePosition = -scaledPos;
+            }
+
+            this.Position = BasePosition + scaledPos;
         }
 
-    	static void MoveKeyUpCallback(int id, int keyCode)
+    	void MoveKeyUpCallback(int id, int keyCode)
         {
         }
 
-    	static void MoveKeyDownCallback(int id, int keyCode)
-        {
-         }
-
-    	static void NavUpdateCallback(int id, int trigger1, int trigger2, int stickX, int stickY)
+    	void MoveKeyDownCallback(int id, int keyCode)
         {
         }
 
-    	static void NavKeyUpCallback(int id, int keyCode)
+    	void NavUpdateCallback(int id, int trigger1, int trigger2, int stickX, int stickY)
         {
         }
 
-    	static void NavKeyDownCallback(int id, int keyCode)
+    	void NavKeyUpCallback(int id, int keyCode)
+        {
+        }
+
+    	void NavKeyDownCallback(int id, int keyCode)
         {
         }
 

@@ -66,6 +66,34 @@ namespace VrPlayer.Models.Trackers
             }
         }
 
+        private double _positionScaleFactor;
+        public double PositionScaleFactor
+        {
+            get
+            {
+                return _positionScaleFactor;
+            }
+            set
+            {
+                _positionScaleFactor = value;
+                OnPropertyChanged("PositionScaleFactor");
+            }
+        }
+
+        private Vector3D _baseStation;
+        public Vector3D BasePosition
+        {
+            get
+            {
+                return _baseStation;
+            }
+            set
+            {
+                _baseStation = value;
+                OnPropertyChanged("BasePosition");
+            }
+        }
+
         public abstract void Dispose();
     }
 }

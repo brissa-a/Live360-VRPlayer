@@ -20,6 +20,8 @@ namespace VrPlayer.Models.Config
             _viewportVerticalDistance = int.Parse(ConfigurationManager.AppSettings["ViewportVerticalDistance"]);
             _viewportTopBottomSpacing = int.Parse(ConfigurationManager.AppSettings["ViewportTopBottomSpacing"]);
             _viewportHorizontalDistance = int.Parse(ConfigurationManager.AppSettings["ViewportHorizontalDistance"]);
+            _hydraPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["HydraPositionScaleFactor"]);
+            _psMovePositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["PsMovePositionScaleFactor"]);
         }
 
         private string _defaultMediaFile;
@@ -111,6 +113,20 @@ namespace VrPlayer.Models.Config
         {
             get { return _viewportHorizontalDistance; }
             set { _viewportHorizontalDistance = value; }
+        }
+
+        private double _hydraPositionScaleFactor;
+        public double HydraPositionScaleFactor
+        {
+            get { return _hydraPositionScaleFactor; }
+            set { _hydraPositionScaleFactor = value; }
+        }
+
+        private double _psMovePositionScaleFactor;
+        public double PsMovePositionScaleFactor
+        {
+            get { return _psMovePositionScaleFactor; }
+            set { _psMovePositionScaleFactor = value; }
         }
 
         #region Helpers

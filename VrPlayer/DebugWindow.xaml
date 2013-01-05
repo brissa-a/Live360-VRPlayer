@@ -38,6 +38,19 @@
                     <Label Content="Z:"></Label>
                     <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Position.Z}" IsEnabled="False"></Label>
                 </StackPanel>
+                <TextBlock Text="Base Position" FontWeight="Bold"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="X:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BasePosition.X}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Y:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BasePosition.Y}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Z:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BasePosition.Z}" IsEnabled="False"></Label>
+                </StackPanel>
             </StackPanel>
         </TabItem>
         <TabItem Header="Config">

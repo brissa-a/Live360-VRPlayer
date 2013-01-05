@@ -15,5 +15,7 @@
         int ViewportVerticalDistance { get; set; }
         int ViewportTopBottomSpacing { get; set; }
         int ViewportHorizontalDistance { get; set; }
+        double HydraPositionScaleFactor { get; set; }
+        double PsMovePositionScaleFactor { get; set; }
     }
 }
