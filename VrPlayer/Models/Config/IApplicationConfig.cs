@@ -11,10 +11,7 @@
         string ColorKeyAlphaColor { get; set; }
         double ColorKeyTolerance { get; set; }
         int OrientationRefreshRateInMS { get; set; }
-        int ViewportLeftRightSpacing { get; set; }
-        int ViewportVerticalDistance { get; set; }
-        int ViewportTopBottomSpacing { get; set; }
-        int ViewportHorizontalDistance { get; set; }
+        int ViewportsHorizontalOffset { get; set; }
         double HydraPositionScaleFactor { get; set; }
         double PsMovePositionScaleFactor { get; set; }
     }

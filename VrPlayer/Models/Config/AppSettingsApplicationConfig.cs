@@ -16,10 +16,7 @@ namespace VrPlayer.Models.Config
             _colorKeyAlphaColor = ConfigurationManager.AppSettings["ColorKeyAlphaColor"];
             _colorKeyTolerance = ParseDouble(ConfigurationManager.AppSettings["ColorKeyTolerance"]);
             _orientationRefreshRateInMS = int.Parse(ConfigurationManager.AppSettings["OrientationRefreshRateInMS"]);
-            _viewportLeftRightSpacing = int.Parse(ConfigurationManager.AppSettings["ViewportLeftRightSpacing"]);
-            _viewportVerticalDistance = int.Parse(ConfigurationManager.AppSettings["ViewportVerticalDistance"]);
-            _viewportTopBottomSpacing = int.Parse(ConfigurationManager.AppSettings["ViewportTopBottomSpacing"]);
-            _viewportHorizontalDistance = int.Parse(ConfigurationManager.AppSettings["ViewportHorizontalDistance"]);
+            _viewportsHorizontalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsHorizontalOffset"]);
             _hydraPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["HydraPositionScaleFactor"]);
             _psMovePositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["PsMovePositionScaleFactor"]);
         }
@@ -87,32 +84,11 @@ namespace VrPlayer.Models.Config
             set { _orientationRefreshRateInMS = value; }
         }
 
-        private int _viewportLeftRightSpacing;
-        public int ViewportLeftRightSpacing
+        private int _viewportsHorizontalOffset;
+        public int ViewportsHorizontalOffset
         {
-            get { return _viewportLeftRightSpacing; }
-            set { _viewportLeftRightSpacing = value; }
-        }
-
-        private int _viewportVerticalDistance;
-        public int ViewportVerticalDistance
-        {
-            get { return _viewportVerticalDistance; }
-            set { _viewportVerticalDistance = value; }
-        }
-
-        private int _viewportTopBottomSpacing;
-        public int ViewportTopBottomSpacing
-        {
-            get { return _viewportTopBottomSpacing; }
-            set { _viewportTopBottomSpacing = value; }
-        }
-
-        private int _viewportHorizontalDistance;
-        public int ViewportHorizontalDistance
-        {
-            get { return _viewportHorizontalDistance; }
-            set { _viewportHorizontalDistance = value; }
+            get { return _viewportsHorizontalOffset; }
+            set { _viewportsHorizontalOffset = value; }
         }
 
         private double _hydraPositionScaleFactor;

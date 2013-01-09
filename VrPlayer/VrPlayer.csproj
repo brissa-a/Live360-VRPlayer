@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Helpers\Converters\CompareStringParameterConverter.cs" />
     <Compile Include="Helpers\Converters\CompareStringToVisibilityConverter.cs" />
+    <Compile Include="Helpers\Converters\ViewportDistanceConverter.cs" />
     <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />

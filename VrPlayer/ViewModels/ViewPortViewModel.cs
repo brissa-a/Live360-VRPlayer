@@ -31,36 +31,6 @@ namespace VrPlayer.ViewModels
 
         #region Fields
 
-		public MediaUriElement Media
-		{
-			get
-			{
-				return _state.Media;
-			}
-		}
-
-		public IWrapper Wrapper
-		{
-			get
-			{
-				return _state.WrapperPlugin.Wrapper;
-			}
-		}
-
-		private double _fov;
-        public double Fov
-        {
-            get
-            {
-                return _fov;
-            }
-            set
-            {
-                _fov = value;
-                OnPropertyChanged("Fov");
-            }
-        }
-
 		private Quaternion _cameraTransform;
 		public Quaternion CameraTransform
 		{
@@ -91,9 +61,6 @@ namespace VrPlayer.ViewModels
         {
             _state = state;
             _config = config;
-
-            //Default Values
-            Fov = config.CameraFieldOfView;
 
             //Commands
             _toggleNavigationCommand = new RelayCommand(ToggleNavigation);
@@ -130,34 +97,34 @@ namespace VrPlayer.ViewModels
                 switch (_state.StereoOutput)
                 {
                     case StereoMode.Mono:
-                        Viewport1Col = 1;
-                        Viewport1ColSpan = 3;
-                        Viewport1Row = 1;
-                        Viewport1RowSpan = 3;
-                        Viewport2Col = 1;
-                        Viewport2ColSpan = 3;
-                        Viewport2Row = 1;
-                        Viewport2RowSpan = 3;
+                        Viewport1Col = 0;
+                        Viewport1ColSpan = 2;
+                        Viewport1Row = 0;
+                        Viewport1RowSpan = 2;
+                        Viewport2Col = 0;
+                        Viewport2ColSpan = 2;
+                        Viewport2Row = 0;
+                        Viewport2RowSpan = 2;
                         break;
                     case StereoMode.OverUnder:
-                        Viewport1Col = 1;
-                        Viewport1ColSpan = 3;
-                        Viewport1Row = 1;
+                        Viewport1Col = 0;
+                        Viewport1ColSpan = 2;
+                        Viewport1Row = 0;
                         Viewport1RowSpan = 1;
-                        Viewport2Col = 1;
-                        Viewport2ColSpan = 3;
-                        Viewport2Row = 3;
+                        Viewport2Col = 0;
+                        Viewport2ColSpan = 2;
+                        Viewport2Row = 1;
                         Viewport2RowSpan = 1;
                         break;
                     case StereoMode.SideBySide:
-                        Viewport1Col = 1;
+                        Viewport1Col = 0;
                         Viewport1ColSpan = 1;
-                        Viewport1Row = 1;
-                        Viewport1RowSpan = 3;
-                        Viewport2Col = 3;
+                        Viewport1Row = 0;
+                        Viewport1RowSpan = 2;
+                        Viewport2Col = 1;
                         Viewport2ColSpan = 1;
-                        Viewport2Row = 1;
-                        Viewport2RowSpan = 3;
+                        Viewport2Row = 0;
+                        Viewport2RowSpan = 2;
                         break;
                 }
             }

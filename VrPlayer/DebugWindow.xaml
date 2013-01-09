@@ -55,22 +55,17 @@
         </TabItem>
         <TabItem Header="Config">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Viewport Spacing" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Viewports offset" FontWeight="Bold"></TextBlock>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Left and Right:"></Label>
-                    <TextBox Text="{Binding Path=Config.ViewportLeftRightSpacing}" Width="50"></TextBox>
+                    <Label Content="Horizontal:"></Label>
+                    <Slider Value="{Binding Path=Config.ViewportsHorizontalOffset}" Width="150"  Minimum="-1000" Maximum="1000"></Slider>
+                    <TextBox Text="{Binding Path=Config.ViewportsHorizontalOffset}" Width="50"></TextBox>
                 </StackPanel>
+                <TextBlock Text="Camera" FontWeight="Bold"></TextBlock>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Top and Bottom:"></Label>
-                    <TextBox Text="{Binding Path=Config.ViewportTopBottomSpacing}" Width="50"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Horizontal distance:"></Label>
-                    <TextBox Text="{Binding Path=Config.ViewportHorizontalDistance}" Width="50"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Vertical distance:"></Label>
-                    <TextBox Text="{Binding Path=Config.ViewportVerticalDistance}" Width="50"></TextBox>
+                    <Label Content="FOV:"></Label>
+                    <Slider Value="{Binding Path=Config.CameraFieldOfView}" Width="150"  Minimum="10" Maximum="180"></Slider>
+                    <TextBox Text="{Binding Path=Config.CameraFieldOfView}" Width="50"></TextBox>
                 </StackPanel>
             </StackPanel>
         </TabItem>
