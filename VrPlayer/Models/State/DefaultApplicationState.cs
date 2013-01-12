@@ -12,6 +12,7 @@ using VrPlayer.Models.Plugins;
 using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Wrappers;
 using VrPlayer.Models.Shaders;
+using VrPlayer.Helpers.Media;
 
 namespace VrPlayer.Models.State
 {
@@ -19,8 +20,8 @@ namespace VrPlayer.Models.State
     {
         #region Fields
 
-        private MediaUriElement _media;
-        public MediaUriElement Media
+        private GraphPlayerElement _media;
+        public GraphPlayerElement Media
         {
             get
             {
@@ -116,7 +117,7 @@ namespace VrPlayer.Models.State
 
         public DefaultApplicationState(IApplicationConfig config)
         {
-            _media = new MediaUriElement();
+            _media = new GraphPlayerElement();
             _media.BeginInit();
             _media.EndInit();
         }

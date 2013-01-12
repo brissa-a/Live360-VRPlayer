@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer", "VrPlayer\VrPlayer.csproj", "{D57FC621-BC2F-48B8-804C-F836C0BD1B3C}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VrPlayer.Setup", "VrPlayer.Setup\VrPlayer.Setup.vdproj", "{BBF95144-7BA7-487B-86DF-665DB475D8A9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazerHydraWrapper", "RazerHydraWrapper\RazerHydraWrapper.csproj", "{D3371693-9129-4693-8A33-8B9AC00A81FF}"
 EndProject
 Global
@@ -27,16 +25,6 @@ Global
 		{D57FC621-BC2F-48B8-804C-F836C0BD1B3C}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D57FC621-BC2F-48B8-804C-F836C0BD1B3C}.Release|x86.ActiveCfg = Release|x86
 		{D57FC621-BC2F-48B8-804C-F836C0BD1B3C}.Release|x86.Build.0 = Release|x86
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Debug|Any CPU.ActiveCfg = Debug
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Debug|Any CPU.Build.0 = Debug
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Debug|Mixed Platforms.Build.0 = Debug
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Debug|x86.ActiveCfg = Debug
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Release|Any CPU.ActiveCfg = Release
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Release|Any CPU.Build.0 = Release
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Release|Mixed Platforms.ActiveCfg = Release
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Release|Mixed Platforms.Build.0 = Release
-		{BBF95144-7BA7-487B-86DF-665DB475D8A9}.Release|x86.ActiveCfg = Release
 		{D3371693-9129-4693-8A33-8B9AC00A81FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3371693-9129-4693-8A33-8B9AC00A81FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3371693-9129-4693-8A33-8B9AC00A81FF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

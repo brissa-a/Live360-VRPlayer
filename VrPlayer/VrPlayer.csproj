@@ -93,6 +93,9 @@
     <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
+    <Compile Include="Helpers\Media\GraphPlayer.cs" />
+    <Compile Include="Helpers\Media\GraphPlayerElement.cs" />
+    <Compile Include="Helpers\Media\GraphUtil.cs" />
     <Compile Include="Helpers\Mvvm\DelegateCommand.cs" />
     <Compile Include="Helpers\MouseUtilities.cs" />
     <Compile Include="Helpers\Mvvm\RelayCommand.cs" />
@@ -273,6 +276,7 @@
       <Name>RazerHydraWrapper</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)VrPlayer*.txt" "$(TargetDir)"
