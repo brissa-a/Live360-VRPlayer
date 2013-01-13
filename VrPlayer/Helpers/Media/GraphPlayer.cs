@@ -5,6 +5,7 @@ using System.Text;
 using WPFMediaKit.DirectShow.MediaPlayers;
 using System.Runtime.InteropServices;
 using WPFMediaKit.DirectShow.Interop;
+using System.IO;
 
 namespace VrPlayer.Helpers.Media
 {
@@ -16,7 +17,7 @@ namespace VrPlayer.Helpers.Media
     /// <summary>
     /// The MediaUriPlayer plays media files from a given Uri.
     /// </summary>
-    public class GraphPlayer : MediaSeekingPlayer
+    public class GraphPlayer : MediaSeekingPlayer, ISampleGrabberCB
     {
         /// <summary>
         /// The name of the default audio render.  This is the
@@ -155,7 +156,8 @@ namespace VrPlayer.Helpers.Media
                     throw new Exception("Could not create a graph");
 
                 /* Add our prefered audio renderer */
-                InsertAudioRenderer(AudioRenderer);
+                //InsertAudioRenderer(AudioRenderer);
+                InsertDirectSoundRenderer();
 
                 IBaseFilter renderer = CreateVideoRenderer(VideoRenderer, m_graph, 2);
 
@@ -225,12 +227,16 @@ namespace VrPlayer.Helpers.Media
                  * it in graphedit */
                 m_dsRotEntry = new DsROTEntry(m_graph);
 #endif
+                
                 /* Configure the graph in the base class */
                 SetupFilterGraph(m_graph);
 
                 HasVideo = true;
                 /* Sets the NaturalVideoWidth/Height */
                 //SetNativePixelSizes(renderer);
+
+                //Debug:
+                GraphUtil.SaveGraphFile(m_graph, @"c:\temp\graph.grf");
             }
             catch (Exception ex)
             {
@@ -244,6 +250,9 @@ namespace VrPlayer.Helpers.Media
             }
 
             InvokeMediaOpened();
+
+            InsertAudioStreamRenderer();
+
         }
 
         /// <summary>
@@ -256,6 +265,160 @@ namespace VrPlayer.Helpers.Media
                 return;
 
             AddFilterByName(m_graph, FilterCategory.AudioRendererCategory, audioDeviceName);
+        }
+
+        /// <summary>
+        /// Inserts the audio stream renderer
+        /// </summary>
+        protected virtual void InsertDirectSoundRenderer()
+        {
+            int hr;
+
+            if (m_graph == null)
+                return;
+
+            var devices = DsDevice.GetDevicesOfCat(FilterCategory.AudioRendererCategory);
+
+            var deviceList = (from d in devices
+                              where d.Name == DEFAULT_AUDIO_RENDERER_NAME
+                              select d);
+            DsDevice device = null;
+            if (deviceList.Count() > 0)
+                device = deviceList.Take(1).Single();
+
+            foreach (var item in deviceList)
+            {
+                if (item != device)
+                    item.Dispose();
+            }
+
+            if (m_graph == null)
+                throw new ArgumentNullException("graphBuilder");
+
+            var filterGraph = m_graph as IFilterGraph2;
+
+            if (filterGraph == null)
+                return;
+
+            IBaseFilter filter = null;
+            if (device != null)
+            {
+                hr = filterGraph.AddSourceFilterForMoniker(device.Mon, null, device.Name, out filter);
+                DsError.ThrowExceptionForHR(hr);
+            }
+
+            //IntPtr test;
+            //bool b;
+            //hr = ((IAMDirectSound)filter).GetFocusWindow(out test, out b);
+            //DsError.ThrowExceptionForHR(hr);
+        }
+
+        /// <summary>
+        /// Inserts the audio stream renderer
+        /// </summary>
+        protected virtual void InsertAudioStreamRenderer()
+        {
+            if (m_graph == null)
+                return;
+
+            int hr;
+
+            //add null renderer
+            NullRenderer nullRenderer = new NullRenderer();
+            hr = m_graph.AddFilter((IBaseFilter)nullRenderer, "NullRenderer");
+            DsError.ThrowExceptionForHR(hr);
+            
+            //add Sample Grabber
+            ISampleGrabber sampleGrabber = new SampleGrabber() as ISampleGrabber;
+            //sampleGrabber.SetOneShot(false);
+            //sampleGrabber.SetBufferSamples(true);
+            sampleGrabber.SetCallback(this, 1);
+
+            hr = m_graph.AddFilter((IBaseFilter)sampleGrabber, "SampleGrabber");
+            DsError.ThrowExceptionForHR(hr);
+
+            /*
+            AMMediaType media;
+            media = new AMMediaType();
+            media.majorType = MediaType.Stream;
+            sampleGrabber.SetMediaType(media);
+            DsUtils.FreeAMMediaType(media);
+            media = null;
+            */
+
+            AMMediaType pSampleGrabber_pmt = new AMMediaType();
+            //pSampleGrabber_pmt.majorType = MediaType.Audio;
+            pSampleGrabber_pmt.subType = MediaSubType.PCM;
+            pSampleGrabber_pmt.formatType = FormatType.WaveEx;
+            pSampleGrabber_pmt.fixedSizeSamples = true;
+            pSampleGrabber_pmt.formatSize = 18;
+            pSampleGrabber_pmt.sampleSize = 2;
+
+            WaveFormatEx pSampleGrabber_Format = new WaveFormatEx();
+            pSampleGrabber_Format.wFormatTag = 1;
+            pSampleGrabber_Format.nChannels = 1;
+            pSampleGrabber_Format.nSamplesPerSec = 48000;
+            pSampleGrabber_Format.nAvgBytesPerSec = 96000;
+            pSampleGrabber_Format.nBlockAlign = 2;
+            pSampleGrabber_Format.wBitsPerSample = 16;
+            pSampleGrabber_pmt.formatPtr = Marshal.AllocCoTaskMem(Marshal.SizeOf(pSampleGrabber_Format));
+            
+            Marshal.StructureToPtr(pSampleGrabber_Format, pSampleGrabber_pmt.formatPtr, false);
+            hr = ((ISampleGrabber)sampleGrabber).SetMediaType(pSampleGrabber_pmt);
+            DsUtils.FreeAMMediaType(pSampleGrabber_pmt);
+            DsError.ThrowExceptionForHR(hr);
+
+            //Get directsound filter
+            IBaseFilter directSoundFilter;
+            hr = m_graph.FindFilterByName(DEFAULT_AUDIO_RENDERER_NAME, out directSoundFilter);
+            DsError.ThrowExceptionForHR(hr);
+
+            IPin rendererPin = DsFindPin.ByConnectionStatus(directSoundFilter, PinConnectedStatus.Connected, 0);
+
+            if (rendererPin != null)
+            {
+                IPin audioPin;
+                hr = rendererPin.ConnectedTo(out audioPin);
+                DsError.ThrowExceptionForHR(hr);
+
+                if (audioPin != null)
+                {
+                    //Debug:
+                    /*
+                    PinInfo pinInfo;
+                    hr = audioPin.QueryPinInfo(out pinInfo);
+                    DsError.ThrowExceptionForHR(hr);
+
+                    FilterInfo filterInfo;
+                    hr = pinInfo.filter.QueryFilterInfo(out filterInfo);
+                    DsError.ThrowExceptionForHR(hr);
+
+                    IPin pin1 = DsFindPin.ByDirection(pinInfo.filter, PinDirection.Input, 0);
+                    PinInfo pin1Info;
+                    hr = audioPin.QueryPinInfo(out pin1Info);
+                    DsError.ThrowExceptionForHR(hr);
+                    */
+
+                    hr = audioPin.Disconnect();
+                    DsError.ThrowExceptionForHR(hr);
+                    
+                    IPin sampleGrabberPinIn = DsFindPin.ByConnectionStatus((IBaseFilter)sampleGrabber, PinConnectedStatus.Unconnected, 0);                    
+                    hr = m_graph.Connect(audioPin, sampleGrabberPinIn);
+                    DsError.ThrowExceptionForHR(hr);
+
+                    IPin sampleGrabberPinOut = DsFindPin.ByConnectionStatus((IBaseFilter)sampleGrabber, PinConnectedStatus.Unconnected, 0);
+                    IPin nullRendererPinIn = DsFindPin.ByConnectionStatus((IBaseFilter)nullRenderer, PinConnectedStatus.Unconnected, 0);
+                    hr = m_graph.Connect(sampleGrabberPinOut, nullRendererPinIn);
+                    DsError.ThrowExceptionForHR(hr);
+
+                    //hr = m_graph.RemoveFilter(directSoundFilter);
+                    //DsError.ThrowExceptionForHR(hr);
+
+                    //Debug:
+                    GraphUtil.SaveGraphFile(m_graph, @"c:\temp\temp.grf");
+
+                }
+            }
         }
 
         /// <summary>
@@ -292,5 +455,30 @@ namespace VrPlayer.Helpers.Media
                 InvokeMediaClosed(new EventArgs());
             }
         }
+
+        #region Grabber
+
+        public int SampleCB(double sampleTime, IMediaSample mediaSample)
+        {
+            Console.WriteLine("SampleCB Callback");
+            Console.WriteLine(mediaSample.IsSyncPoint() + " ");
+
+            /* other code */
+            Marshal.ReleaseComObject(mediaSample);
+            return 0;
+        }
+
+        public int BufferCB(double SampleTime, IntPtr pBuffer, int BufferLen)
+        {
+            byte[] buffer = new byte[BufferLen];
+            Marshal.Copy(pBuffer, buffer, 0, BufferLen);
+            using (BinaryWriter binWriter = new BinaryWriter(File.Open(@"C:\temp\directshowoutput.pcm", FileMode.Append)))
+            {
+                binWriter.Write(buffer);
+            }
+            return 0;
+        }
+
+        #endregion
     }
 }
