@@ -30,12 +30,10 @@ namespace VrPlayer.Helpers.Media
         /// </summary>
         private string m_audioRenderer = DEFAULT_AUDIO_RENDERER_NAME;
 
-#if DEBUG
         /// <summary>
         /// Used to view the graph in graphedit
         /// </summary>
         private DsROTEntry m_dsRotEntry;
-#endif
 
         /// <summary>
         /// The DirectShow graph interface.  In this example
@@ -149,94 +147,7 @@ namespace VrPlayer.Helpers.Media
 
             try
             {
-                /* Creates the GraphBuilder COM object */
-                m_graph = new FilterGraphNoThread() as IGraphBuilder;
-
-                if (m_graph == null)
-                    throw new Exception("Could not create a graph");
-
-                /* Add our prefered audio renderer */
-                //InsertAudioRenderer(AudioRenderer);
-                InsertDirectSoundRenderer();
-
-                IBaseFilter renderer = CreateVideoRenderer(VideoRenderer, m_graph, 2);
-
-                var filterGraph = m_graph as IFilterGraph2;
-
-                if (filterGraph == null)
-                    throw new Exception("Could not QueryInterface for the IFilterGraph2");
-
-                IBaseFilter sourceFilter;
-
-                /* Have DirectShow find the correct source filter for the Uri */
-                int hr = filterGraph.AddSourceFilter(fileSource, fileSource, out sourceFilter);
-                DsError.ThrowExceptionForHR(hr);
-
-                /* We will want to enum all the pins on the source filter */
-                IEnumPins pinEnum;
-
-                hr = sourceFilter.EnumPins(out pinEnum);
-                DsError.ThrowExceptionForHR(hr);
-
-                IntPtr fetched = IntPtr.Zero;
-                IPin[] pins = { null };
-
-                /* Counter for how many pins successfully rendered */
-                int pinsRendered = 0;
-
-                if (VideoRenderer == VideoRendererType.VideoMixingRenderer9)
-                {
-                    var mixer = renderer as IVMRMixerControl9;
-
-                    if (mixer != null)
-                    {
-                        VMR9MixerPrefs dwPrefs;
-                        mixer.GetMixingPrefs(out dwPrefs);
-                        dwPrefs &= ~VMR9MixerPrefs.RenderTargetMask;
-                        dwPrefs |= VMR9MixerPrefs.RenderTargetRGB;
-                        //mixer.SetMixingPrefs(dwPrefs);
-                    }
-                }
-
-                /* Test using FFDShow Video Decoder Filter
-                var ffdshow = new FFDShow() as IBaseFilter;
-
-                if (ffdshow != null)
-                    m_graph.AddFilter(ffdshow, "ffdshow");
-                */
-
-                /* Loop over each pin of the source filter */
-                while (pinEnum.Next(pins.Length, pins, fetched) == 0)
-                {
-                    if (filterGraph.RenderEx(pins[0],
-                                             AMRenderExFlags.RenderToExistingRenderers,
-                                             IntPtr.Zero) >= 0)
-                        pinsRendered++;
-
-                    Marshal.ReleaseComObject(pins[0]);
-                }
-
-                Marshal.ReleaseComObject(pinEnum);
-                Marshal.ReleaseComObject(sourceFilter);
-
-                if (pinsRendered == 0)
-                    throw new Exception("Could not render any streams from the source Uri");
-
-#if DEBUG
-                /* Adds the GB to the ROT so we can view
-                 * it in graphedit */
-                m_dsRotEntry = new DsROTEntry(m_graph);
-#endif
-                
-                /* Configure the graph in the base class */
-                SetupFilterGraph(m_graph);
-
-                HasVideo = true;
-                /* Sets the NaturalVideoWidth/Height */
-                //SetNativePixelSizes(renderer);
-
-                //Debug:
-                GraphUtil.SaveGraphFile(m_graph, @"c:\temp\graph.grf");
+                CreateGraph(fileSource);
             }
             catch (Exception ex)
             {
@@ -250,9 +161,97 @@ namespace VrPlayer.Helpers.Media
             }
 
             InvokeMediaOpened();
+        }
 
-            InsertAudioStreamRenderer();
+        private void CreateGraph(string fileSource)
+        {
+            /* Creates the GraphBuilder COM object */
+            m_graph = new FilterGraphNoThread() as IGraphBuilder;
 
+            if (m_graph == null)
+                throw new Exception("Could not create a graph");
+
+            /* Add our prefered audio renderer */
+            //InsertAudioRenderer(AudioRenderer);
+           
+            IBaseFilter renderer = CreateVideoRenderer(VideoRenderer, m_graph, 2);
+            
+            var filterGraph = m_graph as IFilterGraph2;
+
+            if (filterGraph == null)
+                throw new Exception("Could not QueryInterface for the IFilterGraph2");
+
+            IBaseFilter sourceFilter;
+
+            /* Have DirectShow find the correct source filter for the Uri */
+            int hr = filterGraph.AddSourceFilter(fileSource, fileSource, out sourceFilter);
+            DsError.ThrowExceptionForHR(hr);
+
+            /* We will want to enum all the pins on the source filter */
+            IEnumPins pinEnum;
+
+            hr = sourceFilter.EnumPins(out pinEnum);
+            DsError.ThrowExceptionForHR(hr);
+
+            IntPtr fetched = IntPtr.Zero;
+            IPin[] pins = { null };
+
+            /* Counter for how many pins successfully rendered */
+            int pinsRendered = 0;
+
+            if (VideoRenderer == VideoRendererType.VideoMixingRenderer9)
+            {
+                var mixer = renderer as IVMRMixerControl9;
+
+                if (mixer != null)
+                {
+                    VMR9MixerPrefs dwPrefs;
+                    mixer.GetMixingPrefs(out dwPrefs);
+                    dwPrefs &= ~VMR9MixerPrefs.RenderTargetMask;
+                    dwPrefs |= VMR9MixerPrefs.RenderTargetRGB;
+                    //mixer.SetMixingPrefs(dwPrefs);
+                }
+            }
+
+            /* Test using FFDShow Video Decoder Filter
+            var ffdshow = new FFDShow() as IBaseFilter;
+
+            if (ffdshow != null)
+                m_graph.AddFilter(ffdshow, "ffdshow");
+            */
+
+            /* Loop over each pin of the source filter */
+            while (pinEnum.Next(pins.Length, pins, fetched) == 0)
+            {
+                if (filterGraph.RenderEx(pins[0],
+                                            AMRenderExFlags.RenderToExistingRenderers,
+                                            IntPtr.Zero) >= 0)
+                    pinsRendered++;
+
+                Marshal.ReleaseComObject(pins[0]);
+            }
+
+            Marshal.ReleaseComObject(pinEnum);
+            Marshal.ReleaseComObject(sourceFilter);
+
+            if (pinsRendered == 0)
+                throw new Exception("Could not render any streams from the source Uri");
+
+            /* Adds the GB to the ROT so we can view
+                * it in graphedit */
+            m_dsRotEntry = new DsROTEntry(m_graph);
+                
+            /* Configure the graph in the base class */
+            SetupFilterGraph(m_graph);
+
+            HasVideo = true;
+            /* Sets the NaturalVideoWidth/Height */
+            //SetNativePixelSizes(renderer);
+
+            RenderAudio();
+            
+            //Debug:
+            GraphUtil.SaveGraphFile(m_graph, @"c:\temp\graph.grf");
         }
 
         /// <summary>
@@ -313,6 +312,44 @@ namespace VrPlayer.Helpers.Media
             //DsError.ThrowExceptionForHR(hr);
         }
 
+        protected virtual void RenderAudio()
+        { 
+            int hr;
+
+            IEnumFilters enumFilters;
+            hr = m_graph.EnumFilters(out enumFilters);
+            DsError.ThrowExceptionForHR(hr);
+
+            IBaseFilter[] filters = new IBaseFilter[1];
+            IntPtr fetched = new IntPtr();
+
+            while (enumFilters.Next(1, filters, fetched) == 0)
+            {
+                IBaseFilter filter = filters[0] as IBaseFilter;
+                IPin unconnectedPin = DsFindPin.ByConnectionStatus((IBaseFilter)filter, PinConnectedStatus.Unconnected, 0);
+                if (unconnectedPin != null)
+                { 
+                    PinDirection direction;
+                    hr = unconnectedPin.QueryDirection(out direction);
+                    DsError.ThrowExceptionForHR(hr);
+
+                    if (direction == PinDirection.Output)
+                    {
+                        hr = m_graph.Render(unconnectedPin);
+                        DsError.ThrowExceptionForHR(hr);
+
+                        InsertAudioStreamRenderer();
+                    }
+                }
+            }
+        }
+
+        private int avgBytesPerSec = 0;
+        private int audioBlockAlign = 0;
+        private int audioChannels = 0;
+        private int audioSamplesPerSec = 0;
+        private int audioBitsPerSample = 0;
+        
         /// <summary>
         /// Inserts the audio stream renderer
         /// </summary>
@@ -323,100 +360,81 @@ namespace VrPlayer.Helpers.Media
 
             int hr;
 
-            //add null renderer
-            NullRenderer nullRenderer = new NullRenderer();
-            hr = m_graph.AddFilter((IBaseFilter)nullRenderer, "NullRenderer");
-            DsError.ThrowExceptionForHR(hr);
-            
-            //add Sample Grabber
-            ISampleGrabber sampleGrabber = new SampleGrabber() as ISampleGrabber;
-            //sampleGrabber.SetOneShot(false);
-            //sampleGrabber.SetBufferSamples(true);
-            sampleGrabber.SetCallback(this, 1);
-
-            hr = m_graph.AddFilter((IBaseFilter)sampleGrabber, "SampleGrabber");
-            DsError.ThrowExceptionForHR(hr);
-
-            /*
-            AMMediaType media;
-            media = new AMMediaType();
-            media.majorType = MediaType.Stream;
-            sampleGrabber.SetMediaType(media);
-            DsUtils.FreeAMMediaType(media);
-            media = null;
-            */
-
-            AMMediaType pSampleGrabber_pmt = new AMMediaType();
-            //pSampleGrabber_pmt.majorType = MediaType.Audio;
-            pSampleGrabber_pmt.subType = MediaSubType.PCM;
-            pSampleGrabber_pmt.formatType = FormatType.WaveEx;
-            pSampleGrabber_pmt.fixedSizeSamples = true;
-            pSampleGrabber_pmt.formatSize = 18;
-            pSampleGrabber_pmt.sampleSize = 2;
-
-            WaveFormatEx pSampleGrabber_Format = new WaveFormatEx();
-            pSampleGrabber_Format.wFormatTag = 1;
-            pSampleGrabber_Format.nChannels = 1;
-            pSampleGrabber_Format.nSamplesPerSec = 48000;
-            pSampleGrabber_Format.nAvgBytesPerSec = 96000;
-            pSampleGrabber_Format.nBlockAlign = 2;
-            pSampleGrabber_Format.wBitsPerSample = 16;
-            pSampleGrabber_pmt.formatPtr = Marshal.AllocCoTaskMem(Marshal.SizeOf(pSampleGrabber_Format));
-            
-            Marshal.StructureToPtr(pSampleGrabber_Format, pSampleGrabber_pmt.formatPtr, false);
-            hr = ((ISampleGrabber)sampleGrabber).SetMediaType(pSampleGrabber_pmt);
-            DsUtils.FreeAMMediaType(pSampleGrabber_pmt);
-            DsError.ThrowExceptionForHR(hr);
-
             //Get directsound filter
             IBaseFilter directSoundFilter;
             hr = m_graph.FindFilterByName(DEFAULT_AUDIO_RENDERER_NAME, out directSoundFilter);
             DsError.ThrowExceptionForHR(hr);
 
-            IPin rendererPin = DsFindPin.ByConnectionStatus(directSoundFilter, PinConnectedStatus.Connected, 0);
+            IPin rendererPinIn = DsFindPin.ByConnectionStatus(directSoundFilter, PinConnectedStatus.Connected, 0);
 
-            if (rendererPin != null)
+            if (rendererPinIn != null)
             {
-                IPin audioPin;
-                hr = rendererPin.ConnectedTo(out audioPin);
+                IPin audioPinOut;
+                hr = rendererPinIn.ConnectedTo(out audioPinOut);
                 DsError.ThrowExceptionForHR(hr);
 
-                if (audioPin != null)
+                if (audioPinOut != null)
                 {
-                    //Debug:
+                    //Disconect audio decoder to directsound renderer
+                    hr = audioPinOut.Disconnect();
+                    DsError.ThrowExceptionForHR(hr);
+
+                    hr = m_graph.RemoveFilter(directSoundFilter);
+                    DsError.ThrowExceptionForHR(hr);
+
+                    //Add Sample Grabber
+                    ISampleGrabber sampleGrabber = new SampleGrabber() as ISampleGrabber;
+                    hr = sampleGrabber.SetCallback(this, 1);
+                    DsError.ThrowExceptionForHR(hr);
+                    //////////////////
+                    AMMediaType media;
+                    media = new AMMediaType();
+                    media.majorType = MediaType.Audio;
+                    media.subType = MediaSubType.PCM;
+                    media.formatType = FormatType.WaveEx;
+                    hr = sampleGrabber.SetMediaType(media);
+                    DsError.ThrowExceptionForHR(hr);
+                    //////////////////
                     /*
+                    if ((media.formatType != FormatType.WaveEx) || (media.formatPtr == IntPtr.Zero))
+                    {
+                        throw new NotSupportedException("Unknown Grabber Media Format");
+                    }
+                    WaveFormatEx wav = new WaveFormatEx();
+                    wav = (WaveFormatEx)Marshal.PtrToStructure(media.formatPtr, typeof(WaveFormatEx));
+                    this.avgBytesPerSec = wav.nAvgBytesPerSec;
+                    this.audioBlockAlign = wav.nBlockAlign;
+                    this.audioChannels = wav.nChannels;
+                    this.audioSamplesPerSec = wav.nSamplesPerSec;
+                    this.audioBitsPerSample = wav.wBitsPerSample;
+                    Marshal.FreeCoTaskMem(media.formatPtr);
+                    media.formatPtr = IntPtr.Zero;
+                    */
+                    //////////////////
+                    IPin sampleGrabberPinIn = DsFindPin.ByDirection((IBaseFilter)sampleGrabber, PinDirection.Input, 0);
+                    IPin sampleGrabberPinOut = DsFindPin.ByDirection((IBaseFilter)sampleGrabber, PinDirection.Output, 0);
+                    hr = m_graph.AddFilter((IBaseFilter)sampleGrabber, "SampleGrabber");
+                    DsError.ThrowExceptionForHR(hr);
+
                     PinInfo pinInfo;
-                    hr = audioPin.QueryPinInfo(out pinInfo);
+                    hr = audioPinOut.QueryPinInfo(out pinInfo);
                     DsError.ThrowExceptionForHR(hr);
 
                     FilterInfo filterInfo;
                     hr = pinInfo.filter.QueryFilterInfo(out filterInfo);
                     DsError.ThrowExceptionForHR(hr);
 
-                    IPin pin1 = DsFindPin.ByDirection(pinInfo.filter, PinDirection.Input, 0);
-                    PinInfo pin1Info;
-                    hr = audioPin.QueryPinInfo(out pin1Info);
-                    DsError.ThrowExceptionForHR(hr);
-                    */
-
-                    hr = audioPin.Disconnect();
-                    DsError.ThrowExceptionForHR(hr);
-                    
-                    IPin sampleGrabberPinIn = DsFindPin.ByConnectionStatus((IBaseFilter)sampleGrabber, PinConnectedStatus.Unconnected, 0);                    
-                    hr = m_graph.Connect(audioPin, sampleGrabberPinIn);
+                    hr = m_graph.Connect(audioPinOut, sampleGrabberPinIn);
                     DsError.ThrowExceptionForHR(hr);
 
-                    IPin sampleGrabberPinOut = DsFindPin.ByConnectionStatus((IBaseFilter)sampleGrabber, PinConnectedStatus.Unconnected, 0);
-                    IPin nullRendererPinIn = DsFindPin.ByConnectionStatus((IBaseFilter)nullRenderer, PinConnectedStatus.Unconnected, 0);
+                    //Add null renderer
+                    NullRenderer nullRenderer = new NullRenderer();
+                    hr = m_graph.AddFilter((IBaseFilter)nullRenderer, "NullRenderer");
+                    DsError.ThrowExceptionForHR(hr);
+
+                    IPin nullRendererPinIn = DsFindPin.ByDirection((IBaseFilter)nullRenderer, PinDirection.Input, 0);
                     hr = m_graph.Connect(sampleGrabberPinOut, nullRendererPinIn);
                     DsError.ThrowExceptionForHR(hr);
-
-                    //hr = m_graph.RemoveFilter(directSoundFilter);
-                    //DsError.ThrowExceptionForHR(hr);
-
-                    //Debug:
-                    GraphUtil.SaveGraphFile(m_graph, @"c:\temp\temp.grf");
-
                 }
             }
         }
