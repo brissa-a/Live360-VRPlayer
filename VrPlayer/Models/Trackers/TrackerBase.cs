@@ -80,17 +80,31 @@ namespace VrPlayer.Models.Trackers
             }
         }
 
-        private Vector3D _baseStation;
+        private Vector3D _basePosition;
         public Vector3D BasePosition
         {
             get
             {
-                return _baseStation;
+                return _basePosition;
             }
             set
             {
-                _baseStation = value;
+                _basePosition = value;
                 OnPropertyChanged("BasePosition");
+            }
+        }
+
+        private Quaternion _baseRotation;
+        public Quaternion BaseRotation
+        {
+            get
+            {
+                return _baseRotation;
+            }
+            set
+            {
+                _baseRotation = value;
+                OnPropertyChanged("BaseRotation");
             }
         }
 

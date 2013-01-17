@@ -47,7 +47,7 @@ namespace VrPlayer.Models.Trackers
 
         void MoveUpdateCallback(int id, MoveWrapper.Vector3 position, MoveWrapper.Quaternion orientation, int trigger)
         {
-            Rotation = new Quaternion(
+            Quaternion rotation = new Quaternion(
                 orientation.x, 
                 -orientation.y, 
                 orientation.z, 
@@ -60,10 +60,14 @@ namespace VrPlayer.Models.Trackers
 
             if (MoveWrapper.getButtonState(0, MoveButton.B_START))
             {
+                Quaternion conjugate = new Quaternion(rotation.X, rotation.Y, rotation.Z, rotation.W);
+                conjugate.Conjugate();
+                this.BaseRotation = conjugate;
                 this.BasePosition = -scaledPos;
             }
 
-            this.Position = BasePosition + scaledPos;
+            this.Rotation = this.BaseRotation * rotation;
+            this.Position = this.BasePosition + scaledPos;
         }
 
     	void MoveKeyUpCallback(int id, int keyCode)

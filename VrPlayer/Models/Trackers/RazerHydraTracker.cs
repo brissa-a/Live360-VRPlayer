@@ -44,18 +44,22 @@ namespace VrPlayer.Models.Trackers
                 -_hydra.Data.pos.y * PositionScaleFactor,
                 _hydra.Data.pos.z * PositionScaleFactor);
 
-            if (_hydra.Data.buttons == SIXENSE_BUTTON_START)
-            {
-                this.BasePosition = -scaledPos;
-            }
-
-            this.Rotation = new Quaternion(
+            Quaternion rotation = new Quaternion(
                 _hydra.Data.rot_quat.x,
                 -_hydra.Data.rot_quat.y,
                 _hydra.Data.rot_quat.z,
                 -_hydra.Data.rot_quat.w);
 
-            this.Position = BasePosition + scaledPos;
+            if (_hydra.Data.buttons == SIXENSE_BUTTON_START)
+            {
+                Quaternion conjugate = new Quaternion(rotation.X, rotation.Y, rotation.Z, rotation.W);
+                conjugate.Conjugate();
+                this.BaseRotation = conjugate;
+                this.BasePosition = -scaledPos;
+            }
+
+            this.Rotation = this.BaseRotation * rotation;
+            this.Position = this.BasePosition + scaledPos;
         }
 
         public override void Dispose()
