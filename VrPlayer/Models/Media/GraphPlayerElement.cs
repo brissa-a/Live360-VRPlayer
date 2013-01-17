@@ -6,7 +6,7 @@ using WPFMediaKit.DirectShow.Controls;
 using System.Windows;
 using WPFMediaKit.DirectShow.MediaPlayers;
 
-namespace VrPlayer.Helpers.Media
+namespace VrPlayer.Models.Media
 {
     /// <summary>
     /// The MediaUriElement is a WPF control that plays media of a given
@@ -16,6 +16,8 @@ namespace VrPlayer.Helpers.Media
     /// </summary>
     public class GraphPlayerElement : MediaSeekingElement
     {
+        private IAudioEngine _audioEngine;
+
         /// <summary>
         /// The current GraphPlayer
         /// </summary>
@@ -57,46 +59,6 @@ namespace VrPlayer.Helpers.Media
             GraphPlayer.Dispatcher.BeginInvoke((Action)delegate
             {
                 GraphPlayer.VideoRenderer = videoRendererType;
-            });
-        }
-
-        #endregion
-
-        #region AudioRenderer
-
-        public static readonly DependencyProperty AudioRendererProperty =
-            DependencyProperty.Register("AudioRenderer", typeof(string), typeof(GraphPlayerElement),
-                new FrameworkPropertyMetadata("Default DirectSound Device",
-                    new PropertyChangedCallback(OnAudioRendererChanged)));
-
-        /// <summary>
-        /// The name of the audio renderer device to use
-        /// </summary>
-        public string AudioRenderer
-        {
-            get { return (string)GetValue(AudioRendererProperty); }
-            set { SetValue(AudioRendererProperty, value); }
-        }
-
-        private static void OnAudioRendererChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((GraphPlayerElement)d).OnAudioRendererChanged(e);
-        }
-
-        protected virtual void OnAudioRendererChanged(DependencyPropertyChangedEventArgs e)
-        {
-            if (HasInitialized)
-                PlayerSetAudioRenderer();
-        }
-
-        private void PlayerSetAudioRenderer()
-        {
-            var audioDevice = AudioRenderer;
-
-            GraphPlayer.Dispatcher.BeginInvoke((Action)delegate
-            {
-                /* Sets the audio device to use with the player */
-                GraphPlayer.AudioRenderer = audioDevice;
             });
         }
 
@@ -195,7 +157,6 @@ namespace VrPlayer.Helpers.Media
         public override void EndInit()
         {
             PlayerSetVideoRenderer();
-            PlayerSetAudioRenderer();
             PlayerSetLoop();
             PlayerSetSource();
             base.EndInit();
@@ -228,7 +189,9 @@ namespace VrPlayer.Helpers.Media
         /// </summary>
         protected override MediaPlayerBase OnRequestMediaPlayer()
         {
-            var player = new GraphPlayer();
+            //Todo: extract audio  engine creation
+            IAudioEngine audioEngine = new IrrKlangAudioEngine();
+            var player = new GraphPlayer(audioEngine);
             return player;
         }
     }

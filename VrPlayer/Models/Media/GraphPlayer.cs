@@ -6,8 +6,10 @@ using WPFMediaKit.DirectShow.MediaPlayers;
 using System.Runtime.InteropServices;
 using WPFMediaKit.DirectShow.Interop;
 using System.IO;
+using WPFMediaKit.DirectShow.Interop.DES;
+using VrPlayer.Helpers.Media;
 
-namespace VrPlayer.Helpers.Media
+namespace VrPlayer.Models.Media
 {
     [ComImport, Guid("04FE9017-F873-410E-871E-AB91661A4EF7")]
     internal class FFDShow
@@ -19,16 +21,18 @@ namespace VrPlayer.Helpers.Media
     /// </summary>
     public class GraphPlayer : MediaSeekingPlayer, ISampleGrabberCB
     {
+        private IAudioEngine _audioEngine;
+
+        public GraphPlayer(IAudioEngine audioEngine)
+        {
+            _audioEngine = audioEngine;
+        }
+
         /// <summary>
         /// The name of the default audio render.  This is the
         /// same on all versions of windows
         /// </summary>
         private const string DEFAULT_AUDIO_RENDERER_NAME = "Default DirectSound Device";
-
-        /// <summary>
-        /// Set the default audio renderer property backing
-        /// </summary>
-        private string m_audioRenderer = DEFAULT_AUDIO_RENDERER_NAME;
 
         /// <summary>
         /// Used to view the graph in graphedit
@@ -74,29 +78,6 @@ namespace VrPlayer.Helpers.Media
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// The name of the audio renderer device
-        /// </summary>
-        public string AudioRenderer
-        {
-            get
-            {
-                VerifyAccess();
-                return m_audioRenderer;
-            }
-            set
-            {
-                VerifyAccess();
-
-                if (string.IsNullOrEmpty(value))
-                {
-                    value = DEFAULT_AUDIO_RENDERER_NAME;
-                }
-
-                m_audioRenderer = value;
-            }
         }
 
         /// <summary>
@@ -170,9 +151,6 @@ namespace VrPlayer.Helpers.Media
 
             if (m_graph == null)
                 throw new Exception("Could not create a graph");
-
-            /* Add our prefered audio renderer */
-            //InsertAudioRenderer(AudioRenderer);
            
             IBaseFilter renderer = CreateVideoRenderer(VideoRenderer, m_graph, 2);
             
@@ -213,13 +191,6 @@ namespace VrPlayer.Helpers.Media
                 }
             }
 
-            /* Test using FFDShow Video Decoder Filter
-            var ffdshow = new FFDShow() as IBaseFilter;
-
-            if (ffdshow != null)
-                m_graph.AddFilter(ffdshow, "ffdshow");
-            */
-
             /* Loop over each pin of the source filter */
             while (pinEnum.Next(pins.Length, pins, fetched) == 0)
             {
@@ -254,64 +225,6 @@ namespace VrPlayer.Helpers.Media
             GraphUtil.SaveGraphFile(m_graph, @"c:\temp\graph.grf");
         }
 
-        /// <summary>
-        /// Inserts the audio renderer by the name of
-        /// the audio renderer that is passed
-        /// </summary>
-        protected virtual void InsertAudioRenderer(string audioDeviceName)
-        {
-            if (m_graph == null)
-                return;
-
-            AddFilterByName(m_graph, FilterCategory.AudioRendererCategory, audioDeviceName);
-        }
-
-        /// <summary>
-        /// Inserts the audio stream renderer
-        /// </summary>
-        protected virtual void InsertDirectSoundRenderer()
-        {
-            int hr;
-
-            if (m_graph == null)
-                return;
-
-            var devices = DsDevice.GetDevicesOfCat(FilterCategory.AudioRendererCategory);
-
-            var deviceList = (from d in devices
-                              where d.Name == DEFAULT_AUDIO_RENDERER_NAME
-                              select d);
-            DsDevice device = null;
-            if (deviceList.Count() > 0)
-                device = deviceList.Take(1).Single();
-
-            foreach (var item in deviceList)
-            {
-                if (item != device)
-                    item.Dispose();
-            }
-
-            if (m_graph == null)
-                throw new ArgumentNullException("graphBuilder");
-
-            var filterGraph = m_graph as IFilterGraph2;
-
-            if (filterGraph == null)
-                return;
-
-            IBaseFilter filter = null;
-            if (device != null)
-            {
-                hr = filterGraph.AddSourceFilterForMoniker(device.Mon, null, device.Name, out filter);
-                DsError.ThrowExceptionForHR(hr);
-            }
-
-            //IntPtr test;
-            //bool b;
-            //hr = ((IAMDirectSound)filter).GetFocusWindow(out test, out b);
-            //DsError.ThrowExceptionForHR(hr);
-        }
-
         protected virtual void RenderAudio()
         { 
             int hr;
@@ -344,12 +257,6 @@ namespace VrPlayer.Helpers.Media
             }
         }
 
-        private int avgBytesPerSec = 0;
-        private int audioBlockAlign = 0;
-        private int audioChannels = 0;
-        private int audioSamplesPerSec = 0;
-        private int audioBitsPerSample = 0;
-        
         /// <summary>
         /// Inserts the audio stream renderer
         /// </summary>
@@ -394,23 +301,8 @@ namespace VrPlayer.Helpers.Media
                     media.formatType = FormatType.WaveEx;
                     hr = sampleGrabber.SetMediaType(media);
                     DsError.ThrowExceptionForHR(hr);
-                    //////////////////
-                    /*
-                    if ((media.formatType != FormatType.WaveEx) || (media.formatPtr == IntPtr.Zero))
-                    {
-                        throw new NotSupportedException("Unknown Grabber Media Format");
-                    }
-                    WaveFormatEx wav = new WaveFormatEx();
-                    wav = (WaveFormatEx)Marshal.PtrToStructure(media.formatPtr, typeof(WaveFormatEx));
-                    this.avgBytesPerSec = wav.nAvgBytesPerSec;
-                    this.audioBlockAlign = wav.nBlockAlign;
-                    this.audioChannels = wav.nChannels;
-                    this.audioSamplesPerSec = wav.nSamplesPerSec;
-                    this.audioBitsPerSample = wav.wBitsPerSample;
-                    Marshal.FreeCoTaskMem(media.formatPtr);
-                    media.formatPtr = IntPtr.Zero;
-                    */
-                    //////////////////
+                    ///////////////////
+                    
                     IPin sampleGrabberPinIn = DsFindPin.ByDirection((IBaseFilter)sampleGrabber, PinDirection.Input, 0);
                     IPin sampleGrabberPinOut = DsFindPin.ByDirection((IBaseFilter)sampleGrabber, PinDirection.Output, 0);
                     hr = m_graph.AddFilter((IBaseFilter)sampleGrabber, "SampleGrabber");
@@ -435,8 +327,29 @@ namespace VrPlayer.Helpers.Media
                     IPin nullRendererPinIn = DsFindPin.ByDirection((IBaseFilter)nullRenderer, PinDirection.Input, 0);
                     hr = m_graph.Connect(sampleGrabberPinOut, nullRendererPinIn);
                     DsError.ThrowExceptionForHR(hr);
+
+                    SetAudioEngineMediaFormat(sampleGrabber);
                 }
             }
+        }
+
+        private void SetAudioEngineMediaFormat(ISampleGrabber sampleGrabber)
+        {
+            int hr;
+
+            AMMediaType mediaInfo = new AMMediaType();
+            hr = sampleGrabber.GetConnectedMediaType(mediaInfo);
+            DsError.ThrowExceptionForHR(hr);
+
+            if ((mediaInfo.formatType != FormatType.WaveEx) || (mediaInfo.formatPtr == IntPtr.Zero))
+            {
+                throw new NotSupportedException("Unknown Grabber Media Format");
+            }
+            WaveFormatEx wav = new WaveFormatEx();
+            wav = (WaveFormatEx)Marshal.PtrToStructure(mediaInfo.formatPtr, typeof(WaveFormatEx));
+            _audioEngine.SetAudioFormat(wav);
+            Marshal.FreeCoTaskMem(mediaInfo.formatPtr);
+            mediaInfo.formatPtr = IntPtr.Zero;
         }
 
         /// <summary>
@@ -486,14 +399,36 @@ namespace VrPlayer.Helpers.Media
             return 0;
         }
 
+        /*
+        //http://www.experts-exchange.com/Programming/Languages/CPP/Q_21635251.html
+        public int BufferCB(double SampleTime, IntPtr pBuffer, int BufferLen)
+        {
+            const int channels = 6;
+            byte[] buffer = new byte[BufferLen];
+            Marshal.Copy(pBuffer, buffer, 0, BufferLen);
+            int nSamples = BufferLen / channels;
+
+            short s_Max;
+            for (int n = 0; n < nSamples; n++)
+            {
+                if (s_Max < buffer[n]) 
+                    s_Max = buffer[n];
+            }
+            return 0;
+        }
+        */
+
         public int BufferCB(double SampleTime, IntPtr pBuffer, int BufferLen)
         {
             byte[] buffer = new byte[BufferLen];
             Marshal.Copy(pBuffer, buffer, 0, BufferLen);
+            /*
             using (BinaryWriter binWriter = new BinaryWriter(File.Open(@"C:\temp\directshowoutput.pcm", FileMode.Append)))
             {
                 binWriter.Write(buffer);
             }
+            */
+            _audioEngine.PlayBuffer(buffer);
             return 0;
         }
 

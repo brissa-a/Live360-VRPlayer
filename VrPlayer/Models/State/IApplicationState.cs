@@ -7,7 +7,7 @@ using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.Wrappers;
 using System.ComponentModel;
-using VrPlayer.Helpers.Media;
+using VrPlayer.Models.Media;
 
 namespace VrPlayer.Models.State
 {
