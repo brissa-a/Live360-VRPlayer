@@ -101,6 +101,7 @@
     <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
+    <Compile Include="Models\Media\IMediaPlayerElement.cs" />
     <Compile Include="Models\Media\X3DAudioEngine.cs" />
     <Compile Include="Models\Media\GraphPlayer.cs" />
     <Compile Include="Models\Media\GraphPlayerElement.cs" />

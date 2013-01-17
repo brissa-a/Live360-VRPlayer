@@ -6,6 +6,7 @@ using VrPlayer.Models.Media;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 using VrPlayer.ViewModels;
+using WPFMediaKit.DirectShow.Controls;
 
 namespace VrPlayer
 {
@@ -19,8 +20,9 @@ namespace VrPlayer
 
         private App()
         {
-            //IAudioEngine audioEngine = new IrrKlangAudio();
-            GraphPlayerElement mediaPlayer = new GraphPlayerElement();
+            //IAudioEngine audioEngine = new X3DAudioEngine();
+            //GraphPlayerElement mediaPlayer = new GraphPlayerElement();
+            MediaUriElement mediaPlayer = new MediaUriElement();
             IApplicationConfig config = new AppSettingsApplicationConfig();
             IPluginManager pluginManager = new StaticPluginManager(config);
             IApplicationState state = new DefaultApplicationState(config, mediaPlayer);

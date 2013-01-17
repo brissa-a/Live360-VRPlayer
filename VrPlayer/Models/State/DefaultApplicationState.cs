@@ -20,8 +20,8 @@ namespace VrPlayer.Models.State
     {
         #region Fields
 
-        private GraphPlayerElement _media;
-        public GraphPlayerElement Media
+        private MediaUriElement _media;
+        public MediaUriElement Media
         {
             get
             {
@@ -115,7 +115,7 @@ namespace VrPlayer.Models.State
 
         #endregion
 
-        public DefaultApplicationState(IApplicationConfig config, GraphPlayerElement media)
+        public DefaultApplicationState(IApplicationConfig config, MediaUriElement media)
         {
             _media = media;
             media.BeginInit();
