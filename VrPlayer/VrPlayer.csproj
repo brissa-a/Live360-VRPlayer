@@ -55,20 +55,14 @@
     <ApplicationIcon>vrplayer.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="irrKlang.NET4">
-      <HintPath>..\..\irrKlang-1.4.0\irrKlang-1.4.0\bin\dotnet-4\irrKlang.NET4.dll</HintPath>
-    </Reference>
     <Reference Include="MoveFramework CS">
       <HintPath>..\Lib\PsMove\MoveFramework CS.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
       <HintPath>..\packages\SharpDX.2.4.2\lib\net40\SharpDX.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.DirectSound">
-      <HintPath>..\packages\SharpDX.DirectSound.2.4.2\lib\net40\SharpDX.DirectSound.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.X3DAudio">
-      <HintPath>..\packages\SharpDX.X3DAudio.2.1.0\lib\net20\SharpDX.X3DAudio.dll</HintPath>
+    <Reference Include="SharpDX.XAudio2">
+      <HintPath>..\packages\SharpDX.XAudio2.2.4.2\lib\net40\SharpDX.XAudio2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -107,7 +101,7 @@
     <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
-    <Compile Include="Models\Media\DirectSoundAudioEngine.cs" />
+    <Compile Include="Models\Media\X3DAudioEngine.cs" />
     <Compile Include="Models\Media\GraphPlayer.cs" />
     <Compile Include="Models\Media\GraphPlayerElement.cs" />
     <Compile Include="Helpers\Media\GraphUtil.cs" />
@@ -116,7 +110,6 @@
     <Compile Include="Helpers\Mvvm\RelayCommand.cs" />
     <Compile Include="Helpers\QuaternionHelper.cs" />
     <Compile Include="Models\Media\IAudioEngine.cs" />
-    <Compile Include="Models\Media\IrrKlangAudioEngine.cs" />
     <Compile Include="Models\Trackers\RazerHydraTracker.cs" />
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
     <Compile Include="Models\Effects\ColorKeyAlphaEffect.cs" />

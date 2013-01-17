@@ -190,7 +190,7 @@ namespace VrPlayer.Models.Media
         protected override MediaPlayerBase OnRequestMediaPlayer()
         {
             //Todo: extract audio  engine creation
-            IAudioEngine audioEngine = new DirectSoundAudioEngine();
+            IAudioEngine audioEngine = new X3DAudioEngine();
             var player = new GraphPlayer(audioEngine);
             return player;
         }
