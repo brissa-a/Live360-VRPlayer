@@ -19,6 +19,7 @@ namespace VrPlayer.Models.Config
             _viewportsHorizontalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsHorizontalOffset"]);
             _hydraPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["HydraPositionScaleFactor"]);
             _psMovePositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["PsMovePositionScaleFactor"]);
+            _kinectPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["KinectPositionScaleFactor"]);
         }
 
         private string _defaultMediaFile;
@@ -103,6 +104,13 @@ namespace VrPlayer.Models.Config
         {
             get { return _psMovePositionScaleFactor; }
             set { _psMovePositionScaleFactor = value; }
+        }
+
+        private double _kinectPositionScaleFactor;
+        public double KinectPositionScaleFactor
+        {
+            get { return _kinectPositionScaleFactor; }
+            set { _kinectPositionScaleFactor = value; }
         }
 
         #region Helpers

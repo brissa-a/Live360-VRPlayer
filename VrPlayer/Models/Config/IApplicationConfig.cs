@@ -14,5 +14,6 @@
         int ViewportsHorizontalOffset { get; set; }
         double HydraPositionScaleFactor { get; set; }
         double PsMovePositionScaleFactor { get; set; }
+        double KinectPositionScaleFactor { get; set; }
     }
 }

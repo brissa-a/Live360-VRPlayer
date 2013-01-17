@@ -106,14 +106,19 @@ namespace VrPlayer.Models.Plugins
             var mouseTrackerPlugin = new TrackerPlugin(mouseTracker, "Mouse");
             _trackers.Add(mouseTrackerPlugin);
 
+            var kinectTracker = new KinectTracker();
+            kinectTracker.PositionScaleFactor = _config.KinectPositionScaleFactor;
+            var kinectTrackerPlugin = new TrackerPlugin(kinectTracker, "Microsoft Kinect");
+            _trackers.Add(kinectTrackerPlugin);
+
+            var wiimoteTracker = new WiimoteTracker();
+            var wiimoteTrackerPlugin = new TrackerPlugin(wiimoteTracker, "Nintendo WiiMote");
+            _trackers.Add(wiimoteTrackerPlugin);
+
             var psMoveTracker = new PsMoveTracker();
             psMoveTracker.PositionScaleFactor = _config.PsMovePositionScaleFactor;
             var psMoveTrackerPlugin = new TrackerPlugin(psMoveTracker, "PlayStation Move");
             _trackers.Add(psMoveTrackerPlugin);
-
-            var wiimoteTracker = new WiimoteTracker();
-            var wiimoteTrackerPlugin = new TrackerPlugin(wiimoteTracker, "WiiMote + MotionPlus");
-            _trackers.Add(wiimoteTrackerPlugin);
 
             var hydraTracker = new RazerHydraTracker();
             hydraTracker.PositionScaleFactor = _config.HydraPositionScaleFactor;

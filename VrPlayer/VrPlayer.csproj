@@ -55,6 +55,7 @@
     <ApplicationIcon>vrplayer.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Kinect, Version=1.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="MoveFramework CS">
       <HintPath>..\Lib\PsMove\MoveFramework CS.dll</HintPath>
     </Reference>
@@ -111,6 +112,7 @@
     <Compile Include="Helpers\Mvvm\RelayCommand.cs" />
     <Compile Include="Helpers\QuaternionHelper.cs" />
     <Compile Include="Models\Media\IAudioEngine.cs" />
+    <Compile Include="Models\Trackers\KinectTracker.cs" />
     <Compile Include="Models\Trackers\RazerHydraTracker.cs" />
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
     <Compile Include="Models\Effects\ColorKeyAlphaEffect.cs" />
@@ -207,7 +209,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Models\Effects\ColorKeyAlphaEffect.fx" />
     <Resource Include="Medias\Nuvola\edu_science.png" />
     <Resource Include="Medias\Nuvola\kcontrol.png" />
