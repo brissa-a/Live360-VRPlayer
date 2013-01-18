@@ -8,7 +8,7 @@
         </TabItem>
         <TabItem Header="Tracker">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Rotation" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Orientation" FontWeight="Bold"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="X:"></Label>
                     <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.X}" IsEnabled="False"></Label>
@@ -24,6 +24,23 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Content="W:"></Label>
                     <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.W}" IsEnabled="False"></Label>
+                </StackPanel>
+                <TextBlock Text="Base Orientation" FontWeight="Bold"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="X:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.X}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Y:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.Y}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Z:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.Z}" IsEnabled="False"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="W:"></Label>
+                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.W}" IsEnabled="False"></Label>
                 </StackPanel>
                 <TextBlock Text="Position" FontWeight="Bold"></TextBlock>
                 <StackPanel Orientation="Horizontal">

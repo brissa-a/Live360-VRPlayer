@@ -45,29 +45,17 @@ namespace VrPlayer.Models.Trackers
             }   
         }
 
-        void MoveUpdateCallback(int id, MoveWrapper.Vector3 position, MoveWrapper.Quaternion orientation, int trigger)
+        void MoveUpdateCallback(int id, MoveWrapper.Vector3 pos, MoveWrapper.Quaternion rot, int trigger)
         {
-            Quaternion rotation = new Quaternion(
-                orientation.x, 
-                -orientation.y, 
-                orientation.z, 
-                -orientation.w);
-
-            Vector3D scaledPos = new Vector3D(
-                position.x * PositionScaleFactor,
-                position.y * PositionScaleFactor,
-                position.z * PositionScaleFactor);
+            Vector3D position = PositionScaleFactor * new Vector3D(pos.x, pos.y, pos.z);
+            Quaternion rotation = new Quaternion(rot.x, -rot.y, rot.z, -rot.w);
 
             if (MoveWrapper.getButtonState(0, MoveButton.B_START))
             {
-                Quaternion conjugate = new Quaternion(rotation.X, rotation.Y, rotation.Z, rotation.W);
-                conjugate.Conjugate();
-                this.BaseRotation = conjugate;
-                this.BasePosition = -scaledPos;
+                Calibrate(position, rotation);
             }
 
-            this.Rotation = this.BaseRotation * rotation;
-            this.Position = this.BasePosition + scaledPos;
+            UpdatePositionAndRotation(position, rotation);
         }
 
     	void MoveKeyUpCallback(int id, int keyCode)

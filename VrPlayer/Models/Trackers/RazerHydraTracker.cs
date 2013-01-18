@@ -45,10 +45,10 @@ namespace VrPlayer.Models.Trackers
                 int result = _hydra.GetNewestData(HYDRA_ID);
                 ThrowErrorOnResult(result, "Error while getting data from the Razer Hydra");
 
-                Vector3D scaledPos = new Vector3D(
-                    _hydra.Data.pos.x * PositionScaleFactor,
-                    -_hydra.Data.pos.y * PositionScaleFactor,
-                    _hydra.Data.pos.z * PositionScaleFactor);
+                Vector3D position = PositionScaleFactor *  new Vector3D(
+                    _hydra.Data.pos.x, 
+                    -_hydra.Data.pos.y, 
+                    _hydra.Data.pos.z);
 
                 Quaternion rotation = new Quaternion(
                     _hydra.Data.rot_quat.x,
@@ -58,14 +58,10 @@ namespace VrPlayer.Models.Trackers
 
                 if (_hydra.Data.buttons == SIXENSE_BUTTON_START)
                 {
-                    Quaternion conjugate = new Quaternion(rotation.X, rotation.Y, rotation.Z, rotation.W);
-                    conjugate.Conjugate();
-                    this.BaseRotation = conjugate;
-                    this.BasePosition = -scaledPos;
+                    Calibrate(position, rotation);
                 }
 
-                this.Rotation = this.BaseRotation * rotation;
-                this.Position = this.BasePosition + scaledPos;
+                UpdatePositionAndRotation(position, rotation);
             }
             catch
             {

@@ -4,6 +4,7 @@ using System.Windows.Media.Media3D;
 using WiimoteLib;
 
 using VrPlayer.Helpers;
+using System.Threading;
 
 namespace VrPlayer.Models.Trackers
 {
@@ -24,6 +25,7 @@ namespace VrPlayer.Models.Trackers
 
                 _wiimote.SetRumble(true);
                 _wiimote.SetLEDs(true, false, false, true);
+                Thread.Sleep(40);
                 _wiimote.SetRumble(false);
             }
             catch (Exception exc)
@@ -35,10 +37,17 @@ namespace VrPlayer.Models.Trackers
 
         void wiimote_WiimoteChanged(object sender, WiimoteChangedEventArgs e)
         {
-            Rotation = QuaternionHelper.FromEulerAngles(
+            Quaternion rotation = QuaternionHelper.FromEulerAngles(
                 e.WiimoteState.MotionPlusState.Values.Y,
                 e.WiimoteState.MotionPlusState.Values.X,
                 e.WiimoteState.MotionPlusState.Values.Z);
+
+            if (e.WiimoteState.ButtonState.Plus)
+            {
+                Calibrate(new Vector3D(0,0,0), rotation);
+            }
+
+            Rotation = BaseRotation * rotation;
         }
 
         public override void Dispose()

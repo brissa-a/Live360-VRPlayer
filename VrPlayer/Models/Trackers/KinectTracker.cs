@@ -51,18 +51,15 @@ namespace VrPlayer.Models.Trackers
 
             SkeletonPoint point = skeleton.Joints[JointType.Head].Position;
 
-            Vector3D scaledPos = new Vector3D(
-               point.X * PositionScaleFactor,
-               -point.Y * PositionScaleFactor,
-               point.Z * PositionScaleFactor);
+            Vector3D position = PositionScaleFactor * new Vector3D(point.X, -point.Y, point.Z);
 
             //Raising right hand for calibration..
             if (skeleton.Joints[JointType.HandRight].Position.Y > point.Y)
             {
-                BasePosition = -scaledPos;
+                Calibrate(position, Quaternion.Identity);
             }
 
-            base.Position = this.BasePosition + scaledPos;
+            base.Position = this.BasePosition + position;
         }
 
         public override void Dispose()

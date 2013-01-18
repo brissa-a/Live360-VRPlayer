@@ -108,6 +108,24 @@ namespace VrPlayer.Models.Trackers
             }
         }
 
+        public void UpdatePositionAndRotation(Vector3D position, Quaternion rotation)
+        {
+            Rotation = BaseRotation * rotation;
+            Vector3D relativePos = BasePosition + position;
+            Matrix3D m = Matrix3D.Identity;
+            m.Translate(relativePos);
+            m.Rotate(BaseRotation);
+            this.Position = new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
+        }
+
+        public void Calibrate(Vector3D position, Quaternion rotation)
+        {
+            Quaternion conjugate = new Quaternion(rotation.X, rotation.Y, rotation.Z, rotation.W);
+            conjugate.Conjugate();
+            BaseRotation = conjugate;
+            BasePosition = -position;
+        }
+
         public abstract void Dispose();
     }
 }
