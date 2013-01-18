@@ -108,9 +108,9 @@ namespace VrPlayer.ViewModels
             _state = state;
 
             //Todo: VM should not register events in the model
-            _state.Media.MediaOpened += new RoutedEventHandler(_media_MediaOpened);
-            _state.Media.MediaEnded += new RoutedEventHandler(_media_MediaEnded);
-            _state.Media.SourceUpdated += new EventHandler<DataTransferEventArgs>(_media_SourceUpdated);
+            _state.MediaPlayer.MediaOpened += new RoutedEventHandler(_media_MediaOpened);
+            _state.MediaPlayer.MediaEnded += new RoutedEventHandler(_media_MediaEnded);
+            _state.MediaPlayer.SourceUpdated += new EventHandler<DataTransferEventArgs>(_media_SourceUpdated);
 
             //Commands
             _playCommand = new RelayCommand(Play, CanPlay);
@@ -130,23 +130,23 @@ namespace VrPlayer.ViewModels
 
         void timer_Tick(object sender, EventArgs e)
         {
-            if (_state.Media.MediaDuration > 0)
+            if (_state.MediaPlayer.MediaDuration > 0)
             {
-                Progress = _state.Media.MediaPosition / (double)_state.Media.MediaDuration * 100;
+                Progress = _state.MediaPlayer.MediaPosition / (double)_state.MediaPlayer.MediaDuration * 100;
             }
             CommandManager.InvalidateRequerySuggested();
         }
 
         void _media_MediaOpened(object sender, RoutedEventArgs e)
         {
-            HasDuration = _state.Media.MediaDuration > 0;
+            HasDuration = _state.MediaPlayer.MediaDuration > 0;
             StopCommand.Execute(null);
             PlayCommand.Execute(null);
         }
 
         void _media_SourceUpdated(object sender, DataTransferEventArgs e)
         {
-            HasDuration = _state.Media.MediaDuration > 0;
+            HasDuration = _state.MediaPlayer.MediaDuration > 0;
             StopCommand.Execute(null);
             PlayCommand.Execute(null);
         }
@@ -164,7 +164,7 @@ namespace VrPlayer.ViewModels
         {
             if (CanPlay(o))
             {
-                _state.Media.Play();
+                _state.MediaPlayer.Play();
                 IsPlaying = true;
             }
         }
@@ -178,7 +178,7 @@ namespace VrPlayer.ViewModels
         {
             if (CanPause(o))
             {
-                _state.Media.Pause();
+                _state.MediaPlayer.Pause();
                 IsPlaying = false;
             }
         }
@@ -192,15 +192,15 @@ namespace VrPlayer.ViewModels
         {
             if (CanStop(o))
             {
-                _state.Media.Stop();
-                _state.Media.MediaPosition = 0;
+                _state.MediaPlayer.Stop();
+                _state.MediaPlayer.MediaPosition = 0;
                 IsPlaying = false;
             }
         }
 
         private bool CanStop(object o)
         {
-            return _state.Media.MediaPosition > 0;
+            return _state.MediaPlayer.MediaPosition > 0;
         }
 
         private void Seek(object o)
@@ -208,24 +208,24 @@ namespace VrPlayer.ViewModels
             if (CanSeek(o))
             {
                 double percentComplete = (double)o;
-                _state.Media.MediaPosition = (long)(_state.Media.MediaDuration * percentComplete);
+                _state.MediaPlayer.MediaPosition = (long)(_state.MediaPlayer.MediaDuration * percentComplete);
             }
         }
 
         private bool CanSeek(object o)
         {
-            return _state.Media.MediaDuration > 0;
+            return _state.MediaPlayer.MediaDuration > 0;
         }
 
         private void SetEffect(object o)
         {
-            _state.Media.Effect = (Effect)o;
+            _state.MediaPlayer.Effect = (Effect)o;
         }
 
         private void Loop(object o)
         { 
             bool loop = (bool)o;
-            _state.Media.Loop = loop;
+            _state.MediaPlayer.Loop = loop;
         }
 
         #endregion

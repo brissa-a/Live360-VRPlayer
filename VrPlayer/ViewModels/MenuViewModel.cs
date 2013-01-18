@@ -281,8 +281,8 @@ namespace VrPlayer.ViewModels
             _state.ShaderPlugin = _pluginManager.Shaders[0];
 
             //Todo: Should not set the media value directly
-            _state.Media.Source = new Uri(SamplesMenu[0].CommandParameter.ToString(), UriKind.RelativeOrAbsolute);
-            _state.Media.Play();
+            _state.MediaPlayer.Source = new Uri(SamplesMenu[0].CommandParameter.ToString(), UriKind.RelativeOrAbsolute);
+            _state.MediaPlayer.Play();
         }
 
         #region Logic
@@ -301,7 +301,7 @@ namespace VrPlayer.ViewModels
 		private void Load(object o)
 		{
 			string filePath = (string)o;
-			_state.Media.Source = new Uri(filePath, UriKind.Absolute);
+			_state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);
 		}
 
         private void Exit(object o)

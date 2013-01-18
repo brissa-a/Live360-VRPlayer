@@ -20,12 +20,21 @@ namespace VrPlayer.Models.State
     {
         #region Fields
 
-        private MediaUriElement _media;
-        public MediaUriElement Media
+        private GraphPlayerElement _mediaPlayer;
+        public GraphPlayerElement MediaPlayer
         {
             get
             {
-                return _media;
+                return _mediaPlayer;
+            }
+        }
+
+        private IAudioEngine _audioEngine;
+        public IAudioEngine AudioEngine
+        {
+            get
+            {
+                return _audioEngine;
             }
         }
 
@@ -115,11 +124,13 @@ namespace VrPlayer.Models.State
 
         #endregion
 
-        public DefaultApplicationState(IApplicationConfig config, MediaUriElement media)
+        public DefaultApplicationState(IApplicationConfig config, GraphPlayerElement mediaPlayer, IAudioEngine audioEngine)
         {
-            _media = media;
-            media.BeginInit();
-            media.EndInit();
+            _mediaPlayer = mediaPlayer;
+            mediaPlayer.BeginInit();
+            mediaPlayer.EndInit();
+
+            _audioEngine = audioEngine;
         }
     }
 }

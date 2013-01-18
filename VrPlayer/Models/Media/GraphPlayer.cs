@@ -19,7 +19,7 @@ namespace VrPlayer.Models.Media
     /// <summary>
     /// The MediaUriPlayer plays media files from a given Uri.
     /// </summary>
-    public class GraphPlayer : MediaSeekingPlayer, ISampleGrabberCB
+    public class GraphPlayer : MediaSeekingPlayer, ISampleGrabberCB, IMediaPlayerElement
     {
         private IAudioEngine _audioEngine;
 

@@ -20,6 +20,7 @@ namespace VrPlayer.Models.Config
             _hydraPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["HydraPositionScaleFactor"]);
             _psMovePositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["PsMovePositionScaleFactor"]);
             _kinectPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["KinectPositionScaleFactor"]);
+            _positionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
         }
 
         private string _defaultMediaFile;
@@ -112,6 +113,14 @@ namespace VrPlayer.Models.Config
             get { return _kinectPositionScaleFactor; }
             set { _kinectPositionScaleFactor = value; }
         }
+
+        private bool _positionalAudio;
+        public bool PositionalAudio
+        {
+            get { return _positionalAudio; }
+            set { _positionalAudio = value; }
+        }
+        
 
         #region Helpers
 

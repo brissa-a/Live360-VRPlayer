@@ -15,5 +15,6 @@
         double HydraPositionScaleFactor { get; set; }
         double PsMovePositionScaleFactor { get; set; }
         double KinectPositionScaleFactor { get; set; }
+        bool PositionalAudio { get; set; }
     }
 }

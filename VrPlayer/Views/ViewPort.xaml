@@ -16,7 +16,7 @@
                      RenderOptions.CacheInvalidationThresholdMaximum="2.0"
                      RenderOptions.CacheInvalidationThresholdMinimum="0.5">
             <VisualBrush.Visual>
-                <ContentControl Effect="{Binding Path=State.EffectPlugin.Effect}" Content="{Binding Path=State.Media}" IsHitTestVisible="False" />
+                <ContentControl Effect="{Binding Path=State.EffectPlugin.Effect}" Content="{Binding Path=State.MediaPlayer}" IsHitTestVisible="False" />
             </VisualBrush.Visual>
         </VisualBrush>
         

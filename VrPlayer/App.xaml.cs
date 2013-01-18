@@ -20,12 +20,11 @@ namespace VrPlayer
 
         private App()
         {
-            //IAudioEngine audioEngine = new X3DAudioEngine();
-            //GraphPlayerElement mediaPlayer = new GraphPlayerElement();
-            MediaUriElement mediaPlayer = new MediaUriElement();
             IApplicationConfig config = new AppSettingsApplicationConfig();
+            IAudioEngine audioEngine = new X3DAudioEngine();
+            GraphPlayerElement mediaPlayer = new GraphPlayerElement();
             IPluginManager pluginManager = new StaticPluginManager(config);
-            IApplicationState state = new DefaultApplicationState(config, mediaPlayer);
+            IApplicationState state = new DefaultApplicationState(config, mediaPlayer, audioEngine);
             _viewModelFactory = new ViewModelFactory(config, pluginManager, state);
         }
     }

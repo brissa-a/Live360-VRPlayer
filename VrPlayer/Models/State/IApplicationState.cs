@@ -13,7 +13,8 @@ namespace VrPlayer.Models.State
 {
     public interface IApplicationState : INotifyPropertyChanged
     {
-        MediaUriElement Media { get; }
+        GraphPlayerElement MediaPlayer { get; }
+        IAudioEngine AudioEngine { get; }
         EffectPlugin EffectPlugin { get; set; }
         StereoMode StereoInput { get; set; }
         StereoMode StereoOutput { get; set; }
