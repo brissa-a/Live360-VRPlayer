@@ -52,6 +52,7 @@ namespace VrPlayer.Models.Media
 
             _xaudio2 = new XAudio2();
             var masteringVoice = new MasteringVoice(_xaudio2);
+            _xaudio2.StartEngine();
 
             _deviceFormat = _xaudio2.GetDeviceDetails(0).OutputFormat;
             _x3dAudio = new X3DAudio(_deviceFormat.ChannelMask);
@@ -67,48 +68,29 @@ namespace VrPlayer.Models.Media
 
         public void PlayBuffer(byte[] buffer)
         {
-            /*
-            int numberOfSamples = buffer.Length / _format.BlockAlign;
-            for (int sampleIndex = 0; sampleIndex < numberOfSamples; sampleIndex++)
+            int numberOfSamples = buffer.Length / _format.BitsPerSample;
+            int channelLength = buffer.Length / _format.Channels;
+
+            for (int channelIndex = 0; channelIndex < _format.Channels; channelIndex++)
             {
-                int bufferSize = numberOfSamples / _format.Channels;
-
-                for (int channelIndex = 0; channelIndex < _format.Channels; channelIndex++)
-                {    
-                    var dataStream = new DataStream(bufferSize, true, true);
-
-                    byte[] channelBuffer = new byte[bufferSize];
-                    Array.Copy(buffer, bufferSize * channelIndex, channelBuffer, 0, bufferSize);
-                    dataStream.Write(channelBuffer, 0, channelBuffer.Length);
+                using (DataStream dataStream = new DataStream(channelLength, true, true))
+                {
+                    for (int sampleIndex = channelIndex; sampleIndex < numberOfSamples; sampleIndex += _format.Channels)
+                    {
+                        dataStream.Write(buffer, sampleIndex * _format.BitsPerSample, _format.BitsPerSample);
+                    }
                     dataStream.Position = 0;
 
                     var audioBuffer = new AudioBuffer
                     {
                         Stream = dataStream,
-                        AudioBytes = bufferSize,
+                        AudioBytes = channelLength,
                         Flags = BufferFlags.EndOfStream
                     };
 
                     _voices[channelIndex].SubmitSourceBuffer(audioBuffer, null);
                 }
             }
-            */
-
-            var dataStream = new DataStream(buffer.Length, true, true);
-
-            dataStream.Write(buffer, 0, buffer.Length);
-            dataStream.Position = 0;
-
-            var audioBuffer = new AudioBuffer
-            {
-                Stream = dataStream,
-                AudioBytes = buffer.Length,
-                Flags = BufferFlags.EndOfStream
-            };
-
-            _voices[0].SubmitSourceBuffer(audioBuffer, null);
-
-            UpdateMatrices();
             
             if (!_isPlaying)
                 Play();
@@ -120,7 +102,7 @@ namespace VrPlayer.Models.Media
             
             for(int i = 0; i < _format.Channels; i++)
 	        {
-                var channelFormat = new WaveFormat(_format.SampleRate, _format.Channels);
+                var channelFormat = new WaveFormat(_format.SampleRate, _format.BitsPerSample, 1);
 		        SourceVoice voice = new SourceVoice(_xaudio2, channelFormat);
 		        _voices.Add(voice);
 
@@ -130,7 +112,7 @@ namespace VrPlayer.Models.Media
 			        CurveDistanceScaler = float.MinValue,
 			        OrientFront = new Vector3(0, 0, 1),
 			        OrientTop = new Vector3(0, 1, 0),
-			        Position = _emmiterPositions[i],
+			        Position = new Vector3(0, 0, 0),
 			        Velocity = new Vector3(0, 0, 0)
 		        };
                 _emitters.Add(emitter);
@@ -140,20 +122,10 @@ namespace VrPlayer.Models.Media
         public void Play()
         {
             _isPlaying = true;
-            Thread t = new Thread(PlayMethod);
-            t.Start();
-        }
-
-        private void PlayMethod()
-        {
-            _voices[0].Start();
-            
-            while (_voices[0].State.BuffersQueued > 0)
+            foreach (SourceVoice voice in _voices)
             {
-                Thread.Sleep(10);
+                voice.Start();
             }
-            
-            _voices[0].Dispose();
         }
 
         private void UpdateMatrices()
@@ -171,6 +143,18 @@ namespace VrPlayer.Models.Media
                 var dspSettings = _x3dAudio.Calculate(listener, _emitters[channelIndex], CalculateFlags.Matrix, _format.Channels, _deviceFormat.Channels);
                 _voices[channelIndex].SetOutputMatrix(_format.Channels, _deviceFormat.Channels, dspSettings.MatrixCoefficients);
 	        }
+
+            _xaudio2.CommitChanges();
+        }
+
+        public void Dispose()
+        {
+            foreach(SourceVoice voice in _voices)
+            {
+                voice.Stop();
+            }
+            if (_xaudio2 != null)
+                _xaudio2.Dispose();
         }
     }
 }

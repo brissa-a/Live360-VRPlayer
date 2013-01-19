@@ -391,43 +391,14 @@ namespace VrPlayer.Models.Media
 
         public int SampleCB(double sampleTime, IMediaSample mediaSample)
         {
-            Console.WriteLine("SampleCB Callback");
-            Console.WriteLine(mediaSample.IsSyncPoint() + " ");
-
-            /* other code */
             Marshal.ReleaseComObject(mediaSample);
             return 0;
         }
 
-        /*
-        //http://www.experts-exchange.com/Programming/Languages/CPP/Q_21635251.html
-        public int BufferCB(double SampleTime, IntPtr pBuffer, int BufferLen)
-        {
-            const int channels = 6;
-            byte[] buffer = new byte[BufferLen];
-            Marshal.Copy(pBuffer, buffer, 0, BufferLen);
-            int nSamples = BufferLen / channels;
-
-            short s_Max;
-            for (int n = 0; n < nSamples; n++)
-            {
-                if (s_Max < buffer[n]) 
-                    s_Max = buffer[n];
-            }
-            return 0;
-        }
-        */
-
         public int BufferCB(double SampleTime, IntPtr pBuffer, int BufferLen)
         {
             byte[] buffer = new byte[BufferLen];
             Marshal.Copy(pBuffer, buffer, 0, BufferLen);
-            /*
-            using (BinaryWriter binWriter = new BinaryWriter(File.Open(@"C:\temp\directshowoutput.pcm", FileMode.Append)))
-            {
-                binWriter.Write(buffer);
-            }
-            */
             _audioEngine.PlayBuffer(buffer);
             return 0;
         }

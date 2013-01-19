@@ -8,7 +8,7 @@ using SharpDX;
 
 namespace VrPlayer.Models.Media
 {
-    public interface IAudioEngine
+    public interface IAudioEngine: IDisposable
     {
         void PlayBuffer(byte[] buffer);
         void SetAudioFormat(WaveFormatEx format);
