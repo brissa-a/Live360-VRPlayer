@@ -21,19 +21,13 @@ namespace VrPlayer
         private App()
         {
             IApplicationConfig config = new AppSettingsApplicationConfig();
-            _audioEngine = new X3DAudioEngine();
-            GraphPlayerElement mediaPlayer = new GraphPlayerElement();
             IPluginManager pluginManager = new StaticPluginManager(config);
-            IApplicationState state = new DefaultApplicationState(config, mediaPlayer, _audioEngine);
+            IApplicationState state = new DefaultApplicationState(config);
             _viewModelFactory = new ViewModelFactory(config, pluginManager, state);
         }
-
-        //Todo: Dispose all elements
-        IAudioEngine _audioEngine;
-            
+    
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            _audioEngine.Dispose();
         }
     }
 }

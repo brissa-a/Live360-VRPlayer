@@ -21,6 +21,7 @@ namespace VrPlayer.Models.Config
             _psMovePositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["PsMovePositionScaleFactor"]);
             _kinectPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["KinectPositionScaleFactor"]);
             _positionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
+            _evrRendering = bool.Parse(ConfigurationManager.AppSettings["EvrRendering"]);
         }
 
         private string _defaultMediaFile;
@@ -120,7 +121,13 @@ namespace VrPlayer.Models.Config
             get { return _positionalAudio; }
             set { _positionalAudio = value; }
         }
-        
+
+        private bool _evrRendering;
+        public bool EvrRendering
+        {
+            get { return _evrRendering; }
+            set { _evrRendering = value; }
+        }
 
         #region Helpers
 

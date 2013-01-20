@@ -13,6 +13,8 @@ using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Wrappers;
 using VrPlayer.Models.Shaders;
 using VrPlayer.Models.Media;
+using System.Windows.Data;
+using System.Windows;
 
 namespace VrPlayer.Models.State
 {
@@ -20,21 +22,12 @@ namespace VrPlayer.Models.State
     {
         #region Fields
 
-        private GraphPlayerElement _mediaPlayer;
-        public GraphPlayerElement MediaPlayer
+        private MediaUriElement _mediaPlayer;
+        public MediaUriElement MediaPlayer
         {
             get
             {
                 return _mediaPlayer;
-            }
-        }
-
-        private IAudioEngine _audioEngine;
-        public IAudioEngine AudioEngine
-        {
-            get
-            {
-                return _audioEngine;
             }
         }
 
@@ -124,13 +117,24 @@ namespace VrPlayer.Models.State
 
         #endregion
 
-        public DefaultApplicationState(IApplicationConfig config, GraphPlayerElement mediaPlayer, IAudioEngine audioEngine)
+        public DefaultApplicationState(IApplicationConfig config)
         {
-            _mediaPlayer = mediaPlayer;
-            mediaPlayer.BeginInit();
-            mediaPlayer.EndInit();
+            if (config.PositionalAudio)
+            {
+                _mediaPlayer = new MediaGraphElement();
+            }
+            else
+            {
+                _mediaPlayer = new MediaUriElement();
+            }
 
-            _audioEngine = audioEngine;
+            if (config.EvrRendering)
+            {
+                _mediaPlayer.VideoRenderer = WPFMediaKit.DirectShow.MediaPlayers.VideoRendererType.EnhancedVideoRenderer;
+            }
+
+            _mediaPlayer.BeginInit();
+            _mediaPlayer.EndInit();
         }
     }
 }

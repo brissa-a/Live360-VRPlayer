@@ -77,10 +77,12 @@ namespace VrPlayer.ViewModels
         void timer_Tick(object sender, EventArgs e)
         {
             CameraTransform = _state.TrackerPlugin.Tracker.Rotation;
+            /*
             _state.AudioEngine.Position = new SharpDX.Vector3(
                 (float)_state.TrackerPlugin.Tracker.Position.X,
                 (float)_state.TrackerPlugin.Tracker.Position.Y,
                 (float)_state.TrackerPlugin.Tracker.Position.Z);
+            */
         }
 
         #region Logic

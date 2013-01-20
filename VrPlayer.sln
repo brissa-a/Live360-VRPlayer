@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer", "VrPlayer\VrPlay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazerHydraWrapper", "RazerHydraWrapper\RazerHydraWrapper.csproj", "{D3371693-9129-4693-8A33-8B9AC00A81FF}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VrPlayer.Setup", "VrPlayer.Setup\VrPlayer.Setup.vdproj", "{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,18 @@ Global
 		{D3371693-9129-4693-8A33-8B9AC00A81FF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D3371693-9129-4693-8A33-8B9AC00A81FF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D3371693-9129-4693-8A33-8B9AC00A81FF}.Release|x86.ActiveCfg = Release|Any CPU
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Debug|Any CPU.ActiveCfg = Debug
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Debug|Any CPU.Build.0 = Debug
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Debug|Mixed Platforms.Build.0 = Debug
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Debug|x86.ActiveCfg = Debug
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Debug|x86.Build.0 = Debug
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Release|Any CPU.ActiveCfg = Release
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Release|Any CPU.Build.0 = Release
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Release|Mixed Platforms.ActiveCfg = Release
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Release|Mixed Platforms.Build.0 = Release
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Release|x86.ActiveCfg = Release
+		{0EB8C64A-4F8D-4487-BCBA-D02C5221E923}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -75,13 +75,13 @@
                 <TextBlock Text="Viewports offset" FontWeight="Bold"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Horizontal:"></Label>
-                    <Slider Value="{Binding Path=Config.ViewportsHorizontalOffset}" Width="150"  Minimum="-1000" Maximum="1000"></Slider>
+                    <Slider Value="{Binding Path=Config.ViewportsHorizontalOffset}" Width="150"  Minimum="-100" Maximum="100"></Slider>
                     <TextBox Text="{Binding Path=Config.ViewportsHorizontalOffset}" Width="50"></TextBox>
                 </StackPanel>
                 <TextBlock Text="Camera" FontWeight="Bold"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="FOV:"></Label>
-                    <Slider Value="{Binding Path=Config.CameraFieldOfView}" Width="150"  Minimum="10" Maximum="180"></Slider>
+                    <Slider Value="{Binding Path=Config.CameraFieldOfView}" Width="150"  Minimum="10" Maximum="120"></Slider>
                     <TextBox Text="{Binding Path=Config.CameraFieldOfView}" Width="50"></TextBox>
                 </StackPanel>
             </StackPanel>

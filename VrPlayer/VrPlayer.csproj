@@ -102,10 +102,9 @@
     <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
-    <Compile Include="Models\Media\IMediaPlayerElement.cs" />
+    <Compile Include="Models\Media\MediaGraphPlayer.cs" />
+    <Compile Include="Models\Media\MediaGraphElement.cs" />
     <Compile Include="Models\Media\X3DAudioEngine.cs" />
-    <Compile Include="Models\Media\GraphPlayer.cs" />
-    <Compile Include="Models\Media\GraphPlayerElement.cs" />
     <Compile Include="Helpers\Media\GraphUtil.cs" />
     <Compile Include="Helpers\Mvvm\DelegateCommand.cs" />
     <Compile Include="Helpers\MouseUtilities.cs" />
