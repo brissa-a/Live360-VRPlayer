@@ -6,7 +6,7 @@ namespace VrPlayer.Helpers
     public class QuaternionHelper
     {
         //Source: http://www.vbforums.com/showthread.php?637168-WPF-3D-orbiting-camera-(pitch-yaw-rotation-only)
-        public static Quaternion FromEulerAngles(double pitch, double yaw, double roll)
+        public static Quaternion QuaternionFromEulerAngles(double pitch, double yaw, double roll)
         {
             Vector3D yawAxis = new Vector3D(0, 1, 0);
             Vector3D pitchAxis = new Vector3D(1, 0, 0);
@@ -21,11 +21,11 @@ namespace VrPlayer.Helpers
             r = new QuaternionRotation3D(new Quaternion(rollAxis, roll));
             group.Children.Add(new RotateTransform3D(r));
 
-            return FromMatrix(group.Value);
+            return QuaternionFromMatrix(group.Value);
         }
 
         //Source: http://www.gamedev.net/topic/543583-quaternion-to-matrix-and-back/
-        public static Quaternion FromMatrix(Matrix3D m)
+        public static Quaternion QuaternionFromMatrix(Matrix3D m)
         {
             double ZERO_THRESHOLD = 0.00001;
 
@@ -79,6 +79,24 @@ namespace VrPlayer.Helpers
 
 	        q.Normalize();
 	        return q;
+        }
+
+        public static Vector3D FrontVectorFromQuaternion(Quaternion q)
+        {
+            return new Vector3D(
+                2 * (q.X * q.Z + q.W * q.Y),
+                2 * (q.Y * q.Z - q.W * q.X),
+                1 - 2 * (q.X * q.X + q.Y * q.Y)
+            );
+        }
+
+        public static Vector3D UpVectorFromQuaternion(Quaternion q)
+        {
+            return new Vector3D(
+                2 * (q.X * q.Y - q.W * q.Z),
+                1 - 2 * (q.X * q.X + q.Z * q.Z),
+                2 * (q.Y * q.Z + q.W * q.X)
+            );
         }
     }
 }

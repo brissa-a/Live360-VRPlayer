@@ -12,6 +12,7 @@ using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Wrappers;
+using VrPlayer.Models.Media;
 
 namespace VrPlayer.ViewModels
 {
@@ -77,12 +78,16 @@ namespace VrPlayer.ViewModels
         void timer_Tick(object sender, EventArgs e)
         {
             CameraTransform = _state.TrackerPlugin.Tracker.Rotation;
-            /*
-            _state.AudioEngine.Position = new SharpDX.Vector3(
-                (float)_state.TrackerPlugin.Tracker.Position.X,
-                (float)_state.TrackerPlugin.Tracker.Position.Y,
-                (float)_state.TrackerPlugin.Tracker.Position.Z);
-            */
+            //Todo: Extract.. This is not view model responsability
+            if (_state.MediaPlayer is MediaGraphElement)
+            {
+                IAudioEngine audioEngine = ((MediaGraphElement)_state.MediaPlayer).MediaGraphPlayer.AudioEngine;
+                if (audioEngine != null)
+                {
+                    audioEngine.Position = _state.TrackerPlugin.Tracker.Position;
+                    audioEngine.Rotation = _state.TrackerPlugin.Tracker.Rotation;
+                }
+            }
         }
 
         #region Logic

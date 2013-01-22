@@ -96,7 +96,7 @@ namespace VrPlayer.Models.Trackers
                 _pitch += dy;
                 
                 // Rotate
-                Rotation = QuaternionHelper.FromEulerAngles(_pitch * _mouseSensitivity * 0.1, _yaw * _mouseSensitivity * 0.1, 0);
+                Rotation = QuaternionHelper.QuaternionFromEulerAngles(_pitch * _mouseSensitivity * 0.1, _yaw * _mouseSensitivity * 0.1, 0);
                 
                 // Set mouse position back to the center of the viewport in screen coordinates
                 MouseUtilities.SetPosition(centerOfViewport);

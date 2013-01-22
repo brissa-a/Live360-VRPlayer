@@ -15,6 +15,10 @@ namespace VrPlayer.Models.Media
         private const string DEFAULT_AUDIO_RENDERER_NAME = "Default DirectSound Device";
 
         private IAudioEngine _audioEngine;
+        public IAudioEngine AudioEngine
+        {
+            get { return _audioEngine; }
+        }
 
         private IGraphBuilder _graph;
         public IGraphBuilder Graph
@@ -22,12 +26,49 @@ namespace VrPlayer.Models.Media
             get { return _graph; }
         }
 
+        protected override void InsertAudioRenderer(string audioDeviceName)
+        {
+            //base.InsertAudioRenderer(audioDeviceName);
+        }
+
         protected override void SetupFilterGraph(IFilterGraph graph)
         {
-            _audioEngine = new SimpleX3DAudioEngine();
+            _audioEngine = new X3DAudioEngine();
             _graph = graph as IGraphBuilder;
             base.SetupFilterGraph(graph);
-            SetupSampleGrabber();
+            SetupAudio();
+        }
+
+        protected virtual void SetupAudio()
+        {
+            int hr;
+
+            IEnumFilters enumFilters;
+            hr = _graph.EnumFilters(out enumFilters);
+            DsError.ThrowExceptionForHR(hr);
+
+            IBaseFilter[] filters = new IBaseFilter[1];
+            IntPtr fetched = new IntPtr();
+
+            while (enumFilters.Next(1, filters, fetched) == 0)
+            {
+                IBaseFilter filter = filters[0] as IBaseFilter;
+                IPin unconnectedPin = DsFindPin.ByConnectionStatus((IBaseFilter)filter, PinConnectedStatus.Unconnected, 0);
+                if (unconnectedPin != null)
+                {
+                    PinDirection direction;
+                    hr = unconnectedPin.QueryDirection(out direction);
+                    DsError.ThrowExceptionForHR(hr);
+
+                    if (direction == PinDirection.Output)
+                    {
+                        hr = _graph.Render(unconnectedPin);
+                        DsError.ThrowExceptionForHR(hr);
+
+                        SetupSampleGrabber();
+                    }
+                }
+            }
         }
 
         private void SetupSampleGrabber()
@@ -97,7 +138,7 @@ namespace VrPlayer.Models.Media
                     hr = _graph.Connect(sampleGrabberPinOut, nullRendererPinIn);
                     DsError.ThrowExceptionForHR(hr);
 
-                    _audioEngine.SetAudioFormat(this.GetSampleGrabberFormat(sampleGrabber));
+                    _audioEngine.Setup(this.GetSampleGrabberFormat(sampleGrabber));
                 }
             }
         }

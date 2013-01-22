@@ -102,7 +102,7 @@
     <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
-    <Compile Include="Models\Media\SimpleX3DAudioEngine.cs" />
+    <Compile Include="Models\Media\AudioEngineBase.cs" />
     <Compile Include="Models\Media\MediaGraphPlayer.cs" />
     <Compile Include="Models\Media\MediaGraphElement.cs" />
     <Compile Include="Models\Media\X3DAudioEngine.cs" />

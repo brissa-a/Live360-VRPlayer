@@ -37,7 +37,7 @@ namespace VrPlayer.Models.Trackers
 
         void wiimote_WiimoteChanged(object sender, WiimoteChangedEventArgs e)
         {
-            Quaternion rotation = QuaternionHelper.FromEulerAngles(
+            Quaternion rotation = QuaternionHelper.QuaternionFromEulerAngles(
                 e.WiimoteState.MotionPlusState.Values.Y,
                 e.WiimoteState.MotionPlusState.Values.X,
                 e.WiimoteState.MotionPlusState.Values.Z);
