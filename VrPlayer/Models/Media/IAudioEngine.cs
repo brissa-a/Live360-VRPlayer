@@ -12,7 +12,7 @@ namespace VrPlayer.Models.Media
     {
         void PlayBuffer(byte[] buffer);
         void SetAudioFormat(WaveFormatEx format);
-        Vector3 Position { get; set; }
-        Vector3 Orientation { get; set; }
+        //Vector3 Position { get; set; }
+        //Vector3 Orientation { get; set; }
     }
 }

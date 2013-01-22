@@ -24,7 +24,7 @@ namespace VrPlayer.Models.Media
 
         protected override void SetupFilterGraph(IFilterGraph graph)
         {
-            _audioEngine = new X3DAudioEngine();
+            _audioEngine = new SimpleX3DAudioEngine();
             _graph = graph as IGraphBuilder;
             base.SetupFilterGraph(graph);
             SetupSampleGrabber();

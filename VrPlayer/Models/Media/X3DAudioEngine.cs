@@ -16,7 +16,7 @@ namespace VrPlayer.Models.Media
         private XAudio2 _xaudio2;
         private X3DAudio _x3dAudio;
         private WaveFormatExtensible _deviceFormat;
-        private WaveFormat _format;
+        private WaveFormatExtensible _format;
         private bool _isPlaying;
  
         private List<SourceVoice> _voices;
@@ -46,7 +46,7 @@ namespace VrPlayer.Models.Media
         public X3DAudioEngine()
         {
             _position = new Vector3(0, 0, 0);
-            _orientation = new Vector3(0, 0, 1);
+            _orientation = new Vector3(0, 0, -1);
             _voices = new List<SourceVoice>();
             _emitters = new List<Emitter>();
 
@@ -69,7 +69,7 @@ namespace VrPlayer.Models.Media
         public void PlayBuffer(byte[] buffer)
         {
             int numberOfSamples = buffer.Length / _format.BitsPerSample;
-            int channelLength = buffer.Length / _format.Channels;
+            int channelLength = numberOfSamples / _format.Channels;
 
             for (int channelIndex = 0; channelIndex < _format.Channels; channelIndex++)
             {
@@ -98,11 +98,11 @@ namespace VrPlayer.Models.Media
 
         public void SetAudioFormat(WaveFormatEx format)
         {
-            _format = new WaveFormat(format.nSamplesPerSec, format.wBitsPerSample, format.nChannels);
+            _format = new WaveFormatExtensible(format.nSamplesPerSec, format.wBitsPerSample, format.nChannels);
             
             for(int i = 0; i < _format.Channels; i++)
 	        {
-                var channelFormat = new WaveFormat(_format.SampleRate, _format.BitsPerSample, 1);
+                var channelFormat = new WaveFormatExtensible(_format.SampleRate, _format.BitsPerSample, 1);
 		        SourceVoice voice = new SourceVoice(_xaudio2, channelFormat);
 		        _voices.Add(voice);
 
