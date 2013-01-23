@@ -181,5 +181,12 @@ namespace VrPlayer.Models.Media
         }
 
         #endregion
+
+        protected override void Dispose(bool disposing)
+        {
+            if (_audioEngine != null)
+                _audioEngine.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

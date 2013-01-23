@@ -27,7 +27,12 @@
 					<Image Width="20" Height="20" Source="/Medias/Nuvola/edu_science.png" />
 				</MenuItem.Icon>
 			</MenuItem>
-			<Separator />
+            <MenuItem Header="_Browse Samples..." Command="{Binding BrowseSamplesCommand}">				
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/folder_open.png" />
+				</MenuItem.Icon>
+            </MenuItem>
+            <Separator />
             <MenuItem Header="E_xit" Command="{Binding ExitCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/exit.png" />

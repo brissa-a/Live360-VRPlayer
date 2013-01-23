@@ -244,6 +244,12 @@ namespace VrPlayer.ViewModels
         public ICommand LoadUrlCommand
         {
             get { return _loadUrlCommand; }
+        }        
+        
+        private readonly ICommand _browseSamplesCommand;
+        public ICommand BrowseSamplesCommand
+        {
+            get { return _browseSamplesCommand; }
         }
 
         private readonly ICommand _exitCommand;
@@ -275,6 +281,7 @@ namespace VrPlayer.ViewModels
             //Commands
             _loadCommand = new DelegateCommand(Open);
             _loadUrlCommand = new DelegateCommand(OpenUrl);
+            _browseSamplesCommand = new DelegateCommand(BrowseSamples);
             _exitCommand = new DelegateCommand(Exit);
             _debugCommand = new DelegateCommand(ShowDebug);
             _aboutCommand = new DelegateCommand(ShowAbout);
@@ -317,6 +324,19 @@ namespace VrPlayer.ViewModels
             //TODO: Metadata support: https://developers.google.com/panorama/metadata/
 			_state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);
 		}
+
+        private void BrowseSamples(object o)
+		{   
+            DirectoryInfo dirInfo = new DirectoryInfo(_config.SamplesFolder);
+            if (Directory.Exists(dirInfo.FullName))
+            {
+                Process.Start(dirInfo.FullName);
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Invalid samples directory: '{0}'.", _config.SamplesFolder), "Error");
+            }
+        }
 
         private void Exit(object o)
         {
