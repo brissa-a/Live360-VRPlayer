@@ -16,7 +16,12 @@
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/fileopen.png" />
                 </MenuItem.Icon>
             </MenuItem>
-			<Separator />
+            <MenuItem Header="Open _URL..." Command="{Binding LoadUrlCommand}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/browser.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator />
             <MenuItem Header="_Samples" ItemsSource="{Binding Path=SamplesMenu}" IsEnabled="{Binding Path=SamplesMenu, Converter={StaticResource countToBool}}">
 				<MenuItem.Icon>
 					<Image Width="20" Height="20" Source="/Medias/Nuvola/edu_science.png" />

@@ -41,7 +41,6 @@ namespace VrPlayer.Models.Media
             _voice = new SourceVoice(_xaudio2, _format);
             _voice.StreamEnd += new SourceVoice.VoidAction(_voice_StreamEnd);
             _voice.VoiceError += new Action<SourceVoice.VoiceErrorArgs>(_voice_VoiceError);
-
             _emitter = new Emitter
             {
                 ChannelAzimuths = GetAzimuths(_format.Channels),
@@ -113,8 +112,10 @@ namespace VrPlayer.Models.Media
 
         public override void Dispose()
         {
-            _voice.Dispose();
-            _xaudio2.Dispose();
+            if(_voice != null)
+                _voice.Dispose();
+            if(_xaudio2 != null)
+                _xaudio2.Dispose();
         }
 
         #region Azimuths

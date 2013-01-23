@@ -240,6 +240,12 @@ namespace VrPlayer.ViewModels
             get { return _loadCommand; }
         }
 
+        private readonly ICommand _loadUrlCommand;
+        public ICommand LoadUrlCommand
+        {
+            get { return _loadUrlCommand; }
+        }
+
         private readonly ICommand _exitCommand;
         public ICommand ExitCommand
         {
@@ -268,6 +274,7 @@ namespace VrPlayer.ViewModels
 
             //Commands
             _loadCommand = new DelegateCommand(Open);
+            _loadUrlCommand = new DelegateCommand(OpenUrl);
             _exitCommand = new DelegateCommand(Exit);
             _debugCommand = new DelegateCommand(ShowDebug);
             _aboutCommand = new DelegateCommand(ShowAbout);
@@ -298,9 +305,16 @@ namespace VrPlayer.ViewModels
             }
         }
 
+        private void OpenUrl(object o)
+        {
+            //TODO: Open cusom dialog for url input. Use Uri.IsWellFormedUriString for validation. 
+            MessageBox.Show("Not implemented.");
+        }
+
 		private void Load(object o)
 		{
 			string filePath = (string)o;
+            //TODO: Metadata support: https://developers.google.com/panorama/metadata/
 			_state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);
 		}
 
