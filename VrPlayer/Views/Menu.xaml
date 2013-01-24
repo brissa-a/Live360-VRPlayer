@@ -40,8 +40,8 @@
             </MenuItem>
         </MenuItem>
         <MenuItem Header="3_D">
-            <MenuItem Header="_Source" ItemsSource="{Binding Path=StereoInputMenu}"/>
-            <MenuItem Header="_Destination" ItemsSource="{Binding Path=StereoOutputMenu}"/>
+            <MenuItem Header="_Media" ItemsSource="{Binding Path=StereoInputMenu}"/>
+            <MenuItem Header="_Display" ItemsSource="{Binding Path=StereoOutputMenu}"/>
         </MenuItem>
         <MenuItem Header="_Projection" ItemsSource="{Binding Path=WrappersMenu}"/>
         <MenuItem Header="_Distortion" ItemsSource="{Binding Path=ShadersMenu}"/>

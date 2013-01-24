@@ -47,15 +47,15 @@ namespace VrPlayer.Models.Trackers
 
         void MoveUpdateCallback(int id, MoveWrapper.Vector3 pos, MoveWrapper.Quaternion rot, int trigger)
         {
-            Vector3D position = PositionScaleFactor * new Vector3D(pos.x, pos.y, pos.z);
-            Quaternion rotation = new Quaternion(rot.x, -rot.y, rot.z, -rot.w);
+            _rawPosition = PositionScaleFactor * new Vector3D(pos.x, pos.y, pos.z);
+            _rawRotation = new Quaternion(rot.x, -rot.y, rot.z, -rot.w);
 
             if (MoveWrapper.getButtonState(0, MoveButton.B_START))
             {
-                Calibrate(position, rotation);
+                Calibrate();
             }
 
-            UpdatePositionAndRotation(position, rotation);
+            UpdatePositionAndRotation();
         }
 
     	void MoveKeyUpCallback(int id, int keyCode)

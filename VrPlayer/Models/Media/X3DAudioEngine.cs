@@ -17,6 +17,7 @@ namespace VrPlayer.Models.Media
     {
         private XAudio2 _xaudio2;
         private X3DAudio _x3dAudio;
+        private MasteringVoice _masteringVoice;
         private WaveFormatExtensible _deviceFormat;
         private WaveFormatExtensible _format;
         private SourceVoice _voice;
@@ -26,7 +27,7 @@ namespace VrPlayer.Models.Media
         public X3DAudioEngine()
         {
             _xaudio2 = new XAudio2();
-            var masteringVoice = new MasteringVoice(_xaudio2);
+            _masteringVoice = new MasteringVoice(_xaudio2);
 
             _deviceFormat = _xaudio2.GetDeviceDetails(0).OutputFormat;
             _x3dAudio = new X3DAudio(_deviceFormat.ChannelMask);
@@ -114,6 +115,8 @@ namespace VrPlayer.Models.Media
         {
             if(_voice != null)
                 _voice.Dispose();
+            if (_masteringVoice != null)
+                _masteringVoice.Dispose();
             if(_xaudio2 != null)
                 _xaudio2.Dispose();
         }

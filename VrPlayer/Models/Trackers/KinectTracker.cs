@@ -33,6 +33,8 @@ namespace VrPlayer.Models.Trackers
 
                 _kinect.AllFramesReady += new EventHandler<AllFramesReadyEventArgs>(_kinect_AllFramesReady);
                 _kinect.Start();
+
+                _rawRotation = Quaternion.Identity;
             }
             catch (Exception exc)
             {
@@ -43,23 +45,20 @@ namespace VrPlayer.Models.Trackers
         void _kinect_AllFramesReady(object sender, AllFramesReadyEventArgs e)
         {
             Skeleton skeleton = GetFirstSkeleton(e);
-
             if (skeleton == null)
             {
                 return;
             }
-
             SkeletonPoint point = skeleton.Joints[JointType.Head].Position;
-
-            Vector3D position = PositionScaleFactor * new Vector3D(point.X, -point.Y, point.Z);
+            _rawPosition = PositionScaleFactor * new Vector3D(point.X, -point.Y, point.Z);
 
             //Raising right hand for calibration..
             if (skeleton.Joints[JointType.HandRight].Position.Y > point.Y)
             {
-                Calibrate(position, Quaternion.Identity);
+                Calibrate();
             }
 
-            base.Position = this.BasePosition + position;
+            UpdatePositionAndRotation();
         }
 
         public override void Dispose()

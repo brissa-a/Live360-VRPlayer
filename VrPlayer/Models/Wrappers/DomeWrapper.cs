@@ -182,7 +182,7 @@ namespace VrPlayer.Models.Wrappers
                 //Left
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices / 2; slice++)
+                    for (int slice = Slices / 2; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(
                                     new Point(((double)slice) / (Slices / 2),
@@ -193,7 +193,7 @@ namespace VrPlayer.Models.Wrappers
                 //Right
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices / 2; slice++)
+                    for (int slice = Slices / 2; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(
                                     new Point((double)slice / (Slices / 2),
@@ -214,7 +214,7 @@ namespace VrPlayer.Models.Wrappers
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices / 2; slice++)
+                    for (int slice = Slices / 2; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(
                                     new Point((double)slice / Slices / 2,
@@ -225,7 +225,7 @@ namespace VrPlayer.Models.Wrappers
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices / 2; slice++)
+                    for (int slice = Slices / 2; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(
                                     new Point((double)slice / Slices / 2,
@@ -246,7 +246,7 @@ namespace VrPlayer.Models.Wrappers
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= (Slices/2); slice++)
+                    for (int slice = Slices / 2; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(
                                     new Point((double)slice / (Slices/2) / 2,
@@ -257,7 +257,7 @@ namespace VrPlayer.Models.Wrappers
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= (Slices/2); slice++)
+                    for (int slice = Slices / 2; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(
                                     new Point(0.5 + (double)slice / (Slices/2) / 2,

@@ -314,15 +314,26 @@ namespace VrPlayer.ViewModels
 
         private void OpenUrl(object o)
         {
-            //TODO: Open cusom dialog for url input. Use Uri.IsWellFormedUriString for validation. 
-            MessageBox.Show("Not implemented.");
+            var dialog = new UrlInputDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                Load(dialog.ResponseText);
+            }
         }
 
 		private void Load(object o)
 		{
 			string filePath = (string)o;
             //TODO: Metadata support: https://developers.google.com/panorama/metadata/
-			_state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);
+            try
+            {
+                _state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);
+            }
+            catch (Exception exc)
+            { 
+                //Todo: log
+                MessageBox.Show(String.Format("Unable to load '{0}'", filePath), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 		}
 
         private void BrowseSamples(object o)
@@ -334,7 +345,7 @@ namespace VrPlayer.ViewModels
             }
             else
             {
-                MessageBox.Show(string.Format("Invalid samples directory: '{0}'.", _config.SamplesFolder), "Error");
+                MessageBox.Show(string.Format("Invalid samples directory: '{0}'.", _config.SamplesFolder), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -392,7 +403,8 @@ namespace VrPlayer.ViewModels
                 Environment.NewLine +
                 "(c)Stephane Levesque 2012-2013",    
                 "About", 
-                MessageBoxButton.OK);
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
 
         #endregion

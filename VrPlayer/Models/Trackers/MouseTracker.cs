@@ -66,16 +66,16 @@ namespace VrPlayer.Models.Trackers
                     moveVector = new Vector3D(moveFactor, 0, 0);
                     break;
                 case Key.Up:
-                    moveVector = new Vector3D(0, 0, moveFactor);
-                    break;
-                case Key.Down:
                     moveVector = new Vector3D(0, 0, -moveFactor);
                     break;
+                case Key.Down:
+                    moveVector = new Vector3D(0, 0, moveFactor);
+                    break;
                 case Key.PageUp:
-                    moveVector = new Vector3D(0, moveFactor, 0);
+                    moveVector = new Vector3D(0, -moveFactor, 0);
                     break;
                 case Key.PageDown:
-                    moveVector = new Vector3D(0, -moveFactor, 0);
+                    moveVector = new Vector3D(0, moveFactor, 0);
                     break;
             }
             Position = Position + moveVector;

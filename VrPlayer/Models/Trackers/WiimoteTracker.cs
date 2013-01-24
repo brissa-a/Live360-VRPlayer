@@ -27,6 +27,8 @@ namespace VrPlayer.Models.Trackers
                 _wiimote.SetLEDs(true, false, false, true);
                 Thread.Sleep(40);
                 _wiimote.SetRumble(false);
+
+                _rawPosition = new Vector3D();
             }
             catch (Exception exc)
             {
@@ -37,17 +39,17 @@ namespace VrPlayer.Models.Trackers
 
         void wiimote_WiimoteChanged(object sender, WiimoteChangedEventArgs e)
         {
-            Quaternion rotation = QuaternionHelper.QuaternionFromEulerAngles(
+            _rawRotation = QuaternionHelper.QuaternionFromEulerAngles(
                 e.WiimoteState.MotionPlusState.Values.Y,
                 e.WiimoteState.MotionPlusState.Values.X,
                 e.WiimoteState.MotionPlusState.Values.Z);
 
             if (e.WiimoteState.ButtonState.Plus)
             {
-                Calibrate(new Vector3D(0,0,0), rotation);
+                Calibrate();
             }
 
-            Rotation = BaseRotation * rotation;
+            UpdatePositionAndRotation();
         }
 
         public override void Dispose()

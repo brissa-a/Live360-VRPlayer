@@ -12,5 +12,6 @@ namespace VrPlayer.Models.Trackers
         Vector3D BasePosition { get; set; }
         Vector3D Position { get; set; }
         double PositionScaleFactor { get; set; }
+        void Calibrate();
     }
 }

@@ -102,6 +102,9 @@
     <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
+    <Compile Include="UrlInputDialog.xaml.cs">
+      <DependentUpon>UrlInputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Media\AudioEngineBase.cs" />
     <Compile Include="Models\Media\MediaGraphPlayer.cs" />
     <Compile Include="Models\Media\MediaGraphElement.cs" />
@@ -164,6 +167,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UrlInputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ControlPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,7 +225,16 @@
     <Resource Include="Medias\Nuvola\noatunloopsong.png" />
     <Resource Include="Medias\Nuvola\browser.png" />
     <Resource Include="Medias\Nuvola\folder_open.png" />
-    <Content Include="Medias\Samples\Grid1000x1000.jpg">
+    <Content Include="Medias\Samples\1-Grid.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Medias\Samples\2-CubeMono.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Medias\Samples\3-CubeOverUnder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Medias\Samples\4-CubeSideBySide.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Models\Effects\ColorKeyAlphaEffect.ps">

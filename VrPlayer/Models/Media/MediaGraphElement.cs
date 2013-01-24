@@ -16,5 +16,12 @@ namespace VrPlayer.Models.Media
             _mediaGraphPlayer = new MediaGraphPlayer();
             return _mediaGraphPlayer;
         }
+
+        protected override void OnUnloadedOverride()
+        {
+            if (_mediaGraphPlayer != null)
+                _mediaGraphPlayer.Dispose();
+            base.OnUnloadedOverride();
+        }
     }
 }

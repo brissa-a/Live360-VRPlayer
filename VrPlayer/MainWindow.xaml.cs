@@ -8,12 +8,15 @@ namespace VrPlayer
 {
     public partial class MainWindow : Window
     {
+        private readonly MainWindowViewModel _viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
             try
             {
-                DataContext = ((App)Application.Current).ViewModelFactory.CreateMainWindowViewModel();
+                _viewModel = ((App)Application.Current).ViewModelFactory.CreateMainWindowViewModel();
+                DataContext = _viewModel;
             }
             catch (Exception exc)
             {
@@ -56,5 +59,10 @@ namespace VrPlayer
         }
 
         #endregion
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            _viewModel.KeyboardCommand.Execute(e.Key);
+        }
     }
 }
