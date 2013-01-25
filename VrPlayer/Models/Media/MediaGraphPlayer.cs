@@ -6,7 +6,6 @@ using WPFMediaKit.DirectShow.Controls;
 using WPFMediaKit.DirectShow.MediaPlayers;
 using WPFMediaKit.DirectShow.Interop;
 using System.Runtime.InteropServices;
-using VrPlayer.Helpers.Media;
 
 namespace VrPlayer.Models.Media
 {
