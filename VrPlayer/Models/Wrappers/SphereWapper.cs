@@ -182,7 +182,7 @@ namespace VrPlayer.Models.Wrappers
                 //Left
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(
                                     new Point((double)slice / Slices,
@@ -193,7 +193,7 @@ namespace VrPlayer.Models.Wrappers
                 //Right
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(
                                     new Point((double)slice / Slices,
@@ -214,8 +214,8 @@ namespace VrPlayer.Models.Wrappers
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-  
-                    for (int slice = 0; slice <= Slices; slice++)
+
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(
                                     new Point((double)slice / Slices,
@@ -230,7 +230,7 @@ namespace VrPlayer.Models.Wrappers
                     double y = Radius * Math.Sin(phi);
                     double scale = -Radius * Math.Cos(phi);
 
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
                         double theta = slice * 2 * Math.PI / Slices;
                         double x = scale * Math.Sin(theta) - Radius;
@@ -260,7 +260,7 @@ namespace VrPlayer.Models.Wrappers
                     double y = Radius * Math.Sin(phi);
                     double scale = -Radius * Math.Cos(phi);
 
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
                         double theta = slice * 2 * Math.PI / Slices;
                         double x = scale * Math.Sin(theta) + Radius;
@@ -280,7 +280,7 @@ namespace VrPlayer.Models.Wrappers
                     double y = Radius * Math.Sin(phi);
                     double scale = -Radius * Math.Cos(phi);
 
-                    for (int slice = 0; slice <= Slices; slice++)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
                         double theta = slice * 2 * Math.PI / Slices;
                         double x = scale * Math.Sin(theta) - Radius;
