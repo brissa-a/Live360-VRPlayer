@@ -295,7 +295,19 @@ namespace VrPlayer.ViewModels
             _state.ShaderPlugin = _pluginManager.Shaders[0];
 
             //Todo: Should not set the media value directly
-            _state.MediaPlayer.Source = new Uri(SamplesMenu[0].CommandParameter.ToString(), UriKind.RelativeOrAbsolute);
+            string[] parameters = Environment.GetCommandLineArgs();
+            if (parameters.Length > 1)
+            {
+                _state.MediaPlayer.Source = new Uri(parameters[1], UriKind.RelativeOrAbsolute);
+            }
+            else if (SamplesMenu.Count > 0)
+            {
+                _state.MediaPlayer.Source = new Uri(SamplesMenu[0].CommandParameter.ToString(), UriKind.RelativeOrAbsolute);
+            }
+            else
+            {
+                //Todo: Load default grid?
+            }
             _state.MediaPlayer.Play();
         }
 
