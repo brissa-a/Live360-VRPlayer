@@ -298,7 +298,9 @@ namespace VrPlayer.ViewModels
             string[] parameters = Environment.GetCommandLineArgs();
             if (parameters.Length > 1)
             {
-                _state.MediaPlayer.Source = new Uri(parameters[1], UriKind.RelativeOrAbsolute);
+                System.Uri uri = new Uri(parameters[1]);
+                string uriWithoutScheme = uri.Host + uri.PathAndQuery;
+                _state.MediaPlayer.Source = new Uri(uriWithoutScheme, UriKind.RelativeOrAbsolute);
             }
             else if (SamplesMenu.Count > 0)
             {
