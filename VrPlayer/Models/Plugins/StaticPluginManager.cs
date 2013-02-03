@@ -86,6 +86,10 @@ namespace VrPlayer.Models.Plugins
             var planeWrapperPlugin = new WrapperPlugin(planeWrapper, "Virtual Movie Screen 1:1");
             _wrappers.Add(planeWrapperPlugin);
 
+            var cylinderWrapper = new CylinderWapper();
+            var cylinderWrapperPlugin = new WrapperPlugin(cylinderWrapper, "Panoramic 360");
+            _wrappers.Add(cylinderWrapperPlugin);
+
             var sphereWrapper = new SphereWrapper();
             var sphereWrapperPlugin = new WrapperPlugin(sphereWrapper, "Spherical 360x180");
             _wrappers.Add(sphereWrapperPlugin);

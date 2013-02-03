@@ -102,6 +102,7 @@
     <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
+    <Compile Include="Models\Wrappers\CylinderWapper.cs" />
     <Compile Include="UrlInputDialog.xaml.cs">
       <DependentUpon>UrlInputDialog.xaml</DependentUpon>
     </Compile>
