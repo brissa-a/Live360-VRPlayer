@@ -82,25 +82,26 @@ namespace VrPlayer.Models.Plugins
 
         private void LoadWrappers()
         {
+
             var planeWrapper = new PlaneWrapper();
-            var planeWrapperPlugin = new WrapperPlugin(planeWrapper, "Virtual Movie Screen 1:1");
+            var planeWrapperPlugin = new WrapperPlugin(planeWrapper, "Plane");
             _wrappers.Add(planeWrapperPlugin);
 
+            var cubeWrapper = new CubeWrapper();
+            var cubeWrapperPlugin = new WrapperPlugin(cubeWrapper, "Cube");
+            _wrappers.Add(cubeWrapperPlugin);
+
             var cylinderWrapper = new CylinderWapper();
-            var cylinderWrapperPlugin = new WrapperPlugin(cylinderWrapper, "Panoramic 360");
+            var cylinderWrapperPlugin = new WrapperPlugin(cylinderWrapper, "Cylinder");
             _wrappers.Add(cylinderWrapperPlugin);
 
-            var sphereWrapper = new SphereWrapper();
-            var sphereWrapperPlugin = new WrapperPlugin(sphereWrapper, "Spherical 360x180");
-            _wrappers.Add(sphereWrapperPlugin);
-
             var domeWrapper = new DomeWrapper();
-            var domeWrapperPlugin = new WrapperPlugin(domeWrapper, "Dome 180x180");
+            var domeWrapperPlugin = new WrapperPlugin(domeWrapper, "Dome");
             _wrappers.Add(domeWrapperPlugin);
 
-            var cubeWrapper = new CubeWrapper();
-            var cubeWrapperPlugin = new WrapperPlugin(cubeWrapper, "Cave Simulator (6 sides)");
-            _wrappers.Add(cubeWrapperPlugin);
+            var sphereWrapper = new SphereWrapper();
+            var sphereWrapperPlugin = new WrapperPlugin(sphereWrapper, "Sphere");
+            _wrappers.Add(sphereWrapperPlugin);
         }
 
         private void LoadTrackers()

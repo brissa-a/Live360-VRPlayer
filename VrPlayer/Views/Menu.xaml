@@ -39,14 +39,17 @@
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
-        <MenuItem Header="3_D">
-            <MenuItem Header="_Media" ItemsSource="{Binding Path=StereoInputMenu}"/>
-            <MenuItem Header="_Display" ItemsSource="{Binding Path=StereoOutputMenu}"/>
+        <MenuItem Header="_Media">
+            <MenuItem Header="_Fromat" ItemsSource="{Binding Path=StereoInputMenu}"/>
+            <MenuItem Header="_Projection" ItemsSource="{Binding Path=WrappersMenu}"/>
+            <MenuItem Header="_Effect" ItemsSource="{Binding Path=EffectsMenu}"/>
         </MenuItem>
-        <MenuItem Header="_Projection" ItemsSource="{Binding Path=WrappersMenu}"/>
-        <MenuItem Header="_Distortion" ItemsSource="{Binding Path=ShadersMenu}"/>
-        <MenuItem Header="_Effect" ItemsSource="{Binding Path=EffectsMenu}"/>
-        <MenuItem Header="_Tracker" ItemsSource="{Binding Path=TrackersMenu}"/>
+        <MenuItem Header="_Display">
+            <MenuItem Header="_Layout" ItemsSource="{Binding Path=StereoOutputMenu}"/>
+            <MenuItem Header="_Distortion" ItemsSource="{Binding Path=ShadersMenu}"/>
+        </MenuItem>
+        <MenuItem Header="_Tracker" ItemsSource="{Binding Path=TrackersMenu}">
+        </MenuItem>
         <MenuItem Header="_?">
             <MenuItem Header="_Debug..." Command="{Binding DebugCommand}">
                 <MenuItem.Icon>
