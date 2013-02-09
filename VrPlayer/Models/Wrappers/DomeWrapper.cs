@@ -127,7 +127,7 @@ namespace VrPlayer.Models.Wrappers
                     int top = (stack + 0) * ((Slices / 2) + 1);
                     int bot = (stack + 1) * ((Slices / 2) + 1);
 
-                    for (int slice = 0; slice <= (Slices / 2); slice++)
+                    for (int slice = 0; slice <= (Slices / 2)-1; slice++)
                     {
                         if (stack != 0)
                         {
@@ -151,7 +151,7 @@ namespace VrPlayer.Models.Wrappers
                     int top = (stack + 0) * ((Slices / 2) + 1);
                     int bot = (stack + 1) * ((Slices / 2) + 1);
 
-                    for (int slice = 0; slice <= (Slices / 2); slice++)
+                    for (int slice = 0; slice <= (Slices / 2)-1; slice++)
                     {
                         if (stack != 0)
                         {
