@@ -290,9 +290,9 @@ namespace VrPlayer.ViewModels
             _state.StereoInput = StereoMode.Mono;
             _state.StereoOutput = StereoMode.Mono;
             _state.EffectPlugin = _pluginManager.Effects[0];
-            _state.WrapperPlugin = _pluginManager.Wrappers[0];
+            _state.WrapperPlugin = _pluginManager.Wrappers[4];
             _state.TrackerPlugin = _pluginManager.Trackers[0];
-            _state.ShaderPlugin = _pluginManager.Shaders[0];
+            _state.ShaderPlugin = _pluginManager.Shaders[1];
 
             //Todo: Should not set the media value directly
             string[] parameters = Environment.GetCommandLineArgs();
