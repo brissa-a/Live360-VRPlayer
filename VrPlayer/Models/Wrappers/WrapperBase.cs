@@ -8,8 +8,8 @@ namespace VrPlayer.Models.Wrappers
     public abstract class WrapperBase: ViewModelBase
     {
         private StereoMode _stereoMode;
-        private Vector3D _cameraLeftPosition;
-        private Vector3D _cameraRightPosition;
+        private readonly Vector3D _cameraLeftPosition;
+        private readonly Vector3D _cameraRightPosition;
 
         public StereoMode StereoMode
         {

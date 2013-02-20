@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Threading;
-using System.Collections.Generic;
+using System.Windows.Media.Media3D;
 
 using SharpDX;
 using SharpDX.XAudio2;
@@ -8,7 +7,7 @@ using SharpDX.X3DAudio;
 using SharpDX.Multimedia;
 
 using WPFMediaKit.DirectShow.Interop;
-using System.Windows.Media.Media3D;
+
 using VrPlayer.Helpers;
 
 namespace VrPlayer.Models.Media

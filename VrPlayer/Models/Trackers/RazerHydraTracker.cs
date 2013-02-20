@@ -3,7 +3,6 @@ using System.Windows.Threading;
 using System.Windows.Media.Media3D;
 
 using RazerHydraWrapper;
-using System.IO;
 
 namespace VrPlayer.Models.Trackers
 {

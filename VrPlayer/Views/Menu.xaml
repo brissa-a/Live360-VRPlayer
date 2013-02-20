@@ -57,6 +57,12 @@
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
+            <MenuItem Header="_Visit vrplayer.tv..." Command="{Binding LaunchWebBrowserCommand}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/icon48.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator />
             <MenuItem Header="_About..." Command="{Binding AboutCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/help.png" />

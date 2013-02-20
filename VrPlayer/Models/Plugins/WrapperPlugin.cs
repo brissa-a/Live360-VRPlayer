@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using VrPlayer.Models.Wrappers;
+﻿using VrPlayer.Models.Wrappers;
 
 namespace VrPlayer.Models.Plugins
 {

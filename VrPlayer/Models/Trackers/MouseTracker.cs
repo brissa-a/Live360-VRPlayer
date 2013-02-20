@@ -4,7 +4,6 @@ using System.Windows.Input;
 using System.Windows.Media.Media3D;
 
 using VrPlayer.Helpers;
-using VrPlayer.Helpers.Mvvm;
 
 namespace VrPlayer.Models.Trackers
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VrPlayer.Models.Plugins
+﻿namespace VrPlayer.Models.Plugins
 {
     public abstract class PluginBase
     {

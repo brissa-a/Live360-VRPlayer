@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WPFMediaKit.DirectShow.Controls;
+using System.Runtime.InteropServices;
+
 using WPFMediaKit.DirectShow.MediaPlayers;
 using WPFMediaKit.DirectShow.Interop;
-using System.Runtime.InteropServices;
 
 namespace VrPlayer.Models.Media
 {

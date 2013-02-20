@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Windows.Input;
 
-using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
-using VrPlayer.Models;
 using VrPlayer.Models.State;
 using System.Windows.Media.Effects;
 

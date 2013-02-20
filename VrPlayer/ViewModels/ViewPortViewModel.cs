@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Effects;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
-
-using WPFMediaKit.DirectShow.Controls;
 
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;

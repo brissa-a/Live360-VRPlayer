@@ -4,8 +4,6 @@ using System.Windows.Media.Media3D;
 
 using Microsoft.Kinect;
 
-using VrPlayer.Helpers;
-
 namespace VrPlayer.Models.Trackers
 {
     public class KinectTracker : TrackerBase, ITracker

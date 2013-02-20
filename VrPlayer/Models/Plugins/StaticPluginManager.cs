@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Media.Effects;
+﻿using System.Collections.Generic;
 
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Trackers;

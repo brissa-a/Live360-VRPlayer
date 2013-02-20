@@ -1,6 +1,4 @@
-﻿using System;
-
-using VrPlayer.Helpers.Mvvm;
+﻿using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Config;
 
@@ -9,7 +7,7 @@ namespace VrPlayer.ViewModels
     public class DebugWindowViewModel: ViewModelBase
 	{
         private readonly IApplicationState _state;
-        private IApplicationConfig _config;
+        private readonly IApplicationConfig _config;
 
         public IApplicationState State
         {

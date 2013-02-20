@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.State;

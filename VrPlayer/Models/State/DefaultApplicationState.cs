@@ -1,20 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Windows.Controls;
-using System.Windows.Media.Effects;
+﻿using WPFMediaKit.DirectShow.Controls;
 
-using WPFMediaKit.DirectShow.Controls;
-
-using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Plugins;
-using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Wrappers;
-using VrPlayer.Models.Shaders;
 using VrPlayer.Models.Media;
-using System.Windows.Data;
-using System.Windows;
 
 namespace VrPlayer.Models.State
 {

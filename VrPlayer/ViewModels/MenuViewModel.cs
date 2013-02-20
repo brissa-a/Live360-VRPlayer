@@ -1,23 +1,19 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
-using System.Windows.Media.Imaging;
-using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media.Effects;
 
-using VrPlayer.Helpers;
+using Microsoft.Win32;
+
 using VrPlayer.Helpers.Converters;
 using VrPlayer.Helpers.Mvvm;
-using VrPlayer.Models;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
-using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Wrappers;
 using VrPlayer.Models.Config;
 
@@ -264,6 +260,12 @@ namespace VrPlayer.ViewModels
             get { return _debugCommand; }
         }
 
+        private readonly ICommand _launchWebBrowserCommand;
+        public ICommand LaunchWebBrowserCommand
+        {
+            get { return _launchWebBrowserCommand; }
+        }
+
         private readonly ICommand _aboutCommand;
         public ICommand AboutCommand
         {
@@ -284,6 +286,7 @@ namespace VrPlayer.ViewModels
             _browseSamplesCommand = new DelegateCommand(BrowseSamples);
             _exitCommand = new DelegateCommand(Exit);
             _debugCommand = new DelegateCommand(ShowDebug);
+            _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
             _aboutCommand = new DelegateCommand(ShowAbout);
 
             //Todo: Extract Default values
@@ -298,7 +301,7 @@ namespace VrPlayer.ViewModels
             string[] parameters = Environment.GetCommandLineArgs();
             if (parameters.Length > 1)
             {
-                System.Uri uri = new Uri(parameters[1]);
+                Uri uri = new Uri(parameters[1]);
                 string uriWithoutScheme = uri.Host + uri.PathAndQuery;
                 _state.MediaPlayer.Source = new Uri(uriWithoutScheme, UriKind.RelativeOrAbsolute);
             }
@@ -361,6 +364,11 @@ namespace VrPlayer.ViewModels
             {
                 MessageBox.Show(string.Format("Invalid samples directory: '{0}'.", _config.SamplesFolder), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void LaunchWebBrowser(object o)
+		{
+            Process.Start("http://vrplayer.tv");
         }
 
         private void Exit(object o)

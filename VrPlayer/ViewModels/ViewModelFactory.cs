@@ -1,5 +1,4 @@
-﻿using VrPlayer.Models;
-using VrPlayer.Models.Config;
+﻿using VrPlayer.Models.Config;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 
