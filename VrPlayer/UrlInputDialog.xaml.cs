@@ -35,5 +35,10 @@ namespace VrPlayer
         {
             this.Close();
         }
+
+        private void UrlInputDialog_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ResponseTextBox.Focus();
+        }
     }
 }
