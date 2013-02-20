@@ -3,5 +3,5 @@ http://www.brianpeek.com/
 http://www.codeplex.com/WiimoteLib
 http://www.wiimotelib.org/
 
-Licensed under the terms of the Microsoft Permissive License (Ms-PL).
-See WiimoteLib-license.txt for details.
+Licensed under the terms of New BSD License (BSD).
+See WPFMediaKit-license.txt for details.
