@@ -107,11 +107,26 @@ namespace VrPlayer.Models.Trackers
             }
         }
 
+        private Quaternion _rotationOffset;
+        public Quaternion RotationOffset
+        {
+            get
+            {
+                return _rotationOffset;
+            }
+            set
+            {
+                _rotationOffset = value;
+                OnPropertyChanged("RotationOffset");
+            }
+        }
+
         protected void UpdatePositionAndRotation()
         {
-            Rotation = BaseRotation * _rawRotation;
+            Rotation = BaseRotation * _rawRotation * _rotationOffset;
             Vector3D relativePos = BasePosition + _rawPosition;
             Matrix3D m = Matrix3D.Identity;
+            m.Rotate(BaseRotation);
             m.Translate(relativePos);
             m.Rotate(BaseRotation);
             this.Position = new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
@@ -119,7 +134,7 @@ namespace VrPlayer.Models.Trackers
 
         public void Calibrate()
         {
-            Quaternion conjugate = new Quaternion(_rawRotation.X, _rawRotation.Y, _rawRotation.Z, _rawRotation.W);
+            Quaternion conjugate = new Quaternion(_rawRotation.X, _rawRotation.Y, _rawRotation.Z, _rawRotation.W) * _rotationOffset;
             conjugate.Conjugate();
             BaseRotation = conjugate;
             BasePosition = -_rawPosition;

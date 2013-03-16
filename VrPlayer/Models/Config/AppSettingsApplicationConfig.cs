@@ -18,6 +18,7 @@ namespace VrPlayer.Models.Config
             _orientationRefreshRateInMS = int.Parse(ConfigurationManager.AppSettings["OrientationRefreshRateInMS"]);
             _viewportsHorizontalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsHorizontalOffset"]);
             _hydraPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["HydraPositionScaleFactor"]);
+            _hydraPitchOffset = ParseDouble(ConfigurationManager.AppSettings["HydraPitchOffset"]);
             _psMovePositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["PsMovePositionScaleFactor"]);
             _kinectPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["KinectPositionScaleFactor"]);
             _positionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
@@ -99,6 +100,13 @@ namespace VrPlayer.Models.Config
         {
             get { return _hydraPositionScaleFactor; }
             set { _hydraPositionScaleFactor = value; }
+        }
+
+        private double _hydraPitchOffset;
+        public double HydraPitchOffset
+        {
+            get { return _hydraPitchOffset; }
+            set { _hydraPitchOffset = value; }
         }
 
         private double _psMovePositionScaleFactor;

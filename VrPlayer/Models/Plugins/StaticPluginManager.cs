@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using VrPlayer.Helpers;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Shaders;
@@ -125,6 +125,7 @@ namespace VrPlayer.Models.Plugins
 
             var hydraTracker = new RazerHydraTracker();
             hydraTracker.PositionScaleFactor = _config.HydraPositionScaleFactor;
+            hydraTracker.RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(_config.HydraPitchOffset,0,0);
             var hydraTrackerPlugin = new TrackerPlugin(hydraTracker, "Razer Hydra");
             _trackers.Add(hydraTrackerPlugin);
         }

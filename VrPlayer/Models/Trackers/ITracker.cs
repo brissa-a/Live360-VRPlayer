@@ -9,6 +9,7 @@ namespace VrPlayer.Models.Trackers
         bool IsEnabled { get; set; }
         Quaternion BaseRotation { get; set; }
         Quaternion Rotation { get; set; }
+        Quaternion RotationOffset { get; set; }
         Vector3D BasePosition { get; set; }
         Vector3D Position { get; set; }
         double PositionScaleFactor { get; set; }

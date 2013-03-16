@@ -13,6 +13,7 @@
         int OrientationRefreshRateInMS { get; set; }
         int ViewportsHorizontalOffset { get; set; }
         double HydraPositionScaleFactor { get; set; }
+        double HydraPitchOffset { get; set; }
         double PsMovePositionScaleFactor { get; set; }
         double KinectPositionScaleFactor { get; set; }
         bool PositionalAudio { get; set; }
