@@ -47,8 +47,8 @@ namespace VrPlayer.Models.Trackers
 
         void MoveUpdateCallback(int id, MoveWrapper.Vector3 pos, MoveWrapper.Quaternion rot, int trigger)
         {
-            _rawPosition = PositionScaleFactor * new Vector3D(pos.x, pos.y, pos.z);
-            _rawRotation = new Quaternion(rot.x, -rot.y, rot.z, -rot.w);
+            RawPosition = PositionScaleFactor * new Vector3D(pos.x, pos.y, pos.z);
+            RawRotation = new Quaternion(rot.x, -rot.y, rot.z, -rot.w);
 
             if (MoveWrapper.getButtonState(0, MoveButton.B_START))
             {

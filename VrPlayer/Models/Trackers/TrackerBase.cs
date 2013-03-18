@@ -6,8 +6,8 @@ namespace VrPlayer.Models.Trackers
 {
     public abstract class TrackerBase: ViewModelBase
     {
-        protected Vector3D _rawPosition;
-        protected Quaternion _rawRotation;
+        protected Vector3D RawPosition;
+        protected Quaternion RawRotation;
 
         private Vector3D _position;
         public Vector3D Position
@@ -93,6 +93,20 @@ namespace VrPlayer.Models.Trackers
             }
         }
 
+        private Vector3D _positionOffset;
+        public Vector3D PositionOffset
+        {
+            get
+            {
+                return _positionOffset;
+            }
+            set
+            {
+                _positionOffset = value;
+                OnPropertyChanged("PositionOffset");
+            }
+        }
+
         private Quaternion _baseRotation;
         public Quaternion BaseRotation
         {
@@ -123,8 +137,8 @@ namespace VrPlayer.Models.Trackers
 
         protected void UpdatePositionAndRotation()
         {
-            Rotation = BaseRotation * _rawRotation * _rotationOffset;
-            Vector3D relativePos = BasePosition + _rawPosition;
+            Rotation = BaseRotation * RawRotation * _rotationOffset;
+            Vector3D relativePos = BasePosition + RawPosition;
             Matrix3D m = Matrix3D.Identity;
             m.Rotate(BaseRotation);
             m.Translate(relativePos);
@@ -134,10 +148,10 @@ namespace VrPlayer.Models.Trackers
 
         public void Calibrate()
         {
-            Quaternion conjugate = new Quaternion(_rawRotation.X, _rawRotation.Y, _rawRotation.Z, _rawRotation.W) * _rotationOffset;
+            Quaternion conjugate = new Quaternion(RawRotation.X, RawRotation.Y, RawRotation.Z, RawRotation.W) * _rotationOffset;
             conjugate.Conjugate();
             BaseRotation = conjugate;
-            BasePosition = -_rawPosition;
+            BasePosition = -RawPosition + _positionOffset;
         }
 
         public abstract void Dispose();

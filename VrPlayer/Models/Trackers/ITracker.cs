@@ -12,6 +12,7 @@ namespace VrPlayer.Models.Trackers
         Quaternion RotationOffset { get; set; }
         Vector3D BasePosition { get; set; }
         Vector3D Position { get; set; }
+        Vector3D PositionOffset { get; set; }
         double PositionScaleFactor { get; set; }
         void Calibrate();
     }
