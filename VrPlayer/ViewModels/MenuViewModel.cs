@@ -341,6 +341,7 @@ namespace VrPlayer.ViewModels
 		private void Load(object o)
 		{
 			string filePath = (string)o;
+            var metadataParser = new MetadataParser(filePath);
             //TODO: Metadata support: https://developers.google.com/panorama/metadata/
             try
             {
