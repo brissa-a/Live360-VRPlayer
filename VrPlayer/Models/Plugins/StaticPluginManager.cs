@@ -13,35 +13,20 @@ namespace VrPlayer.Models.Plugins
     {
         private readonly IApplicationConfig _config;
 
-        private readonly List<EffectPlugin> _effects = new List<EffectPlugin>();
-        private readonly List<WrapperPlugin> _wrappers = new List<WrapperPlugin>();
-        private readonly List<TrackerPlugin> _trackers = new List<TrackerPlugin>();
-        private readonly List<ShaderPlugin> _shaders = new List<ShaderPlugin>();
-
-        public List<EffectPlugin> Effects
-        {
-            get { return _effects; }
-        }
-
-        public List<WrapperPlugin> Wrappers
-        {
-            get { return _wrappers; }
-        }
-
-        public List<TrackerPlugin> Trackers
-        {
-            get { return _trackers; }
-        }
-
-        public List<ShaderPlugin> Shaders
-        {
-            get { return _shaders; }
-        }
+        public List<EffectPlugin> Effects { get; private set; }
+        public List<WrapperPlugin> Wrappers { get; private set; }
+        public List<TrackerPlugin> Trackers { get; private set; }
+        public List<ShaderPlugin> Shaders { get; private set; }
 
         public StaticPluginManager(IApplicationConfig config)
         {
             _config = config;
 
+            Effects = new List<EffectPlugin>();
+            Wrappers = new List<WrapperPlugin>();
+            Shaders = new List<ShaderPlugin>();
+            Trackers = new List<TrackerPlugin>();
+            
             LoadEffects();
             LoadWrappers();
             LoadTrackers();
@@ -51,31 +36,31 @@ namespace VrPlayer.Models.Plugins
         private void LoadEffects()
         {
             var nullEffectPlugin = new EffectPlugin(null, "None");
-            _effects.Add(nullEffectPlugin);
+            Effects.Add(nullEffectPlugin);
 
             var depthMapOverUnderEffect = new DepthMapOverUnderEffect();
             depthMapOverUnderEffect.MaxOffset = _config.DepthMapMaxOffset;
             var depthMapOverUnderEffectPlugin = new EffectPlugin(depthMapOverUnderEffect, "Depth Map Over/Under");
-            _effects.Add(depthMapOverUnderEffectPlugin);
+            Effects.Add(depthMapOverUnderEffectPlugin);
 
             var depthMapSbsEffect = new DepthMapSbsEffect();
             depthMapSbsEffect.MaxOffset = _config.DepthMapMaxOffset;
             var depthMapSbsEffectPlugin = new EffectPlugin(depthMapSbsEffect, "Depth Map SBS");
-            _effects.Add(depthMapSbsEffectPlugin);
+            Effects.Add(depthMapSbsEffectPlugin);
 
             var colorKeyAlphaEffect = new ColorKeyAlphaEffect();
             colorKeyAlphaEffect.ColorKey = (Color)ColorConverter.ConvertFromString(_config.ColorKeyAlphaColor);
             colorKeyAlphaEffect.Tolerance = _config.ColorKeyTolerance;
             var colorKeyAlphaEffectPlugin = new EffectPlugin(colorKeyAlphaEffect, "Color Key Alpha");
-            _effects.Add(colorKeyAlphaEffectPlugin);
+            Effects.Add(colorKeyAlphaEffectPlugin);
 
             var unwrapFishEyeEffect = new UnwrapFishEyeEffect();
             var unwrapFishEyeEffectPlugin = new EffectPlugin(unwrapFishEyeEffect, "Unwrap Fisheye");
-            _effects.Add(unwrapFishEyeEffectPlugin);
+            Effects.Add(unwrapFishEyeEffectPlugin);
 
             var unwrapFishEyeStereoEffect = new UnwrapFishEyeStereoEffect();
             var unwrapFishEyeStereoEffectPlugin = new EffectPlugin(unwrapFishEyeStereoEffect, "Unwrap Stereo Fisheye");
-            _effects.Add(unwrapFishEyeStereoEffectPlugin);
+            Effects.Add(unwrapFishEyeStereoEffectPlugin);
         }
 
         private void LoadWrappers()
@@ -83,23 +68,23 @@ namespace VrPlayer.Models.Plugins
 
             var planeWrapper = new PlaneWrapper();
             var planeWrapperPlugin = new WrapperPlugin(planeWrapper, "Plane");
-            _wrappers.Add(planeWrapperPlugin);
+            Wrappers.Add(planeWrapperPlugin);
 
             var cubeWrapper = new CubeWrapper();
             var cubeWrapperPlugin = new WrapperPlugin(cubeWrapper, "Cube");
-            _wrappers.Add(cubeWrapperPlugin);
+            Wrappers.Add(cubeWrapperPlugin);
 
-            var cylinderWrapper = new CylinderWapper();
+            var cylinderWrapper = new CylinderWrapper();
             var cylinderWrapperPlugin = new WrapperPlugin(cylinderWrapper, "Cylinder");
-            _wrappers.Add(cylinderWrapperPlugin);
+            Wrappers.Add(cylinderWrapperPlugin);
 
             var domeWrapper = new DomeWrapper();
             var domeWrapperPlugin = new WrapperPlugin(domeWrapper, "Dome");
-            _wrappers.Add(domeWrapperPlugin);
+            Wrappers.Add(domeWrapperPlugin);
 
             var sphereWrapper = new SphereWrapper();
             var sphereWrapperPlugin = new WrapperPlugin(sphereWrapper, "Sphere");
-            _wrappers.Add(sphereWrapperPlugin);
+            Wrappers.Add(sphereWrapperPlugin);
         }
 
         private void LoadTrackers()
@@ -107,42 +92,42 @@ namespace VrPlayer.Models.Plugins
             var mouseTracker = new MouseTracker();
             mouseTracker.MouseSensitivity = _config.MouseSensitivity;
             var mouseTrackerPlugin = new TrackerPlugin(mouseTracker, "Mouse");
-            _trackers.Add(mouseTrackerPlugin);
+            Trackers.Add(mouseTrackerPlugin);
 
             var kinectTracker = new KinectTracker();
             kinectTracker.PositionScaleFactor = _config.KinectPositionScaleFactor;
             var kinectTrackerPlugin = new TrackerPlugin(kinectTracker, "Microsoft Kinect");
-            _trackers.Add(kinectTrackerPlugin);
+            Trackers.Add(kinectTrackerPlugin);
 
             var wiimoteTracker = new WiimoteTracker();
             var wiimoteTrackerPlugin = new TrackerPlugin(wiimoteTracker, "Nintendo WiiMote");
-            _trackers.Add(wiimoteTrackerPlugin);
+            Trackers.Add(wiimoteTrackerPlugin);
 
             var psMoveTracker = new PsMoveTracker();
             psMoveTracker.PositionScaleFactor = _config.PsMovePositionScaleFactor;
             var psMoveTrackerPlugin = new TrackerPlugin(psMoveTracker, "PlayStation Move");
-            _trackers.Add(psMoveTrackerPlugin);
+            Trackers.Add(psMoveTrackerPlugin);
 
             var hydraTracker = new RazerHydraTracker();
             hydraTracker.PositionScaleFactor = _config.HydraPositionScaleFactor;
             hydraTracker.RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(_config.HydraPitchOffset,0,0);
             var hydraTrackerPlugin = new TrackerPlugin(hydraTracker, "Razer Hydra");
-            _trackers.Add(hydraTrackerPlugin);
+            Trackers.Add(hydraTrackerPlugin);
         }
 
         private void LoadShaders()
         {
             var nullShaderPlugin = new ShaderPlugin(null, "None");
-            _shaders.Add(nullShaderPlugin);
+            Shaders.Add(nullShaderPlugin);
 
             var barrelEffect = new BarrelEffect();
             var barrelEffectPlugin = new ShaderPlugin(barrelEffect, "Barrel Distortion");
-            _shaders.Add(barrelEffectPlugin);
+            Shaders.Add(barrelEffectPlugin);
 
             var customPincushionEffect = new PincushionEffect();
             customPincushionEffect.Factor = _config.CustomPincushionFactor;
             var customPincushionEffectPlugin = new ShaderPlugin(customPincushionEffect, "Pincushion Distortion");
-            _shaders.Add(customPincushionEffectPlugin);
+            Shaders.Add(customPincushionEffectPlugin);
         }
     }
 }

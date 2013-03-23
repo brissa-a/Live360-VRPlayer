@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xmp_definitions xmlns:ui="http://ns.adobe.com/xmp/fileinfo/ui/">
+
+	<xmp_schema prefix="VRPlayer" namespace="http://ns.vrplayer.tv/" label="$$$/VRPlayer/Schema/Label=VRPlayer Properties" description="$$$/VRPlayer/Schema/Description=This panel contains the options available for the 'VRPlayer Panel'.">
+	
+		<xmp_property name="FormatType" category="external" label="$$$/VRPlayer/Property/ClosedChoiceInput_FormatType=Format Type:" type="closedchoice" element_type="text">
+			<xmp_choice raw_value="Mono" label="$$$/VRPlayer/Property/Choice_Mono=Mono"/>
+			<xmp_choice raw_value="OverUnder" label="$$$/VRPlayer/Property/Choice_OverUnder=Over Under"/>
+			<xmp_choice raw_value="SideBySide" label="$$$/VRPlayer/Property/Choice_SideBySide=Side by side"/>
+		</xmp_property>
+		
+		<xmp_property name="ProjectionType" category="external" label="$$$/VRPlayer/Property/OpenChoiceInput_Label=Projection Type:" type="closedchoice" element_type="text">
+			<xmp_choice raw_value="VrPlayer.Models.Wrappers.CubeWrapper" label="$$$/Custom/Property/Choice_CubeWrapper=Cube"/>
+			<xmp_choice raw_value="VrPlayer.Models.Wrappers.CylinderWrapper" label="$$$/Custom/Property/Choice_CylinderWrapper=Cylinder"/>
+			<xmp_choice raw_value="VrPlayer.Models.Wrappers.DomeWrapper" label="$$$/Custom/Property/Choice_DomeWrapper=Dome"/>
+			<xmp_choice raw_value="VrPlayer.Models.Wrappers.PlaneWrapper" label="$$$/Custom/Property/Choice_PlaneWrapper=Plane"/>
+			<xmp_choice raw_value="VrPlayer.Models.Wrappers.SphereWrapper" label="$$$/Custom/Property/Choice_SphereWrapper=Sphere"/>
+		</xmp_property>
+		
+		<ui:separator/>
+		
+		<xmp_property name="Effects" category="external" label="$$$/VRPlayer/Property/TextArrayInput_Effects=Effects:" type="bag" element_type="text"/>		
+	
+	</xmp_schema>
+
+</xmp_definitions>

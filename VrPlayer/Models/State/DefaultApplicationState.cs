@@ -12,7 +12,7 @@ namespace VrPlayer.Models.State
     {
         #region Fields
 
-        private MediaUriElement _mediaPlayer;
+        private readonly MediaUriElement _mediaPlayer;
         public MediaUriElement MediaPlayer
         {
             get

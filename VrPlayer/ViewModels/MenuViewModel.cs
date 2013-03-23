@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,9 +10,9 @@ using System.Windows;
 using System.Windows.Data;
 
 using Microsoft.Win32;
-
 using VrPlayer.Helpers.Converters;
 using VrPlayer.Helpers.Mvvm;
+using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Wrappers;
@@ -341,8 +342,6 @@ namespace VrPlayer.ViewModels
 		private void Load(object o)
 		{
 			string filePath = (string)o;
-            var metadataParser = new MetadataParser(filePath);
-            //TODO: Metadata support: https://developers.google.com/panorama/metadata/
             try
             {
                 _state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);
@@ -352,7 +351,29 @@ namespace VrPlayer.ViewModels
                 //Todo: log
                 MessageBox.Show(String.Format("Unable to load '{0}'", filePath), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-		}
+
+            try
+            {
+                //Todo: Extract metadata parsing
+                MetadataParser parser = new MetadataParser(filePath);
+                var metadata = parser.Parse();
+                _state.WrapperPlugin = _pluginManager.Wrappers.FirstOrDefault(
+                    plugin => plugin.Wrapper.GetType().FullName == metadata.ProjectionType);
+
+                if (!string.IsNullOrEmpty(metadata.FormatType))
+                {
+                    _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), metadata.FormatType);
+                    //Todo: Stereo input should not be assigned to wrapper manually
+                    if (_state.WrapperPlugin != null)
+                        _state.WrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
+                }
+            }
+            catch (Exception exc)
+            {
+                //Todo: log
+                MessageBox.Show(String.Format("Unable to parse meta data from file '{0}'", filePath), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }    
+        }
 
         private void BrowseSamples(object o)
 		{   
@@ -396,7 +417,7 @@ namespace VrPlayer.ViewModels
 
         private void SetWrapper(object o)
         {
-            WrapperPlugin wrapperPlugin = (WrapperPlugin)o;
+            var wrapperPlugin = (WrapperPlugin)o;
             wrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
             _state.WrapperPlugin = wrapperPlugin;
         }
@@ -413,7 +434,7 @@ namespace VrPlayer.ViewModels
 
         private void ShowDebug(object o)
         {
-            DebugWindow window = new DebugWindow();
+            var window = new DebugWindow();
             window.Show();
         }
 

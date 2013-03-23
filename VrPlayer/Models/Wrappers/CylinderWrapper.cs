@@ -5,7 +5,7 @@ using System.Windows.Media.Media3D;
 
 namespace VrPlayer.Models.Wrappers
 {
-    public class CylinderWapper : WrapperBase, IWrapper
+    public class CylinderWrapper : WrapperBase, IWrapper
     {
         int _slices = 32;
         int _stacks = 16;
