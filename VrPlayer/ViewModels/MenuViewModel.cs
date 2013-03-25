@@ -291,12 +291,10 @@ namespace VrPlayer.ViewModels
             _aboutCommand = new DelegateCommand(ShowAbout);
 
             //Todo: Extract Default values
-            _state.StereoInput = StereoMode.Mono;
-            _state.StereoOutput = StereoMode.Mono;
-            _state.EffectPlugin = _pluginManager.Effects[0];
-            _state.WrapperPlugin = _pluginManager.Wrappers[4];
-            _state.TrackerPlugin = _pluginManager.Trackers[0];
-            _state.ShaderPlugin = _pluginManager.Shaders[1];
+            _state.EffectPlugin = _state.EffectPlugin ?? _pluginManager.Effects[0];
+            _state.WrapperPlugin = _state.WrapperPlugin ?? _pluginManager.Wrappers[4];
+            _state.TrackerPlugin = _state.TrackerPlugin ?? _pluginManager.Trackers[0];
+            _state.ShaderPlugin = _state.ShaderPlugin ?? _pluginManager.Shaders[0];
 
             //Todo: Should not set the media value directly
             string[] parameters = Environment.GetCommandLineArgs();
@@ -342,23 +340,18 @@ namespace VrPlayer.ViewModels
 		private void Load(object o)
 		{
 			string filePath = (string)o;
-            try
-            {
-                _state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);
-            }
-            catch (Exception exc)
-            { 
-                //Todo: log
-                MessageBox.Show(String.Format("Unable to load '{0}'", filePath), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
+            
             try
             {
                 //Todo: Extract metadata parsing
                 MetadataParser parser = new MetadataParser(filePath);
                 var metadata = parser.Parse();
-                _state.WrapperPlugin = _pluginManager.Wrappers.FirstOrDefault(
-                    plugin => plugin.Wrapper.GetType().FullName == metadata.ProjectionType);
+
+                if (!string.IsNullOrEmpty(metadata.ProjectionType))
+                {
+                    _state.WrapperPlugin = _pluginManager.Wrappers.FirstOrDefault(
+                        plugin => plugin.Wrapper.GetType().FullName == metadata.ProjectionType);
+                }
 
                 if (!string.IsNullOrEmpty(metadata.FormatType))
                 {
@@ -372,7 +365,17 @@ namespace VrPlayer.ViewModels
             {
                 //Todo: log
                 MessageBox.Show(String.Format("Unable to parse meta data from file '{0}'", filePath), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }    
+            }
+
+            try
+            {
+                _state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);
+            }
+            catch (Exception exc)
+            {
+                //Todo: log
+                MessageBox.Show(String.Format("Unable to load '{0}'", filePath), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BrowseSamples(object o)

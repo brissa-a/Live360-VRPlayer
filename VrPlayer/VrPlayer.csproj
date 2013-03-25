@@ -105,7 +105,9 @@
     <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
+    <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Models\Metadata\MetadataResult.cs" />
+    <Compile Include="Models\Settings\SettingsManager.cs" />
     <Compile Include="Models\Wrappers\CylinderWrapper.cs" />
     <Compile Include="Models\Metadata\MetadataParser.cs" />
     <Compile Include="UrlInputDialog.xaml.cs">

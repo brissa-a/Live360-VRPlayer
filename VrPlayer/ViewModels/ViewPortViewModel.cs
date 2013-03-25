@@ -67,7 +67,7 @@ namespace VrPlayer.ViewModels
             timer.Start();
 
             State.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(State_PropertyChanged);
-            State.StereoOutput = StereoMode.SideBySide;
+            State.StereoOutput = State.StereoOutput;
         }
         
         void timer_Tick(object sender, EventArgs e)

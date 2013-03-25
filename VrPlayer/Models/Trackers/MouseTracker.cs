@@ -37,7 +37,7 @@ namespace VrPlayer.Models.Trackers
             _mouseSensitivity = 1;
 
             //Handlers
-            Application.Current.Activated += new EventHandler(Current_Activated);
+            Application.Current.Activated += Current_Activated;
 
             IsEnabled = true;
         }
