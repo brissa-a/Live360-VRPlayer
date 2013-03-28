@@ -113,6 +113,11 @@ namespace VrPlayer.Models.Plugins
             hydraTracker.RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(_config.HydraPitchOffset,0,0);
             var hydraTrackerPlugin = new TrackerPlugin(hydraTracker, "Razer Hydra");
             Trackers.Add(hydraTrackerPlugin);
+
+            var vrpnTracker = new VrpnTracker(_config.VrpnTrackerAddress, _config.VrpnButtonAddress);
+            vrpnTracker.PositionScaleFactor = _config.VrpnPositionScaleFactor;
+            var vrpnTrackerPlugin = new TrackerPlugin(vrpnTracker, "VRPN Client");
+            Trackers.Add(vrpnTrackerPlugin);
         }
 
         private void LoadShaders()

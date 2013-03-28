@@ -7,135 +7,46 @@ namespace VrPlayer.Models.Config
     {
         public AppSettingsApplicationConfig()
         {
-            _defaultMediaFile = ConfigurationManager.AppSettings["DefaultMediaFile"];
-            _samplesFolder = ConfigurationManager.AppSettings["SamplesFolder"];
-            _customPincushionFactor = double.Parse(ConfigurationManager.AppSettings["CustomPincushionFactor"]);
-            _cameraFieldOfView = int.Parse(ConfigurationManager.AppSettings["CameraFieldOfView"]);
-            _mouseSensitivity = int.Parse(ConfigurationManager.AppSettings["MouseSensitivity"]);
-            _depthMapMaxOffset = ParseDouble(ConfigurationManager.AppSettings["DepthMapMaxOffset"]);
-            _colorKeyAlphaColor = ConfigurationManager.AppSettings["ColorKeyAlphaColor"];
-            _colorKeyTolerance = ParseDouble(ConfigurationManager.AppSettings["ColorKeyTolerance"]);
-            _orientationRefreshRateInMS = int.Parse(ConfigurationManager.AppSettings["OrientationRefreshRateInMS"]);
-            _viewportsHorizontalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsHorizontalOffset"]);
-            _hydraPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["HydraPositionScaleFactor"]);
-            _hydraPitchOffset = ParseDouble(ConfigurationManager.AppSettings["HydraPitchOffset"]);
-            _psMovePositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["PsMovePositionScaleFactor"]);
-            _kinectPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["KinectPositionScaleFactor"]);
-            _positionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
-            _evrRendering = bool.Parse(ConfigurationManager.AppSettings["EvrRendering"]);
+            DefaultMediaFile = ConfigurationManager.AppSettings["DefaultMediaFile"];
+            SamplesFolder = ConfigurationManager.AppSettings["SamplesFolder"];
+            CustomPincushionFactor = double.Parse(ConfigurationManager.AppSettings["CustomPincushionFactor"]);
+            CameraFieldOfView = int.Parse(ConfigurationManager.AppSettings["CameraFieldOfView"]);
+            MouseSensitivity = int.Parse(ConfigurationManager.AppSettings["MouseSensitivity"]);
+            DepthMapMaxOffset = ParseDouble(ConfigurationManager.AppSettings["DepthMapMaxOffset"]);
+            ColorKeyAlphaColor = ConfigurationManager.AppSettings["ColorKeyAlphaColor"];
+            ColorKeyTolerance = ParseDouble(ConfigurationManager.AppSettings["ColorKeyTolerance"]);
+            OrientationRefreshRateInMS = int.Parse(ConfigurationManager.AppSettings["OrientationRefreshRateInMS"]);
+            ViewportsHorizontalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsHorizontalOffset"]);
+            HydraPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["HydraPositionScaleFactor"]);
+            HydraPitchOffset = ParseDouble(ConfigurationManager.AppSettings["HydraPitchOffset"]);
+            PsMovePositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["PsMovePositionScaleFactor"]);
+            KinectPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["KinectPositionScaleFactor"]);
+            VrpnPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["VrpnPositionScaleFactor"]);
+            VrpnTrackerAddress = ConfigurationManager.AppSettings["VrpnTrackerAddress"];
+            VrpnButtonAddress = ConfigurationManager.AppSettings["VrpnButtonAddress"];
+            PositionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
+            EvrRendering = bool.Parse(ConfigurationManager.AppSettings["EvrRendering"]);
         }
 
-        private string _defaultMediaFile;
-        public string DefaultMediaFile
-        {
-            get { return _defaultMediaFile; }
-            set { _defaultMediaFile = value; }
-        }
-
-        private string _samplesFolder;
-        public string SamplesFolder
-        {
-            get { return _samplesFolder; }
-            set { _samplesFolder = value; }
-        }
-
-        private double _customPincushionFactor;
-        public double CustomPincushionFactor
-        {
-            get { return _customPincushionFactor; }
-            set { _customPincushionFactor = value; }
-        }
-
-        private int _cameraFieldOfView;
-        public int CameraFieldOfView
-        {
-            get { return _cameraFieldOfView; }
-            set { _cameraFieldOfView = value; }
-        }
-
-        private int _mouseSensitivity;
-        public int MouseSensitivity
-        {
-            get { return _mouseSensitivity; }
-            set { _mouseSensitivity = value; }
-        }
-
-        private double _depthMapMaxOffset;
-        public double DepthMapMaxOffset
-        {
-            get { return _depthMapMaxOffset; }
-            set { _depthMapMaxOffset = value; }
-        }
-
-        private string _colorKeyAlphaColor;
-        public string ColorKeyAlphaColor
-        {
-            get { return _colorKeyAlphaColor; }
-            set { _colorKeyAlphaColor = value; }
-        }
-
-        private double _colorKeyTolerance;
-        public double ColorKeyTolerance
-        {
-            get { return _colorKeyTolerance; }
-            set { _colorKeyTolerance = value; }
-        }
-
-        private int _orientationRefreshRateInMS;
-        public int OrientationRefreshRateInMS
-        {
-            get { return _orientationRefreshRateInMS; }
-            set { _orientationRefreshRateInMS = value; }
-        }
-
-        private int _viewportsHorizontalOffset;
-        public int ViewportsHorizontalOffset
-        {
-            get { return _viewportsHorizontalOffset; }
-            set { _viewportsHorizontalOffset = value; }
-        }
-
-        private double _hydraPositionScaleFactor;
-        public double HydraPositionScaleFactor
-        {
-            get { return _hydraPositionScaleFactor; }
-            set { _hydraPositionScaleFactor = value; }
-        }
-
-        private double _hydraPitchOffset;
-        public double HydraPitchOffset
-        {
-            get { return _hydraPitchOffset; }
-            set { _hydraPitchOffset = value; }
-        }
-
-        private double _psMovePositionScaleFactor;
-        public double PsMovePositionScaleFactor
-        {
-            get { return _psMovePositionScaleFactor; }
-            set { _psMovePositionScaleFactor = value; }
-        }
-
-        private double _kinectPositionScaleFactor;
-        public double KinectPositionScaleFactor
-        {
-            get { return _kinectPositionScaleFactor; }
-            set { _kinectPositionScaleFactor = value; }
-        }
-
-        private bool _positionalAudio;
-        public bool PositionalAudio
-        {
-            get { return _positionalAudio; }
-            set { _positionalAudio = value; }
-        }
-
-        private bool _evrRendering;
-        public bool EvrRendering
-        {
-            get { return _evrRendering; }
-            set { _evrRendering = value; }
-        }
+        public string DefaultMediaFile { get; set; }
+        public string SamplesFolder { get; set; }
+        public double CustomPincushionFactor { get; set; }
+        public int CameraFieldOfView { get; set; }
+        public int MouseSensitivity { get; set; }
+        public double DepthMapMaxOffset { get; set; }
+        public string ColorKeyAlphaColor { get; set; }
+        public double ColorKeyTolerance { get; set; }
+        public int OrientationRefreshRateInMS { get; set; }
+        public int ViewportsHorizontalOffset { get; set; }
+        public double HydraPositionScaleFactor { get; set; }
+        public double HydraPitchOffset { get; set; }
+        public double PsMovePositionScaleFactor { get; set; }
+        public double KinectPositionScaleFactor { get; set; }
+        public double VrpnPositionScaleFactor { get; set; }
+        public string VrpnTrackerAddress { get; set; }
+        public string VrpnButtonAddress { get; set; }
+        public bool PositionalAudio { get; set; }
+        public bool EvrRendering { get; set; }
 
         #region Helpers
 

@@ -16,6 +16,9 @@
         double HydraPitchOffset { get; set; }
         double PsMovePositionScaleFactor { get; set; }
         double KinectPositionScaleFactor { get; set; }
+        double VrpnPositionScaleFactor { get; set; }
+        string VrpnTrackerAddress { get; set; }
+        string VrpnButtonAddress { get; set; }
         bool PositionalAudio { get; set; }
         bool EvrRendering { get; set; }
     }

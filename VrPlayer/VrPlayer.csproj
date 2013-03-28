@@ -81,6 +81,10 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="VrpnNet, Version=1.1.1.22900, Culture=neutral, PublicKeyToken=d88711d9dd279d9f, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\VrpnNet-1.1.1\Release-VC9\VrpnNet.dll</HintPath>
+    </Reference>
     <Reference Include="WiimoteLib">
       <HintPath>..\Lib\Wiimote\WiimoteLib.dll</HintPath>
     </Reference>
@@ -108,6 +112,7 @@
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Models\Metadata\MetadataResult.cs" />
     <Compile Include="Models\Settings\SettingsManager.cs" />
+    <Compile Include="Models\Trackers\VrpnTracker.cs" />
     <Compile Include="Models\Wrappers\CylinderWrapper.cs" />
     <Compile Include="Models\Metadata\MetadataParser.cs" />
     <Compile Include="UrlInputDialog.xaml.cs">
