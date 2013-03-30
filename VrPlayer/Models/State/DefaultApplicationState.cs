@@ -1,4 +1,5 @@
-﻿using WPFMediaKit.DirectShow.Controls;
+﻿using System.Windows.Media;
+using WPFMediaKit.DirectShow.Controls;
 
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;

@@ -26,6 +26,12 @@ namespace VrPlayer.Models.Config
             VrpnButtonAddress = ConfigurationManager.AppSettings["VrpnButtonAddress"];
             PositionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
             EvrRendering = bool.Parse(ConfigurationManager.AppSettings["EvrRendering"]);
+            DomeSlices = int.Parse(ConfigurationManager.AppSettings["DomeSlices"]);
+            DomeStacks = int.Parse(ConfigurationManager.AppSettings["DomeStacks"]);
+            SphereSlices = int.Parse(ConfigurationManager.AppSettings["SphereSlices"]);
+            SphereStacks = int.Parse(ConfigurationManager.AppSettings["SphereStacks"]);
+            CylinderSlices = int.Parse(ConfigurationManager.AppSettings["CylinderSlices"]);
+            CylinderStacks = int.Parse(ConfigurationManager.AppSettings["CylinderStacks"]);
         }
 
         public string DefaultMediaFile { get; set; }
@@ -47,6 +53,12 @@ namespace VrPlayer.Models.Config
         public string VrpnButtonAddress { get; set; }
         public bool PositionalAudio { get; set; }
         public bool EvrRendering { get; set; }
+        public int DomeSlices { get; set; }
+        public int DomeStacks { get; set; }
+        public int SphereSlices { get; set; }
+        public int SphereStacks { get; set; }
+        public int CylinderSlices { get; set; }
+        public int CylinderStacks { get; set; }
 
         #region Helpers
 

@@ -75,14 +75,20 @@ namespace VrPlayer.Models.Plugins
             Wrappers.Add(cubeWrapperPlugin);
 
             var cylinderWrapper = new CylinderWrapper();
+            cylinderWrapper.Slices = _config.CylinderSlices;
+            cylinderWrapper.Stacks = _config.CylinderStacks;
             var cylinderWrapperPlugin = new WrapperPlugin(cylinderWrapper, "Cylinder");
             Wrappers.Add(cylinderWrapperPlugin);
 
             var domeWrapper = new DomeWrapper();
+            domeWrapper.Slices = _config.DomeSlices;
+            domeWrapper.Stacks = _config.DomeStacks;
             var domeWrapperPlugin = new WrapperPlugin(domeWrapper, "Dome");
             Wrappers.Add(domeWrapperPlugin);
 
             var sphereWrapper = new SphereWrapper();
+            sphereWrapper.Slices = _config.SphereSlices;
+            sphereWrapper.Stacks = _config.SphereStacks;
             var sphereWrapperPlugin = new WrapperPlugin(sphereWrapper, "Sphere");
             Wrappers.Add(sphereWrapperPlugin);
         }

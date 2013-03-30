@@ -21,5 +21,11 @@
         string VrpnButtonAddress { get; set; }
         bool PositionalAudio { get; set; }
         bool EvrRendering { get; set; }
+        int DomeSlices { get; set; }
+        int DomeStacks { get; set; }
+        int SphereSlices { get; set; }
+        int SphereStacks { get; set; }
+        int CylinderSlices { get; set; }
+        int CylinderStacks { get; set; }
     }
 }
