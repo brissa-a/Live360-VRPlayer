@@ -2,89 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Debug" Height="300" Width="300" WindowStyle="ToolWindow" Topmost="True">
-    <TabControl>
+    <TabControl TabStripPlacement="Top">
         <TabItem Header="Console">
-            <TextBox Text="VR Player" VerticalScrollBarVisibility="Visible" />
-        </TabItem>
+            </TabItem>
         <TabItem Header="Tracker">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Orientation" FontWeight="Bold"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="X:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.X}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Y:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.Y}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Z:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.Z}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="W:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Rotation.W}" IsEnabled="False"></Label>
-                </StackPanel>
-                <TextBlock Text="Base Orientation" FontWeight="Bold"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="X:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.X}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Y:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.Y}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Z:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.Z}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="W:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.W}" IsEnabled="False"></Label>
-                </StackPanel>
-                <TextBlock Text="Position" FontWeight="Bold"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="X:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Position.X}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Y:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Position.Y}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Z:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.Position.Z}" IsEnabled="False"></Label>
-                </StackPanel>
-                <TextBlock Text="Base Position" FontWeight="Bold"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="X:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BasePosition.X}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Y:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BasePosition.Y}" IsEnabled="False"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Z:"></Label>
-                    <Label Content="{Binding Path=State.TrackerPlugin.Tracker.BasePosition.Z}" IsEnabled="False"></Label>
-                </StackPanel>
-            </StackPanel>
-        </TabItem>
-        <TabItem Header="Config">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Viewports offset" FontWeight="Bold"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Horizontal:"></Label>
-                    <Slider Value="{Binding Path=Config.ViewportsHorizontalOffset}" Width="150"  Minimum="-100" Maximum="100"></Slider>
-                    <TextBox Text="{Binding Path=Config.ViewportsHorizontalOffset}" Width="50"></TextBox>
-                </StackPanel>
-                <TextBlock Text="Camera" FontWeight="Bold"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="FOV:"></Label>
-                    <Slider Value="{Binding Path=Config.CameraFieldOfView}" Width="150"  Minimum="10" Maximum="120"></Slider>
-                    <TextBox Text="{Binding Path=Config.CameraFieldOfView}" Width="50"></TextBox>
-                </StackPanel>
-            </StackPanel>
+            
         </TabItem>
     </TabControl>
 </Window>

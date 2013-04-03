@@ -1,0 +1,356 @@
+﻿<Window x:Class="VrPlayer.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="480" Width="640" WindowStyle="ToolWindow" Topmost="True" Margin="0" Padding="0">
+    <TabControl TabStripPlacement="Left">
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Vertical">
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/kservices.png" />
+                    <TextBlock Text="General" HorizontalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Orientation="Vertical" Margin="16">
+                <Label Content="General" FontSize="18" />
+                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
+                <TextBlock Text="Display" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Field of view (FOV):"></Label>
+                    <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.CameraFieldOfView}" Minimum="10" Maximum="120"></Slider>
+                    <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.CameraFieldOfView}" ></TextBox>
+                    <Label Grid.Column="0" Grid.Row="1" Content="Interpupillary offset:"></Label>
+                    <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.ViewportsHorizontalOffset}" Minimum="-100" Maximum="100"></Slider>
+                    <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.ViewportsHorizontalOffset}"></TextBox>               
+                </Grid>
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Vertical">
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/kpovmodeler.png" />
+                    <TextBlock Text="Projections" HorizontalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Orientation="Vertical" Margin="16">
+                <Label Content="Projections" FontSize="18" />
+                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                    <Label Content="Current projection: " />
+                    <TextBox Text="Sphere" Width="200" IsReadOnly="True" />
+                </StackPanel>
+                <TabControl MinHeight="300">
+                    <TabItem Header="Cylinder">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Slices:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.CylinderSlices}" Minimum="8" Maximum="256"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.CylinderSlices}" ></TextBox>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Stacks:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.CylinderStacks}" Minimum="8" Maximum="256"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.CylinderStacks}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Dome">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Slices:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.DomeSlices}" Minimum="8" Maximum="256"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.DomeSlices}" ></TextBox>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Stacks:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.DomeStacks}" Minimum="8" Maximum="256"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.DomeStacks}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Sphere">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Slices:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.SphereSlices}" Minimum="8" Maximum="256"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.SphereSlices}" ></TextBox>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Stacks:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.SphereStacks}" Minimum="8" Maximum="256"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.SphereStacks}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Vertical">
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/kcoloredit.png" />
+                    <TextBlock Text="Effects" HorizontalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Orientation="Vertical" Margin="16">
+                <Label Content="Effects" FontSize="18" />
+                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                    <Label Content="Current effect: " />
+                    <TextBox Text="Barrel" Width="200" IsReadOnly="True" />
+                </StackPanel>
+                <TabControl MinHeight="300">
+                    <TabItem Header="Color key">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Color:"></Label>
+                                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Config.ColorKeyAlphaColor}"></TextBox>
+                                <Button Grid.Column="2" Grid.Row="0" Background="{Binding Path=Config.ColorKeyAlphaColor}"/>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Tolerence:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.ColorKeyTolerance}" Minimum="0" Maximum="1"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.ColorKeyTolerance}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Depth map">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Max offset:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.DepthMapMaxOffset}" Minimum="0" Maximum="10"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.DepthMapMaxOffset}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Vertical">
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/xmag.png" />
+                    <TextBlock Text="Distortions" HorizontalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Orientation="Vertical" Margin="16">
+                <Label Content="Distortions" FontSize="18" />
+                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                    <Label Content="Current distorition: " />
+                    <TextBox Text="Barrel" Width="200" IsReadOnly="True" />
+                </StackPanel>
+                <TabControl MinHeight="300">
+                    <TabItem Header="Pinch cusion">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Pinch factor:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.CustomPincushionFactor}" Minimum="0" Maximum="10"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.CustomPincushionFactor}" ></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Vertical">
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/package_games_arcade.png" />
+                    <TextBlock Text="Trackers" HorizontalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Orientation="Vertical" Margin="16">
+                <Label Content="Trackers" FontSize="18" />
+                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                    <Label Content="Current tracker: " />
+                    <TextBox Text="Razer Hydra" Width="200" IsReadOnly="True" />
+                </StackPanel>
+                <Grid Margin="0,0,0,16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Grid.Row="0" Content="X"></Label>
+                    <Label Grid.Column="2" Grid.Row="0" Content="Y"></Label>
+                    <Label Grid.Column="3" Grid.Row="0" Content="Z"></Label>
+                    <Label Grid.Column="4" Grid.Row="0" Content="W"></Label>
+                    <Label Grid.Column="0" Grid.Row="1" Content="Orientation:"></Label>
+                    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=State.TrackerPlugin.Tracker.Rotation.X}"></TextBox>
+                    <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=State.TrackerPlugin.Tracker.Rotation.Y}"></TextBox>
+                    <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding Path=State.TrackerPlugin.Tracker.Rotation.Z}"></TextBox>
+                    <TextBox Grid.Column="4" Grid.Row="1" Text="{Binding Path=State.TrackerPlugin.Tracker.Rotation.W}"></TextBox>
+                    <Label Grid.Column="0" Grid.Row="2" Content="Base Orientation:"></Label>
+                    <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.X}"></TextBox>
+                    <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.Y}"></TextBox>
+                    <TextBox Grid.Column="3" Grid.Row="2" Text="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.Z}"></TextBox>
+                    <TextBox Grid.Column="4" Grid.Row="2" Text="{Binding Path=State.TrackerPlugin.Tracker.BaseRotation.W}"></TextBox>
+                    <Label Grid.Column="0" Grid.Row="3" Content="Position:"></Label>
+                    <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=State.TrackerPlugin.Tracker.Position.X}"></TextBox>
+                    <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding Path=State.TrackerPlugin.Tracker.Position.Y}"></TextBox>
+                    <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding Path=State.TrackerPlugin.Tracker.Position.Z}"></TextBox>
+                    <Label Grid.Column="0" Grid.Row="4" Content="Base position:"></Label>
+                    <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Path=State.TrackerPlugin.Tracker.BasePosition.X}"></TextBox>
+                    <TextBox Grid.Column="2" Grid.Row="4" Text="{Binding Path=State.TrackerPlugin.Tracker.BasePosition.Y}"></TextBox>
+                    <TextBox Grid.Column="3" Grid.Row="4" Text="{Binding Path=State.TrackerPlugin.Tracker.BasePosition.Z}"></TextBox>
+                </Grid>
+                <TabControl MinHeight="150">
+                    <TabItem Header="Razer Hydra">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.HydraPositionScaleFactor}" Minimum="0" Maximum="1"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.HydraPositionScaleFactor}"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Tilt (pitch offset):"></Label>
+                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.HydraPitchOffset}" Minimum="0" Maximum="360"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.HydraPitchOffset}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Microsoft Kinect">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.KinectPositionScaleFactor}" Minimum="0" Maximum="1"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.KinectPositionScaleFactor}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Playstation Move">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.PsMovePositionScaleFactor}" Minimum="0" Maximum="1"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.PsMovePositionScaleFactor}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="VRPN Client">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.VrpnPositionScaleFactor}" Minimum="0" Maximum="1"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.VrpnPositionScaleFactor}"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Tracker address:"></Label>
+                                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Config.VrpnTrackerAddress}"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="2" Content="Buttons address:"></Label>
+                                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Config.VrpnButtonAddress}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Vertical">
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/terminal.png" />
+                    <TextBlock Text="Console" HorizontalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Orientation="Vertical">
+                <Label Content="Console" FontSize="18" />
+                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,16" />
+                <TextBox Text="VR Player" VerticalScrollBarVisibility="Visible" Margin="16" />
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</Window>

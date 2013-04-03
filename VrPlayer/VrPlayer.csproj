@@ -100,6 +100,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DebugWindow.xaml.cs">
       <DependentUpon>DebugWindow.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
     <Compile Include="Views\ViewPort.xaml.cs">
       <DependentUpon>ViewPort.xaml</DependentUpon>
     </Compile>
+    <Page Include="SettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="DebugWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -223,6 +230,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Medias\Nuvola\kservices.png" />
+    <Resource Include="Medias\Nuvola\kcoloredit.png" />
+    <Resource Include="Medias\Nuvola\kpovmodeler.png" />
+    <Resource Include="Medias\Nuvola\package_games_arcade.png" />
+    <Resource Include="Medias\Nuvola\xmag.png" />
+    <Resource Include="Medias\Nuvola\terminal.png" />
     <Content Include="XmpToolkit.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -69,6 +69,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_52F82DED63781FD878D5C06AF03F4243"
+        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6525B0C85D7348EF84735EF8298A8B19"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -137,6 +143,12 @@
         {
         "MsmKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D6B7DCAAD0649C14DFB18E63F688DE5A"
+        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -214,7 +226,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_52F82DED63781FD878D5C06AF03F4243"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1BDDAD9ABCA98697197A35A3E9368255"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D6B7DCAAD0649C14DFB18E63F688DE5A"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -535,6 +559,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_52F82DED63781FD878D5C06AF03F4243"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrpnNet, Version=1.1.1.22900, Culture=neutral, PublicKeyToken=d88711d9dd279d9f, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_52F82DED63781FD878D5C06AF03F4243"
+                    {
+                    "Name" = "8:VrpnNet.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:VrpnNet.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6525B0C85D7348EF84735EF8298A8B19"
             {
             "SourcePath" = "8:..\\Lib\\WPFMediaKit\\WPFMediaKit-copyright.txt"
@@ -779,6 +834,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D6B7DCAAD0649C14DFB18E63F688DE5A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CsXmpToolkit, Version=0.3.3.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_D6B7DCAAD0649C14DFB18E63F688DE5A"
+                    {
+                    "Name" = "8:CsXmpToolkit.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CsXmpToolkit.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D9C25425B34C4ECCA4831CBCAD00EAD5"
             {
             "SourcePath" = "8:..\\Lib\\Wiimote\\WiimoteLib-license.txt"
@@ -958,7 +1044,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{DFEAE296-E82A-4379-B0BF-9504AA2A40C9}"
+        "PackageCode" = "8:{5BCFE544-5923-4C2C-94C6-F81C22035B2A}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

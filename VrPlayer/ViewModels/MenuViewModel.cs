@@ -255,6 +255,12 @@ namespace VrPlayer.ViewModels
             get { return _exitCommand; }
         }
 
+        private readonly ICommand _settingsCommand;
+        public ICommand SettingsCommand
+        {
+            get { return _settingsCommand; }
+        }
+        
         private readonly ICommand _debugCommand;
         public ICommand DebugCommand
         {
@@ -286,6 +292,7 @@ namespace VrPlayer.ViewModels
             _loadUrlCommand = new DelegateCommand(OpenUrl);
             _browseSamplesCommand = new DelegateCommand(BrowseSamples);
             _exitCommand = new DelegateCommand(Exit);
+            _settingsCommand = new DelegateCommand(ShowSettings);
             _debugCommand = new DelegateCommand(ShowDebug);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
             _aboutCommand = new DelegateCommand(ShowAbout);
@@ -433,6 +440,12 @@ namespace VrPlayer.ViewModels
         private void SetShader(object o)
         {
             _state.ShaderPlugin = (ShaderPlugin)o;
+        }
+
+        private void ShowSettings(object o)
+        {
+            var window = new SettingsWindow();
+            window.Show();
         }
 
         private void ShowDebug(object o)
