@@ -261,12 +261,6 @@ namespace VrPlayer.ViewModels
             get { return _settingsCommand; }
         }
         
-        private readonly ICommand _debugCommand;
-        public ICommand DebugCommand
-        {
-            get { return _debugCommand; }
-        }
-
         private readonly ICommand _launchWebBrowserCommand;
         public ICommand LaunchWebBrowserCommand
         {
@@ -293,7 +287,6 @@ namespace VrPlayer.ViewModels
             _browseSamplesCommand = new DelegateCommand(BrowseSamples);
             _exitCommand = new DelegateCommand(Exit);
             _settingsCommand = new DelegateCommand(ShowSettings);
-            _debugCommand = new DelegateCommand(ShowDebug);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
             _aboutCommand = new DelegateCommand(ShowAbout);
 
@@ -444,14 +437,16 @@ namespace VrPlayer.ViewModels
 
         private void ShowSettings(object o)
         {
-            var window = new SettingsWindow();
-            window.Show();
-        }
-
-        private void ShowDebug(object o)
-        {
-            var window = new DebugWindow();
-            window.Show();
+            var existingWindow = Application.Current.Windows.Cast<Window>().SingleOrDefault(w => w.GetType() == typeof(SettingsWindow));
+            if (existingWindow != null) 
+            {
+                existingWindow.Activate();
+            }
+            else 
+            {
+                var window = new SettingsWindow();
+                window.Show();
+            }            
         }
 
         private void ShowAbout(object o)

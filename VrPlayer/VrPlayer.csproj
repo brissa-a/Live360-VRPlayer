@@ -100,6 +100,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\Converters\ObjectToTypeConverter.cs" />
+    <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>

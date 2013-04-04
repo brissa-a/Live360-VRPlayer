@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Data;
 using VrPlayer.Helpers;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Trackers;
@@ -39,18 +41,18 @@ namespace VrPlayer.Models.Plugins
             Effects.Add(nullEffectPlugin);
 
             var depthMapOverUnderEffect = new DepthMapOverUnderEffect();
-            depthMapOverUnderEffect.MaxOffset = _config.DepthMapMaxOffset;
+            BindProperty(_config, "DepthMapMaxOffset", depthMapOverUnderEffect, DepthMapOverUnderEffect.MaxOffsetProperty);
             var depthMapOverUnderEffectPlugin = new EffectPlugin(depthMapOverUnderEffect, "Depth Map Over/Under");
             Effects.Add(depthMapOverUnderEffectPlugin);
 
             var depthMapSbsEffect = new DepthMapSbsEffect();
-            depthMapSbsEffect.MaxOffset = _config.DepthMapMaxOffset;
+            BindProperty(_config, "DepthMapMaxOffset", depthMapSbsEffect, DepthMapSbsEffect.MaxOffsetProperty);
             var depthMapSbsEffectPlugin = new EffectPlugin(depthMapSbsEffect, "Depth Map SBS");
             Effects.Add(depthMapSbsEffectPlugin);
 
             var colorKeyAlphaEffect = new ColorKeyAlphaEffect();
             colorKeyAlphaEffect.ColorKey = (Color)ColorConverter.ConvertFromString(_config.ColorKeyAlphaColor);
-            colorKeyAlphaEffect.Tolerance = _config.ColorKeyTolerance;
+            BindProperty(_config, "ColorKeyTolerance", colorKeyAlphaEffect, ColorKeyAlphaEffect.ToleranceProperty);
             var colorKeyAlphaEffectPlugin = new EffectPlugin(colorKeyAlphaEffect, "Color Key Alpha");
             Effects.Add(colorKeyAlphaEffectPlugin);
 
@@ -75,20 +77,20 @@ namespace VrPlayer.Models.Plugins
             Wrappers.Add(cubeWrapperPlugin);
 
             var cylinderWrapper = new CylinderWrapper();
-            cylinderWrapper.Slices = _config.CylinderSlices;
-            cylinderWrapper.Stacks = _config.CylinderStacks;
+            BindProperty(_config, "CylinderSlices", cylinderWrapper, CylinderWrapper.SlicesProperty);
+            BindProperty(_config, "CylinderStacks", cylinderWrapper, CylinderWrapper.StacksProperty);
             var cylinderWrapperPlugin = new WrapperPlugin(cylinderWrapper, "Cylinder");
             Wrappers.Add(cylinderWrapperPlugin);
 
             var domeWrapper = new DomeWrapper();
-            domeWrapper.Slices = _config.DomeSlices;
-            domeWrapper.Stacks = _config.DomeStacks;
+            BindProperty(_config, "DomeSlices", domeWrapper, DomeWrapper.SlicesProperty);
+            BindProperty(_config, "DomeStacks", domeWrapper, DomeWrapper.StacksProperty);
             var domeWrapperPlugin = new WrapperPlugin(domeWrapper, "Dome");
             Wrappers.Add(domeWrapperPlugin);
 
             var sphereWrapper = new SphereWrapper();
-            sphereWrapper.Slices = _config.SphereSlices;
-            sphereWrapper.Stacks = _config.SphereStacks;
+            BindProperty(_config, "SphereSlices", sphereWrapper, SphereWrapper.SlicesProperty);
+            BindProperty(_config, "SphereStacks", sphereWrapper, SphereWrapper.StacksProperty);
             var sphereWrapperPlugin = new WrapperPlugin(sphereWrapper, "Sphere");
             Wrappers.Add(sphereWrapperPlugin);
         }
@@ -101,7 +103,7 @@ namespace VrPlayer.Models.Plugins
             Trackers.Add(mouseTrackerPlugin);
 
             var kinectTracker = new KinectTracker();
-            kinectTracker.PositionScaleFactor = _config.KinectPositionScaleFactor;
+            BindProperty(_config, "KinectPositionScaleFactor", kinectTracker, TrackerBase.PositionScaleFactorProperty);
             var kinectTrackerPlugin = new TrackerPlugin(kinectTracker, "Microsoft Kinect");
             Trackers.Add(kinectTrackerPlugin);
 
@@ -110,18 +112,18 @@ namespace VrPlayer.Models.Plugins
             Trackers.Add(wiimoteTrackerPlugin);
 
             var psMoveTracker = new PsMoveTracker();
-            psMoveTracker.PositionScaleFactor = _config.PsMovePositionScaleFactor;
+            BindProperty(_config, "PsMovePositionScaleFactor", psMoveTracker, TrackerBase.PositionScaleFactorProperty);
             var psMoveTrackerPlugin = new TrackerPlugin(psMoveTracker, "PlayStation Move");
             Trackers.Add(psMoveTrackerPlugin);
 
             var hydraTracker = new RazerHydraTracker();
-            hydraTracker.PositionScaleFactor = _config.HydraPositionScaleFactor;
-            hydraTracker.RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(_config.HydraPitchOffset,0,0);
+            BindProperty(_config, "HydraPositionScaleFactor", hydraTracker, TrackerBase.PositionScaleFactorProperty);
+            hydraTracker.RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(_config.HydraPitchOffset, 0, 0);
             var hydraTrackerPlugin = new TrackerPlugin(hydraTracker, "Razer Hydra");
             Trackers.Add(hydraTrackerPlugin);
 
             var vrpnTracker = new VrpnTracker(_config.VrpnTrackerAddress, _config.VrpnButtonAddress);
-            vrpnTracker.PositionScaleFactor = _config.VrpnPositionScaleFactor;
+            BindProperty(_config, "VrpnPositionScaleFactor", vrpnTracker, TrackerBase.PositionScaleFactorProperty);
             var vrpnTrackerPlugin = new TrackerPlugin(vrpnTracker, "VRPN Client");
             Trackers.Add(vrpnTrackerPlugin);
         }
@@ -136,9 +138,20 @@ namespace VrPlayer.Models.Plugins
             Shaders.Add(barrelEffectPlugin);
 
             var customPincushionEffect = new PincushionEffect();
-            customPincushionEffect.Factor = _config.CustomPincushionFactor;
+            BindProperty(_config, "CustomPincushionFactor", customPincushionEffect, PincushionEffect.BarrelFactorProperty);
             var customPincushionEffectPlugin = new ShaderPlugin(customPincushionEffect, "Pincushion Distortion");
             Shaders.Add(customPincushionEffectPlugin);
+        }
+
+        private void BindProperty(object source, string path, DependencyObject target, DependencyProperty property)
+        {
+            var binding = new Binding
+            {
+                Source = source,
+                Path = new PropertyPath(path),
+                Mode = BindingMode.TwoWay
+            };
+            BindingOperations.SetBinding(target, property, binding);        
         }
     }
 }

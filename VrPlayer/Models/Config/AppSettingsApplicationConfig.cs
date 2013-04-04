@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace VrPlayer.Models.Config
 {
-    public class AppSettingsApplicationConfig : IApplicationConfig
+    public class AppSettingsApplicationConfig : ApplicationConfigBase
     {
         public AppSettingsApplicationConfig()
         {
@@ -33,33 +33,7 @@ namespace VrPlayer.Models.Config
             CylinderSlices = int.Parse(ConfigurationManager.AppSettings["CylinderSlices"]);
             CylinderStacks = int.Parse(ConfigurationManager.AppSettings["CylinderStacks"]);
         }
-
-        public string DefaultMediaFile { get; set; }
-        public string SamplesFolder { get; set; }
-        public double CustomPincushionFactor { get; set; }
-        public int CameraFieldOfView { get; set; }
-        public int MouseSensitivity { get; set; }
-        public double DepthMapMaxOffset { get; set; }
-        public string ColorKeyAlphaColor { get; set; }
-        public double ColorKeyTolerance { get; set; }
-        public int OrientationRefreshRateInMS { get; set; }
-        public int ViewportsHorizontalOffset { get; set; }
-        public double HydraPositionScaleFactor { get; set; }
-        public double HydraPitchOffset { get; set; }
-        public double PsMovePositionScaleFactor { get; set; }
-        public double KinectPositionScaleFactor { get; set; }
-        public double VrpnPositionScaleFactor { get; set; }
-        public string VrpnTrackerAddress { get; set; }
-        public string VrpnButtonAddress { get; set; }
-        public bool PositionalAudio { get; set; }
-        public bool EvrRendering { get; set; }
-        public int DomeSlices { get; set; }
-        public int DomeStacks { get; set; }
-        public int SphereSlices { get; set; }
-        public int SphereStacks { get; set; }
-        public int CylinderSlices { get; set; }
-        public int CylinderStacks { get; set; }
-
+        
         #region Helpers
 
         private double ParseDouble(string value)

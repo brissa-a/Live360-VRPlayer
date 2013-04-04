@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 
 namespace VrPlayer.Helpers.Mvvm
 {
-    public class ViewModelBase: INotifyPropertyChanged
+    public class ViewModelBase: DependencyObject, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

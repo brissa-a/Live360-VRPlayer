@@ -48,8 +48,7 @@ namespace VrPlayer.Models.Trackers
             }
         }
 
-        private
-                    void PositionChanged(object sender, TrackerChangeEventArgs e)
+        private void PositionChanged(object sender, TrackerChangeEventArgs e)
         {
             try
             {

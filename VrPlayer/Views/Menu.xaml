@@ -53,22 +53,43 @@
         <MenuItem Header="_Display">
             <MenuItem Header="_Layout" ItemsSource="{Binding Path=StereoOutputMenu}"/>
             <MenuItem Header="_Distortion" ItemsSource="{Binding Path=ShadersMenu}"/>
-            <Separator />
-            <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}">
+        </MenuItem>
+        <MenuItem Header="_Tracker" ItemsSource="{Binding Path=TrackersMenu}">
+        </MenuItem>
+        <MenuItem Header="_Settings" Command="{Binding SettingsCommand}">
+            <MenuItem Header="_General..." Command="{Binding SettingsCommand}" CommandParameter="0">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/kservices.png" />
                 </MenuItem.Icon>
             </MenuItem>
-        </MenuItem>
-        <MenuItem Header="_Tracker" ItemsSource="{Binding Path=TrackersMenu}">
-        </MenuItem>
-        <MenuItem Header="_?">
-            <MenuItem Header="_Debug..." Command="{Binding DebugCommand}">
+            <MenuItem Header="Projections..." Command="{Binding SettingsCommand}" CommandParameter="1">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kcontrol.png" />
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kpovmodeler.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="_Effects..." Command="{Binding SettingsCommand}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kcoloredit.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="_Distortions..." Command="{Binding SettingsCommand}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/xmag.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="_Trackers..." Command="{Binding SettingsCommand}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/package_games_arcade.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
+            <MenuItem Header="_Console..." Command="{Binding SettingsCommand}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/terminal.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </MenuItem>
+        <MenuItem Header="_?">
             <MenuItem Header="_About..." Command="{Binding AboutCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/help.png" />

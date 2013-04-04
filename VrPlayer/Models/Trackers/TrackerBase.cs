@@ -1,4 +1,5 @@
-﻿using System.Windows.Media.Media3D;
+﻿using System.Windows;
+using System.Windows.Media.Media3D;
 
 using VrPlayer.Helpers.Mvvm;
 
@@ -65,18 +66,14 @@ namespace VrPlayer.Models.Trackers
             }
         }
 
-        private double _positionScaleFactor;
+        public static readonly DependencyProperty PositionScaleFactorProperty =
+            DependencyProperty.Register("PositionScaleFactor", typeof(double),
+            typeof(TrackerBase), new FrameworkPropertyMetadata(1D));
+
         public double PositionScaleFactor
         {
-            get
-            {
-                return _positionScaleFactor;
-            }
-            set
-            {
-                _positionScaleFactor = value;
-                OnPropertyChanged("PositionScaleFactor");
-            }
+            get { return (double)GetValue(PositionScaleFactorProperty); }
+            set { SetValue(PositionScaleFactorProperty, value); }
         }
 
         private Vector3D _basePosition;

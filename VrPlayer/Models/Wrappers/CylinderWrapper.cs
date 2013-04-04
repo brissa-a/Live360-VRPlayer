@@ -7,29 +7,27 @@ namespace VrPlayer.Models.Wrappers
 {
     public class CylinderWrapper : WrapperBase, IWrapper
     {
-        int _slices = 32;
-        int _stacks = 16;
-        Point3D _center = new Point3D();
+        Point3D _center;
         double _radius = 1;
+
+        public static readonly DependencyProperty SlicesProperty =
+             DependencyProperty.Register("Slices", typeof(int),
+             typeof(CylinderWrapper), new FrameworkPropertyMetadata(32));
 
         public int Slices
         {
-            get { return _slices; }
-            set
-            {
-                _slices = value;
-                OnPropertyChanged("Slices");
-            }
+            get { return (int)GetValue(SlicesProperty); }
+            set { SetValue(SlicesProperty, value); }
         }
+
+        public static readonly DependencyProperty StacksProperty =
+             DependencyProperty.Register("Stacks", typeof(int),
+             typeof(CylinderWrapper), new FrameworkPropertyMetadata(16));
 
         public int Stacks
         {
-            get { return _stacks; }
-            set
-            {
-                _stacks = value;
-                OnPropertyChanged("Stacks");
-            }
+            get { return (int)GetValue(StacksProperty); }
+            set { SetValue(StacksProperty, value); }
         }
 
         public Point3D Center
