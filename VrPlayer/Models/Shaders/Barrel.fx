@@ -2,9 +2,12 @@
 
 sampler2D input : register(s0);
 
+//TODO: Use param to set screenWarp_range
+float factor: register(C0); 
+
 float4 main(float2 uv : TEXCOORD) : COLOR 
 { 
-	const float screenWarp_range = 1.45;
+	float screenWarp_range = 1.45;
 	const float2 warpCenter = float2( 0.5, 0.5 );
   
   float2 centeredTexcoord = float2(uv.x - warpCenter.x, uv.y - warpCenter.y);

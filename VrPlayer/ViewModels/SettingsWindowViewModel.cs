@@ -4,7 +4,7 @@ using VrPlayer.Models.Config;
 
 namespace VrPlayer.ViewModels
 {
-    public class DebugWindowViewModel: ViewModelBase
+    public class SettingsWindowViewModel: ViewModelBase
 	{
         private readonly IApplicationState _state;
         private readonly IApplicationConfig _config;
@@ -19,7 +19,7 @@ namespace VrPlayer.ViewModels
             get { return _config; }
         }
 
-        public DebugWindowViewModel(IApplicationState state, IApplicationConfig config)
+        public SettingsWindowViewModel(IApplicationState state, IApplicationConfig config)
         {
             _state = state;
             _config = config;

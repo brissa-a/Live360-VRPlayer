@@ -134,12 +134,13 @@ namespace VrPlayer.Models.Plugins
             Shaders.Add(nullShaderPlugin);
 
             var barrelEffect = new BarrelEffect();
+            BindProperty(_config, "BarrelFactor", barrelEffect, BarrelEffect.FactorProperty);
             var barrelEffectPlugin = new ShaderPlugin(barrelEffect, "Barrel Distortion");
             Shaders.Add(barrelEffectPlugin);
 
-            var customPincushionEffect = new PincushionEffect();
-            BindProperty(_config, "CustomPincushionFactor", customPincushionEffect, PincushionEffect.BarrelFactorProperty);
-            var customPincushionEffectPlugin = new ShaderPlugin(customPincushionEffect, "Pincushion Distortion");
+            var pincushionEffect = new PincushionEffect();
+            BindProperty(_config, "PincushionFactor", pincushionEffect, PincushionEffect.FactorProperty);
+            var customPincushionEffectPlugin = new ShaderPlugin(pincushionEffect, "Pincushion Distortion");
             Shaders.Add(customPincushionEffectPlugin);
         }
 

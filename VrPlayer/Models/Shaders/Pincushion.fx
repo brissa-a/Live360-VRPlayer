@@ -4,7 +4,7 @@ texture input;
 
 sampler2D inputSampler : register(S0);
 
-float barrelFactor: register(C0); 
+float factor: register(C0); 
 
 float4 main(float2 uv : TEXCOORD) : COLOR
 {
@@ -12,8 +12,8 @@ float4 main(float2 uv : TEXCOORD) : COLOR
     v *= 2.0; //[0,1]-based -> [-1,1]
     v -= 1.0;
     float2 warped = float2(
-        barrelFactor*v.x/(v.y*v.y + barrelFactor), 
-        barrelFactor*v.y/(v.x*v.x + barrelFactor));
+        factor*v.x/(v.y*v.y + factor), 
+        factor*v.y/(v.x*v.x + factor));
     warped += 1.0; //[-1,1] back into [0,1]
     warped *= 0.5;
 

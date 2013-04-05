@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
 using VrPlayer.Helpers.Mvvm;
@@ -11,6 +12,12 @@ namespace VrPlayer.Models.Wrappers
         private readonly Vector3D _cameraLeftPosition;
         private readonly Vector3D _cameraRightPosition;
 
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+            OnPropertyChanged("Geometry");
+        }
+
         public StereoMode StereoMode
         {
             get { return _stereoMode; }
@@ -21,7 +28,7 @@ namespace VrPlayer.Models.Wrappers
                 OnPropertyChanged("Geometry");
             }
         }
-        
+
         public WrapperBase()
         {
             _stereoMode = StereoMode.Mono;

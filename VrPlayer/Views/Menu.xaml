@@ -67,23 +67,23 @@
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/kpovmodeler.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="_Effects..." Command="{Binding SettingsCommand}">
+            <MenuItem Header="_Effects..." Command="{Binding SettingsCommand}" CommandParameter="2">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/kcoloredit.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="_Distortions..." Command="{Binding SettingsCommand}">
+            <MenuItem Header="_Distortions..." Command="{Binding SettingsCommand}" CommandParameter="3">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/xmag.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="_Trackers..." Command="{Binding SettingsCommand}">
+            <MenuItem Header="_Trackers..." Command="{Binding SettingsCommand}" CommandParameter="4">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/package_games_arcade.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
-            <MenuItem Header="_Console..." Command="{Binding SettingsCommand}">
+            <MenuItem Header="_Console..." Command="{Binding SettingsCommand}" CommandParameter="5">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/terminal.png" />
                 </MenuItem.Icon>

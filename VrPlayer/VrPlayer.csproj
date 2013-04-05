@@ -158,7 +158,7 @@
     <Compile Include="Models\Wrappers\PlaneWrapper.cs" />
     <Compile Include="Models\Wrappers\StereoMode.cs" />
     <Compile Include="Models\Wrappers\WrapperBase.cs" />
-    <Compile Include="ViewModels\DebugWindowViewModel.cs" />
+    <Compile Include="ViewModels\SettingsWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewPortViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\MediaViewModel.cs" />

@@ -2,44 +2,34 @@ using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Media3D;
 
 namespace VrPlayer.Models.Shaders
 {
-	public class PincushionEffect : ShaderEffect 
-	{
-		public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(PincushionEffect), 0);
-		public static readonly DependencyProperty BarrelFactorProperty = DependencyProperty.Register("BarrelFactor", typeof(double), typeof(PincushionEffect), new UIPropertyMetadata((0D), PixelShaderConstantCallback(0)));
-		
-		public PincushionEffect() 
-		{
+	public class PincushionEffect : ShaderEffect {
+		public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(PincushionEffect), 0);
+		public static readonly DependencyProperty FactorProperty = DependencyProperty.Register("Factor", typeof(double), typeof(PincushionEffect), new UIPropertyMetadata(((double)(5D)), PixelShaderConstantCallback(0)));
+		public PincushionEffect() {
 			PixelShader pixelShader = new PixelShader();
-            pixelShader.UriSource = new Uri("pack://application:,,,/Models/Shaders/PincushionEffect.ps");
-			PixelShader = pixelShader;
-			UpdateShaderValue(InputProperty);
-			UpdateShaderValue(BarrelFactorProperty);
-		}
+            pixelShader.UriSource = new Uri("pack://application:,,,/Models/Shaders/PincushionEffect.ps"); this.PixelShader = pixelShader;
 
-		public Brush Input 
-		{
-			get 
-			{
-				return ((Brush)(GetValue(InputProperty)));
+			this.UpdateShaderValue(InputProperty);
+			this.UpdateShaderValue(FactorProperty);
+		}
+		public Brush Input {
+			get {
+				return ((Brush)(this.GetValue(InputProperty)));
 			}
-			set 
-			{
-				SetValue(InputProperty, value);
+			set {
+				this.SetValue(InputProperty, value);
 			}
 		}
-
-		public double Factor 
-		{
-			get 
-			{
-				return ((double)(GetValue(BarrelFactorProperty)));
+		public double Factor {
+			get {
+				return ((double)(this.GetValue(FactorProperty)));
 			}
-			set 
-			{
-				SetValue(BarrelFactorProperty, value);
+			set {
+				this.SetValue(FactorProperty, value);
 			}
 		}
 	}

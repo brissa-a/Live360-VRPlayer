@@ -6,7 +6,7 @@
     <Window.Resources>
         <Converters:ObjectToTypeConverter  x:Key="typeConverter" />
     </Window.Resources>
-    <TabControl TabStripPlacement="Left" Margin="-4">
+    <TabControl x:Name="Tabs" TabStripPlacement="Left" Margin="-4">
         <TabItem UseLayoutRounding="False">
             <TabItem.Header>
                 <StackPanel Orientation="Vertical" Width="64">
@@ -64,7 +64,9 @@
                 <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                     <Label Content="Current projection: " />
-                    <TextBox Text="{Binding Mode=OneWay, Path=State.WrapperPlugin.Wrapper, Converter={StaticResource typeConverter}}" Width="200" IsReadOnly="True" />
+                    <ComboBox Width="200" IsEnabled="False" SelectedIndex="0">
+                        <ComboBoxItem Content="{Binding Mode=OneWay, Path=State.WrapperPlugin.Wrapper, Converter={StaticResource typeConverter}}" /> 
+                    </ComboBox>
                 </StackPanel>
                 <TabControl MinHeight="264">
                     <TabItem Header="Cylinder">
@@ -145,7 +147,9 @@
                 <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                     <Label Content="Current effect: " />
-                    <TextBox Text="{Binding Mode=OneWay, Path=State.EffectPlugin.Effect, Converter={StaticResource typeConverter}}" Width="200" IsReadOnly="True" />
+                    <ComboBox Width="200" IsEnabled="False" SelectedIndex="0">
+                        <ComboBoxItem Content="{Binding Mode=OneWay, Path=State.EffectPlugin.Effect, Converter={StaticResource typeConverter}}" />
+                    </ComboBox>
                 </StackPanel>
                 <TabControl MinHeight="264">
                     <TabItem Header="Color key">
@@ -201,10 +205,12 @@
                 <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                     <Label Content="Current distorition: " />
-                    <TextBox Text="{Binding Mode=OneWay, Path=State.ShaderPlugin.Shader, Converter={StaticResource typeConverter}}" Width="200" IsReadOnly="True" />
+                    <ComboBox Width="200" IsEnabled="False" SelectedIndex="0">
+                        <ComboBoxItem Content="{Binding Mode=OneWay, Path=State.ShaderPlugin.Shader, Converter={StaticResource typeConverter}}" />
+                    </ComboBox>
                 </StackPanel>
                 <TabControl MinHeight="264">
-                    <TabItem Header="Pinch cusion">
+                    <TabItem Header="Barrel">
                         <StackPanel Orientation="Vertical" Margin="16">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -215,9 +221,26 @@
                                     <ColumnDefinition Width="200" />
                                     <ColumnDefinition Width="50" />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Pinch factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.CustomPincushionFactor}" Minimum="0" Maximum="10"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.CustomPincushionFactor}" ></TextBox>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Factor:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.BarrelFactor}" Minimum="0" Maximum="5" IsEnabled="False"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.BarrelFactor}" IsEnabled="False"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Pincushion">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Factor:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.PincushionFactor}" Minimum="0" Maximum="10"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.PincushionFactor}" ></TextBox>
                             </Grid>
                         </StackPanel>
                     </TabItem>
@@ -236,9 +259,28 @@
                 <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                     <Label Content="Current tracker: " />
-                    <TextBox Text="{Binding Mode=OneWay, Path=State.TrackerPlugin.Tracker, Converter={StaticResource typeConverter}}" Width="200" IsReadOnly="True" />
+                    <ComboBox Width="200" IsEnabled="False" SelectedIndex="0">
+                        <ComboBoxItem Content="{Binding Mode=OneWay, Path=State.TrackerPlugin.Tracker, Converter={StaticResource typeConverter}}" />
+                    </ComboBox>
                 </StackPanel>
                 <TabControl MinHeight="264">
+                    <TabItem Header="Mouse">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Sensitivity:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.MouseSensitivity}" Minimum="0" Maximum="10"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.MouseSensitivity}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
                     <TabItem Header="Razer Hydra">
                         <StackPanel Orientation="Vertical" Margin="16">
                             <Grid>
@@ -252,7 +294,7 @@
                                     <ColumnDefinition Width="50" />
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.HydraPositionScaleFactor}" Minimum="0" Maximum="1"></Slider>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.HydraPositionScaleFactor}" Minimum="0" Maximum="0.01"></Slider>
                                 <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.HydraPositionScaleFactor}"></TextBox>
                                 <Label Grid.Column="0" Grid.Row="1" Content="Tilt (pitch offset):"></Label>
                                 <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.HydraPitchOffset}" Minimum="0" Maximum="360"></Slider>
@@ -272,7 +314,7 @@
                                     <ColumnDefinition Width="50" />
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.KinectPositionScaleFactor}" Minimum="0" Maximum="1"></Slider>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.KinectPositionScaleFactor}" Minimum="0" Maximum="3"></Slider>
                                 <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.KinectPositionScaleFactor}"></TextBox>
                             </Grid>
                         </StackPanel>
@@ -289,7 +331,7 @@
                                     <ColumnDefinition Width="50" />
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.PsMovePositionScaleFactor}" Minimum="0" Maximum="1"></Slider>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.PsMovePositionScaleFactor}" Minimum="0" Maximum="0.1"></Slider>
                                 <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.PsMovePositionScaleFactor}"></TextBox>
                             </Grid>
                         </StackPanel>
@@ -308,7 +350,7 @@
                                     <ColumnDefinition Width="50" />
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.VrpnPositionScaleFactor}" Minimum="0" Maximum="1"></Slider>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.VrpnPositionScaleFactor}" Minimum="0" Maximum="50"></Slider>
                                 <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.VrpnPositionScaleFactor}"></TextBox>
                                 <Label Grid.Column="0" Grid.Row="1" Content="Tracker address:"></Label>
                                 <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Config.VrpnTrackerAddress}"></TextBox>

@@ -1,7 +1,4 @@
-﻿using System.Windows.Media;
-using System.Windows.Media.Media3D;
-
-using VrPlayer.Helpers.Mvvm;
+﻿using VrPlayer.Helpers.Mvvm;
 
 namespace VrPlayer.Models.Config
 {
@@ -9,7 +6,8 @@ namespace VrPlayer.Models.Config
     {
         private string _defaultMediaFile;
         private string _samplesFolder;
-        private double _customPincushionFactor;
+        private double _barrelFactor;
+        private double _pincushionFactor;
         private int _cameraFieldOfView;
         private int _mouseSensitivity;
         private double _depthMapMaxOffset;
@@ -53,13 +51,23 @@ namespace VrPlayer.Models.Config
             }
         }
 
-        public double CustomPincushionFactor
+        public double BarrelFactor
         {
-            get { return _customPincushionFactor; }
+            get { return _barrelFactor; }
             set
             {
-                _customPincushionFactor = value;
-                OnPropertyChanged("CustomPincushionFactor");
+                _barrelFactor = value;
+                OnPropertyChanged("BarrelFactor");
+            }
+        }
+
+        public double PincushionFactor
+        {
+            get { return _pincushionFactor; }
+            set
+            {
+                _pincushionFactor = value;
+                OnPropertyChanged("PincushionFactor");
             }
         }
 

@@ -4,7 +4,8 @@
     {
         string DefaultMediaFile { get; set; }
         string SamplesFolder { get; set; }
-        double CustomPincushionFactor { get; set; }
+        double BarrelFactor { get; set; }
+        double PincushionFactor { get; set; }
         int CameraFieldOfView { get; set; }
         int MouseSensitivity { get; set; }
         double DepthMapMaxOffset { get; set; }

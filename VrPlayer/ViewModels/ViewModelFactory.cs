@@ -37,9 +37,9 @@ namespace VrPlayer.ViewModels
             return new MediaViewModel(_state);
         }
 
-        public DebugWindowViewModel CreateDebugWindowViewModel()
+        public SettingsWindowViewModel CreateDebugWindowViewModel()
         {
-            return new DebugWindowViewModel(_state, _config);
+            return new SettingsWindowViewModel(_state, _config);
         }
         
     }

@@ -393,7 +393,7 @@ namespace VrPlayer.ViewModels
 
         private void LaunchWebBrowser(object o)
 		{
-            Process.Start("http://vrplayer.tv");
+            Process.Start("http://www.vrplayer.tv");
         }
 
         private void Exit(object o)
@@ -437,16 +437,19 @@ namespace VrPlayer.ViewModels
 
         private void ShowSettings(object o)
         {
-            var existingWindow = Application.Current.Windows.Cast<Window>().SingleOrDefault(w => w.GetType() == typeof(SettingsWindow));
-            if (existingWindow != null) 
+            var tabIndex = 0;
+            int.TryParse((string) o, out tabIndex);
+            var window = Application.Current.Windows.Cast<Window>().SingleOrDefault(w => w.GetType() == typeof(SettingsWindow));
+            if (window != null) 
             {
-                existingWindow.Activate();
+                window.Activate();
             }
             else 
             {
-                var window = new SettingsWindow();
+                window = new SettingsWindow();
                 window.Show();
-            }            
+            }
+            ((SettingsWindow) window).Tabs.SelectedIndex = tabIndex;
         }
 
         private void ShowAbout(object o)
