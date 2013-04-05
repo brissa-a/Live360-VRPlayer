@@ -33,12 +33,6 @@
 				</MenuItem.Icon>
             </MenuItem>
             <Separator />
-                <MenuItem Header="_Visit vrplayer.tv..." Command="{Binding LaunchWebBrowserCommand}">
-                    <MenuItem.Icon>
-                        <Image Width="20" Height="20" Source="/Medias/icon48.png" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            <Separator />
             <MenuItem Header="E_xit" Command="{Binding ExitCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/exit.png" />
@@ -54,42 +48,22 @@
             <MenuItem Header="_Layout" ItemsSource="{Binding Path=StereoOutputMenu}"/>
             <MenuItem Header="_Distortion" ItemsSource="{Binding Path=ShadersMenu}"/>
         </MenuItem>
-        <MenuItem Header="_Tracker" ItemsSource="{Binding Path=TrackersMenu}">
+        <MenuItem Header="Trac_ker" ItemsSource="{Binding Path=TrackersMenu}">
         </MenuItem>
-        <MenuItem Header="_Settings" Command="{Binding SettingsCommand}">
-            <MenuItem Header="_General..." Command="{Binding SettingsCommand}" CommandParameter="0">
+        <MenuItem Header="_Tools" Command="{Binding SettingsCommand}">
+            <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" CommandParameter="0">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/kservices.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Projections..." Command="{Binding SettingsCommand}" CommandParameter="1">
+        </MenuItem>
+        <MenuItem Header="_?">
+            <MenuItem Header="_Visit vrplayer.tv..." Command="{Binding LaunchWebBrowserCommand}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kpovmodeler.png" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="_Effects..." Command="{Binding SettingsCommand}" CommandParameter="2">
-                <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kcoloredit.png" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="_Distortions..." Command="{Binding SettingsCommand}" CommandParameter="3">
-                <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/xmag.png" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="_Trackers..." Command="{Binding SettingsCommand}" CommandParameter="4">
-                <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/package_games_arcade.png" />
+                    <Image Width="20" Height="20" Source="/Medias/icon48.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
-            <MenuItem Header="_Console..." Command="{Binding SettingsCommand}" CommandParameter="5">
-                <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/terminal.png" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </MenuItem>
-        <MenuItem Header="_?">
             <MenuItem Header="_About..." Command="{Binding AboutCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/help.png" />

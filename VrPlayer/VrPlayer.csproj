@@ -105,9 +105,6 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DebugWindow.xaml.cs">
-      <DependentUpon>DebugWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\Converters\CompareStringParameterConverter.cs" />
     <Compile Include="Helpers\Converters\CompareStringToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\ViewportDistanceConverter.cs" />
@@ -183,10 +180,6 @@
     <Page Include="SettingsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="DebugWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UrlInputDialog.xaml">
       <SubType>Designer</SubType>

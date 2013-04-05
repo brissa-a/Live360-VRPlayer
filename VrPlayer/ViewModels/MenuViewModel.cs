@@ -437,8 +437,6 @@ namespace VrPlayer.ViewModels
 
         private void ShowSettings(object o)
         {
-            var tabIndex = 0;
-            int.TryParse((string) o, out tabIndex);
             var window = Application.Current.Windows.Cast<Window>().SingleOrDefault(w => w.GetType() == typeof(SettingsWindow));
             if (window != null) 
             {
@@ -449,7 +447,6 @@ namespace VrPlayer.ViewModels
                 window = new SettingsWindow();
                 window.Show();
             }
-            ((SettingsWindow) window).Tabs.SelectedIndex = tabIndex;
         }
 
         private void ShowAbout(object o)

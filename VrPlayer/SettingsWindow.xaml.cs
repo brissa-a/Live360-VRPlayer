@@ -10,7 +10,7 @@ namespace VrPlayer
             InitializeComponent();
             try
             {
-                DataContext = ((App)Application.Current).ViewModelFactory.CreateDebugWindowViewModel();
+                DataContext = ((App)Application.Current).ViewModelFactory.CreateSettingsWindowViewModel();
             }
             catch (Exception exc)
             {
