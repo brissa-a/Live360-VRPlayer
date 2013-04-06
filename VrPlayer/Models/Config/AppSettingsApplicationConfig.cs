@@ -25,6 +25,7 @@ namespace VrPlayer.Models.Config
             VrpnPositionScaleFactor = ParseDouble(ConfigurationManager.AppSettings["VrpnPositionScaleFactor"]);
             VrpnTrackerAddress = ConfigurationManager.AppSettings["VrpnTrackerAddress"];
             VrpnButtonAddress = ConfigurationManager.AppSettings["VrpnButtonAddress"];
+            VrpnPitchOffset = ParseDouble(ConfigurationManager.AppSettings["VrpnPitchOffset"]);
             PositionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
             EvrRendering = bool.Parse(ConfigurationManager.AppSettings["EvrRendering"]);
             DomeSlices = int.Parse(ConfigurationManager.AppSettings["DomeSlices"]);

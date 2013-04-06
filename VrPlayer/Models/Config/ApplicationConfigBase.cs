@@ -22,6 +22,7 @@ namespace VrPlayer.Models.Config
         private double _vrpnPositionScaleFactor;
         private string _vrpnTrackerAddress;
         private string _vrpnButtonAddress;
+        private double _vrpnPitchOffset;
         private bool _positionalAudio;
         private bool _evrRendering;
         private int _domeSlices;
@@ -208,6 +209,16 @@ namespace VrPlayer.Models.Config
             {
                 _vrpnButtonAddress = value;
                 OnPropertyChanged("VrpnButtonAddress");
+            }
+        }
+
+        public double VrpnPitchOffset
+        {
+            get { return _vrpnPitchOffset; }
+            set
+            {
+                _vrpnPitchOffset = value;
+                OnPropertyChanged("VrpnPitchOffset");
             }
         }
 

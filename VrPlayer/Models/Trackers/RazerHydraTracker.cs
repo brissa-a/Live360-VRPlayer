@@ -51,9 +51,9 @@ namespace VrPlayer.Models.Trackers
 
                 RawRotation = new Quaternion(
                     _hydra.Data.rot_quat.x,
-                    -_hydra.Data.rot_quat.y,
-                    _hydra.Data.rot_quat.z,
-                    -_hydra.Data.rot_quat.w);
+                    _hydra.Data.rot_quat.y,
+                    -_hydra.Data.rot_quat.z,
+                    _hydra.Data.rot_quat.w);
 
                 if (_hydra.Data.buttons == SIXENSE_BUTTON_START)
                 {

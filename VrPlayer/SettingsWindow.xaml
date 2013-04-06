@@ -343,6 +343,7 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -356,6 +357,9 @@
                                 <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Config.VrpnTrackerAddress}"></TextBox>
                                 <Label Grid.Column="0" Grid.Row="2" Content="Buttons address:"></Label>
                                 <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Config.VrpnButtonAddress}"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="3" Content="Tilt (pitch offset):"></Label>
+                                <Slider Grid.Column="1" Grid.Row="3" Value="{Binding Path=Config.VrpnPitchOffset}" Minimum="0" Maximum="360"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding Path=Config.VrpnPitchOffset}"></TextBox>
                             </Grid>
                         </StackPanel>
                     </TabItem>

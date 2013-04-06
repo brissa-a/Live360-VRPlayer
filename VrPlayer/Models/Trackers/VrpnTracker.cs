@@ -52,19 +52,19 @@ namespace VrPlayer.Models.Trackers
         {
             try
             {
-                //TODO: Support user defined sensor index
+                //TODO: Support user defined sensor index or autodetect
                 if (e.Sensor == 0)
                 {
                     RawPosition = PositionScaleFactor * new Vector3D(
-                        e.Position.X,
-                        -e.Position.Y,
-                        e.Position.Z);
+                        -e.Position.X,
+                        -e.Position.Z,
+                        e.Position.Y);
 
                     RawRotation = new System.Windows.Media.Media3D.Quaternion(
-                        e.Orientation.X,
-                        -e.Orientation.Y,
+                        e.Orientation.Y,
                         e.Orientation.Z,
-                        -e.Orientation.W);
+                        -e.Orientation.X,
+                        e.Orientation.W);
 
                     UpdatePositionAndRotation();
                 }
