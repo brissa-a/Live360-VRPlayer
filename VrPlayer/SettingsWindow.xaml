@@ -166,7 +166,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Content="Color:"></Label>
                                 <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Config.ColorKeyAlphaColor}"></TextBox>
-                                <Button Grid.Column="2" Grid.Row="0" Background="{Binding Path=Config.ColorKeyAlphaColor}"/>
+                                <TextBox Grid.Column="2" Grid.Row="0" Background="{Binding Path=Config.ColorKeyAlphaColor}" IsReadOnly="True"/>
                                 <Label Grid.Column="0" Grid.Row="1" Content="Tolerence:"></Label>
                                 <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.ColorKeyTolerance}" Minimum="0" Maximum="1"></Slider>
                                 <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.ColorKeyTolerance}"></TextBox>
@@ -353,30 +353,38 @@
                                 <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
                                 <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.VrpnPositionScaleFactor}" Minimum="0" Maximum="50"></Slider>
                                 <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.VrpnPositionScaleFactor}"></TextBox>
-                                <Label Grid.Column="0" Grid.Row="1" Content="Tracker address:"></Label>
-                                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Config.VrpnTrackerAddress}"></TextBox>
-                                <Label Grid.Column="0" Grid.Row="2" Content="Buttons address:"></Label>
-                                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Config.VrpnButtonAddress}"></TextBox>
-                                <Label Grid.Column="0" Grid.Row="3" Content="Tilt (pitch offset):"></Label>
-                                <Slider Grid.Column="1" Grid.Row="3" Value="{Binding Path=Config.VrpnPitchOffset}" Minimum="0" Maximum="360"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding Path=Config.VrpnPitchOffset}"></TextBox>
-                            </Grid>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Tilt (pitch offset):"></Label>
+                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.VrpnPitchOffset}" Minimum="0" Maximum="360"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.VrpnPitchOffset}"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="2" Content="Tracker address:"></Label>
+                                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Config.VrpnTrackerAddress}"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="3" Content="Buttons address:"></Label>
+                                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=Config.VrpnButtonAddress}"></TextBox>
+                           </Grid>
                         </StackPanel>
                     </TabItem>
+                    <!--TabItem Header="Leap">
+                        <StackPanel Orientation="Vertical" Margin="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.LeapPositionScaleFactor}" Minimum="0" Maximum="0.1"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.LeapPositionScaleFactor}"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Rotation factor:"></Label>
+                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.LeapRotationFactor}" Minimum="1" Maximum="10"></Slider>
+                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.LeapRotationFactor}"></TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem-->
                 </TabControl>
-            </StackPanel>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <StackPanel Orientation="Vertical" Width="64">
-                    <Image Height="48" Width="48" Source="/Medias/Nuvola/terminal.png" />
-                    <TextBlock Text="Console" HorizontalAlignment="Center" />
-                </StackPanel>
-            </TabItem.Header>
-            <StackPanel Orientation="Vertical" Margin="16">
-                <Label Content="Console" FontSize="18" />
-                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
-                <TextBox Text="VR Player" VerticalScrollBarVisibility="Visible" Height="310" />
             </StackPanel>
         </TabItem>
     </TabControl>

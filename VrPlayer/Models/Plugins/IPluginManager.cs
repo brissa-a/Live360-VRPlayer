@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VrPlayer.Models.Plugins
 {
-    public interface IPluginManager
+    public interface IPluginManager: IDisposable
     {
         List<EffectPlugin> Effects { get; }
         List<WrapperPlugin> Wrappers { get; }

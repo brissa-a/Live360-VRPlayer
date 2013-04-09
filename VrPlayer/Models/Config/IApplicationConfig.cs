@@ -21,6 +21,8 @@
         string VrpnTrackerAddress { get; set; }
         string VrpnButtonAddress { get; set; }
         double VrpnPitchOffset { get; set; }
+        double LeapPositionScaleFactor { get; set; }
+        double LeapRotationFactor { get; set; }
         bool PositionalAudio { get; set; }
         bool EvrRendering { get; set; }
         int DomeSlices { get; set; }

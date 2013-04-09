@@ -340,6 +340,7 @@
     <PostBuildEvent>copy "$(SolutionDir)VrPlayer*.txt" "$(TargetDir)"
 copy "$(SolutionDir)Lib\PsMove\*.*" "$(TargetDir)"
 copy "$(SolutionDir)Lib\Wiimote\*.*" "$(TargetDir)"
+copy "$(SolutionDir)Lib\Leap\x86\*.*" "$(TargetDir)"
 copy "$(SolutionDir)Lib\CsXmpToolkit\*.*" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

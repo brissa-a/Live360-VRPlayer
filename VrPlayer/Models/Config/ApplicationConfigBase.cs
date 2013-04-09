@@ -23,6 +23,8 @@ namespace VrPlayer.Models.Config
         private string _vrpnTrackerAddress;
         private string _vrpnButtonAddress;
         private double _vrpnPitchOffset;
+        private double _leapPositionScaleFactor;
+        private double _leapRotationFactor;
         private bool _positionalAudio;
         private bool _evrRendering;
         private int _domeSlices;
@@ -219,6 +221,26 @@ namespace VrPlayer.Models.Config
             {
                 _vrpnPitchOffset = value;
                 OnPropertyChanged("VrpnPitchOffset");
+            }
+        }
+
+        public double LeapPositionScaleFactor
+        {
+            get { return _leapPositionScaleFactor; }
+            set
+            {
+                _leapPositionScaleFactor = value;
+                OnPropertyChanged("LeapPositionScaleFactor");
+            }
+        }
+
+        public double LeapRotationFactor
+        {
+            get { return _leapRotationFactor; }
+            set
+            {
+                _leapRotationFactor = value;
+                OnPropertyChanged("LeapRotationFactor");
             }
         }
 

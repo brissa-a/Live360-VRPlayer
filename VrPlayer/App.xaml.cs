@@ -12,23 +12,25 @@ namespace VrPlayer
     public partial class App : Application
     {
         private readonly SettingsManager _settingsManager;
+        private readonly IPluginManager _pluginManager;
 
         public ViewModelFactory ViewModelFactory { get; private set; }
 
         private App()
         {
             IApplicationConfig config = new AppSettingsApplicationConfig();
-            IPluginManager pluginManager = new StaticPluginManager(config);
+            _pluginManager = new StaticPluginManager(config);
             IApplicationState state = new DefaultApplicationState(config);
-            ViewModelFactory = new ViewModelFactory(config, pluginManager, state);
+            ViewModelFactory = new ViewModelFactory(config, _pluginManager, state);
 
-            _settingsManager = new SettingsManager(Settings.Default, state, pluginManager);
+            _settingsManager = new SettingsManager(Settings.Default, state, _pluginManager);
             _settingsManager.Load();
         }
     
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             _settingsManager.Save();
+            _pluginManager.Dispose();
         }
     }
 }

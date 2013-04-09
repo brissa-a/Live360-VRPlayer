@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
+
 using VrPlayer.Helpers;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Shaders;
 using VrPlayer.Models.Wrappers;
 using VrPlayer.Models.Effects;
-using System.Windows.Media;
 
 namespace VrPlayer.Models.Plugins
 {
@@ -117,15 +119,23 @@ namespace VrPlayer.Models.Plugins
             Trackers.Add(psMoveTrackerPlugin);
 
             var hydraTracker = new RazerHydraTracker();
-            BindProperty(_config, "HydraPositionScaleFactor", hydraTracker, TrackerBase.PositionScaleFactorProperty);
             hydraTracker.RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(_config.HydraPitchOffset, 0, 0);
+            BindProperty(_config, "HydraPositionScaleFactor", hydraTracker, TrackerBase.PositionScaleFactorProperty);
             var hydraTrackerPlugin = new TrackerPlugin(hydraTracker, "Razer Hydra");
             Trackers.Add(hydraTrackerPlugin);
 
             var vrpnTracker = new VrpnTracker(_config.VrpnTrackerAddress, _config.VrpnButtonAddress);
+            vrpnTracker.RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(_config.VrpnPitchOffset, 0, 0);
             BindProperty(_config, "VrpnPositionScaleFactor", vrpnTracker, TrackerBase.PositionScaleFactorProperty);
             var vrpnTrackerPlugin = new TrackerPlugin(vrpnTracker, "VRPN Client");
             Trackers.Add(vrpnTrackerPlugin);
+            /*
+            var leapTracker = new LeapTracker();
+            BindProperty(_config, "LeapRotationFactor", leapTracker, LeapTracker.RotationFactorProperty);
+            BindProperty(_config, "LeapPositionScaleFactor", leapTracker, TrackerBase.PositionScaleFactorProperty);
+            var leapTrackerPlugin = new TrackerPlugin(leapTracker, "Leap");
+            Trackers.Add(leapTrackerPlugin);
+            */
         }
 
         private void LoadShaders()
@@ -153,6 +163,14 @@ namespace VrPlayer.Models.Plugins
                 Mode = BindingMode.TwoWay
             };
             BindingOperations.SetBinding(target, property, binding);        
+        }
+
+        public void Dispose()
+        {
+            foreach (var trackerPlugin in Trackers.Where(trackerPlugin => trackerPlugin.Tracker != null))
+            {
+                trackerPlugin.Tracker.Dispose();
+            }
         }
     }
 }

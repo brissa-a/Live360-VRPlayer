@@ -151,6 +151,20 @@ namespace VrPlayer.Models.Trackers
             BasePosition = -RawPosition + _positionOffset;
         }
 
+        public void CalibratePosition()
+        {
+            BaseRotation = new Quaternion();
+            BasePosition = -RawPosition + _positionOffset;
+        }
+
+        public void CalibrateRotation()
+        {
+            Quaternion conjugate = new Quaternion(RawRotation.X, RawRotation.Y, RawRotation.Z, RawRotation.W) * _rotationOffset;
+            conjugate.Conjugate();
+            BaseRotation = conjugate;
+            BasePosition = new Vector3D();
+        }
+
         public abstract void Dispose();
     }
 }
