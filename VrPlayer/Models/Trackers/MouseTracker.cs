@@ -70,7 +70,11 @@ namespace VrPlayer.Models.Trackers
                     moveVector = new Vector3D(0, moveFactor, 0);
                     break;
             }
-            Position = Position + moveVector;
+            var m = Matrix3D.Identity;
+            m.Rotate(Rotation);
+            m.Translate(moveVector);
+            m.Rotate(Rotation);
+            Position = Position + new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
         }
 
         void mouseZone_MouseMove(object sender, MouseEventArgs e)

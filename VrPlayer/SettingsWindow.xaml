@@ -186,7 +186,7 @@
                                     <ColumnDefinition Width="50" />
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Content="Max offset:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.DepthMapMaxOffset}" Minimum="-1" Maximum="1"></Slider>
+                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.DepthMapMaxOffset}" Minimum="-0.025" Maximum="0.025"></Slider>
                                 <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.DepthMapMaxOffset}"></TextBox>
                             </Grid>
                         </StackPanel>

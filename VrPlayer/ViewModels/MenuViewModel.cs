@@ -321,7 +321,7 @@ namespace VrPlayer.ViewModels
         {
             //Todo: Extract dialog to UI layer
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Movies|*.avi;*.mpeg;*.wmv;*.flv;*.mp4;*.mkv|Images|*.jpg;*.bmp;*.gif;*.png|All Files|*.*";
+            openFileDialog.Filter = "Movies|*.avi;*.flv;*.f4v;*.mp4;*.wmv;*.mpeg;*.mkv|Images|*.jpg;*.png;*.bmp;*.gif|All Files|*.*";
             if (openFileDialog.ShowDialog().Value)
             {
                 Load(openFileDialog.FileName);
