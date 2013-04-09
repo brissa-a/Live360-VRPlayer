@@ -1,4 +1,6 @@
-﻿using VrPlayer.Helpers.Mvvm;
+﻿using System.Windows.Media;
+using System.Windows.Media.Media3D;
+using VrPlayer.Helpers.Mvvm;
 
 namespace VrPlayer.Models.Config
 {
@@ -11,18 +13,18 @@ namespace VrPlayer.Models.Config
         private int _cameraFieldOfView;
         private int _mouseSensitivity;
         private double _depthMapMaxOffset;
-        private string _colorKeyAlphaColor;
+        private Color _colorKeyAlphaColor;
         private double _colorKeyTolerance;
         private int _orientationRefreshRateInMs;
         private int _viewportsHorizontalOffset;
         private double _hydraPositionScaleFactor;
-        private double _hydraPitchOffset;
+        private Vector3D _hydraRotationOffset;
         private double _psMovePositionScaleFactor;
         private double _kinectPositionScaleFactor;
         private double _vrpnPositionScaleFactor;
         private string _vrpnTrackerAddress;
         private string _vrpnButtonAddress;
-        private double _vrpnPitchOffset;
+        private Vector3D _vrpnRotationOffset;
         private double _leapPositionScaleFactor;
         private double _leapRotationFactor;
         private bool _positionalAudio;
@@ -104,7 +106,7 @@ namespace VrPlayer.Models.Config
             }
         }
 
-        public string ColorKeyAlphaColor
+        public Color ColorKeyAlphaColor
         {
             get { return _colorKeyAlphaColor; }
             set
@@ -154,13 +156,13 @@ namespace VrPlayer.Models.Config
             }
         }
 
-        public double HydraPitchOffset
+        public Vector3D HydraRotationOffset
         {
-            get { return _hydraPitchOffset; }
+            get { return _hydraRotationOffset; }
             set
             {
-                _hydraPitchOffset = value;
-                OnPropertyChanged("HydraPitchOffset");
+                _hydraRotationOffset = value;
+                OnPropertyChanged("HydraRotationOffset");
             }
         }
 
@@ -214,13 +216,13 @@ namespace VrPlayer.Models.Config
             }
         }
 
-        public double VrpnPitchOffset
+        public Vector3D VrpnRotationOffset
         {
-            get { return _vrpnPitchOffset; }
+            get { return _vrpnRotationOffset; }
             set
             {
-                _vrpnPitchOffset = value;
-                OnPropertyChanged("VrpnPitchOffset");
+                _vrpnRotationOffset = value;
+                OnPropertyChanged("VrpnRotationOffset");
             }
         }
 

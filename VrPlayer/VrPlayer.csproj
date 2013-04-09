@@ -100,6 +100,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\Converters\Vector3DToQuaternionConverter.cs" />
+    <Compile Include="Helpers\Converters\Vector3DToCoordConverter.cs" />
     <Compile Include="Helpers\Converters\ObjectToTypeConverter.cs" />
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
@@ -231,9 +233,6 @@
     <Resource Include="Medias\Nuvola\package_games_arcade.png" />
     <Resource Include="Medias\Nuvola\xmag.png" />
     <Resource Include="Medias\Nuvola\terminal.png" />
-    <Content Include="XmpToolkit.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Resource Include="vrplayer.ico" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -118,34 +118,30 @@ namespace VrPlayer.Models.Trackers
             }
         }
 
-        private Quaternion _rotationOffset;
+        public static readonly DependencyProperty RotationOffsetProperty =
+            DependencyProperty.Register("RotationOffset", typeof(Quaternion),
+            typeof(TrackerBase), new FrameworkPropertyMetadata(new Quaternion()));
+
         public Quaternion RotationOffset
         {
-            get
-            {
-                return _rotationOffset;
-            }
-            set
-            {
-                _rotationOffset = value;
-                OnPropertyChanged("RotationOffset");
-            }
+            get { return (Quaternion)GetValue(RotationOffsetProperty); }
+            set { SetValue(RotationOffsetProperty, value); }
         }
 
         protected void UpdatePositionAndRotation()
         {
-            Rotation = BaseRotation * RawRotation * _rotationOffset;
-            Vector3D relativePos = BasePosition + RawPosition;
-            Matrix3D m = Matrix3D.Identity;
+            Rotation = BaseRotation * RawRotation * RotationOffset;
+            var relativePos = BasePosition + RawPosition;
+            var m = Matrix3D.Identity;
             m.Rotate(BaseRotation);
             m.Translate(relativePos);
             m.Rotate(BaseRotation);
-            this.Position = new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
+            Position = new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
         }
 
         public void Calibrate()
         {
-            Quaternion conjugate = new Quaternion(RawRotation.X, RawRotation.Y, RawRotation.Z, RawRotation.W) * _rotationOffset;
+            var conjugate = new Quaternion(RawRotation.X, RawRotation.Y, RawRotation.Z, RawRotation.W) * RotationOffset;
             conjugate.Conjugate();
             BaseRotation = conjugate;
             BasePosition = -RawPosition + _positionOffset;
@@ -159,7 +155,7 @@ namespace VrPlayer.Models.Trackers
 
         public void CalibrateRotation()
         {
-            Quaternion conjugate = new Quaternion(RawRotation.X, RawRotation.Y, RawRotation.Z, RawRotation.W) * _rotationOffset;
+            var conjugate = new Quaternion(RawRotation.X, RawRotation.Y, RawRotation.Z, RawRotation.W) * RotationOffset;
             conjugate.Conjugate();
             BaseRotation = conjugate;
             BasePosition = new Vector3D();

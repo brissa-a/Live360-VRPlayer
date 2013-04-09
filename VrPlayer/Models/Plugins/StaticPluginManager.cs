@@ -2,9 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
-
-using VrPlayer.Helpers;
+using VrPlayer.Helpers.Converters;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Shaders;
@@ -53,7 +51,7 @@ namespace VrPlayer.Models.Plugins
             Effects.Add(depthMapSbsEffectPlugin);
 
             var colorKeyAlphaEffect = new ColorKeyAlphaEffect();
-            colorKeyAlphaEffect.ColorKey = (Color)ColorConverter.ConvertFromString(_config.ColorKeyAlphaColor);
+            BindProperty(_config, "ColorKeyAlphaColor", colorKeyAlphaEffect, ColorKeyAlphaEffect.ColorKeyProperty);
             BindProperty(_config, "ColorKeyTolerance", colorKeyAlphaEffect, ColorKeyAlphaEffect.ToleranceProperty);
             var colorKeyAlphaEffectPlugin = new EffectPlugin(colorKeyAlphaEffect, "Color Key Alpha");
             Effects.Add(colorKeyAlphaEffectPlugin);
@@ -69,7 +67,6 @@ namespace VrPlayer.Models.Plugins
 
         private void LoadWrappers()
         {
-
             var planeWrapper = new PlaneWrapper();
             var planeWrapperPlugin = new WrapperPlugin(planeWrapper, "Plane");
             Wrappers.Add(planeWrapperPlugin);
@@ -100,7 +97,7 @@ namespace VrPlayer.Models.Plugins
         private void LoadTrackers()
         {
             var mouseTracker = new MouseTracker();
-            mouseTracker.MouseSensitivity = _config.MouseSensitivity;
+            BindProperty(_config, "MouseSensitivity", mouseTracker, MouseTracker.MouseSensitivityProperty);
             var mouseTrackerPlugin = new TrackerPlugin(mouseTracker, "Mouse");
             Trackers.Add(mouseTrackerPlugin);
 
@@ -119,13 +116,13 @@ namespace VrPlayer.Models.Plugins
             Trackers.Add(psMoveTrackerPlugin);
 
             var hydraTracker = new RazerHydraTracker();
-            hydraTracker.RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(_config.HydraPitchOffset, 0, 0);
+            BindProperty(_config, "HydraRotationOffset", hydraTracker, TrackerBase.RotationOffsetProperty, new Vector3DToQuaternionConverter());
             BindProperty(_config, "HydraPositionScaleFactor", hydraTracker, TrackerBase.PositionScaleFactorProperty);
             var hydraTrackerPlugin = new TrackerPlugin(hydraTracker, "Razer Hydra");
             Trackers.Add(hydraTrackerPlugin);
 
             var vrpnTracker = new VrpnTracker(_config.VrpnTrackerAddress, _config.VrpnButtonAddress);
-            vrpnTracker.RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(_config.VrpnPitchOffset, 0, 0);
+            BindProperty(_config, "VrpnRotationOffset", vrpnTracker, TrackerBase.RotationOffsetProperty, new Vector3DToQuaternionConverter());
             BindProperty(_config, "VrpnPositionScaleFactor", vrpnTracker, TrackerBase.PositionScaleFactorProperty);
             var vrpnTrackerPlugin = new TrackerPlugin(vrpnTracker, "VRPN Client");
             Trackers.Add(vrpnTrackerPlugin);
@@ -163,6 +160,18 @@ namespace VrPlayer.Models.Plugins
                 Mode = BindingMode.TwoWay
             };
             BindingOperations.SetBinding(target, property, binding);        
+        }
+
+        private void BindProperty(object source, string path, DependencyObject target, DependencyProperty property, IValueConverter converter)
+        {
+            var binding = new Binding
+            {
+                Source = source,
+                Path = new PropertyPath(path),
+                Mode = BindingMode.TwoWay,
+                Converter = converter
+            };
+            BindingOperations.SetBinding(target, property, binding);
         }
 
         public void Dispose()

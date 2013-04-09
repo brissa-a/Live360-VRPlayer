@@ -5,6 +5,11 @@ namespace VrPlayer.Helpers
 {
     public class QuaternionHelper
     {
+        public static Quaternion QuaternionFromEulerAngles(Vector3D eulerAngles)
+        {
+            return QuaternionFromEulerAngles(eulerAngles.X, eulerAngles.Y, eulerAngles.Z);
+        }
+
         //Source: http://www.vbforums.com/showthread.php?637168-WPF-3D-orbiting-camera-(pitch-yaw-rotation-only)
         public static Quaternion QuaternionFromEulerAngles(double pitch, double yaw, double roll)
         {
