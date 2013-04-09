@@ -29,17 +29,17 @@ namespace VrPlayer.Models.Trackers
             try
             {
                 _listener = new CustomListener();
-                _listener.Init += new InitEventHandler(_listener_Init);
-                _listener.Frame += new FrameEventHandler(_listener_Frame);
-                _listener.Exit += new ExitEventHandler(_listener_Exit);
-                _listener.Connect += new ConnectEventHandler(_listener_Connect);
-                _listener.Disconnect += new DisconnectEventHandler(_listener_Disconnect);
+                _listener.Init += _listener_Init;
+                _listener.Frame += _listener_Frame;
+                _listener.Exit += _listener_Exit;
+                _listener.Connect += _listener_Connect;
+                _listener.Disconnect += _listener_Disconnect;
 
                 _leap = new Controller();
                 _leap.AddListener(_listener);
 
-                this.IsEnabled = true;
-                this.PositionScaleFactor = 0.01;
+                IsEnabled = true;
+                PositionScaleFactor = 0.01;
             }
             catch (Exception exc)
             {
@@ -63,7 +63,7 @@ namespace VrPlayer.Models.Trackers
         void _listener_Frame(object sender, ControllerEventArgs e)
         {
             //Todo: Get rid of the dispatcher if possible
-            this.Dispatcher.Invoke((Action)(() =>
+            Dispatcher.Invoke((Action)(() =>
             {
                 Frame frame = _leap.Frame();
 
@@ -73,11 +73,11 @@ namespace VrPlayer.Models.Trackers
                     if (finger != null)
                     {
                         Vector vec = finger.Direction;
-                        this.RawRotation = QuaternionHelper.QuaternionFromEulerAngles(
+                        RawRotation = QuaternionHelper.QuaternionFromEulerAngles(
                             RotationFactor * RadianToDegree(vec.Pitch),
                             RotationFactor * RadianToDegree(vec.Yaw),
                             0);
-                        this.RawPosition = PositionScaleFactor * new Vector3D(
+                        RawPosition = PositionScaleFactor * new Vector3D(
                             finger.TipPosition.x,
                             -finger.TipPosition.y,
                             finger.TipPosition.z
@@ -86,19 +86,17 @@ namespace VrPlayer.Models.Trackers
 
                     if (frame.Fingers.Count >= 5)
                     {
-                        base.CalibratePosition();
+                        CalibratePosition();
                     }
 
-                    base.UpdatePositionAndRotation();
+                    UpdatePositionAndRotation();
                 }
             }));
-
-            
          }
 
         void _listener_Init(object sender, EventArgs e)
         {
-            this.IsEnabled = true;
+            IsEnabled = true;
         }
 
         public override void Dispose()

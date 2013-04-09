@@ -1,7 +1,0 @@
-﻿Copyright 2007-2009 Brian Peek
-http://www.brianpeek.com/
-http://www.codeplex.com/WiimoteLib
-http://www.wiimotelib.org/
-
-Licensed under the terms of New BSD License (BSD).
-See WPFMediaKit-license.txt for details.
