@@ -360,6 +360,12 @@ namespace VrPlayer.ViewModels
                     if (_state.WrapperPlugin != null)
                         _state.WrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
                 }
+
+                if (metadata.Effects != null && metadata.Effects.Length > 0)
+                {
+                    _state.EffectPlugin = _pluginManager.Effects.FirstOrDefault(
+                        plugin => plugin.Effect.GetType().FullName == metadata.Effects[0]);
+                }
             }
             catch (Exception exc)
             {
