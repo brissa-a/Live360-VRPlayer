@@ -70,7 +70,8 @@ namespace VrPlayer.Models.Trackers
 
         public override void Dispose()
         {
-            int result = _hydra.Exit();
+            if (!IsEnabled) return;
+            var result = _hydra.Exit();
             ThrowErrorOnResult(result, "Error shutting down the Razer Hydra");
         }
 

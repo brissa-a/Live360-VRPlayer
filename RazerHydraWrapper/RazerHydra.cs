@@ -86,6 +86,7 @@ namespace RazerHydraWrapper
         {
             return sixenseExit();
         }
+
         public Int32 SetFilterEnabled(Int32 enabled)
         {
             return sixenseSetFilterEnabled(enabled);
