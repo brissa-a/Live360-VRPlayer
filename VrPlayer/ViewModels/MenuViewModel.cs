@@ -40,7 +40,7 @@ namespace VrPlayer.ViewModels
                 if (!Directory.Exists(folder))
                     return menuItems;
                 
-                string[] files = Directory.GetFiles(folder);
+                var files = Directory.GetFiles(folder).Where(name => !name.EndsWith(".txt"));
 				foreach (var file in files)
 				{
 					var info = new FileInfo(file);
