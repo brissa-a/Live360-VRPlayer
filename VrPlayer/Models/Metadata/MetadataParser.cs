@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
 using SE.Halligang.CsXmpToolkit;
 using SE.Halligang.CsXmpToolkit.Schemas;
 
@@ -26,16 +29,15 @@ namespace VrPlayer.Models.Metadata
                 {
                     try
                     {
-                        //Todo: support other types
                         string propValue;
                         PropertyFlags flags;
                         xmp.XmpCore.GetProperty(Namespace, p.Name, out propValue, out flags);
                         if (!string.IsNullOrEmpty(propValue))
                         {
                             p.SetValue(result, propValue, null);
-                        }
+                        }     
                     }
-                    catch
+                    catch(Exception exc)
                     {
                         //Todo: log
                     }

@@ -4,13 +4,15 @@
 
 	<xmp_schema prefix="VRPlayer" namespace="http://ns.vrplayer.tv/" label="$$$/VRPlayer/Schema/Label=VR Player Properties (http://www.vrplayer.tv)" description="$$$/VRPlayer/Schema/Description=This panel contains the options available for the 'VR Player Panel'.">
 	
-		<xmp_property name="FormatType" category="external" label="$$$/VRPlayer/Property/ClosedChoiceInput_FormatType=Format Type:" type="closedchoice" element_type="text">
+		<ui:separator/>
+	
+		<xmp_property name="FormatType" category="external" label="$$$/VRPlayer/Property/ClosedChoiceInput_FormatType=Format:" type="closedchoice" element_type="text">
 			<xmp_choice raw_value="Mono" label="$$$/VRPlayer/Property/Choice_Mono=Mono"/>
 			<xmp_choice raw_value="OverUnder" label="$$$/VRPlayer/Property/Choice_OverUnder=Over Under"/>
 			<xmp_choice raw_value="SideBySide" label="$$$/VRPlayer/Property/Choice_SideBySide=Side by side"/>
 		</xmp_property>
 		
-		<xmp_property name="ProjectionType" category="external" label="$$$/VRPlayer/Property/OpenChoiceInput_Label=Projection Type:" type="closedchoice" element_type="text">
+		<xmp_property name="ProjectionType" category="external" label="$$$/VRPlayer/Property/ClosedChoiceInput_Projection=Projection:" type="closedchoice" element_type="text">
 			<xmp_choice raw_value="VrPlayer.Models.Wrappers.CubeWrapper" label="$$$/Custom/Property/Choice_CubeWrapper=Cube"/>
 			<xmp_choice raw_value="VrPlayer.Models.Wrappers.CylinderWrapper" label="$$$/Custom/Property/Choice_CylinderWrapper=Cylinder"/>
 			<xmp_choice raw_value="VrPlayer.Models.Wrappers.DomeWrapper" label="$$$/Custom/Property/Choice_DomeWrapper=Dome"/>
@@ -18,8 +20,15 @@
 			<xmp_choice raw_value="VrPlayer.Models.Wrappers.SphereWrapper" label="$$$/Custom/Property/Choice_SphereWrapper=Sphere"/>
 		</xmp_property>
 
-		<xmp_property name="Effects" category="external" label="$$$/VRPlayer/Property/TextArrayInput_Effects=Effects:" type="bag" element_type="text"/>		
-	
+		<xmp_property name="Effects" category="external" label="$$$/VRPlayer/Property/ClosedChoiceInput_Effect=Effect:" type="closedchoice" element_type="text">
+			<xmp_choice raw_value="" label="$$$/Custom/Property/Choice_None=None"/>
+			<xmp_choice raw_value="VrPlayer.Models.Effects.ColorKeyAlphaEffect" label="$$$/Custom/Property/Choice_ColorKeyAlphaEffect=Color Key Alpha"/>
+			<xmp_choice raw_value="VrPlayer.Models.Effects.DepthMapOverUnderEffect" label="$$$/Custom/Property/Choice_DepthMapOverUnderEffect=Depth Map (Over Under)"/>
+			<xmp_choice raw_value="VrPlayer.Models.Effects.DepthMapSbsEffect" label="$$$/Custom/Property/Choice_DepthMapSbsEffect=Depth Map (Side by side)"/>
+			<xmp_choice raw_value="VrPlayer.Models.Effects.UnwrapFishEyeEffect" label="$$$/Custom/Property/Choice_UnwrapFishEyeEffect=Unwrap Fisheye"/>
+			<xmp_choice raw_value="VrPlayer.Models.Effects.UnwrapFishEyeStereoEffect" label="$$$/Custom/Property/Choice_UnwrapFishEyeStereoEffect=Unwrap Fisheye (Stereo)"/>
+		</xmp_property>
+		
 	</xmp_schema>
 
 </xmp_definitions>

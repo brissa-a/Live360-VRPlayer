@@ -339,12 +339,12 @@ namespace VrPlayer.ViewModels
 
 		private void Load(object o)
 		{
-			string filePath = (string)o;
+			var filePath = (string)o;
             
             try
             {
                 //Todo: Extract metadata parsing
-                MetadataParser parser = new MetadataParser(filePath);
+                var parser = new MetadataParser(filePath);
                 var metadata = parser.Parse();
 
                 if (!string.IsNullOrEmpty(metadata.ProjectionType))
@@ -361,10 +361,11 @@ namespace VrPlayer.ViewModels
                         _state.WrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
                 }
 
-                if (metadata.Effects != null && metadata.Effects.Length > 0)
+                if (!string.IsNullOrEmpty(metadata.Effects))
                 {
-                    _state.EffectPlugin = _pluginManager.Effects.FirstOrDefault(
-                        plugin => plugin.Effect.GetType().FullName == metadata.Effects[0]);
+                    _state.EffectPlugin = _pluginManager.Effects
+                        .Where(plugin => plugin.Effect != null)
+                        .FirstOrDefault(plugin => plugin.Effect.GetType().FullName == metadata.Effects);
                 }
             }
             catch (Exception exc)

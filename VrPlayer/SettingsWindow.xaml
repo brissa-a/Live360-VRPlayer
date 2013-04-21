@@ -32,7 +32,7 @@
                     <Label Grid.Column="0" Grid.Row="0" Content="Field of view (FOV):"></Label>
                     <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.CameraFieldOfView}" Minimum="0" Maximum="180"></Slider>
                     <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.CameraFieldOfView}" ></TextBox>
-                    <Label Grid.Column="0" Grid.Row="1" Content="Interpupillary offset:"></Label>
+                    <Label Grid.Column="0" Grid.Row="1" Content="Horizontal offset:"></Label>
                     <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.ViewportsHorizontalOffset}" Minimum="-1000" Maximum="1000"></Slider>
                     <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.ViewportsHorizontalOffset}"></TextBox>               
                 </Grid>
