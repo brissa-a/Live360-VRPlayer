@@ -352,7 +352,8 @@
 copy "$(SolutionDir)Lib\PsMove\*.*" "$(TargetDir)"
 copy "$(SolutionDir)Lib\Wiimote\*.*" "$(TargetDir)"
 copy "$(SolutionDir)Lib\Leap\x86\*.*" "$(TargetDir)"
-copy "$(SolutionDir)Lib\CsXmpToolkit\*.*" "$(TargetDir)"</PostBuildEvent>
+copy "$(SolutionDir)Lib\CsXmpToolkit\*.*" "$(TargetDir)"
+copy "$(SolutionDir)Lib\WPFMediaKit\EVRPresenter32.dll" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

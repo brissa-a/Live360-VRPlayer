@@ -35,6 +35,7 @@ namespace VrPlayer.Models.Config
         private int _sphereStacks;
         private int _cylinderSlices;
         private int _cylinderStacks;
+        private bool _metaDataReadOnLoad;
 
         public string DefaultMediaFile
         {
@@ -323,6 +324,16 @@ namespace VrPlayer.Models.Config
             {
                 _cylinderStacks = value;
                 OnPropertyChanged("CylinderStacks");
+            }
+        }
+
+        public bool MetaDataReadOnLoad
+        {
+            get { return _metaDataReadOnLoad; }
+            set
+            {
+                _metaDataReadOnLoad = value;
+                OnPropertyChanged("MetaDataReadOnLoad");
             }
         }
     }

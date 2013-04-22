@@ -341,39 +341,42 @@ namespace VrPlayer.ViewModels
 		{
 			var filePath = (string)o;
             
-            try
+            if (_config.MetaDataReadOnLoad)
             {
-                //Todo: Extract metadata parsing
-                var parser = new MetadataParser(filePath);
-                var metadata = parser.Parse();
-
-                if (!string.IsNullOrEmpty(metadata.ProjectionType))
+                try
                 {
-                    _state.WrapperPlugin = _pluginManager.Wrappers.FirstOrDefault(
-                        plugin => plugin.Wrapper.GetType().FullName == metadata.ProjectionType);
-                }
+                    //Todo: Extract metadata parsing
+                    var parser = new MetadataParser(filePath);
+                    var metadata = parser.Parse();
 
-                if (!string.IsNullOrEmpty(metadata.FormatType))
-                {
-                    _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), metadata.FormatType);
-                    //Todo: Stereo input should not be assigned to wrapper manually
-                    if (_state.WrapperPlugin != null)
-                        _state.WrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
-                }
+                    if (!string.IsNullOrEmpty(metadata.ProjectionType))
+                    {
+                        _state.WrapperPlugin = _pluginManager.Wrappers.FirstOrDefault(
+                            plugin => plugin.Wrapper.GetType().FullName == metadata.ProjectionType);
+                    }
 
-                if (!string.IsNullOrEmpty(metadata.Effects))
-                {
-                    _state.EffectPlugin = _pluginManager.Effects
-                        .Where(plugin => plugin.Effect != null)
-                        .FirstOrDefault(plugin => plugin.Effect.GetType().FullName == metadata.Effects);
+                    if (!string.IsNullOrEmpty(metadata.FormatType))
+                    {
+                        _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), metadata.FormatType);
+                        //Todo: Stereo input should not be assigned to wrapper manually
+                        if (_state.WrapperPlugin != null)
+                            _state.WrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
+                    }
+
+                    if (!string.IsNullOrEmpty(metadata.Effects))
+                    {
+                        _state.EffectPlugin = _pluginManager.Effects
+                            .Where(plugin => plugin.Effect != null)
+                            .FirstOrDefault(plugin => plugin.Effect.GetType().FullName == metadata.Effects);
+                    }
                 }
+                catch (Exception exc)
+                {
+                    //Todo: log
+                    MessageBox.Show(String.Format("Unable to parse meta data from file '{0}: {1}'", filePath, exc.Message), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }    
             }
-            catch (Exception exc)
-            {
-                //Todo: log
-                MessageBox.Show(String.Format("Unable to parse meta data from file '{0}: {1}'", filePath, exc.Message), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
+            
             try
             {
                 _state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);

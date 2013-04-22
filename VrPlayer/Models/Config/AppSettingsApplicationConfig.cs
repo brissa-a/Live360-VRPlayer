@@ -33,6 +33,7 @@ namespace VrPlayer.Models.Config
             LeapRotationFactor = ParseDouble(ConfigurationManager.AppSettings["LeapRotationFactor"]);
             PositionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
             EvrRendering = bool.Parse(ConfigurationManager.AppSettings["EvrRendering"]);
+            MetaDataReadOnLoad = bool.Parse(ConfigurationManager.AppSettings["MetaDataReadOnLoad"]);
             DomeSlices = int.Parse(ConfigurationManager.AppSettings["DomeSlices"]);
             DomeStacks = int.Parse(ConfigurationManager.AppSettings["DomeStacks"]);
             SphereSlices = int.Parse(ConfigurationManager.AppSettings["SphereSlices"]);
