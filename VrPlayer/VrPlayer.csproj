@@ -351,6 +351,7 @@
     <PostBuildEvent>copy "$(SolutionDir)VrPlayer*.txt" "$(TargetDir)"
 copy "$(SolutionDir)Lib\PsMove\*.*" "$(TargetDir)"
 copy "$(SolutionDir)Lib\Wiimote\*.*" "$(TargetDir)"
+copy "$(SolutionDir)Lib\Sixsense\*.*" "$(TargetDir)"
 copy "$(SolutionDir)Lib\Leap\x86\*.*" "$(TargetDir)"
 copy "$(SolutionDir)Lib\CsXmpToolkit\*.*" "$(TargetDir)"
 copy "$(SolutionDir)Lib\WPFMediaKit\EVRPresenter32.dll" "$(TargetDir)"</PostBuildEvent>
