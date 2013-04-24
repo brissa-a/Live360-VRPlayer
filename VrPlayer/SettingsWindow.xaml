@@ -59,7 +59,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Content="Read on file loading:"></Label>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Auto-apply:"></Label>
                     <CheckBox Grid.Column="1" Grid.Row="0" IsChecked="{Binding Path=Config.MetaDataReadOnLoad}" HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
                 </Grid>
             </StackPanel>
