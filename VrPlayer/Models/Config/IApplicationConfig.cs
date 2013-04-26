@@ -34,6 +34,7 @@ namespace VrPlayer.Models.Config
         int SphereStacks { get; set; }
         int CylinderSlices { get; set; }
         int CylinderStacks { get; set; }
+        double PlaneRatio { get; set; }
         bool MetaDataReadOnLoad { get; set; }
     }
 }

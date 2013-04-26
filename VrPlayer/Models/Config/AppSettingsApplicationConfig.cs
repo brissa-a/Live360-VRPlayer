@@ -40,6 +40,7 @@ namespace VrPlayer.Models.Config
             SphereStacks = int.Parse(ConfigurationManager.AppSettings["SphereStacks"]);
             CylinderSlices = int.Parse(ConfigurationManager.AppSettings["CylinderSlices"]);
             CylinderStacks = int.Parse(ConfigurationManager.AppSettings["CylinderStacks"]);
+            PlaneRatio = ParseDouble(ConfigurationManager.AppSettings["PlaneRatio"]);
         }
         
         #region Helpers

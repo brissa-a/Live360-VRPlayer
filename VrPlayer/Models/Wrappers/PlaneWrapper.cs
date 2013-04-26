@@ -8,6 +8,16 @@ namespace VrPlayer.Models.Wrappers
     {
         double _distance = 1000;
 
+        public static readonly DependencyProperty RatioProperty =
+            DependencyProperty.Register("Ratio", typeof(double),
+            typeof(PlaneWrapper), new FrameworkPropertyMetadata(1D));
+
+        public double Ratio
+        {
+            get { return (double)GetValue(RatioProperty); }
+            set { SetValue(RatioProperty, value); }
+        }
+
         public new Vector3D CameraLeftPosition
         {
             get
@@ -26,21 +36,21 @@ namespace VrPlayer.Models.Wrappers
 
         public override Point3DCollection Positions
         {
-            get 
+            get
             {
-                Point3DCollection positions = new Point3DCollection();
+                var positions = new Point3DCollection();
 
                 //Left
-                positions.Add(new Point3D(_distance - 1, -1, 1));//0
-                positions.Add(new Point3D(_distance + 1, -1, 1));//1
-                positions.Add(new Point3D(_distance + 1, 1, 1));//2
-                positions.Add(new Point3D(_distance - 1, 1, 1));//3
+                positions.Add(new Point3D(_distance - Ratio, -1, 1));//0
+                positions.Add(new Point3D(_distance + Ratio, -1, 1));//1
+                positions.Add(new Point3D(_distance + Ratio, 1, 1));//2
+                positions.Add(new Point3D(_distance - Ratio, 1, 1));//3
 
                 //Right
-                positions.Add(new Point3D(-_distance - 1, -1, 1));//4
-                positions.Add(new Point3D(-_distance + 1, -1, 1));//5
-                positions.Add(new Point3D(-_distance + 1, 1, 1));//6
-                positions.Add(new Point3D(-_distance - 1, 1, 1));//7
+                positions.Add(new Point3D(-_distance - Ratio, -1, 1));//4
+                positions.Add(new Point3D(-_distance + Ratio, -1, 1));//5
+                positions.Add(new Point3D(-_distance + Ratio, 1, 1));//6
+                positions.Add(new Point3D(-_distance - Ratio, 1, 1));//7
 
                 return positions;
             }

@@ -40,15 +40,15 @@ namespace VrPlayer.Models.Trackers
             if (_viewport == null)
             {
                 _viewport = Application.Current.MainWindow;
-                _viewport.MouseMove += new MouseEventHandler(mouseZone_MouseMove);
-                _viewport.KeyDown += new KeyEventHandler(_viewport_KeyDown);
+                _viewport.MouseMove += mouseZone_MouseMove;
+                _viewport.KeyDown += _viewport_KeyDown;
             }
         }
 
         void _viewport_KeyDown(object sender, KeyEventArgs e)
         {
-            double moveFactor = 0.01;
-            Vector3D moveVector = new Vector3D();
+            const double moveFactor = 0.01;
+            var moveVector = new Vector3D();
             switch (e.Key)
             { 
                 case Key.Left:
@@ -83,11 +83,11 @@ namespace VrPlayer.Models.Trackers
             {
                 _viewport.Cursor = Cursors.None;
 
-                Point centerOfViewport = _viewport.PointToScreen(new Point(_viewport.ActualWidth / 2, _viewport.ActualHeight / 2));
-                Point relativePos = e.MouseDevice.GetPosition(_viewport);
-                Point actualRelativePos = new Point(relativePos.X - _viewport.ActualWidth / 2, _viewport.ActualHeight / 2 - relativePos.Y);
-                double dx = actualRelativePos.X;
-                double dy = actualRelativePos.Y;
+                var centerOfViewport = _viewport.PointToScreen(new Point(_viewport.ActualWidth / 2, _viewport.ActualHeight / 2));
+                var relativePos = e.MouseDevice.GetPosition(_viewport);
+                var actualRelativePos = new Point(relativePos.X - _viewport.ActualWidth / 2, _viewport.ActualHeight / 2 - relativePos.Y);
+                var dx = actualRelativePos.X;
+                var dy = actualRelativePos.Y;
                 _yaw += dx;
                 _pitch += dy;
                 

@@ -36,6 +36,7 @@ namespace VrPlayer.Models.Config
         private int _cylinderSlices;
         private int _cylinderStacks;
         private bool _metaDataReadOnLoad;
+        private double _planeRatio;
 
         public string DefaultMediaFile
         {
@@ -324,6 +325,16 @@ namespace VrPlayer.Models.Config
             {
                 _cylinderStacks = value;
                 OnPropertyChanged("CylinderStacks");
+            }
+        }
+
+        public double PlaneRatio
+        {
+            get { return _planeRatio; }
+            set
+            {
+                _planeRatio = value;
+                OnPropertyChanged("PlaneRatio");
             }
         }
 

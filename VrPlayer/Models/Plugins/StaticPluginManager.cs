@@ -68,6 +68,7 @@ namespace VrPlayer.Models.Plugins
         private void LoadWrappers()
         {
             var planeWrapper = new PlaneWrapper();
+            BindProperty(_config, "PlaneRatio", planeWrapper, PlaneWrapper.RatioProperty);
             var planeWrapperPlugin = new WrapperPlugin(planeWrapper, "Plane");
             Wrappers.Add(planeWrapperPlugin);
 
