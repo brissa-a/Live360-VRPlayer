@@ -1,17 +1,19 @@
-﻿using System;
+﻿﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows.Threading;
 using System.Windows.Media.Media3D;
 
-using RazerHydraWrapper;
+using VrPlayer.Contracts.Trackers;
 
-namespace VrPlayer.Models.Trackers
+namespace VrPlayer.Trackers.RazerHydraTracker
 {
+    [Export(typeof(ITracker))]
     public class RazerHydraTracker: TrackerBase, ITracker
     {
         private const int HYDRA_ID = 0;
         private const int SIXENSE_BUTTON_START = 1;
 
-        private RazerHydra _hydra = new RazerHydra();
+        private readonly RazerHydraWrapper _hydra = new RazerHydraWrapper();
 
         public RazerHydraTracker()
         {
@@ -26,9 +28,9 @@ namespace VrPlayer.Models.Trackers
                 result = _hydra.SetFilterEnabled(0);
                 ThrowErrorOnResult(result, "Error while enabling the Razer Hydra filter");
 
-                DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Input);
+                var timer = new DispatcherTimer(DispatcherPriority.Input);
                 timer.Interval = new TimeSpan(0, 0, 0, 0, 5);
-                timer.Tick += new EventHandler(timer_Tick);
+                timer.Tick += timer_Tick;
                 timer.Start();
             }
             catch (Exception exc)
@@ -70,8 +72,7 @@ namespace VrPlayer.Models.Trackers
 
         public override void Dispose()
         {
-            if (!IsEnabled) return;
-            var result = _hydra.Exit();
+            int result = _hydra.Exit();
             ThrowErrorOnResult(result, "Error shutting down the Razer Hydra");
         }
 

@@ -58,7 +58,6 @@
     <Reference Include="CsXmpToolkit">
       <HintPath>..\Lib\CsXmpToolkit\CsXmpToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Kinect, Version=1.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="MoveFramework CS">
       <HintPath>..\Lib\PsMove\MoveFramework CS.dll</HintPath>
     </Reference>
@@ -116,7 +115,6 @@
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Models\Metadata\MetadataResult.cs" />
     <Compile Include="Models\Settings\SettingsManager.cs" />
-    <Compile Include="Models\Trackers\VrpnTracker.cs" />
     <Compile Include="Models\Wrappers\CylinderWrapper.cs" />
     <Compile Include="Models\Metadata\MetadataParser.cs" />
     <Compile Include="UrlInputDialog.xaml.cs">
@@ -126,13 +124,8 @@
     <Compile Include="Models\Media\MediaGraphPlayer.cs" />
     <Compile Include="Models\Media\MediaGraphElement.cs" />
     <Compile Include="Models\Media\X3DAudioEngine.cs" />
-    <Compile Include="Helpers\Mvvm\DelegateCommand.cs" />
     <Compile Include="Helpers\MouseUtilities.cs" />
-    <Compile Include="Helpers\Mvvm\RelayCommand.cs" />
-    <Compile Include="Helpers\QuaternionHelper.cs" />
     <Compile Include="Models\Media\IAudioEngine.cs" />
-    <Compile Include="Models\Trackers\KinectTracker.cs" />
-    <Compile Include="Models\Trackers\RazerHydraTracker.cs" />
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
     <Compile Include="Models\Effects\ColorKeyAlphaEffect.cs" />
     <Compile Include="Models\Effects\DepthMapOverUnderEffect.cs" />
@@ -150,7 +143,6 @@
     <Compile Include="Models\Plugins\StaticPluginManager.cs" />
     <Compile Include="Models\Plugins\ShaderPlugin.cs" />
     <Compile Include="Models\Plugins\TrackerPlugin.cs" />
-    <Compile Include="Models\Trackers\TrackerBase.cs" />
     <Compile Include="Models\Plugins\WrapperPlugin.cs" />
     <Compile Include="Models\Wrappers\DomeWrapper.cs" />
     <Compile Include="Models\Wrappers\CubeWrapper.cs" />
@@ -165,10 +157,6 @@
     <Compile Include="Models\Wrappers\SphereWrapper.cs" />
     <Compile Include="Models\Shaders\PincushionEffect.cs" />
     <Compile Include="Models\Trackers\MouseTracker.cs" />
-    <Compile Include="Models\Trackers\ITracker.cs" />
-    <Compile Include="Models\Trackers\PsMoveTracker.cs" />
-    <Compile Include="Models\Trackers\WiimoteTracker.cs" />
-    <Compile Include="Helpers\Mvvm\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />
     <Compile Include="Views\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
@@ -340,12 +328,35 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RazerHydraWrapper\RazerHydraWrapper.csproj">
-      <Project>{D3371693-9129-4693-8A33-8B9AC00A81FF}</Project>
-      <Name>RazerHydraWrapper</Name>
+    <ProjectReference Include="..\VrPlayer.Contracts\VrPlayer.Contracts.csproj">
+      <Project>{463D0CFD-915F-41ED-9807-D509EBE1124C}</Project>
+      <Name>VrPlayer.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Helpers\VrPlayer.Helpers.csproj">
+      <Project>{D4A54A70-3BB5-4BE5-BEDB-3A41B6C43033}</Project>
+      <Name>VrPlayer.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.KinectTracker\VrPlayer.Trackers.KinectTracker.csproj">
+      <Project>{346E3C64-7497-4110-A350-38C774429C16}</Project>
+      <Name>VrPlayer.Trackers.KinectTracker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.PsMoveTracker\VrPlayer.Trackers.PsMoveTracker.csproj">
+      <Project>{8B0D936A-DF16-49B1-AE29-58909CF5D791}</Project>
+      <Name>VrPlayer.Trackers.PsMoveTracker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.RazerHydraTracker\VrPlayer.Trackers.RazerHydraTracker.csproj">
+      <Project>{0E366875-1A30-43C7-B418-CBD4E5FC78DB}</Project>
+      <Name>VrPlayer.Trackers.RazerHydraTracker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.VrpnTracker\VrPlayer.Trackers.VrpnTracker.csproj">
+      <Project>{C84195CD-C0A0-46AA-9435-E45B6D2833BE}</Project>
+      <Name>VrPlayer.Trackers.VrpnTracker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.WiimoteTracker\VrPlayer.Trackers.WiimoteTracker.csproj">
+      <Project>{9FA13213-EC7A-4E62-9955-003200B56CFB}</Project>
+      <Name>VrPlayer.Trackers.WiimoteTracker</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)VrPlayer*.txt" "$(TargetDir)"

@@ -1,10 +1,10 @@
-﻿using VrPlayer.Models.Trackers;
+﻿using VrPlayer.Contracts.Trackers;
 
 namespace VrPlayer.Models.Plugins
 {
     public class TrackerPlugin : PluginBase, IPlugin
     {
-        private ITracker _tracker;
+        private readonly ITracker _tracker;
         public ITracker Tracker
         {
             get { return _tracker; }
@@ -13,7 +13,7 @@ namespace VrPlayer.Models.Plugins
         public TrackerPlugin(ITracker tracker, string name)
         {
             _tracker = tracker;
-            base.Name = name;
+            Name = name;
         }
     }
 }

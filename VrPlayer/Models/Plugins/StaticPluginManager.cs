@@ -2,12 +2,18 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
+using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers.Converters;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Trackers;
 using VrPlayer.Models.Shaders;
 using VrPlayer.Models.Wrappers;
 using VrPlayer.Models.Effects;
+using VrPlayer.Trackers.KinectTracker;
+using VrPlayer.Trackers.PsMoveTracker;
+using VrPlayer.Trackers.RazerHydraTracker;
+using VrPlayer.Trackers.VrpnTracker;
+using VrPlayer.Trackers.WiimoteTracker;
 
 namespace VrPlayer.Models.Plugins
 {
@@ -101,7 +107,11 @@ namespace VrPlayer.Models.Plugins
             BindProperty(_config, "MouseSensitivity", mouseTracker, MouseTracker.MouseSensitivityProperty);
             var mouseTrackerPlugin = new TrackerPlugin(mouseTracker, "Mouse");
             Trackers.Add(mouseTrackerPlugin);
-
+            /*
+            var oculusRiftTracker = new OculusRiftTracker();
+            var oculusRiftTrackerPlugin = new TrackerPlugin(oculusRiftTracker, "Oculus Rift");
+            Trackers.Add(oculusRiftTrackerPlugin);
+            */
             var kinectTracker = new KinectTracker();
             BindProperty(_config, "KinectPositionScaleFactor", kinectTracker, TrackerBase.PositionScaleFactorProperty);
             var kinectTrackerPlugin = new TrackerPlugin(kinectTracker, "Microsoft Kinect");

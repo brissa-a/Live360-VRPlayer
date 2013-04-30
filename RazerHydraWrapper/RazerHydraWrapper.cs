@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace RazerHydraWrapper
 {
-    public class RazerHydra
+    public class RazerHydraWrapper
     {
         public static Int32 SIXENSE_SUCCESS = 0;
         public static Int32 SIXENSE_FAILURE = -1;

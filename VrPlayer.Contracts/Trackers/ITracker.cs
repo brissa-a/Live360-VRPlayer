@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Media.Media3D;
 
-namespace VrPlayer.Models.Trackers
+namespace VrPlayer.Contracts.Trackers
 {
     public interface ITracker: IDisposable
     {

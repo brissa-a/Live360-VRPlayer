@@ -1,11 +1,14 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Threading;
 using System.Windows.Media.Media3D;
-
 using MoveFramework_CS;
 
-namespace VrPlayer.Models.Trackers
+using VrPlayer.Contracts.Trackers;
+
+namespace VrPlayer.Trackers.PsMoveTracker
 {
+    [Export(typeof(ITracker))]
     public class PsMoveTracker : TrackerBase, ITracker
     {
         public PsMoveTracker()
@@ -13,7 +16,7 @@ namespace VrPlayer.Models.Trackers
             try
             {
                 IsEnabled = true;
-                this.PositionScaleFactor = 0.01;
+                PositionScaleFactor = 0.01;
                 Init();
             }
             catch (Exception exc)

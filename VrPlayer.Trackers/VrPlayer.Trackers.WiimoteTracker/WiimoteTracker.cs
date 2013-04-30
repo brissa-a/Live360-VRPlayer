@@ -1,13 +1,15 @@
 ﻿using System;
+using System.ComponentModel.Composition;
+using System.Threading;
 using System.Windows.Media.Media3D;
-
 using WiimoteLib;
 
+using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
-using System.Threading;
 
-namespace VrPlayer.Models.Trackers
+namespace VrPlayer.Trackers.WiimoteTracker
 {
+    [Export(typeof(ITracker))]
     public class WiimoteTracker : TrackerBase, ITracker
     {
         private Wiimote _wiimote;
@@ -21,7 +23,7 @@ namespace VrPlayer.Models.Trackers
                 _wiimote = new Wiimote();
                 _wiimote.Connect();
                 _wiimote.InitializeMotionPlus();
-                _wiimote.WiimoteChanged += new EventHandler<WiimoteChangedEventArgs>(wiimote_WiimoteChanged);
+                _wiimote.WiimoteChanged += wiimote_WiimoteChanged;
 
                 _wiimote.SetRumble(true);
                 _wiimote.SetLEDs(true, false, false, true);

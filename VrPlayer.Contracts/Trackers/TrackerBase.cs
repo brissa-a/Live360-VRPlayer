@@ -3,7 +3,7 @@ using System.Windows.Media.Media3D;
 
 using VrPlayer.Helpers.Mvvm;
 
-namespace VrPlayer.Models.Trackers
+namespace VrPlayer.Contracts.Trackers
 {
     public abstract class TrackerBase: ViewModelBase
     {

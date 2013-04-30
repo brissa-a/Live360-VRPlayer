@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
-
+using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
 
 namespace VrPlayer.Models.Trackers

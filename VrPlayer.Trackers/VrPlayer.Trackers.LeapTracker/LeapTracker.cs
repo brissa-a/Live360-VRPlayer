@@ -1,14 +1,17 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media.Media3D;
 
 using Leap;
+using VrPlayer.Contracts.Tracker;
 using VrPlayer.Helpers;
 using Vector = Leap.Vector;
 
 namespace VrPlayer.Models.Trackers
 {
+    [Export(typeof(ITracker))]
     public class LeapTracker : TrackerBase, ITracker
     {
         CustomListener _listener;

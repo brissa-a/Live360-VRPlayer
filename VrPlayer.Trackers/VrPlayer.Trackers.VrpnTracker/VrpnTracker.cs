@@ -1,10 +1,14 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
 using Vrpn;
 
-namespace VrPlayer.Models.Trackers
+using VrPlayer.Contracts.Trackers;
+
+namespace VrPlayer.Trackers.VrpnTracker
 {
+    [Export(typeof(ITracker))]
     public class VrpnTracker : TrackerBase, ITracker
     {
         private TrackerRemote _tracker;
@@ -18,16 +22,16 @@ namespace VrPlayer.Models.Trackers
                 PositionScaleFactor = 0.001;
 
                 _tracker = new TrackerRemote(trackerAddress);
-                _tracker.PositionChanged += new TrackerChangeEventHandler(PositionChanged);
+                _tracker.PositionChanged += PositionChanged;
                 _tracker.MuteWarnings = true;
                 
                 _button = new ButtonRemote(buttonAddress);
-                _button.ButtonChanged += new ButtonChangeEventHandler(ButtonChanged);
+                _button.ButtonChanged += ButtonChanged;
                 _button.MuteWarnings = true;
                 
-                DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Input);
+                var timer = new DispatcherTimer(DispatcherPriority.Input);
                 timer.Interval = new TimeSpan(0, 0, 0, 0, 5);
-                timer.Tick += new EventHandler(timer_Tick);
+                timer.Tick += timer_Tick;
                 timer.Start();
             }
             catch (Exception exc)
