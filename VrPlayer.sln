@@ -27,6 +27,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Trackers.VrpnTrack
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Trackers.WiimoteTracker", "VrPlayer.Trackers\VrPlayer.Trackers.WiimoteTracker\VrPlayer.Trackers.WiimoteTracker.csproj", "{9FA13213-EC7A-4E62-9955-003200B56CFB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Distortions", "Distortions", "{C5A2E175-1D11-49C1-8EB9-A2F3D99B8B74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Distortions.Barrel", "VrPlayer.Distortions\VrPlayer.Distortions.Barrel\VrPlayer.Distortions.Barrel.csproj", "{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Distortions.Pincushion", "VrPlayer.Distortions\VrPlayer.Distortions.Pincushion\VrPlayer.Distortions.Pincushion.csproj", "{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +169,26 @@ Global
 		{9FA13213-EC7A-4E62-9955-003200B56CFB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9FA13213-EC7A-4E62-9955-003200B56CFB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9FA13213-EC7A-4E62-9955-003200B56CFB}.Release|x86.ActiveCfg = Release|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}.Release|x86.ActiveCfg = Release|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -175,5 +201,7 @@ Global
 		{0E366875-1A30-43C7-B418-CBD4E5FC78DB} = {54AE99E5-4BCF-49E1-A26D-FF3AF91A5026}
 		{C84195CD-C0A0-46AA-9435-E45B6D2833BE} = {54AE99E5-4BCF-49E1-A26D-FF3AF91A5026}
 		{9FA13213-EC7A-4E62-9955-003200B56CFB} = {54AE99E5-4BCF-49E1-A26D-FF3AF91A5026}
+		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3} = {C5A2E175-1D11-49C1-8EB9-A2F3D99B8B74}
+		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B} = {C5A2E175-1D11-49C1-8EB9-A2F3D99B8B74}
 	EndGlobalSection
 EndGlobal

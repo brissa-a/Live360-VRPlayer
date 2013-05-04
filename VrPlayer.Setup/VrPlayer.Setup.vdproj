@@ -51,6 +51,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_27B8529C06BFE02CD30BC4B53846DE3D"
+        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_27C4049BF5894A44AE70669E1C61462C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -171,6 +177,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B65333F3674C0193728F3459FD5A9212"
+        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B716C41B31967A8200D8B6738C92AEEA"
         "OwnerKey" = "8:_02F1AC61AAE6C77D8C9BAECFEE604F1C"
         "MsmSig" = "8:_UNDEFINED"
@@ -262,12 +274,6 @@
         "Entry"
         {
         "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
-        "OwnerKey" = "8:_02F1AC61AAE6C77D8C9BAECFEE604F1C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "OwnerKey" = "8:_87940DFE3D181CCB23E9396AB34203F6"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -291,8 +297,38 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_02F1AC61AAE6C77D8C9BAECFEE604F1C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_87940DFE3D181CCB23E9396AB34203F6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C8ED8CE5B55D829FE94F7032AA1FCE0D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8566E5005531FC16E911E8674B5EAF79"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_19E20F983C7F2861FBB529968E6181EF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -310,25 +346,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_87940DFE3D181CCB23E9396AB34203F6"
+        "OwnerKey" = "8:_27B8529C06BFE02CD30BC4B53846DE3D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C8ED8CE5B55D829FE94F7032AA1FCE0D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8566E5005531FC16E911E8674B5EAF79"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_19E20F983C7F2861FBB529968E6181EF"
+        "OwnerKey" = "8:_B65333F3674C0193728F3459FD5A9212"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -606,6 +630,37 @@
                     }
                 }
             "SourcePath" = "8:MoveFramework CS.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_27B8529C06BFE02CD30BC4B53846DE3D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Distortions.Pincushion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_27B8529C06BFE02CD30BC4B53846DE3D"
+                    {
+                    "Name" = "8:VrPlayer.Distortions.Pincushion.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:VrPlayer.Distortions.Pincushion.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
@@ -1029,6 +1084,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B65333F3674C0193728F3459FD5A9212"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Distortions.Barrel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B65333F3674C0193728F3459FD5A9212"
+                    {
+                    "Name" = "8:VrPlayer.Distortions.Barrel.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:VrPlayer.Distortions.Barrel.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B716C41B31967A8200D8B6738C92AEEA"
             {
             "AssemblyRegister" = "3:1"
@@ -1394,7 +1480,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{A47807E6-027B-4C6F-A4D2-3B3015278998}"
+        "PackageCode" = "8:{87EE8548-FEA0-425D-B04B-815F0D1D53A8}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
