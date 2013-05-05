@@ -127,13 +127,8 @@
     <Compile Include="Helpers\MouseUtilities.cs" />
     <Compile Include="Models\Media\IAudioEngine.cs" />
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
-    <Compile Include="Models\Effects\ColorKeyAlphaEffect.cs" />
-    <Compile Include="Models\Effects\DepthMapOverUnderEffect.cs" />
-    <Compile Include="Models\Effects\UnwrapFishEyeEffect.cs" />
-    <Compile Include="Models\Effects\UnwrapFishEyeStereoEffect.cs" />
     <Compile Include="Models\Plugins\EffectPlugin.cs" />
     <Compile Include="Models\Plugins\IPluginManager.cs" />
-    <Compile Include="Models\Effects\DepthMapSbsEffect.cs" />
     <Compile Include="Models\State\DefaultApplicationState.cs" />
     <Compile Include="Models\State\IApplicationState.cs" />
     <Compile Include="Models\Config\IApplicationConfig.cs" />
@@ -227,7 +222,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Models\Effects\ColorKeyAlphaEffect.fx" />
     <Resource Include="Medias\Nuvola\edu_science.png" />
     <Resource Include="Medias\Nuvola\kcontrol.png" />
     <Resource Include="Medias\Nuvola\noatunloopsong.png" />
@@ -256,25 +250,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Medias\Samples\Samples-copyright.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\Effects\ColorKeyAlphaEffect.ps">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Models\Effects\DepthMapOverUnderEffect.fx" />
-    <Content Include="Models\Effects\DepthMapOverUnderEffect.ps">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Models\Effects\UnwrapFishEyeEffect.fx" />
-    <Content Include="Models\Effects\UnwrapFishEyeEffect.ps">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Models\Effects\UnwrapFishEyeStereoEffect .fx" />
-    <Content Include="Models\Effects\UnwrapFishEyeStereoEffect.ps">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Models\Effects\DepthMapSbs.fx" />
-    <Content Include="Models\Effects\DepthMapSbsEffect.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
@@ -329,6 +304,26 @@
     <ProjectReference Include="..\VrPlayer.Distortions\VrPlayer.Distortions.Pincushion\VrPlayer.Distortions.Pincushion.csproj">
       <Project>{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}</Project>
       <Name>VrPlayer.Distortions.Pincushion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.ColorKeyAlphaEffect\VrPlayer.Effects.ColorKeyAlpha.csproj">
+      <Project>{042F31E3-71B6-4AC2-8AC3-B1620E15F62A}</Project>
+      <Name>VrPlayer.Effects.ColorKeyAlpha</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.DepthMapOverUnder\VrPlayer.Effects.DepthMapOverUnder.csproj">
+      <Project>{19DEEA79-AC15-44E8-9634-981D4E506C45}</Project>
+      <Name>VrPlayer.Effects.DepthMapOverUnder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.DepthMapSbs\VrPlayer.Effects.DepthMapSbs.csproj">
+      <Project>{882C310A-2797-44C4-B928-D8971E74FC52}</Project>
+      <Name>VrPlayer.Effects.DepthMapSbs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.UnwrapFishEyeStereo\VrPlayer.Effects.UnwrapFishEyeStereo.csproj">
+      <Project>{4416544D-1006-41DB-BB34-E99D9E865DB0}</Project>
+      <Name>VrPlayer.Effects.UnwrapFishEyeStereo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.UnwrapFishEye\VrPlayer.Effects.UnwrapFishEye.csproj">
+      <Project>{1CF56440-3A28-41E0-8A57-FEDFF7535FEA}</Project>
+      <Name>VrPlayer.Effects.UnwrapFishEye</Name>
     </ProjectReference>
     <ProjectReference Include="..\VrPlayer.Helpers\VrPlayer.Helpers.csproj">
       <Project>{D4A54A70-3BB5-4BE5-BEDB-3A41B6C43033}</Project>
