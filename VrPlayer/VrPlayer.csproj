@@ -58,9 +58,6 @@
     <Reference Include="CsXmpToolkit">
       <HintPath>..\Lib\CsXmpToolkit\CsXmpToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="MoveFramework CS">
-      <HintPath>..\Lib\PsMove\MoveFramework CS.dll</HintPath>
-    </Reference>
     <Reference Include="SharpDX">
       <HintPath>..\packages\SharpDX.2.4.2\lib\net40\SharpDX.dll</HintPath>
     </Reference>
@@ -68,6 +65,7 @@
       <HintPath>..\packages\SharpDX.XAudio2.2.4.2\lib\net40\SharpDX.XAudio2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -79,13 +77,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="VrpnNet, Version=1.1.1.22900, Culture=neutral, PublicKeyToken=d88711d9dd279d9f, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\VrpnNet-1.1.1\Release-VC9\VrpnNet.dll</HintPath>
-    </Reference>
-    <Reference Include="WiimoteLib">
-      <HintPath>..\Lib\Wiimote\WiimoteLib.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -103,6 +94,7 @@
     <Compile Include="Helpers\Converters\Vector3DToCoordConverter.cs" />
     <Compile Include="Helpers\Converters\ObjectToTypeConverter.cs" />
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
+    <Compile Include="Models\Plugins\DynamicPluginManager.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -133,7 +125,6 @@
     <Compile Include="Models\Config\IApplicationConfig.cs" />
     <Compile Include="Models\Plugins\IPlugin.cs" />
     <Compile Include="Models\Plugins\PluginBase.cs" />
-    <Compile Include="Models\Plugins\StaticPluginManager.cs" />
     <Compile Include="Models\Plugins\ShaderPlugin.cs" />
     <Compile Include="Models\Plugins\TrackerPlugin.cs" />
     <Compile Include="Models\Plugins\ProjectionPlugin.cs" />
@@ -220,28 +211,28 @@
     <Resource Include="Medias\Nuvola\browser.png" />
     <Resource Include="Medias\Nuvola\folder_open.png" />
     <Resource Include="Medias\icon48.png" />
-    <Content Include="Medias\Samples\1-Grid.jpg">
+    <Content Include="Samples\1-Grid.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Medias\Samples\2-CubeMono.jpg">
+    <Content Include="Samples\2-CubeMono.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Medias\Samples\3-CubeOverUnder.jpg">
+    <Content Include="Samples\3-CubeOverUnder.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Medias\Samples\4-CubeSideBySide.jpg">
+    <Content Include="Samples\4-CubeSideBySide.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Medias\Samples\5-DepthMapEffect.jpg">
+    <Content Include="Samples\5-DepthMapEffect.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Medias\Samples\6-SphericalSideBySide.jpg">
+    <Content Include="Samples\6-SphericalSideBySide.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Medias\Samples\7-CylindricalOverUnder.jpg">
+    <Content Include="Samples\7-CylindricalOverUnder.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Medias\Samples\Samples-copyright.txt">
+    <Content Include="Samples\Samples-copyright.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
@@ -289,88 +280,15 @@
       <Project>{463D0CFD-915F-41ED-9807-D509EBE1124C}</Project>
       <Name>VrPlayer.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Distortions\VrPlayer.Distortions.Barrel\VrPlayer.Distortions.Barrel.csproj">
-      <Project>{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3}</Project>
-      <Name>VrPlayer.Distortions.Barrel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Distortions\VrPlayer.Distortions.Pincushion\VrPlayer.Distortions.Pincushion.csproj">
-      <Project>{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B}</Project>
-      <Name>VrPlayer.Distortions.Pincushion</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.ColorKeyAlphaEffect\VrPlayer.Effects.ColorKeyAlpha.csproj">
-      <Project>{042F31E3-71B6-4AC2-8AC3-B1620E15F62A}</Project>
-      <Name>VrPlayer.Effects.ColorKeyAlpha</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.DepthMapOverUnder\VrPlayer.Effects.DepthMapOverUnder.csproj">
-      <Project>{19DEEA79-AC15-44E8-9634-981D4E506C45}</Project>
-      <Name>VrPlayer.Effects.DepthMapOverUnder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.DepthMapSbs\VrPlayer.Effects.DepthMapSbs.csproj">
-      <Project>{882C310A-2797-44C4-B928-D8971E74FC52}</Project>
-      <Name>VrPlayer.Effects.DepthMapSbs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.UnwrapFishEyeStereo\VrPlayer.Effects.UnwrapFishEyeStereo.csproj">
-      <Project>{4416544D-1006-41DB-BB34-E99D9E865DB0}</Project>
-      <Name>VrPlayer.Effects.UnwrapFishEyeStereo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Effects\VrPlayer.Effects.UnwrapFishEye\VrPlayer.Effects.UnwrapFishEye.csproj">
-      <Project>{1CF56440-3A28-41E0-8A57-FEDFF7535FEA}</Project>
-      <Name>VrPlayer.Effects.UnwrapFishEye</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VrPlayer.Helpers\VrPlayer.Helpers.csproj">
       <Project>{D4A54A70-3BB5-4BE5-BEDB-3A41B6C43033}</Project>
       <Name>VrPlayer.Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Cube\VrPlayer.Projections.Cube.csproj">
-      <Project>{A38CA833-600C-47DE-B95E-2A2C880DC40D}</Project>
-      <Name>VrPlayer.Projections.Cube</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Cylinder\VrPlayer.Projections.Cylinder.csproj">
-      <Project>{CEC4BE87-986A-4621-8341-E57C4D05F96D}</Project>
-      <Name>VrPlayer.Projections.Cylinder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Dome\VrPlayer.Projections.Dome.csproj">
-      <Project>{26F3CAF3-E68C-47C6-B960-94D550CB8BD4}</Project>
-      <Name>VrPlayer.Projections.Dome</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Plane\VrPlayer.Projections.Plane.csproj">
-      <Project>{26D53DDA-8C96-44D5-B4F2-B27AD94AEF66}</Project>
-      <Name>VrPlayer.Projections.Plane</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Sphere\VrPlayer.Projections.Sphere.csproj">
-      <Project>{8F8AE632-09A2-4CB1-BE6D-CA712DB35F08}</Project>
-      <Name>VrPlayer.Projections.Sphere</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.KinectTracker\VrPlayer.Trackers.KinectTracker.csproj">
-      <Project>{346E3C64-7497-4110-A350-38C774429C16}</Project>
-      <Name>VrPlayer.Trackers.KinectTracker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.PsMoveTracker\VrPlayer.Trackers.PsMoveTracker.csproj">
-      <Project>{8B0D936A-DF16-49B1-AE29-58909CF5D791}</Project>
-      <Name>VrPlayer.Trackers.PsMoveTracker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.RazerHydraTracker\VrPlayer.Trackers.RazerHydraTracker.csproj">
-      <Project>{0E366875-1A30-43C7-B418-CBD4E5FC78DB}</Project>
-      <Name>VrPlayer.Trackers.RazerHydraTracker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.VrpnTracker\VrPlayer.Trackers.VrpnTracker.csproj">
-      <Project>{C84195CD-C0A0-46AA-9435-E45B6D2833BE}</Project>
-      <Name>VrPlayer.Trackers.VrpnTracker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.WiimoteTracker\VrPlayer.Trackers.WiimoteTracker.csproj">
-      <Project>{9FA13213-EC7A-4E62-9955-003200B56CFB}</Project>
-      <Name>VrPlayer.Trackers.WiimoteTracker</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)VrPlayer*.txt" "$(TargetDir)"
-copy "$(SolutionDir)Lib\PsMove\*.*" "$(TargetDir)"
-copy "$(SolutionDir)Lib\Wiimote\*.*" "$(TargetDir)"
-copy "$(SolutionDir)Lib\Sixsense\*.*" "$(TargetDir)"
-copy "$(SolutionDir)Lib\Leap\x86\*.*" "$(TargetDir)"
-copy "$(SolutionDir)Lib\CsXmpToolkit\*.*" "$(TargetDir)"
-copy "$(SolutionDir)Lib\WPFMediaKit\EVRPresenter32.dll" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(SolutionDir)Lib\CsXmpToolkit\*.*" "$(TargetDir)" /y
+xcopy "$(SolutionDir)Lib\WPFMediaKit\EVRPresenter32.dll" "$(TargetDir)" /y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

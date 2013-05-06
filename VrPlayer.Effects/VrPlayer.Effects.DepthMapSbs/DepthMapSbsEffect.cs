@@ -4,10 +4,12 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
+using VrPlayer.Contracts.Effects;
+
 namespace VrPlayer.Effects.DepthMapSbs
 {
-    [Export(typeof(ShaderEffect))]
-    public class DepthMapSbsEffect : ShaderEffect
+    [Export(typeof(EffectBase))]
+    public class DepthMapSbsEffect : EffectBase
     {
         public static readonly DependencyProperty InputProperty =
             RegisterPixelShaderSamplerProperty("Input", typeof(DepthMapSbsEffect), 0);

@@ -43,6 +43,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Distortions\DistortionBase.cs" />
+    <Compile Include="Effects\EffectBase.cs" />
     <Compile Include="Projections\IProjection.cs" />
     <Compile Include="Projections\StereoMode.cs" />
     <Compile Include="Projections\ProjectionBase.cs" />
@@ -56,9 +58,7 @@
       <Name>VrPlayer.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Distortions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

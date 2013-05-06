@@ -14,8 +14,11 @@ namespace VrPlayer.Trackers.VrpnTracker
         private TrackerRemote _tracker;
         private readonly ButtonRemote _button;
 
-        public VrpnTracker(string trackerAddress, string buttonAddress)
+        public VrpnTracker()//(string trackerAddress, string buttonAddress)
         {
+            const string trackerAddress = "";
+            const string buttonAddress = "";
+            
             try
             {
                 IsEnabled = true;

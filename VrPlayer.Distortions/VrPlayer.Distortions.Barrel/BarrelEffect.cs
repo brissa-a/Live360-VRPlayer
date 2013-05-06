@@ -4,10 +4,12 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
+using VrPlayer.Contracts.Distortions;
+
 namespace VrPlayer.Distortions.Barrel
 {
-    [Export(typeof(ShaderEffect))]
-    public class BarrelEffect : ShaderEffect
+    [Export(typeof(DistortionBase))]
+    public class BarrelEffect : DistortionBase
     {
         public static readonly DependencyProperty InputProperty =
             RegisterPixelShaderSamplerProperty("Input", typeof(BarrelEffect), 0);

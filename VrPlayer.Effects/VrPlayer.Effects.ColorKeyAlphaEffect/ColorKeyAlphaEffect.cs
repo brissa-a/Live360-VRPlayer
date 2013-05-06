@@ -3,11 +3,12 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using VrPlayer.Contracts.Effects;
 
 namespace VrPlayer.Effects.ColorKeyAlpha
 {
-    [Export(typeof(ShaderEffect))]
-    public class ColorKeyAlphaEffect : ShaderEffect
+    [Export(typeof(EffectBase))]
+    public class ColorKeyAlphaEffect : EffectBase
     {
         public static readonly DependencyProperty InputProperty =
             RegisterPixelShaderSamplerProperty("Input", typeof(ColorKeyAlphaEffect), 0);

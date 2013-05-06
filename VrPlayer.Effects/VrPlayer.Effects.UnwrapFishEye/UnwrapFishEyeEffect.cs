@@ -4,10 +4,12 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
+using VrPlayer.Contracts.Effects;
+
 namespace VrPlayer.Effects.UnwrapFishEye
 {
-    [Export(typeof(ShaderEffect))]
-    public class UnwrapFishEyeEffect : ShaderEffect
+    [Export(typeof(EffectBase))]
+    public class UnwrapFishEyeEffect : EffectBase
     {
         public static readonly DependencyProperty InputProperty =
             RegisterPixelShaderSamplerProperty("Input", typeof(UnwrapFishEyeEffect), 0);

@@ -5,11 +5,11 @@ using System.Windows;
 using System.Windows.Media.Media3D;
 
 using Leap;
-using VrPlayer.Contracts.Tracker;
+using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
 using Vector = Leap.Vector;
 
-namespace VrPlayer.Models.Trackers
+namespace VrPlayer.Trackers.LeapTracker
 {
     [Export(typeof(ITracker))]
     public class LeapTracker : TrackerBase, ITracker
@@ -20,7 +20,6 @@ namespace VrPlayer.Models.Trackers
         public static readonly DependencyProperty RotationFactorProperty =
             DependencyProperty.Register("RotationFactorProperty", typeof(double),
             typeof(LeapTracker), new FrameworkPropertyMetadata(5D));
-
         public double RotationFactor
         {
             get { return (double)GetValue(RotationFactorProperty); }

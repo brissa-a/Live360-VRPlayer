@@ -3,11 +3,12 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using VrPlayer.Contracts.Effects;
 
 namespace VrPlayer.Effects.UnwrapFishEyeStereo
 {
-    [Export(typeof(ShaderEffect))]
-    public class UnwrapFishEyeStereoEffect : ShaderEffect
+    [Export(typeof(EffectBase))]
+    public class UnwrapFishEyeStereoEffect : EffectBase
     {
         public static readonly DependencyProperty InputProperty =
             RegisterPixelShaderSamplerProperty("Input", typeof(UnwrapFishEyeStereoEffect), 0);

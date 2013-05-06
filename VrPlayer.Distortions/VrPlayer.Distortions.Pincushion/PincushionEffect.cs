@@ -4,10 +4,12 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
+using VrPlayer.Contracts.Distortions;
+
 namespace VrPlayer.Distortions.Pincushion
 {
-    [Export(typeof(ShaderEffect))]
-    public class PincushionEffect : ShaderEffect
+    [Export(typeof(DistortionBase))]
+    public class PincushionEffect : DistortionBase
     {
         public static readonly DependencyProperty InputProperty =
             RegisterPixelShaderSamplerProperty("Input", typeof(PincushionEffect), 0);

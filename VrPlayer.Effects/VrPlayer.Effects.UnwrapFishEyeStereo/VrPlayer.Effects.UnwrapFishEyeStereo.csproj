@@ -50,7 +50,16 @@
     <None Include="UnwrapFishEyeStereoEffect .fx" />
     <Resource Include="UnwrapFishEyeStereoEffect.ps" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\VrPlayer.Contracts\VrPlayer.Contracts.csproj">
+      <Project>{463D0CFD-915F-41ED-9807-D509EBE1124C}</Project>
+      <Name>VrPlayer.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)*.*" "$(SolutionDir)VrPlayer\$(OutDir)\Effects\$(TargetName)\" /y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
