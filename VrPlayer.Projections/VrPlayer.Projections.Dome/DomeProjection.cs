@@ -1,18 +1,21 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
+using VrPlayer.Contracts.Projections;
 
-namespace VrPlayer.Models.Wrappers
+namespace VrPlayer.Projections.Dome
 {
-    public class DomeWrapper : WrapperBase, IWrapper
+    [Export(typeof(IProjection))]
+    public class DomeProjection : ProjectionBase, IProjection
     {
         Point3D _center;
         double _radius = 1;
 
         public static readonly DependencyProperty SlicesProperty =
-            DependencyProperty.Register("Slices", typeof (int),
-            typeof (DomeWrapper), new FrameworkPropertyMetadata(16));
+            DependencyProperty.Register("Slices", typeof(int),
+            typeof(DomeProjection), new FrameworkPropertyMetadata(16));
 
         public int Slices
         {
@@ -22,7 +25,7 @@ namespace VrPlayer.Models.Wrappers
 
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
-             typeof(DomeWrapper), new FrameworkPropertyMetadata(16));
+             typeof(DomeProjection), new FrameworkPropertyMetadata(16));
 
         public int Stacks
         {
@@ -70,7 +73,7 @@ namespace VrPlayer.Models.Wrappers
         {
             get
             {
-                Point3DCollection positions = new Point3DCollection();
+                var positions = new Point3DCollection();
 
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
@@ -85,7 +88,7 @@ namespace VrPlayer.Models.Wrappers
                         double x = scale * Math.Sin(theta) + Radius;
                         double z = scale * Math.Cos(theta);
 
-                        Vector3D normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x, y, z);
                         positions.Add(normal + Center);
                     }
                 }
@@ -103,7 +106,7 @@ namespace VrPlayer.Models.Wrappers
                         double x = scale * Math.Sin(theta) - Radius;
                         double z = scale * Math.Cos(theta);
 
-                        Vector3D normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x, y, z);
                         positions.Add(normal + Center);
                     }
                 }
@@ -116,7 +119,7 @@ namespace VrPlayer.Models.Wrappers
         {
             get
             {
-                Int32Collection triangleIndices = new Int32Collection();
+                var triangleIndices = new Int32Collection();
 
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
@@ -124,7 +127,7 @@ namespace VrPlayer.Models.Wrappers
                     int top = (stack + 0) * ((Slices / 2) + 1);
                     int bot = (stack + 1) * ((Slices / 2) + 1);
 
-                    for (int slice = 0; slice <= (Slices / 2)-1; slice++)
+                    for (int slice = 0; slice <= (Slices / 2) - 1; slice++)
                     {
                         if (stack != 0)
                         {
@@ -148,7 +151,7 @@ namespace VrPlayer.Models.Wrappers
                     int top = (stack + 0) * ((Slices / 2) + 1);
                     int bot = (stack + 1) * ((Slices / 2) + 1);
 
-                    for (int slice = 0; slice <= (Slices / 2)-1; slice++)
+                    for (int slice = 0; slice <= (Slices / 2) - 1; slice++)
                     {
                         if (stack != 0)
                         {
@@ -172,18 +175,18 @@ namespace VrPlayer.Models.Wrappers
 
         public override PointCollection MonoTextureCoordinates
         {
-            get 
+            get
             {
-                PointCollection textureCoordinates = new PointCollection();
+                var textureCoordinates = new PointCollection();
 
                 //Left
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     for (int slice = Slices / 2; slice >= 0; slice--)
                     {
-                        textureCoordinates.Add(
-                                    new Point(((double)slice) / (Slices / 2),
-                                              (double)stack / Stacks));
+                        textureCoordinates.Add(new Point(
+                            ((double)slice) / (Slices / 2),
+                            (double)stack / Stacks));
                     }
                 }
 
@@ -192,9 +195,9 @@ namespace VrPlayer.Models.Wrappers
                 {
                     for (int slice = Slices / 2; slice >= 0; slice--)
                     {
-                        textureCoordinates.Add(
-                                    new Point((double)slice / (Slices / 2),
-                                              (double)stack / Stacks));
+                        textureCoordinates.Add(new Point(
+                            (double)slice / (Slices / 2),
+                            (double)stack / Stacks));
                     }
                 }
 
@@ -204,18 +207,18 @@ namespace VrPlayer.Models.Wrappers
 
         public override PointCollection OverUnderTextureCoordinates
         {
-            get 
+            get
             {
-                PointCollection textureCoordinates = new PointCollection();
+                var textureCoordinates = new PointCollection();
 
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     for (int slice = Slices / 2; slice >= 0; slice--)
                     {
-                        textureCoordinates.Add(
-                                    new Point((double)slice / Slices / 2,
-                                              (double)stack / Stacks / 2));
+                        textureCoordinates.Add(new Point(
+                            (double)slice / Slices / 2,
+                            (double)stack / Stacks / 2));
                     }
                 }
 
@@ -224,9 +227,9 @@ namespace VrPlayer.Models.Wrappers
                 {
                     for (int slice = Slices / 2; slice >= 0; slice--)
                     {
-                        textureCoordinates.Add(
-                                    new Point((double)slice / Slices / 2,
-                                              0.5 + (double)stack / Stacks / 2));
+                        textureCoordinates.Add(new Point(
+                            (double)slice / Slices / 2,
+                            0.5 + (double)stack / Stacks / 2));
                     }
                 }
 
@@ -238,16 +241,16 @@ namespace VrPlayer.Models.Wrappers
         {
             get
             {
-                PointCollection textureCoordinates = new PointCollection();
+                var textureCoordinates = new PointCollection();
 
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     for (int slice = Slices / 2; slice >= 0; slice--)
                     {
-                        textureCoordinates.Add(
-                                    new Point((double)slice / (Slices/2) / 2,
-                                              (double)stack / Stacks));
+                        textureCoordinates.Add(new Point(
+                            (double)slice / (Slices / 2) / 2,
+                            (double)stack / Stacks));
                     }
                 }
 
@@ -256,9 +259,9 @@ namespace VrPlayer.Models.Wrappers
                 {
                     for (int slice = Slices / 2; slice >= 0; slice--)
                     {
-                        textureCoordinates.Add(
-                                    new Point(0.5 + (double)slice / (Slices/2) / 2,
-                                              (double)stack / Stacks));
+                        textureCoordinates.Add(new Point(
+                            0.5 + (double)slice / (Slices / 2) / 2,
+                            (double)stack / Stacks));
                     }
                 }
 
@@ -267,4 +270,3 @@ namespace VrPlayer.Models.Wrappers
         }
     }
 }
-

@@ -1,4 +1,4 @@
-﻿namespace VrPlayer.Models.Wrappers
+﻿namespace VrPlayer.Contracts.Projections
 {
     public enum StereoMode
     {

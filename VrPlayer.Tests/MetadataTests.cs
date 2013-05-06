@@ -13,7 +13,7 @@ namespace VrPlayer.Tests
             var metadata = parser.Parse();
 
             Assert.That(metadata.FormatType, Is.EqualTo("OverUnder"));
-            Assert.That(metadata.ProjectionType, Is.EqualTo("VrPlayer.Models.Wrappers.DomeWrapper"));
+            Assert.That(metadata.ProjectionType, Is.EqualTo("VrPlayer.Projections.DomeProjection"));
         }
 
         [Test]

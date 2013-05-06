@@ -1,8 +1,8 @@
 ﻿using System.Windows.Media.Media3D;
 
-namespace VrPlayer.Models.Wrappers
+namespace VrPlayer.Contracts.Projections
 {
-    public interface IWrapper
+    public interface IProjection
     {
         MeshGeometry3D Geometry { get; }
         Vector3D CameraLeftPosition { get; }

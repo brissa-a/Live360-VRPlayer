@@ -19,7 +19,7 @@
             </VisualBrush.Visual>
         </VisualBrush>
         
-        <GeometryModel3D x:Key="Geometry" Geometry="{Binding Path=State.WrapperPlugin.Wrapper.Geometry}">
+        <GeometryModel3D x:Key="Geometry" Geometry="{Binding Path=State.ProjectionPlugin.Projection.Geometry}">
             <GeometryModel3D.BackMaterial>
                 <DiffuseMaterial Brush="{DynamicResource Media}"></DiffuseMaterial>
             </GeometryModel3D.BackMaterial>
@@ -27,7 +27,7 @@
 
         <Viewport3D x:Key="view1" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased" Margin="{Binding Path=Config.ViewportsHorizontalOffset, Converter={StaticResource valToThickness}, ConverterParameter=Left}">
             <Viewport3D.Camera>
-                <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.WrapperPlugin.Wrapper.CameraLeftPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}" >
+                <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Projection.CameraLeftPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}" >
                     <PerspectiveCamera.Transform>
                         <Transform3DGroup>
                             <RotateTransform3D>
@@ -36,9 +36,9 @@
                                     </QuaternionRotation3D>
                                 </RotateTransform3D.Rotation>
                             </RotateTransform3D>
-                            <TranslateTransform3D OffsetX="{Binding Path=State.WrapperPlugin.Wrapper.CameraLeftPosition.X}"
-                                                  OffsetY="{Binding Path=State.WrapperPlugin.Wrapper.CameraLeftPosition.Y}"
-                                                  OffsetZ="{Binding Path=State.WrapperPlugin.Wrapper.CameraLeftPosition.Z}">
+                            <TranslateTransform3D OffsetX="{Binding Path=State.ProjectionPlugin.Projection.CameraLeftPosition.X}"
+                                                  OffsetY="{Binding Path=State.ProjectionPlugin.Projection.CameraLeftPosition.Y}"
+                                                  OffsetZ="{Binding Path=State.ProjectionPlugin.Projection.CameraLeftPosition.Z}">
                             </TranslateTransform3D>
                         </Transform3DGroup>
                     </PerspectiveCamera.Transform>
@@ -64,7 +64,7 @@
 
         <Viewport3D x:Key="view2" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased" Margin="{Binding Path=Config.ViewportsHorizontalOffset, Converter={StaticResource valToThickness}, ConverterParameter=Right}">
             <Viewport3D.Camera>
-                <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.WrapperPlugin.Wrapper.CameraRightPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}">
+                <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}">
                     <PerspectiveCamera.Transform>
                         <Transform3DGroup>
                             <RotateTransform3D>
@@ -73,9 +73,9 @@
                                     </QuaternionRotation3D>
                                 </RotateTransform3D.Rotation>
                             </RotateTransform3D>
-                            <TranslateTransform3D OffsetX="{Binding Path=State.WrapperPlugin.Wrapper.CameraRightPosition.X}"
-                                                  OffsetY="{Binding Path=State.WrapperPlugin.Wrapper.CameraRightPosition.Y}"
-                                                  OffsetZ="{Binding Path=State.WrapperPlugin.Wrapper.CameraRightPosition.Z}">
+                            <TranslateTransform3D OffsetX="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition.X}"
+                                                  OffsetY="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition.Y}"
+                                                  OffsetZ="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition.Z}">
                             </TranslateTransform3D>
                         </Transform3DGroup>
                     </PerspectiveCamera.Transform>

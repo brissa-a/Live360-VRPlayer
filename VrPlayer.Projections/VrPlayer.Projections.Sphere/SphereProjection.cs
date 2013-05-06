@@ -1,18 +1,22 @@
-﻿using System;
+﻿//Source: Based on SphereMeshGenerator by Charles Petzold
+using System;
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
+using VrPlayer.Contracts.Projections;
 
-namespace VrPlayer.Models.Wrappers
+namespace VrPlayer.Projections.Sphere
 {
-    public class CylinderWrapper : WrapperBase, IWrapper
+    [Export(typeof(IProjection))]
+    public class SphereProjection : ProjectionBase, IProjection
     {
         Point3D _center;
-        double _radius = 1;
+        double _radius = 1D;
 
         public static readonly DependencyProperty SlicesProperty =
              DependencyProperty.Register("Slices", typeof(int),
-             typeof(CylinderWrapper), new FrameworkPropertyMetadata(32));
+             typeof(SphereProjection), new FrameworkPropertyMetadata(32));
 
         public int Slices
         {
@@ -22,7 +26,7 @@ namespace VrPlayer.Models.Wrappers
 
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
-             typeof(CylinderWrapper), new FrameworkPropertyMetadata(16));
+             typeof(SphereProjection), new FrameworkPropertyMetadata(16));
 
         public int Stacks
         {
@@ -68,15 +72,16 @@ namespace VrPlayer.Models.Wrappers
 
         public override Point3DCollection Positions
         {
-            get 
+            get
             {
-                Point3DCollection positions = new Point3DCollection();
+                var positions = new Point3DCollection();
 
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double y = -(stack * (Radius / Stacks)) * 2 + Radius;
-                    double scale = -Radius;
+                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
+                    double y = Radius * Math.Sin(phi);
+                    double scale = -Radius * Math.Cos(phi);
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
@@ -84,7 +89,7 @@ namespace VrPlayer.Models.Wrappers
                         double x = scale * Math.Sin(theta) + Radius;
                         double z = scale * Math.Cos(theta);
 
-                        Vector3D normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x, y, z);
                         positions.Add(normal + Center);
                     }
                 }
@@ -92,8 +97,9 @@ namespace VrPlayer.Models.Wrappers
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double y = -(stack * (Radius / Stacks)) * 2 + Radius;
-                    double scale = -Radius;
+                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
+                    double y = Radius * Math.Sin(phi);
+                    double scale = -Radius * Math.Cos(phi);
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
@@ -101,7 +107,7 @@ namespace VrPlayer.Models.Wrappers
                         double x = scale * Math.Sin(theta) - Radius;
                         double z = scale * Math.Cos(theta);
 
-                        Vector3D normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x, y, z);
                         positions.Add(normal + Center);
                     }
                 }
@@ -112,9 +118,9 @@ namespace VrPlayer.Models.Wrappers
 
         public override Int32Collection TriangleIndices
         {
-            get 
+            get
             {
-                Int32Collection triangleIndices = new Int32Collection();
+                var triangleIndices = new Int32Collection();
 
                 //LEFT
                 for (int stack = 0; stack < Stacks; stack++)
@@ -124,29 +130,43 @@ namespace VrPlayer.Models.Wrappers
 
                     for (int slice = 0; slice < Slices; slice++)
                     {
-                        triangleIndices.Add(top + slice);
-                        triangleIndices.Add(bot + slice);
-                        triangleIndices.Add(top + slice + 1);
-                        triangleIndices.Add(top + slice + 1);    
-                        triangleIndices.Add(bot + slice);
-                        triangleIndices.Add(bot + slice + 1);
+                        if (stack != 0)
+                        {
+                            triangleIndices.Add(top + slice);
+                            triangleIndices.Add(bot + slice);
+                            triangleIndices.Add(top + slice + 1);
+                        }
+
+                        if (stack != Stacks - 1)
+                        {
+                            triangleIndices.Add(top + slice + 1);
+                            triangleIndices.Add(bot + slice);
+                            triangleIndices.Add(bot + slice + 1);
+                        }
                     }
                 }
 
                 // RIGHT
-                for (int stack = Stacks+1; stack <= (Stacks * 2); stack++)
+                for (int stack = Stacks; stack <= (Stacks * 2); stack++)
                 {
                     int top = (stack + 0) * (Slices + 1);
                     int bot = (stack + 1) * (Slices + 1);
 
                     for (int slice = 0; slice < Slices; slice++)
                     {
-                        triangleIndices.Add(top + slice);
-                        triangleIndices.Add(bot + slice);
-                        triangleIndices.Add(top + slice + 1);
-                        triangleIndices.Add(top + slice + 1);
-                        triangleIndices.Add(bot + slice);
-                        triangleIndices.Add(bot + slice + 1);
+                        if (stack != 0)
+                        {
+                            triangleIndices.Add(top + slice);
+                            triangleIndices.Add(bot + slice);
+                            triangleIndices.Add(top + slice + 1);
+                        }
+
+                        if (stack != Stacks - 1)
+                        {
+                            triangleIndices.Add(top + slice + 1);
+                            triangleIndices.Add(bot + slice);
+                            triangleIndices.Add(bot + slice + 1);
+                        }
                     }
                 }
 
@@ -156,9 +176,9 @@ namespace VrPlayer.Models.Wrappers
 
         public override PointCollection MonoTextureCoordinates
         {
-            get 
+            get
             {
-                PointCollection textureCoordinates = new PointCollection();
+                var textureCoordinates = new PointCollection();
 
                 //Left
                 for (int stack = 0; stack <= Stacks; stack++)
@@ -188,9 +208,9 @@ namespace VrPlayer.Models.Wrappers
 
         public override PointCollection OverUnderTextureCoordinates
         {
-            get 
+            get
             {
-                PointCollection textureCoordinates = new PointCollection();
+                var textureCoordinates = new PointCollection();
 
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
@@ -207,20 +227,11 @@ namespace VrPlayer.Models.Wrappers
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
-                    double scale = -Radius;// *Math.Cos(phi);
-
                     for (int slice = Slices; slice >= 0; slice--)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta) - Radius;
-                        double z = scale * Math.Cos(theta);
-
-                        Vector3D normal = new Vector3D(x, y, z);
-                        textureCoordinates.Add(
-                                    new Point((double)slice / Slices,
-                                              0.5 + (double)stack / Stacks / 2));
+                        textureCoordinates.Add(new Point(
+                            (double)slice / Slices,
+                            0.5 + (double)stack / Stacks / 2));
                     }
                 }
 
@@ -232,45 +243,27 @@ namespace VrPlayer.Models.Wrappers
         {
             get
             {
-                PointCollection textureCoordinates = new PointCollection();
+                var textureCoordinates = new PointCollection();
 
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
-                    double scale = -Radius;// *Math.Cos(phi);
-
                     for (int slice = Slices; slice >= 0; slice--)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta) + Radius;
-                        double z = scale * Math.Cos(theta);
-
-                        Vector3D normal = new Vector3D(x, y, z);
-                        textureCoordinates.Add(
-                                    new Point((double)slice / Slices / 2,
-                                              (double)stack / Stacks));
+                        textureCoordinates.Add(new Point(
+                            (double)slice / Slices / 2,
+                            (double)stack / Stacks));
                     }
                 }
 
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
-                    double scale = -Radius;// *Math.Cos(phi);
-
                     for (int slice = Slices; slice >= 0; slice--)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta) - Radius;
-                        double z = scale * Math.Cos(theta);
-
-                        Vector3D normal = new Vector3D(x, y, z);
-                        textureCoordinates.Add(
-                                    new Point(0.5 + (double)slice / Slices / 2,
-                                              (double)stack / Stacks));
+                        textureCoordinates.Add(new Point(
+                            0.5 + (double)slice / Slices / 2,
+                            (double)stack / Stacks));
                     }
                 }
 
@@ -279,4 +272,3 @@ namespace VrPlayer.Models.Wrappers
         }
     }
 }
-

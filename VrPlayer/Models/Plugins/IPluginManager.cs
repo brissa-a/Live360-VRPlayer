@@ -6,7 +6,7 @@ namespace VrPlayer.Models.Plugins
     public interface IPluginManager: IDisposable
     {
         List<EffectPlugin> Effects { get; }
-        List<WrapperPlugin> Wrappers { get; }
+        List<ProjectionPlugin> Projections { get; }
         List<TrackerPlugin> Trackers { get; }
         List<ShaderPlugin> Shaders { get; }
     }

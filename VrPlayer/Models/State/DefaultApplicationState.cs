@@ -1,10 +1,9 @@
-﻿using System.Windows.Media;
-using WPFMediaKit.DirectShow.Controls;
+﻿using WPFMediaKit.DirectShow.Controls;
 
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
+using VrPlayer.Contracts.Projections;
 using VrPlayer.Models.Plugins;
-using VrPlayer.Models.Wrappers;
 using VrPlayer.Models.Media;
 
 namespace VrPlayer.Models.State
@@ -64,17 +63,17 @@ namespace VrPlayer.Models.State
             }
         }
 
-        private WrapperPlugin _wrapperPlugin;
-        public WrapperPlugin WrapperPlugin
+        private ProjectionPlugin _projectionPlugin;
+        public ProjectionPlugin ProjectionPlugin
         {
             get
             {
-                return _wrapperPlugin;
+                return _projectionPlugin;
             }
             set
             {
-                _wrapperPlugin = value;
-                OnPropertyChanged("WrapperPlugin");
+                _projectionPlugin = value;
+                OnPropertyChanged("ProjectionPlugin");
             }
         }
 

@@ -2,9 +2,9 @@
 using System.Configuration;
 using System.Linq;
 
+using VrPlayer.Contracts.Projections;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
-using VrPlayer.Models.Wrappers;
 
 namespace VrPlayer.Models.Settings
 {

@@ -115,7 +115,6 @@
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Models\Metadata\MetadataResult.cs" />
     <Compile Include="Models\Settings\SettingsManager.cs" />
-    <Compile Include="Models\Wrappers\CylinderWrapper.cs" />
     <Compile Include="Models\Metadata\MetadataParser.cs" />
     <Compile Include="UrlInputDialog.xaml.cs">
       <DependentUpon>UrlInputDialog.xaml</DependentUpon>
@@ -137,18 +136,11 @@
     <Compile Include="Models\Plugins\StaticPluginManager.cs" />
     <Compile Include="Models\Plugins\ShaderPlugin.cs" />
     <Compile Include="Models\Plugins\TrackerPlugin.cs" />
-    <Compile Include="Models\Plugins\WrapperPlugin.cs" />
-    <Compile Include="Models\Wrappers\DomeWrapper.cs" />
-    <Compile Include="Models\Wrappers\CubeWrapper.cs" />
-    <Compile Include="Models\Wrappers\PlaneWrapper.cs" />
-    <Compile Include="Models\Wrappers\StereoMode.cs" />
-    <Compile Include="Models\Wrappers\WrapperBase.cs" />
+    <Compile Include="Models\Plugins\ProjectionPlugin.cs" />
     <Compile Include="ViewModels\SettingsWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewPortViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\MediaViewModel.cs" />
-    <Compile Include="Models\Wrappers\IWrapper.cs" />
-    <Compile Include="Models\Wrappers\SphereWrapper.cs" />
     <Compile Include="Models\Trackers\MouseTracker.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />
     <Compile Include="Views\ControlPanel.xaml.cs">
@@ -328,6 +320,26 @@
     <ProjectReference Include="..\VrPlayer.Helpers\VrPlayer.Helpers.csproj">
       <Project>{D4A54A70-3BB5-4BE5-BEDB-3A41B6C43033}</Project>
       <Name>VrPlayer.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Cube\VrPlayer.Projections.Cube.csproj">
+      <Project>{A38CA833-600C-47DE-B95E-2A2C880DC40D}</Project>
+      <Name>VrPlayer.Projections.Cube</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Cylinder\VrPlayer.Projections.Cylinder.csproj">
+      <Project>{CEC4BE87-986A-4621-8341-E57C4D05F96D}</Project>
+      <Name>VrPlayer.Projections.Cylinder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Dome\VrPlayer.Projections.Dome.csproj">
+      <Project>{26F3CAF3-E68C-47C6-B960-94D550CB8BD4}</Project>
+      <Name>VrPlayer.Projections.Dome</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Plane\VrPlayer.Projections.Plane.csproj">
+      <Project>{26D53DDA-8C96-44D5-B4F2-B27AD94AEF66}</Project>
+      <Name>VrPlayer.Projections.Plane</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VrPlayer.Projections\VrPlayer.Projections.Sphere\VrPlayer.Projections.Sphere.csproj">
+      <Project>{8F8AE632-09A2-4CB1-BE6D-CA712DB35F08}</Project>
+      <Name>VrPlayer.Projections.Sphere</Name>
     </ProjectReference>
     <ProjectReference Include="..\VrPlayer.Trackers\VrPlayer.Trackers.KinectTracker\VrPlayer.Trackers.KinectTracker.csproj">
       <Project>{346E3C64-7497-4110-A350-38C774429C16}</Project>

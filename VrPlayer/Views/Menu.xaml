@@ -41,7 +41,7 @@
         </MenuItem>
         <MenuItem Header="_Media">
             <MenuItem Header="_Format" ItemsSource="{Binding Path=StereoInputMenu}"/>
-            <MenuItem Header="_Projection" ItemsSource="{Binding Path=WrappersMenu}"/>
+            <MenuItem Header="_Projection" ItemsSource="{Binding Path=ProjectionsMenu}"/>
             <MenuItem Header="_Effect" ItemsSource="{Binding Path=EffectsMenu}"/>
         </MenuItem>
         <MenuItem Header="_Display">

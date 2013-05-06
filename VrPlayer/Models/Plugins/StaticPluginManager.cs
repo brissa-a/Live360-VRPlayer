@@ -13,7 +13,11 @@ using VrPlayer.Effects.UnwrapFishEyeStereo;
 using VrPlayer.Helpers.Converters;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Trackers;
-using VrPlayer.Models.Wrappers;
+using VrPlayer.Projections.Cube;
+using VrPlayer.Projections.Cylinder;
+using VrPlayer.Projections.Dome;
+using VrPlayer.Projections.Plane;
+using VrPlayer.Projections.Sphere;
 using VrPlayer.Trackers.KinectTracker;
 using VrPlayer.Trackers.PsMoveTracker;
 using VrPlayer.Trackers.RazerHydraTracker;
@@ -27,7 +31,7 @@ namespace VrPlayer.Models.Plugins
         private readonly IApplicationConfig _config;
 
         public List<EffectPlugin> Effects { get; private set; }
-        public List<WrapperPlugin> Wrappers { get; private set; }
+        public List<ProjectionPlugin> Projections { get; private set; }
         public List<TrackerPlugin> Trackers { get; private set; }
         public List<ShaderPlugin> Shaders { get; private set; }
 
@@ -36,12 +40,12 @@ namespace VrPlayer.Models.Plugins
             _config = config;
 
             Effects = new List<EffectPlugin>();
-            Wrappers = new List<WrapperPlugin>();
+            Projections = new List<ProjectionPlugin>();
             Shaders = new List<ShaderPlugin>();
             Trackers = new List<TrackerPlugin>();
             
             LoadEffects();
-            LoadWrappers();
+            LoadProjections();
             LoadTrackers();
             LoadShaders();
         }
@@ -76,34 +80,34 @@ namespace VrPlayer.Models.Plugins
             Effects.Add(unwrapFishEyeStereoEffectPlugin);
         }
 
-        private void LoadWrappers()
+        private void LoadProjections()
         {
-            var planeWrapper = new PlaneWrapper();
-            BindProperty(_config, "PlaneRatio", planeWrapper, PlaneWrapper.RatioProperty);
-            var planeWrapperPlugin = new WrapperPlugin(planeWrapper, "Plane");
-            Wrappers.Add(planeWrapperPlugin);
+            var planeProjection = new PlaneProjection();
+            BindProperty(_config, "PlaneRatio", planeProjection, PlaneProjection.RatioProperty);
+            var planeProjectionPlugin = new ProjectionPlugin(planeProjection, "Plane");
+            Projections.Add(planeProjectionPlugin);
 
-            var cubeWrapper = new CubeWrapper();
-            var cubeWrapperPlugin = new WrapperPlugin(cubeWrapper, "Cube");
-            Wrappers.Add(cubeWrapperPlugin);
+            var cubeProjection = new CubeProjection();
+            var cubeProjectionPlugin = new ProjectionPlugin(cubeProjection, "Cube");
+            Projections.Add(cubeProjectionPlugin);
 
-            var cylinderWrapper = new CylinderWrapper();
-            BindProperty(_config, "CylinderSlices", cylinderWrapper, CylinderWrapper.SlicesProperty);
-            BindProperty(_config, "CylinderStacks", cylinderWrapper, CylinderWrapper.StacksProperty);
-            var cylinderWrapperPlugin = new WrapperPlugin(cylinderWrapper, "Cylinder");
-            Wrappers.Add(cylinderWrapperPlugin);
+            var cylinderProjection = new CylinderProjection();
+            BindProperty(_config, "CylinderSlices", cylinderProjection, CylinderProjection.SlicesProperty);
+            BindProperty(_config, "CylinderStacks", cylinderProjection, CylinderProjection.StacksProperty);
+            var cylinderProjectionPlugin = new ProjectionPlugin(cylinderProjection, "Cylinder");
+            Projections.Add(cylinderProjectionPlugin);
 
-            var domeWrapper = new DomeWrapper();
-            BindProperty(_config, "DomeSlices", domeWrapper, DomeWrapper.SlicesProperty);
-            BindProperty(_config, "DomeStacks", domeWrapper, DomeWrapper.StacksProperty);
-            var domeWrapperPlugin = new WrapperPlugin(domeWrapper, "Dome");
-            Wrappers.Add(domeWrapperPlugin);
+            var domeProjection = new DomeProjection();
+            BindProperty(_config, "DomeSlices", domeProjection, DomeProjection.SlicesProperty);
+            BindProperty(_config, "DomeStacks", domeProjection, DomeProjection.StacksProperty);
+            var domeProjectionPlugin = new ProjectionPlugin(domeProjection, "Dome");
+            Projections.Add(domeProjectionPlugin);
 
-            var sphereWrapper = new SphereWrapper();
-            BindProperty(_config, "SphereSlices", sphereWrapper, SphereWrapper.SlicesProperty);
-            BindProperty(_config, "SphereStacks", sphereWrapper, SphereWrapper.StacksProperty);
-            var sphereWrapperPlugin = new WrapperPlugin(sphereWrapper, "Sphere");
-            Wrappers.Add(sphereWrapperPlugin);
+            var sphereProjection = new SphereProjection();
+            BindProperty(_config, "SphereSlices", sphereProjection, SphereProjection.SlicesProperty);
+            BindProperty(_config, "SphereStacks", sphereProjection, SphereProjection.StacksProperty);
+            var sphereProjectionPlugin = new ProjectionPlugin(sphereProjection, "Sphere");
+            Projections.Add(sphereProjectionPlugin);
         }
 
         private void LoadTrackers()

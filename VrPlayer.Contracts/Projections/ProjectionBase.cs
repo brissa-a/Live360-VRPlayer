@@ -4,9 +4,9 @@ using System.Windows.Media.Media3D;
 
 using VrPlayer.Helpers.Mvvm;
 
-namespace VrPlayer.Models.Wrappers
+namespace VrPlayer.Contracts.Projections
 {
-    public abstract class WrapperBase: ViewModelBase
+    public abstract class ProjectionBase: ViewModelBase
     {
         private StereoMode _stereoMode;
         private readonly Vector3D _cameraLeftPosition;
@@ -29,7 +29,7 @@ namespace VrPlayer.Models.Wrappers
             }
         }
 
-        public WrapperBase()
+        public ProjectionBase()
         {
             _stereoMode = StereoMode.Mono;
             Vector3D defaultCameraPosition = new Vector3D(0, 0, 0);

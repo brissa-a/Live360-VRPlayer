@@ -8,14 +8,14 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Data;
-
 using Microsoft.Win32;
+
+using VrPlayer.Contracts.Projections;
 using VrPlayer.Helpers.Converters;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
-using VrPlayer.Models.Wrappers;
 using VrPlayer.Models.Config;
 
 namespace VrPlayer.ViewModels
@@ -137,25 +137,25 @@ namespace VrPlayer.ViewModels
             }
         }
 
-        public List<MenuItem> WrappersMenu
+        public List<MenuItem> ProjectionsMenu
         {
             get
             {
                 var menuItems = new List<MenuItem>();
-                foreach (var wrapperPlugin in _pluginManager.Wrappers)
+                foreach (var projectionPlugin in _pluginManager.Projections)
                 {
                     var menuItem = new MenuItem
                     {
-                        Header = wrapperPlugin.Name,
-                        Command = new DelegateCommand(SetWrapper),
-                        CommandParameter = wrapperPlugin,
+                        Header = projectionPlugin.Name,
+                        Command = new DelegateCommand(SetProjection),
+                        CommandParameter = projectionPlugin,
                     };
                     var binding = new Binding
                     {
                         Source = _state,
-                        Path = new PropertyPath("WrapperPlugin"),
+                        Path = new PropertyPath("ProjectionPlugin"),
                         Converter = new CompareParameterConverter(),
-                        ConverterParameter = wrapperPlugin
+                        ConverterParameter = projectionPlugin
                     };
                     menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
                     menuItems.Add(menuItem);
@@ -292,7 +292,7 @@ namespace VrPlayer.ViewModels
 
             //Todo: Extract Default values
             _state.EffectPlugin = _state.EffectPlugin ?? _pluginManager.Effects[0];
-            _state.WrapperPlugin = _state.WrapperPlugin ?? _pluginManager.Wrappers[4];
+            _state.ProjectionPlugin = _state.ProjectionPlugin ?? _pluginManager.Projections[4];
             _state.TrackerPlugin = _state.TrackerPlugin ?? _pluginManager.Trackers[0];
             _state.ShaderPlugin = _state.ShaderPlugin ?? _pluginManager.Shaders[0];
 
@@ -351,16 +351,16 @@ namespace VrPlayer.ViewModels
 
                     if (!string.IsNullOrEmpty(metadata.ProjectionType))
                     {
-                        _state.WrapperPlugin = _pluginManager.Wrappers.FirstOrDefault(
-                            plugin => plugin.Wrapper.GetType().FullName == metadata.ProjectionType);
+                        _state.ProjectionPlugin = _pluginManager.Projections.FirstOrDefault(
+                            plugin => plugin.Projection.GetType().FullName == metadata.ProjectionType);
                     }
 
                     if (!string.IsNullOrEmpty(metadata.FormatType))
                     {
                         _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), metadata.FormatType);
-                        //Todo: Stereo input should not be assigned to wrapper manually
-                        if (_state.WrapperPlugin != null)
-                            _state.WrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
+                        //Todo: Stereo input should not be assigned to Projection manually
+                        if (_state.ProjectionPlugin != null)
+                            _state.ProjectionPlugin.Projection.StereoMode = _state.StereoInput;
                     }
 
                     if (!string.IsNullOrEmpty(metadata.Effects))
@@ -420,7 +420,7 @@ namespace VrPlayer.ViewModels
         private void SetStereoInput(object o)
         {
             _state.StereoInput = (StereoMode)o;
-            _state.WrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
+            _state.ProjectionPlugin.Projection.StereoMode = _state.StereoInput;
         }
 
         private void SetStereoOutput(object o)
@@ -428,11 +428,11 @@ namespace VrPlayer.ViewModels
             _state.StereoOutput = (StereoMode)o;
         }
 
-        private void SetWrapper(object o)
+        private void SetProjection(object o)
         {
-            var wrapperPlugin = (WrapperPlugin)o;
-            wrapperPlugin.Wrapper.StereoMode = _state.StereoInput;
-            _state.WrapperPlugin = wrapperPlugin;
+            var projectionPlugin = (ProjectionPlugin)o;
+            projectionPlugin.Projection.StereoMode = _state.StereoInput;
+            _state.ProjectionPlugin = projectionPlugin;
         }
 
         private void SetTracker(object o)

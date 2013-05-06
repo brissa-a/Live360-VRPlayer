@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
-
 using WPFMediaKit.DirectShow.Controls;
 
+using VrPlayer.Contracts.Projections;
 using VrPlayer.Models.Plugins;
-using VrPlayer.Models.Wrappers;
 
 namespace VrPlayer.Models.State
 {
@@ -13,7 +12,7 @@ namespace VrPlayer.Models.State
         EffectPlugin EffectPlugin { get; set; }
         StereoMode StereoInput { get; set; }
         StereoMode StereoOutput { get; set; }
-        WrapperPlugin WrapperPlugin {get; set;}
+        ProjectionPlugin ProjectionPlugin {get; set;}
         TrackerPlugin TrackerPlugin {get; set;}
         ShaderPlugin ShaderPlugin { get; set; }
     }

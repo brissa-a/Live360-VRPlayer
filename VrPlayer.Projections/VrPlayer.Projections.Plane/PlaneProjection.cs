@@ -1,17 +1,19 @@
-﻿using System.Windows;
+﻿using System.ComponentModel.Composition;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
+using VrPlayer.Contracts.Projections;
 
-namespace VrPlayer.Models.Wrappers
+namespace VrPlayer.Projections.Plane
 {
-    public class PlaneWrapper : WrapperBase, IWrapper
+    [Export(typeof(IProjection))]
+    public class PlaneProjection : ProjectionBase, IProjection
     {
-        double _distance = 1000;
+        private const double _distance = 1000;
 
         public static readonly DependencyProperty RatioProperty =
             DependencyProperty.Register("Ratio", typeof(double),
-            typeof(PlaneWrapper), new FrameworkPropertyMetadata(1D));
-
+            typeof(PlaneProjection), new FrameworkPropertyMetadata(1D));
         public double Ratio
         {
             get { return (double)GetValue(RatioProperty); }
@@ -58,9 +60,9 @@ namespace VrPlayer.Models.Wrappers
 
         public override Int32Collection TriangleIndices
         {
-            get 
+            get
             {
-                Int32Collection triangleIndices = new Int32Collection();
+                var triangleIndices = new Int32Collection();
 
                 //Left
                 triangleIndices.Add(0);
@@ -86,14 +88,14 @@ namespace VrPlayer.Models.Wrappers
         {
             get
             {
-                PointCollection textureCoordinates = new PointCollection();
+                var textureCoordinates = new PointCollection();
 
                 //Left
                 textureCoordinates.Add(new Point(1, 1));
                 textureCoordinates.Add(new Point(0, 1));
                 textureCoordinates.Add(new Point(0, 0));
                 textureCoordinates.Add(new Point(1, 0));
-                
+
                 //Right
                 textureCoordinates.Add(new Point(1, 1));
                 textureCoordinates.Add(new Point(0, 1));
@@ -106,16 +108,16 @@ namespace VrPlayer.Models.Wrappers
 
         public override PointCollection OverUnderTextureCoordinates
         {
-            get 
+            get
             {
-                PointCollection textureCoordinates = new PointCollection();
+                var textureCoordinates = new PointCollection();
 
                 //Left
                 textureCoordinates.Add(new Point(1, 0.5));
                 textureCoordinates.Add(new Point(0, 0.5));
                 textureCoordinates.Add(new Point(0, 0));
                 textureCoordinates.Add(new Point(1, 0));
-                
+
                 //Right
                 textureCoordinates.Add(new Point(1, 1));
                 textureCoordinates.Add(new Point(0, 1));
@@ -128,9 +130,9 @@ namespace VrPlayer.Models.Wrappers
 
         public override PointCollection SideBySideTextureCoordinates
         {
-            get 
+            get
             {
-                PointCollection textureCoordinates = new PointCollection();
+                var textureCoordinates = new PointCollection();
 
                 //Left
                 textureCoordinates.Add(new Point(0.5, 1));
@@ -149,4 +151,3 @@ namespace VrPlayer.Models.Wrappers
         }
     }
 }
-

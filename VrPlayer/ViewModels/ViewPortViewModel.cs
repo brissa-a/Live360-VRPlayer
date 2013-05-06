@@ -3,10 +3,10 @@ using System.Windows.Input;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
 
+using VrPlayer.Contracts.Projections;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.State;
-using VrPlayer.Models.Wrappers;
 using VrPlayer.Models.Media;
 
 namespace VrPlayer.ViewModels

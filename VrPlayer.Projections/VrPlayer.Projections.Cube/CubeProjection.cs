@@ -1,21 +1,22 @@
-﻿using System;
+﻿using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
-using System.Collections;
+using VrPlayer.Contracts.Projections;
 
-namespace VrPlayer.Models.Wrappers
+namespace VrPlayer.Projections.Cube
 {
-    public class CubeWrapper : WrapperBase, IWrapper
+    [Export(typeof(IProjection))]
+    public class CubeProjection : ProjectionBase, IProjection
     {
-        double _distance = 2;
+        private const double _distance = 2;
 
         public override Point3DCollection Positions
         {
             get
             {
-                Point3DCollection positions = new Point3DCollection();
+                var positions = new Point3DCollection();
 
                 //Left Cube
 
@@ -101,7 +102,7 @@ namespace VrPlayer.Models.Wrappers
         {
             get
             {
-                Int32Collection triangleIndices = new Int32Collection();
+                var triangleIndices = new Int32Collection();
 
                 //Left cube
 
@@ -211,7 +212,7 @@ namespace VrPlayer.Models.Wrappers
         {
             get
             {
-                PointCollection textureCoordinates = GenerateTextureCoordinates(-1, -0.33, 0.33, 1, 1, 0, -1);
+                var textureCoordinates = GenerateTextureCoordinates(-1, -0.33, 0.33, 1, 1, 0, -1);
                 return new PointCollection(textureCoordinates.Concat<Point>(textureCoordinates));
             }
         }
@@ -220,9 +221,9 @@ namespace VrPlayer.Models.Wrappers
         {
             get
             {
-                PointCollection leftTextureCoordinates = GenerateTextureCoordinates(-1, -0.33, 0.33, 1, 0, -0.5, -1);
-                PointCollection rightTextureCoordinates = GenerateTextureCoordinates(-1, -0.33, 0.33, 1, 1, 0.5, 0);   
-                return new PointCollection(leftTextureCoordinates.Concat<Point>(rightTextureCoordinates));
+                var leftTextureCoordinates = GenerateTextureCoordinates(-1, -0.33, 0.33, 1, 0, -0.5, -1);
+                var rightTextureCoordinates = GenerateTextureCoordinates(-1, -0.33, 0.33, 1, 1, 0.5, 0);
+                return new PointCollection(leftTextureCoordinates.Concat(rightTextureCoordinates));
             }
         }
 
@@ -230,9 +231,9 @@ namespace VrPlayer.Models.Wrappers
         {
             get
             {
-                PointCollection leftTextureCoordinates = GenerateTextureCoordinates(-1, -0.66, -0.33, 0, 1, 0, -1);
-                PointCollection rightTextureCoordinates = GenerateTextureCoordinates(0, 0.33, 0.66, 1, 1, 0, -1);
-                return new PointCollection(leftTextureCoordinates.Concat<Point>(rightTextureCoordinates));
+                var leftTextureCoordinates = GenerateTextureCoordinates(-1, -0.66, -0.33, 0, 1, 0, -1);
+                var rightTextureCoordinates = GenerateTextureCoordinates(0, 0.33, 0.66, 1, 1, 0, -1);
+                return new PointCollection(leftTextureCoordinates.Concat(rightTextureCoordinates));
             }
         }
 
@@ -254,8 +255,8 @@ namespace VrPlayer.Models.Wrappers
 
         private PointCollection GenerateTextureCoordinates(double left, double leftCenter, double rightCenter, double right, double top, double middle, double down)
         {
-            PointCollection textureCoordinates = new PointCollection();
-                
+            var textureCoordinates = new PointCollection();
+
             //Bottom
             textureCoordinates.Add(new Point(rightCenter, top));
             textureCoordinates.Add(new Point(leftCenter, top));
@@ -296,4 +297,3 @@ namespace VrPlayer.Models.Wrappers
         }
     }
 }
-
