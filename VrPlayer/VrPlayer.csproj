@@ -90,21 +90,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\Converters\Vector3DToQuaternionConverter.cs" />
-    <Compile Include="Helpers\Converters\Vector3DToCoordConverter.cs" />
-    <Compile Include="Helpers\Converters\ObjectToTypeConverter.cs" />
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="Models\Plugins\DynamicPluginManager.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Converters\CompareStringParameterConverter.cs" />
-    <Compile Include="Helpers\Converters\CompareStringToVisibilityConverter.cs" />
-    <Compile Include="Helpers\Converters\ViewportDistanceConverter.cs" />
-    <Compile Include="Helpers\Converters\CountToBooleanConverter.cs" />
-    <Compile Include="Helpers\Converters\InvertBooleanToVisibilityConverter.cs" />
-    <Compile Include="Helpers\Converters\CompareParameterConverter.cs" />
-    <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Models\Metadata\MetadataResult.cs" />
     <Compile Include="Models\Settings\SettingsManager.cs" />
     <Compile Include="Models\Metadata\MetadataParser.cs" />
@@ -115,7 +105,6 @@
     <Compile Include="Models\Media\MediaGraphPlayer.cs" />
     <Compile Include="Models\Media\MediaGraphElement.cs" />
     <Compile Include="Models\Media\X3DAudioEngine.cs" />
-    <Compile Include="Helpers\MouseUtilities.cs" />
     <Compile Include="Models\Media\IAudioEngine.cs" />
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
     <Compile Include="Models\Plugins\EffectPlugin.cs" />

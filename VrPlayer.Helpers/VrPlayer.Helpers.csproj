@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,11 +43,22 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\CompareParameterConverter.cs" />
+    <Compile Include="Converters\CompareStringParameterConverter.cs" />
+    <Compile Include="Converters\CompareStringToVisibilityConverter.cs" />
+    <Compile Include="Converters\CountToBooleanConverter.cs" />
+    <Compile Include="Converters\InvertBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\ObjectToTypeConverter.cs" />
+    <Compile Include="Converters\Vector3DToCoordConverter.cs" />
+    <Compile Include="Converters\Vector3DToQuaternionConverter.cs" />
+    <Compile Include="Converters\ViewportDistanceConverter.cs" />
+    <Compile Include="MouseUtilities.cs" />
     <Compile Include="Mvvm\DelegateCommand.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Mvvm\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuaternionHelper.cs" />
+    <Compile Include="SerializationHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

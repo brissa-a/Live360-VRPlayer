@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:hlpr="clr-namespace:VrPlayer.Helpers"
-             xmlns:Converters="clr-namespace:VrPlayer.Helpers.Converters"
+             xmlns:converters="clr-namespace:VrPlayer.Helpers.Converters;assembly=VrPlayer.Helpers"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <Converters:CountToBooleanConverter x:Key="countToBool"/>
+        <converters:CountToBooleanConverter x:Key="CountToBool"/>
     </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
@@ -22,7 +21,7 @@
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
-            <MenuItem Header="_Samples" ItemsSource="{Binding Path=SamplesMenu}" IsEnabled="{Binding Path=SamplesMenu, Converter={StaticResource countToBool}}">
+            <MenuItem Header="_Samples" ItemsSource="{Binding Path=SamplesMenu}" IsEnabled="{Binding Path=SamplesMenu, Converter={StaticResource CountToBool}}">
 				<MenuItem.Icon>
 					<Image Width="20" Height="20" Source="/Medias/Nuvola/edu_science.png" />
 				</MenuItem.Icon>
