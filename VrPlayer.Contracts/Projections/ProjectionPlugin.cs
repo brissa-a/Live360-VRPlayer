@@ -1,6 +1,4 @@
-﻿using VrPlayer.Contracts.Projections;
-
-namespace VrPlayer.Models.Plugins
+﻿namespace VrPlayer.Contracts.Projections
 {
     public class ProjectionPlugin : PluginBase, IPlugin
     {

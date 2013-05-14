@@ -1,4 +1,4 @@
-﻿namespace VrPlayer.Models.Plugins
+﻿namespace VrPlayer.Contracts
 {
     public interface IPlugin
     {

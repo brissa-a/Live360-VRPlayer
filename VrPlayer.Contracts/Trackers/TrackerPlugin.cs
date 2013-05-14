@@ -1,6 +1,4 @@
-﻿using VrPlayer.Contracts.Trackers;
-
-namespace VrPlayer.Models.Plugins
+﻿namespace VrPlayer.Contracts.Trackers
 {
     public class TrackerPlugin : PluginBase, IPlugin
     {

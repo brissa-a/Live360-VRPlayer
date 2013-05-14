@@ -1,4 +1,7 @@
-﻿using WPFMediaKit.DirectShow.Controls;
+﻿using VrPlayer.Contracts.Distortions;
+using VrPlayer.Contracts.Effects;
+using VrPlayer.Contracts.Trackers;
+using WPFMediaKit.DirectShow.Controls;
 
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
@@ -91,17 +94,17 @@ namespace VrPlayer.Models.State
             }
         }
 
-        private ShaderPlugin _shaderPlugin;
-        public ShaderPlugin ShaderPlugin
+        private DistortionPlugin _distortionPlugin;
+        public DistortionPlugin DistortionPlugin
         {
             get
             {
-                return _shaderPlugin;
+                return _distortionPlugin;
             }
             set
             {
-                _shaderPlugin = value;
-                OnPropertyChanged("ShaderPlugin");
+                _distortionPlugin = value;
+                OnPropertyChanged("DistortionPlugin");
             }
         }
 

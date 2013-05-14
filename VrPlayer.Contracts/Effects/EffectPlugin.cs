@@ -1,7 +1,4 @@
-﻿using System.Windows.Media.Effects;
-using VrPlayer.Contracts.Effects;
-
-namespace VrPlayer.Models.Plugins
+﻿namespace VrPlayer.Contracts.Effects
 {
     public class EffectPlugin : PluginBase, IPlugin
     {

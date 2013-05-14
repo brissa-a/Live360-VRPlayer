@@ -30,12 +30,12 @@ namespace VrPlayer.Models.Plugins
 
         [ImportMany(typeof(DistortionBase))]
         private IEnumerable<DistortionBase> _shaders;
-        public List<ShaderPlugin> Shaders
+        public List<DistortionPlugin> Distortions
         {
             get
             {
                 return _shaders.Select(shader =>
-                    new ShaderPlugin(shader, shader.GetType().FullName)).ToList();
+                    new DistortionPlugin(shader, shader.GetType().FullName)).ToList();
             }
         }
 

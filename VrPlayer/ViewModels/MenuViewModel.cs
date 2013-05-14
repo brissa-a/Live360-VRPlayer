@@ -9,8 +9,11 @@ using System.Windows.Input;
 using System.Windows;
 using System.Windows.Data;
 using Microsoft.Win32;
-
+using VrPlayer.Contracts;
+using VrPlayer.Contracts.Distortions;
+using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Projections;
+using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers.Converters;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Metadata;
@@ -205,7 +208,7 @@ namespace VrPlayer.ViewModels
             get
             {
                 var menuItems = new List<MenuItem>();
-                foreach (var shaderPlugin in _pluginManager.Shaders)
+                foreach (var shaderPlugin in _pluginManager.Distortions)
                 {
                     var menuItem = new MenuItem
                     {
@@ -216,7 +219,7 @@ namespace VrPlayer.ViewModels
                     var binding = new Binding
                     {
 						Source = _state,
-                        Path = new PropertyPath("ShaderPlugin"),
+                        Path = new PropertyPath("DistortionPlugin"),
                         Converter = new CompareParameterConverter(),
                         ConverterParameter = shaderPlugin
                     };
@@ -294,7 +297,7 @@ namespace VrPlayer.ViewModels
             _state.EffectPlugin = _state.EffectPlugin ?? _pluginManager.Effects[0];
             _state.ProjectionPlugin = _state.ProjectionPlugin ?? _pluginManager.Projections[4];
             _state.TrackerPlugin = _state.TrackerPlugin ?? _pluginManager.Trackers[0];
-            _state.ShaderPlugin = _state.ShaderPlugin ?? _pluginManager.Shaders[0];
+            _state.DistortionPlugin = _state.DistortionPlugin ?? _pluginManager.Distortions[0];
 
             //Todo: Should not set the media value directly
             string[] parameters = Environment.GetCommandLineArgs();
@@ -442,7 +445,7 @@ namespace VrPlayer.ViewModels
 
         private void SetShader(object o)
         {
-            _state.ShaderPlugin = (ShaderPlugin)o;
+            _state.DistortionPlugin = (DistortionPlugin)o;
         }
 
         private void ShowSettings(object o)

@@ -6,7 +6,7 @@
       <Value Profile="(Default)">VrPlayer.Models.Trackers.MouseTracker</Value>
     </Setting>
     <Setting Name="Distortion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">VrPlayer.Models.Shaders.BarrelEffect</Value>
+      <Value Profile="(Default)">VrPlayer.Models.Distortions.BarrelEffect</Value>
     </Setting>
     <Setting Name="Layout" Type="System.String" Scope="User">
       <Value Profile="(Default)">SideBySide</Value>

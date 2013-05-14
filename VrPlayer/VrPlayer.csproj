@@ -107,16 +107,10 @@
     <Compile Include="Models\Media\X3DAudioEngine.cs" />
     <Compile Include="Models\Media\IAudioEngine.cs" />
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
-    <Compile Include="Models\Plugins\EffectPlugin.cs" />
     <Compile Include="Models\Plugins\IPluginManager.cs" />
     <Compile Include="Models\State\DefaultApplicationState.cs" />
     <Compile Include="Models\State\IApplicationState.cs" />
     <Compile Include="Models\Config\IApplicationConfig.cs" />
-    <Compile Include="Models\Plugins\IPlugin.cs" />
-    <Compile Include="Models\Plugins\PluginBase.cs" />
-    <Compile Include="Models\Plugins\ShaderPlugin.cs" />
-    <Compile Include="Models\Plugins\TrackerPlugin.cs" />
-    <Compile Include="Models\Plugins\ProjectionPlugin.cs" />
     <Compile Include="ViewModels\SettingsWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewPortViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />

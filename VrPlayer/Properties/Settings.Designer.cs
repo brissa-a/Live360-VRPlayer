@@ -37,7 +37,7 @@ namespace VrPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("VrPlayer.Models.Shaders.BarrelEffect")]
+        [global::System.Configuration.DefaultSettingValueAttribute("VrPlayer.Models.Distortions.BarrelEffect")]
         public string Distortion {
             get {
                 return ((string)(this["Distortion"]));
