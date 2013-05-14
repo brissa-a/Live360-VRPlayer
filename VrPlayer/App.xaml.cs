@@ -19,7 +19,7 @@ namespace VrPlayer
         private App()
         {
             IApplicationConfig config = new AppSettingsApplicationConfig();
-            _pluginManager = new DynamicPluginManager(config);
+            _pluginManager = new DynamicPluginManager();
             IApplicationState state = new DefaultApplicationState(config);
             ViewModelFactory = new ViewModelFactory(config, _pluginManager, state);
 

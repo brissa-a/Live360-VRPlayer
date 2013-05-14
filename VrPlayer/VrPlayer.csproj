@@ -115,13 +115,27 @@
     <Compile Include="ViewModels\ViewPortViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\MediaViewModel.cs" />
-    <Compile Include="Models\Trackers\MouseTracker.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />
     <Compile Include="Views\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DistortionsSettings.xaml.cs">
+      <DependentUpon>DistortionsSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EffectsSettings.xaml.cs">
+      <DependentUpon>EffectsSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneralSettings.xaml.cs">
+      <DependentUpon>GeneralSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectionsSettings.xaml.cs">
+      <DependentUpon>ProjectionsSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrackersSettings.xaml.cs">
+      <DependentUpon>TrackersSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewPort.xaml.cs">
       <DependentUpon>ViewPort.xaml</DependentUpon>
@@ -151,7 +165,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DistortionsSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EffectsSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GeneralSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectionsSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrackersSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,6 +1,5 @@
 ﻿//Source: Based on SphereMeshGenerator by Charles Petzold
 using System;
-using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -8,16 +7,15 @@ using VrPlayer.Contracts.Projections;
 
 namespace VrPlayer.Projections.Sphere
 {
-    [Export(typeof(IProjection))]
     public class SphereProjection : ProjectionBase, IProjection
     {
+
         Point3D _center;
         double _radius = 1D;
 
         public static readonly DependencyProperty SlicesProperty =
              DependencyProperty.Register("Slices", typeof(int),
              typeof(SphereProjection), new FrameworkPropertyMetadata(32));
-
         public int Slices
         {
             get { return (int)GetValue(SlicesProperty); }
@@ -27,7 +25,6 @@ namespace VrPlayer.Projections.Sphere
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
              typeof(SphereProjection), new FrameworkPropertyMetadata(16));
-
         public int Stacks
         {
             get { return (int)GetValue(StacksProperty); }

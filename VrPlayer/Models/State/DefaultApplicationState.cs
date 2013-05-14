@@ -1,4 +1,5 @@
-﻿using VrPlayer.Contracts.Distortions;
+﻿using VrPlayer.Contracts;
+using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Trackers;
 using WPFMediaKit.DirectShow.Controls;
@@ -52,8 +53,8 @@ namespace VrPlayer.Models.State
             }
         }
 
-        private EffectPlugin _effectPlugin;
-        public EffectPlugin EffectPlugin
+        private IPlugin<EffectBase> _effectPlugin;
+        public IPlugin<EffectBase> EffectPlugin
         {
             get
             {
@@ -66,8 +67,8 @@ namespace VrPlayer.Models.State
             }
         }
 
-        private ProjectionPlugin _projectionPlugin;
-        public ProjectionPlugin ProjectionPlugin
+        private IPlugin<IProjection> _projectionPlugin;
+        public IPlugin<IProjection> ProjectionPlugin
         {
             get
             {
@@ -80,8 +81,8 @@ namespace VrPlayer.Models.State
             }
         }
 
-        private TrackerPlugin _trackerPlugin;
-        public TrackerPlugin TrackerPlugin
+        private IPlugin<ITracker> _trackerPlugin;
+        public IPlugin<ITracker> TrackerPlugin
         {
             get
             {
@@ -94,8 +95,8 @@ namespace VrPlayer.Models.State
             }
         }
 
-        private DistortionPlugin _distortionPlugin;
-        public DistortionPlugin DistortionPlugin
+        private IPlugin<DistortionBase> _distortionPlugin;
+        public IPlugin<DistortionBase> DistortionPlugin
         {
             get
             {

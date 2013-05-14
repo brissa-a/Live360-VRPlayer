@@ -12,11 +12,11 @@
                      RenderOptions.CacheInvalidationThresholdMaximum="2.0"
                      RenderOptions.CacheInvalidationThresholdMinimum="0.5">
             <VisualBrush.Visual>
-                <ContentControl Effect="{Binding Path=State.EffectPlugin.Effect}" Content="{Binding Path=State.MediaPlayer}" IsHitTestVisible="False" />
+                <ContentControl Effect="{Binding Path=State.EffectPlugin.Content}" Content="{Binding Path=State.MediaPlayer}" IsHitTestVisible="False" />
             </VisualBrush.Visual>
         </VisualBrush>
-        
-        <GeometryModel3D x:Key="Geometry" Geometry="{Binding Path=State.ProjectionPlugin.Projection.Geometry}">
+
+        <GeometryModel3D x:Key="Geometry" Geometry="{Binding Path=State.ProjectionPlugin.Content.Geometry}">
             <GeometryModel3D.BackMaterial>
                 <DiffuseMaterial Brush="{DynamicResource Media}"></DiffuseMaterial>
             </GeometryModel3D.BackMaterial>
@@ -24,7 +24,7 @@
 
         <Viewport3D x:Key="view1" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased" Margin="{Binding Path=Config.ViewportsHorizontalOffset, Converter={StaticResource ValToThickness}, ConverterParameter=Left}">
             <Viewport3D.Camera>
-                <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Projection.CameraLeftPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}" >
+                <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Content.CameraLeftPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}" >
                     <PerspectiveCamera.Transform>
                         <Transform3DGroup>
                             <RotateTransform3D>
@@ -33,9 +33,9 @@
                                     </QuaternionRotation3D>
                                 </RotateTransform3D.Rotation>
                             </RotateTransform3D>
-                            <TranslateTransform3D OffsetX="{Binding Path=State.ProjectionPlugin.Projection.CameraLeftPosition.X}"
-                                                  OffsetY="{Binding Path=State.ProjectionPlugin.Projection.CameraLeftPosition.Y}"
-                                                  OffsetZ="{Binding Path=State.ProjectionPlugin.Projection.CameraLeftPosition.Z}">
+                            <TranslateTransform3D OffsetX="{Binding Path=State.ProjectionPlugin.Content.CameraLeftPosition.X}"
+                                                  OffsetY="{Binding Path=State.ProjectionPlugin.Content.CameraLeftPosition.Y}"
+                                                  OffsetZ="{Binding Path=State.ProjectionPlugin.Content.CameraLeftPosition.Z}">
                             </TranslateTransform3D>
                         </Transform3DGroup>
                     </PerspectiveCamera.Transform>
@@ -50,9 +50,9 @@
                 <ModelVisual3D.Transform>
                     <Transform3DGroup>
                         <TranslateTransform3D
-                                    OffsetX="{Binding Path=State.TrackerPlugin.Tracker.Position.X}"
-                                    OffsetY="{Binding Path=State.TrackerPlugin.Tracker.Position.Y}"
-                                    OffsetZ="{Binding Path=State.TrackerPlugin.Tracker.Position.Z}">
+                                    OffsetX="{Binding Path=State.TrackerPlugin.Content.Position.X}"
+                                    OffsetY="{Binding Path=State.TrackerPlugin.Content.Position.Y}"
+                                    OffsetZ="{Binding Path=State.TrackerPlugin.Content.Position.Z}">
                         </TranslateTransform3D>
                     </Transform3DGroup>
                 </ModelVisual3D.Transform>
@@ -70,9 +70,9 @@
                                     </QuaternionRotation3D>
                                 </RotateTransform3D.Rotation>
                             </RotateTransform3D>
-                            <TranslateTransform3D OffsetX="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition.X}"
-                                                  OffsetY="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition.Y}"
-                                                  OffsetZ="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition.Z}">
+                            <TranslateTransform3D OffsetX="{Binding Path=State.ProjectionPlugin.Content.CameraRightPosition.X}"
+                                                  OffsetY="{Binding Path=State.ProjectionPlugin.Content.CameraRightPosition.Y}"
+                                                  OffsetZ="{Binding Path=State.ProjectionPlugin.Content.CameraRightPosition.Z}">
                             </TranslateTransform3D>
                         </Transform3DGroup>
                     </PerspectiveCamera.Transform>
@@ -87,9 +87,9 @@
                 <ModelVisual3D.Transform>
                     <Transform3DGroup>
                         <TranslateTransform3D
-                                    OffsetX="{Binding Path=State.TrackerPlugin.Tracker.Position.X}"
-                                    OffsetY="{Binding Path=State.TrackerPlugin.Tracker.Position.Y}"
-                                    OffsetZ="{Binding Path=State.TrackerPlugin.Tracker.Position.Z}">
+                                    OffsetX="{Binding Path=State.TrackerPlugin.Content.Position.X}"
+                                    OffsetY="{Binding Path=State.TrackerPlugin.Content.Position.Y}"
+                                    OffsetZ="{Binding Path=State.TrackerPlugin.Content.Position.Z}">
                         </TranslateTransform3D>
                     </Transform3DGroup>
                 </ModelVisual3D.Transform>
@@ -110,7 +110,7 @@
 
             <!--ViewPort 1-->
             <Grid Background="Black" ClipToBounds="True" 
-                  Effect="{Binding Path=State.ShaderPlugin.Shader}"
+                  Effect="{Binding Path=State.DistortionPlugin.Content}"
                   Grid.Column="{Binding Path=Viewport1Col}" 
                   Grid.ColumnSpan="{Binding Path=Viewport1ColSpan}"  
                   Grid.Row="{Binding Path=Viewport1Row}" 
@@ -119,7 +119,7 @@
             </Grid>
             <!--ViewPort 2-->
             <Grid Background="Black" ClipToBounds="True" 
-                  Effect="{Binding Path=State.ShaderPlugin.Shader}"
+                  Effect="{Binding Path=State.DistortionPlugin.Content}"
                   Grid.Column="{Binding Path=Viewport2Col}" 
                   Grid.ColumnSpan="{Binding Path=Viewport2ColSpan}" 
                   Grid.Row="{Binding Path=Viewport2Row}" 

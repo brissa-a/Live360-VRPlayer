@@ -148,13 +148,13 @@
         "Entry"
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
-        "OwnerKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
-        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "OwnerKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -947,7 +947,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{1B90BF9C-9B74-4446-91EF-FA0656BC3068}"
+        "PackageCode" = "8:{2B835918-34C3-48E9-A3B1-0F1A66B27BE8}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

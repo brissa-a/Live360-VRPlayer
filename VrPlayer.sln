@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Projections.Sphere
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Trackers.OculusRiftTracker", "VrPlayer.Trackers\VrPlayer.Trackers.OculusRiftTracker\VrPlayer.Trackers.OculusRiftTracker.csproj", "{4C1BD4D8-AC6D-4CE5-9FB5-7E1F25100DED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Trackers.MouseTracker", "VrPlayer.Trackers\VrPlayer.Trackers.MouseTracker\VrPlayer.Trackers.MouseTracker.csproj", "{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -311,6 +313,16 @@ Global
 		{4C1BD4D8-AC6D-4CE5-9FB5-7E1F25100DED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4C1BD4D8-AC6D-4CE5-9FB5-7E1F25100DED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4C1BD4D8-AC6D-4CE5-9FB5-7E1F25100DED}.Release|x86.ActiveCfg = Release|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -323,6 +335,7 @@ Global
 		{C84195CD-C0A0-46AA-9435-E45B6D2833BE} = {54AE99E5-4BCF-49E1-A26D-FF3AF91A5026}
 		{9FA13213-EC7A-4E62-9955-003200B56CFB} = {54AE99E5-4BCF-49E1-A26D-FF3AF91A5026}
 		{4C1BD4D8-AC6D-4CE5-9FB5-7E1F25100DED} = {54AE99E5-4BCF-49E1-A26D-FF3AF91A5026}
+		{184FEF52-FFEB-4A23-96BB-7BC1ED6299A5} = {54AE99E5-4BCF-49E1-A26D-FF3AF91A5026}
 		{AFEA0AB5-F77D-4DD4-9005-B6447B297AC3} = {C5A2E175-1D11-49C1-8EB9-A2F3D99B8B74}
 		{3DF912C2-51EF-4B8C-AA22-17ABC2EFD58B} = {C5A2E175-1D11-49C1-8EB9-A2F3D99B8B74}
 		{042F31E3-71B6-4AC2-8AC3-B1620E15F62A} = {17B38A52-CA16-483D-A783-1318359B6C44}

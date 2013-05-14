@@ -5,74 +5,63 @@ using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Contracts.Trackers;
-using VrPlayer.Models.Config;
 
 namespace VrPlayer.Models.Plugins
 {
     public class DynamicPluginManager : IPluginManager
     {
-        private readonly IApplicationConfig _config;
-
-        [ImportMany(typeof(EffectBase))]
-        private IEnumerable<EffectBase> _effects;
-        public List<EffectPlugin> Effects
+        [ImportMany]
+        private IEnumerable<IPlugin<EffectBase>> _effects;
+        public IEnumerable<IPlugin<EffectBase>> Effects
         {
             get
             {
-                return _effects.Select(effect =>
-                    new EffectPlugin(effect, effect.GetType().FullName)).ToList();
+                return _effects;
             }
         }
-
-        [ImportMany(typeof(DistortionBase))]
-        private IEnumerable<DistortionBase> _shaders;
-        public List<DistortionPlugin> Distortions
+        
+        [ImportMany]
+        private IEnumerable<IPlugin<DistortionBase>> _distortions;
+        public IEnumerable<IPlugin<DistortionBase>> Distortions
         {
             get
             {
-                return _shaders.Select(shader =>
-                    new DistortionPlugin(shader, shader.GetType().FullName)).ToList();
+                return _distortions;
             }
         }
 
-        [ImportMany(typeof(IProjection))]
-        private IEnumerable<IProjection> _projections;
-        public List<ProjectionPlugin> Projections
+        [ImportMany]
+        private IEnumerable<IPlugin<IProjection>> _projections;
+        public IEnumerable<IPlugin<IProjection>> Projections
         {
             get
             {
-                return _projections.Select(projection =>
-                    new ProjectionPlugin(projection, projection.GetType().FullName)).ToList();
+                return _projections;
             }
         }
 
-        [ImportMany(typeof(ITracker))]
-        private IEnumerable<ITracker> _trackers;
-        public List<TrackerPlugin> Trackers
+        [ImportMany]
+        private IEnumerable<IPlugin<ITracker>> _trackers;
+        public IEnumerable<IPlugin<ITracker>> Trackers
         {
             get
             {
-                return _trackers.Select(tracker =>
-                    new TrackerPlugin(tracker, tracker.GetType().FullName)).ToList();
+                return _trackers;
             }
         }
 
-        public DynamicPluginManager(IApplicationConfig config)
-        {
-            Import();
-        }
-
-        public void Import()
+        public DynamicPluginManager()
         {
             var catalog = new AggregateCatalog();
             var path = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
 
-            string[] pluginFolders = {"Effects","Distortions","Trackers","Projections"};
-            foreach (var folder in pluginFolders.SelectMany(pluginFolder => Directory.GetDirectories(Path.Combine(path, pluginFolder))))
+            string[] pluginFolders = { "Effects", "Distortions", "Trackers", "Projections" };
+            foreach (var folder in pluginFolders.SelectMany(pluginFolder => Directory.GetDirectories(Path.Combine(path, pluginFolder))).Where(Directory.Exists))
             {
                 catalog.Catalogs.Add(new DirectoryCatalog(folder));
             }

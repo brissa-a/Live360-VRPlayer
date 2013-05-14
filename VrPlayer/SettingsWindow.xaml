@@ -1,12 +1,8 @@
 ﻿<Window x:Class="VrPlayer.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:converters="clr-namespace:VrPlayer.Helpers.Converters;assembly=VrPlayer.Helpers"
+        xmlns:views="clr-namespace:VrPlayer.Views"
         Title="Settings" Height="440" Width="600" WindowStyle="ToolWindow" Topmost="True" Margin="0" Padding="0">
-    <Window.Resources>
-        <converters:ObjectToTypeConverter x:Key="TypeConverter" />
-        <converters:Vector3DToCoordConverter x:Key="CoordConverter" />
-    </Window.Resources>
     <TabControl x:Name="Tabs" TabStripPlacement="Left" Margin="-4">
         <TabItem UseLayoutRounding="False">
             <TabItem.Header>
@@ -15,54 +11,7 @@
                     <TextBlock Text="General" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
-            <StackPanel Orientation="Vertical" Margin="16">
-                <Label Content="General" FontSize="18" />
-                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
-                <TextBlock Text="Display" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>
-                <Grid Margin="0,0,0,16">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="50" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Content="Field of view (FOV):"></Label>
-                    <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.CameraFieldOfView}" Minimum="0" Maximum="180"></Slider>
-                    <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.CameraFieldOfView}" ></TextBox>
-                    <Label Grid.Column="0" Grid.Row="1" Content="Horizontal offset:"></Label>
-                    <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.ViewportsHorizontalOffset}" Minimum="-1000" Maximum="1000"></Slider>
-                    <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.ViewportsHorizontalOffset}"></TextBox>               
-                </Grid>
-                <TextBlock Text="Samples" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>
-                <Grid Margin="0,0,0,16">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="50" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Content="Directory path:"></Label>
-                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Config.SamplesFolder}" IsEnabled="False" IsReadOnly="True"></TextBox>
-                    <Button Grid.Column="2" Grid.Row="0" IsEnabled="False">...</Button>
-                </Grid>
-                <TextBlock Text="Metadata" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>
-                <Grid Margin="0,0,0,16">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="50" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Content="Auto-apply:"></Label>
-                    <CheckBox Grid.Column="1" Grid.Row="0" IsChecked="{Binding Path=Config.MetaDataReadOnLoad}" HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
-                </Grid>
-            </StackPanel>
+            <views:GeneralSettings />
         </TabItem>
         <TabItem>
             <TabItem.Header>
@@ -71,98 +20,7 @@
                     <TextBlock Text="Projections" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
-            <StackPanel Orientation="Vertical" Margin="16">
-                <Label Content="Projections" FontSize="18" />
-                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                    <Label Content="Current projection: " />
-                    <ComboBox Width="200" IsEnabled="False" SelectedIndex="0">
-                        <ComboBoxItem Content="{Binding Mode=OneWay, Path=State.ProjectionPlugin.Projection, Converter={StaticResource TypeConverter}}" /> 
-                    </ComboBox>
-                </StackPanel>
-                <TabControl MinHeight="264">
-                    <TabItem Header="Plane">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Ratio:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.PlaneRatio}" Minimum="0" Maximum="2"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.PlaneRatio}" ></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Cylinder">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Slices:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.CylinderSlices}" Minimum="8" Maximum="256"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.CylinderSlices}" ></TextBox>
-                                <Label Grid.Column="0" Grid.Row="1" Content="Stacks:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.CylinderStacks}" Minimum="8" Maximum="256"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.CylinderStacks}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Dome">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Slices:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.DomeSlices}" Minimum="8" Maximum="256"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.DomeSlices}" ></TextBox>
-                                <Label Grid.Column="0" Grid.Row="1" Content="Stacks:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.DomeStacks}" Minimum="8" Maximum="256"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.DomeStacks}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Sphere">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Slices:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.SphereSlices}" Minimum="8" Maximum="256"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.SphereSlices}" ></TextBox>
-                                <Label Grid.Column="0" Grid.Row="1" Content="Stacks:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.SphereStacks}" Minimum="8" Maximum="256"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.SphereStacks}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                </TabControl>
-            </StackPanel>
+            <views:ProjectionsSettings />
         </TabItem>
         <TabItem>
             <TabItem.Header>
@@ -171,56 +29,7 @@
                     <TextBlock Text="Effects" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
-            <StackPanel Orientation="Vertical" Margin="16">
-                <Label Content="Effects" FontSize="18" />
-                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                    <Label Content="Current effect: " />
-                    <ComboBox Width="200" IsEnabled="False" SelectedIndex="0">
-                        <ComboBoxItem Content="{Binding Mode=OneWay, Path=State.EffectPlugin.Effect, Converter={StaticResource TypeConverter}}" />
-                    </ComboBox>
-                </StackPanel>
-                <TabControl MinHeight="264">
-                    <TabItem Header="Color key">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Color:"></Label>
-                                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Config.ColorKeyAlphaColor}"></TextBox>
-                                <TextBox Grid.Column="2" Grid.Row="0" Background="{Binding Path=Config.ColorKeyAlphaColor}" IsReadOnly="True"/>
-                                <Label Grid.Column="0" Grid.Row="1" Content="Tolerence:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.ColorKeyTolerance}" Minimum="0" Maximum="1"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.ColorKeyTolerance}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Depth map">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Max offset:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.DepthMapMaxOffset}" Minimum="-0.025" Maximum="0.025"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.DepthMapMaxOffset}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                </TabControl>
-            </StackPanel>
+            <views:EffectsSettings />
         </TabItem>
         <TabItem>
             <TabItem.Header>
@@ -229,52 +38,7 @@
                     <TextBlock Text="Distortions" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
-            <StackPanel Orientation="Vertical" Margin="16">
-                <Label Content="Distortions" FontSize="18" />
-                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                    <Label Content="Current distorition: " />
-                    <ComboBox Width="200" IsEnabled="False" SelectedIndex="0">
-                        <ComboBoxItem Content="{Binding Mode=OneWay, Path=State.ShaderPlugin.Shader, Converter={StaticResource TypeConverter}}" />
-                    </ComboBox>
-                </StackPanel>
-                <TabControl MinHeight="264">
-                    <TabItem Header="Barrel">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.BarrelFactor}" Minimum="0" Maximum="5" IsEnabled="False"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.BarrelFactor}" IsEnabled="False"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Pincushion">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.PincushionFactor}" Minimum="0" Maximum="10"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.PincushionFactor}" ></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                </TabControl>
-            </StackPanel>
+            <views:DistortionsSettings />
         </TabItem>
         <TabItem>
             <TabItem.Header>
@@ -283,138 +47,7 @@
                     <TextBlock Text="Trackers" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
-            <StackPanel Orientation="Vertical" Margin="16">
-                <Label Content="Trackers" FontSize="18" />
-                <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                    <Label Content="Current tracker: " />
-                    <ComboBox Width="200" IsEnabled="False" SelectedIndex="0">
-                        <ComboBoxItem Content="{Binding Mode=OneWay, Path=State.TrackerPlugin.Tracker, Converter={StaticResource TypeConverter}}" />
-                    </ComboBox>
-                </StackPanel>
-                <TabControl MinHeight="264">
-                    <TabItem Header="Mouse">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Sensitivity:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.MouseSensitivity}" Minimum="0" Maximum="10"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.MouseSensitivity}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Razer Hydra">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.HydraPositionScaleFactor}" Minimum="0" Maximum="0.01"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.HydraPositionScaleFactor}"></TextBox>
-                                <Label Grid.Column="0" Grid.Row="1" Content="Tilt (pitch offset):"></Label>
-                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.HydraRotationOffset, Converter={StaticResource CoordConverter}}" Minimum="0" Maximum="360"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.HydraRotationOffset, Converter={StaticResource CoordConverter}}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Microsoft Kinect">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.KinectPositionScaleFactor}" Minimum="0" Maximum="3"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.KinectPositionScaleFactor}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Playstation Move">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.PsMovePositionScaleFactor}" Minimum="0" Maximum="0.1"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.PsMovePositionScaleFactor}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="VRPN Client">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.VrpnPositionScaleFactor}" Minimum="0" Maximum="50"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.VrpnPositionScaleFactor}"></TextBox>
-                                <Label Grid.Column="0" Grid.Row="1" Content="Tilt (pitch offset):"></Label>
-                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.VrpnRotationOffset, Converter={StaticResource CoordConverter}}" Minimum="0" Maximum="360"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.VrpnRotationOffset, Converter={StaticResource CoordConverter}}"></TextBox>
-                                <Label Grid.Column="0" Grid.Row="2" Content="Tracker address:"></Label>
-                                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Config.VrpnTrackerAddress}"></TextBox>
-                                <Label Grid.Column="0" Grid.Row="3" Content="Buttons address:"></Label>
-                                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=Config.VrpnButtonAddress}"></TextBox>
-                           </Grid>
-                        </StackPanel>
-                    </TabItem>
-                    <!--TabItem Header="Leap">
-                        <StackPanel Orientation="Vertical" Margin="16">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Scale factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.LeapPositionScaleFactor}" Minimum="0" Maximum="0.1"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.LeapPositionScaleFactor}"></TextBox>
-                                <Label Grid.Column="0" Grid.Row="1" Content="Rotation factor:"></Label>
-                                <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.LeapRotationFactor}" Minimum="1" Maximum="10"></Slider>
-                                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.LeapRotationFactor}"></TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </TabItem-->
-                </TabControl>
-            </StackPanel>
+            <views:TrackersSettings />
         </TabItem>
     </TabControl>
 </Window>

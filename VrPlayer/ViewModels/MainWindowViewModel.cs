@@ -39,7 +39,7 @@ namespace VrPlayer.ViewModels
             switch (key)
             {
                 case Key.F1:
-                    _state.TrackerPlugin.Tracker.Calibrate();
+                    _state.TrackerPlugin.Content.Calibrate();
                     break;
                 default:
                     break;

@@ -5,13 +5,14 @@ using System.Windows.Media.Media3D;
 
 namespace VrPlayer.Helpers.Converters
 {
-    public class Vector3DToCoordConverter : IValueConverter
+    public class QuaternionToCoordConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var vector = (Vector3D)value;
+            var quaternion = (Quaternion)value;
+            //Todo: temp - return Vector3D X
             //Todo: support Y and Z via parameter
-            return vector.X;
+            return quaternion.X;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

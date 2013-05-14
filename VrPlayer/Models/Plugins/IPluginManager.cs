@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Projections;
@@ -9,9 +10,9 @@ namespace VrPlayer.Models.Plugins
 {
     public interface IPluginManager: IDisposable
     {
-        List<EffectPlugin> Effects { get; }
-        List<ProjectionPlugin> Projections { get; }
-        List<TrackerPlugin> Trackers { get; }
-        List<DistortionPlugin> Distortions { get; }
+        IEnumerable<IPlugin<EffectBase>> Effects { get; }
+        IEnumerable<IPlugin<IProjection>> Projections { get; }
+        IEnumerable<IPlugin<ITracker>> Trackers { get; }
+        IEnumerable<IPlugin<DistortionBase>> Distortions { get; }
     }
 }

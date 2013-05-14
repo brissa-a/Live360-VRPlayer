@@ -62,7 +62,7 @@ namespace VrPlayer.ViewModels
             _toggleNavigationCommand = new RelayCommand(ToggleNavigation);
 
             DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Input);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, config.OrientationRefreshRateInMS);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, config.OrientationRefreshRateInMs);
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
 
@@ -72,15 +72,18 @@ namespace VrPlayer.ViewModels
         
         void timer_Tick(object sender, EventArgs e)
         {
-            CameraTransform = _state.TrackerPlugin.Tracker.Rotation;
+            if (_state.TrackerPlugin == null)
+                return;
+
+            CameraTransform = _state.TrackerPlugin.Content.Rotation;
             //Todo: Extract.. This is not view model responsability
             if (_state.MediaPlayer is MediaGraphElement)
             {
                 IAudioEngine audioEngine = ((MediaGraphElement)_state.MediaPlayer).MediaGraphPlayer.AudioEngine;
                 if (audioEngine != null)
                 {
-                    audioEngine.Position = _state.TrackerPlugin.Tracker.Position;
-                    audioEngine.Rotation = _state.TrackerPlugin.Tracker.Rotation;
+                    audioEngine.Position = _state.TrackerPlugin.Content.Position;
+                    audioEngine.Rotation = _state.TrackerPlugin.Content.Rotation;
                 }
             }
         }
@@ -89,7 +92,10 @@ namespace VrPlayer.ViewModels
 
         private void ToggleNavigation(object o)
         {
-            _state.TrackerPlugin.Tracker.IsActive = !_state.TrackerPlugin.Tracker.IsActive;
+            if (_state.TrackerPlugin == null)
+                return;
+
+            _state.TrackerPlugin.Content.IsActive = !_state.TrackerPlugin.Content.IsActive;
         }
 
         #endregion

@@ -24,12 +24,12 @@ namespace VrPlayer.Models.Settings
         public void Save()
         {
             if (_state.TrackerPlugin != null)
-                _settings["Tracker"] = _state.TrackerPlugin.Tracker.GetType().FullName;
+                _settings["Tracker"] = _state.TrackerPlugin.Content.GetType().FullName;
 
             if (_state.DistortionPlugin != null)
             {
-                if (_state.DistortionPlugin.Distortion != null)
-                    _settings["Distortion"] = _state.DistortionPlugin.Distortion.GetType().FullName;
+                if (_state.DistortionPlugin.Content != null)
+                    _settings["Distortion"] = _state.DistortionPlugin.Content.GetType().FullName;
                 else
                     _settings["Distortion"] = null;
             }
@@ -42,12 +42,12 @@ namespace VrPlayer.Models.Settings
         public void Load()
         {
             _state.TrackerPlugin = _pluginManager.Trackers
-                .Where(plugin => plugin.Tracker != null) 
-                .FirstOrDefault(plugin => plugin.Tracker.GetType().FullName == _settings["Tracker"].ToString());
+                .Where(plugin => plugin.Content != null)
+                .FirstOrDefault(plugin => plugin.Content.GetType().FullName == _settings["Tracker"].ToString());
 
             _state.DistortionPlugin = _pluginManager.Distortions
-                .Where(plugin => plugin.Distortion != null) 
-                .FirstOrDefault(plugin => plugin.Distortion.GetType().FullName == _settings["Distortion"].ToString());
+                .Where(plugin => plugin.Content != null)
+                .FirstOrDefault(plugin => plugin.Content.GetType().FullName == _settings["Distortion"].ToString());
 
             _state.StereoOutput = (StereoMode)Enum.Parse(typeof(StereoMode), _settings["Layout"].ToString());
         }

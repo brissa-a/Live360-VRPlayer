@@ -192,7 +192,7 @@ namespace VrPlayer.ViewModels
                     
                     var enabledBinding = new Binding
                     {
-                        Source = trackerPlugin.Tracker,
+                        Source = trackerPlugin.Content,
                         Path = new PropertyPath("IsEnabled")
                     };
                     menuItem.SetBinding(MenuItem.IsEnabledProperty, enabledBinding);
@@ -294,11 +294,11 @@ namespace VrPlayer.ViewModels
             _aboutCommand = new DelegateCommand(ShowAbout);
 
             //Todo: Extract Default values
-            _state.EffectPlugin = _state.EffectPlugin ?? _pluginManager.Effects[0];
-            _state.ProjectionPlugin = _state.ProjectionPlugin ?? _pluginManager.Projections[4];
-            _state.TrackerPlugin = _state.TrackerPlugin ?? _pluginManager.Trackers[0];
-            _state.DistortionPlugin = _state.DistortionPlugin ?? _pluginManager.Distortions[0];
-
+            _state.EffectPlugin = _state.EffectPlugin ?? _pluginManager.Effects.FirstOrDefault();
+            _state.ProjectionPlugin = _state.ProjectionPlugin ?? _pluginManager.Projections.FirstOrDefault();
+            _state.TrackerPlugin = _state.TrackerPlugin ?? _pluginManager.Trackers.FirstOrDefault();
+            _state.DistortionPlugin = _state.DistortionPlugin ?? _pluginManager.Distortions.FirstOrDefault();
+            
             //Todo: Should not set the media value directly
             string[] parameters = Environment.GetCommandLineArgs();
             if (parameters.Length > 1)
@@ -355,7 +355,7 @@ namespace VrPlayer.ViewModels
                     if (!string.IsNullOrEmpty(metadata.ProjectionType))
                     {
                         _state.ProjectionPlugin = _pluginManager.Projections.FirstOrDefault(
-                            plugin => plugin.Projection.GetType().FullName == metadata.ProjectionType);
+                            plugin => plugin.Content.GetType().FullName == metadata.ProjectionType);
                     }
 
                     if (!string.IsNullOrEmpty(metadata.FormatType))
@@ -363,14 +363,14 @@ namespace VrPlayer.ViewModels
                         _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), metadata.FormatType);
                         //Todo: Stereo input should not be assigned to Projection manually
                         if (_state.ProjectionPlugin != null)
-                            _state.ProjectionPlugin.Projection.StereoMode = _state.StereoInput;
+                            _state.ProjectionPlugin.Content.StereoMode = _state.StereoInput;
                     }
 
                     if (!string.IsNullOrEmpty(metadata.Effects))
                     {
                         _state.EffectPlugin = _pluginManager.Effects
-                            .Where(plugin => plugin.Effect != null)
-                            .FirstOrDefault(plugin => plugin.Effect.GetType().FullName == metadata.Effects);
+                            .Where(plugin => plugin.Content != null)
+                            .FirstOrDefault(plugin => plugin.Content.GetType().FullName == metadata.Effects);
                     }
                 }
                 catch (Exception exc)
@@ -417,13 +417,13 @@ namespace VrPlayer.ViewModels
 
         private void SetEffect(object o)
         {
-            _state.EffectPlugin = (EffectPlugin)o;
+            _state.EffectPlugin = (IPlugin<EffectBase>)o;
         }
 
         private void SetStereoInput(object o)
         {
             _state.StereoInput = (StereoMode)o;
-            _state.ProjectionPlugin.Projection.StereoMode = _state.StereoInput;
+            _state.ProjectionPlugin.Content.StereoMode = _state.StereoInput;
         }
 
         private void SetStereoOutput(object o)
@@ -433,19 +433,19 @@ namespace VrPlayer.ViewModels
 
         private void SetProjection(object o)
         {
-            var projectionPlugin = (ProjectionPlugin)o;
-            projectionPlugin.Projection.StereoMode = _state.StereoInput;
+            var projectionPlugin = (IPlugin<IProjection>)o;
+            projectionPlugin.Content.StereoMode = _state.StereoInput;
             _state.ProjectionPlugin = projectionPlugin;
         }
 
         private void SetTracker(object o)
         {
-            _state.TrackerPlugin = (TrackerPlugin)o;
+            _state.TrackerPlugin = (IPlugin<ITracker>)o;
         }
 
         private void SetShader(object o)
         {
-            _state.DistortionPlugin = (DistortionPlugin)o;
+            _state.DistortionPlugin = (IPlugin<DistortionBase>)o;
         }
 
         private void ShowSettings(object o)
@@ -479,6 +479,7 @@ namespace VrPlayer.ViewModels
 
         #region Helpers
 
+/*
         private List<MenuItem> LoadPluginMenuItems(List<IPlugin> plugins, ICommand command, string propertyPath)
         {
             var menuItems = new List<MenuItem>();
@@ -501,6 +502,7 @@ namespace VrPlayer.ViewModels
             }
             return menuItems;
         }
+*/
 
         #endregion
     }

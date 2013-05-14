@@ -39,7 +39,7 @@ namespace VrPlayer.ViewModels
 
         public SettingsWindowViewModel CreateSettingsWindowViewModel()
         {
-            return new SettingsWindowViewModel(_state, _config);
+            return new SettingsWindowViewModel(_state, _config, _pluginManager);
         }
         
     }

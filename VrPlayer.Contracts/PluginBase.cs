@@ -1,12 +1,11 @@
-﻿namespace VrPlayer.Contracts
+﻿using System.Windows;
+
+namespace VrPlayer.Contracts
 {
-    public abstract class PluginBase
+    public abstract class PluginBase<T>: IPlugin<T>
     {
-        private string _name;
-        public string Name 
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
+        public T Content { get; set; }
+        public FrameworkElement Panel { get; set; }
     }
 }
