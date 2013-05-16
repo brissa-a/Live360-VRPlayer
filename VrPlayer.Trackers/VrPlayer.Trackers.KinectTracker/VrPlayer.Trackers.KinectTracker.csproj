@@ -58,10 +58,12 @@
     <ProjectReference Include="..\..\VrPlayer.Contracts\VrPlayer.Contracts.csproj">
       <Project>{463D0CFD-915F-41ED-9807-D509EBE1124C}</Project>
       <Name>VrPlayer.Contracts</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\VrPlayer.Helpers\VrPlayer.Helpers.csproj">
       <Project>{D4A54A70-3BB5-4BE5-BEDB-3A41B6C43033}</Project>
       <Name>VrPlayer.Helpers</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

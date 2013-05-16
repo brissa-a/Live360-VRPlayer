@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -61,6 +61,7 @@
     <ProjectReference Include="..\..\VrPlayer.Contracts\VrPlayer.Contracts.csproj">
       <Project>{463D0CFD-915F-41ED-9807-D509EBE1124C}</Project>
       <Name>VrPlayer.Contracts</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

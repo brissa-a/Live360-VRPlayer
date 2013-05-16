@@ -13,9 +13,9 @@
         <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
         <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
             <Label Content="Current effect: " />
-            <ComboBox Width="200" IsEnabled="False" SelectedIndex="0">
-                <ComboBoxItem Content="{Binding Mode=OneWay, Path=State.EffectPlugin.Content, Converter={StaticResource TypeConverter}}" />
-            </ComboBox>
+            <ComboBox Width="200" ItemsSource="{Binding PluginManager.Effects}" 
+                DisplayMemberPath="Name" SelectedValuePath="Content"
+                SelectedValue="{Binding Path=State.EffectPlugin.Content}" />
         </StackPanel>
         <TabControl MinHeight="264" ItemsSource="{Binding PluginManager.Effects}">
             <TabControl.ItemContainerStyle>

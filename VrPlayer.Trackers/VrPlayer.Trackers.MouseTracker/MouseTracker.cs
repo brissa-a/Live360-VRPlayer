@@ -15,14 +15,14 @@ namespace VrPlayer.Trackers.MouseTracker
 
         #region Fields
 
-        public static readonly DependencyProperty MouseSensitivityProperty =
-            DependencyProperty.Register("MouseSensitivityProperty", typeof(double),
+        public static readonly DependencyProperty SensitivityProperty =
+            DependencyProperty.Register("SensitivityProperty", typeof(double),
             typeof(MouseTracker), new FrameworkPropertyMetadata(1D));
 
-        public double MouseSensitivity
+        public double Sensitivity
         {
-            get { return (double)GetValue(MouseSensitivityProperty); }
-            set { SetValue(MouseSensitivityProperty, value); }
+            get { return (double)GetValue(SensitivityProperty); }
+            set { SetValue(SensitivityProperty, value); }
         }
 
         #endregion
@@ -92,7 +92,7 @@ namespace VrPlayer.Trackers.MouseTracker
                 _pitch += dy;
                 
                 // Rotate
-                Rotation = QuaternionHelper.QuaternionFromEulerAngles(_pitch * MouseSensitivity * 0.1, _yaw * MouseSensitivity * 0.1, 0);
+                Rotation = QuaternionHelper.QuaternionFromEulerAngles(_pitch * Sensitivity * 0.1, _yaw * Sensitivity * 0.1, 0);
                 
                 // Set mouse position back to the center of the viewport in screen coordinates
                 MouseUtilities.SetPosition(centerOfViewport);
