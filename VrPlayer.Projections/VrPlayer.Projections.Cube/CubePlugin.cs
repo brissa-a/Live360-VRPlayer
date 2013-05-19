@@ -16,7 +16,7 @@ namespace VrPlayer.Projections.Cube
             Name = "Cube";
             var projection = new CubeProjection();
             Content = projection;
-            Panel = new CubePanel(projection);
+            Panel = null;
         }
     }
 }

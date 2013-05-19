@@ -10,9 +10,8 @@ namespace VrPlayer.Trackers.OculusRiftTracker
         public OculusRiftPlugin()
         {
             Name = "Oculus Rift";
-            var tracker = new OculusRiftTracker();
-            Content = tracker;
-            Panel = new OculusRiftPanel(tracker);
+            Content = new OculusRiftTracker();
+            Panel = null;
         }
     }
 }

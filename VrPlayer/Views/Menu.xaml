@@ -7,6 +7,7 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <converters:CountToBooleanConverter x:Key="CountToBool"/>
+        <converters:CompareAllParametersConverter x:Key="CompareAllParam"/>
     </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
@@ -40,14 +41,97 @@
         </MenuItem>
         <MenuItem Header="_Media">
             <MenuItem Header="_Format" ItemsSource="{Binding Path=StereoInputMenu}"/>
-            <MenuItem Header="_Projection" ItemsSource="{Binding Path=ProjectionsMenu}"/>
-            <MenuItem Header="_Effect" ItemsSource="{Binding Path=EffectsMenu}"/>
+            <!--Projections-->
+            <MenuItem Header="_Projection" ItemsSource="{Binding Path=PluginManager.Projections}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                        <Setter Property="IsChecked">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource CompareAllParam}">
+                                    <Binding Path="." />
+                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.ProjectionPlugin" /> 
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.ChangeProjectionCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
+            <!--Effects-->
+            <MenuItem Header="_Effects" ItemsSource="{Binding Path=PluginManager.Effects}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                        <Setter Property="IsChecked">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource CompareAllParam}">
+                                    <Binding Path="." />
+                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.EffectPlugin" />
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.ChangeEffectCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
         </MenuItem>
-        <MenuItem Header="_Display">
+        <MenuItem Header="_Settings">
             <MenuItem Header="_Layout" ItemsSource="{Binding Path=StereoOutputMenu}"/>
-            <MenuItem Header="_Distortion" ItemsSource="{Binding Path=ShadersMenu}"/>
-        </MenuItem>
-        <MenuItem Header="Trac_ker" ItemsSource="{Binding Path=TrackersMenu}">
+            <!--Distortions-->
+            <MenuItem Header="_Distortion" ItemsSource="{Binding Path=PluginManager.Distortions}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                        <Setter Property="IsChecked">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource CompareAllParam}">
+                                    <Binding Path="." />
+                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.DistortionPlugin" />
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.ChangeDistortionCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
+            <!--Trackers-->
+            <MenuItem Header="Trac_ker" ItemsSource="{Binding Path=PluginManager.Trackers}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                        <Setter Property="IsChecked">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource CompareAllParam}">
+                                    <Binding Path="." />
+                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.TrackerPlugin" />
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.ChangeTrackerCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
         </MenuItem>
         <MenuItem Header="_Tools" Command="{Binding SettingsCommand}">
             <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" CommandParameter="0">

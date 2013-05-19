@@ -3,25 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:converters="clr-namespace:VrPlayer.Helpers.Converters;assembly=VrPlayer.Helpers"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <converters:ObjectToTypeConverter x:Key="TypeConverter" />
-    </UserControl.Resources>
     <StackPanel Orientation="Vertical" Margin="16">
         <Label Content="Trackers" FontSize="18" />
         <Border BorderBrush="Silver" BorderThickness="1" Height="1" Width="auto" Margin="0,0,0,24" />
         <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
             <Label Content="Current tracker: " />
-            <ComboBox Width="200" ItemsSource="{Binding PluginManager.Trackers}" 
-                DisplayMemberPath="Name" SelectedValuePath="Content"
-                SelectedValue="{Binding Path=State.TrackerPlugin.Content}" />
+            <ComboBox Width="200" ItemsSource="{Binding PluginManager.Trackers}" DisplayMemberPath="Name">
+                <ComboBox.SelectedItem>
+                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.TrackerPlugin" />
+                </ComboBox.SelectedItem>
+            </ComboBox>
         </StackPanel>
         <TabControl MinHeight="264" ItemsSource="{Binding PluginManager.Trackers}">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="TabItem">
                     <Setter Property="Header" Value="{Binding Name}"/>
                     <Setter Property="Content" Value="{Binding Panel}"/>
+                    <Style.Triggers>
+                        <Trigger Property="Content" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </TabControl.ItemContainerStyle>
         </TabControl>

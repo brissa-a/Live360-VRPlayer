@@ -12,7 +12,7 @@ namespace VrPlayer.Effects.UnwrapFishEye
             Name = "Unwrap Fisheye";
             var effect = new UnwrapFishEyeEffect();
             Content = effect;
-            Panel = new UnwrapFishEyePanel(effect);
+            Panel = null;
         }
     }
 }

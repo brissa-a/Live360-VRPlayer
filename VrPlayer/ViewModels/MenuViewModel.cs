@@ -25,9 +25,19 @@ namespace VrPlayer.ViewModels
 {
 	public class MenuViewModel: ViewModelBase
 	{
-        private readonly IApplicationState _state;
-        private readonly IPluginManager _pluginManager;
         private readonly IApplicationConfig _config;
+
+        private readonly IApplicationState _state;
+        public IApplicationState State
+        {
+            get { return _state; }
+        }
+
+        private readonly IPluginManager _pluginManager;
+        public IPluginManager PluginManager
+        {
+            get { return _pluginManager; }
+        }
 
         #region Data
 
@@ -58,33 +68,6 @@ namespace VrPlayer.ViewModels
 				return menuItems;
 			}
 		}
-
-        public List<MenuItem> EffectsMenu
-        {
-            get
-            {
-                var menuItems = new List<MenuItem>();
-                foreach (var effectPlugin in _pluginManager.Effects)
-                {
-                    var menuItem = new MenuItem
-                    {
-                        Header = effectPlugin.Name,
-                        Command = new DelegateCommand(SetEffect),
-                        CommandParameter = effectPlugin,
-                    };
-                    var binding = new Binding
-                    {
-                        Source = _state,
-                        Path = new PropertyPath("EffectPlugin"),
-                        Converter = new CompareParameterConverter(),
-                        ConverterParameter = effectPlugin
-                    };
-                    menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
-                    menuItems.Add(menuItem);
-                }
-                return menuItems;
-            }
-        }
 
         public List<MenuItem> StereoInputMenu
         {
@@ -139,97 +122,7 @@ namespace VrPlayer.ViewModels
                 return menuItems;
             }
         }
-
-        public List<MenuItem> ProjectionsMenu
-        {
-            get
-            {
-                var menuItems = new List<MenuItem>();
-                foreach (var projectionPlugin in _pluginManager.Projections)
-                {
-                    var menuItem = new MenuItem
-                    {
-                        Header = projectionPlugin.Name,
-                        Command = new DelegateCommand(SetProjection),
-                        CommandParameter = projectionPlugin,
-                    };
-                    var binding = new Binding
-                    {
-                        Source = _state,
-                        Path = new PropertyPath("ProjectionPlugin"),
-                        Converter = new CompareParameterConverter(),
-                        ConverterParameter = projectionPlugin
-                    };
-                    menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
-                    menuItems.Add(menuItem);
-                }
-                return menuItems;
-            }
-        }
-
-        public List<MenuItem> TrackersMenu
-        {
-            get
-            {
-                var menuItems = new List<MenuItem>();
-                foreach (var trackerPlugin in _pluginManager.Trackers)
-                {
-                    var menuItem = new MenuItem
-                    {
-                        Header = trackerPlugin.Name,
-                        Command = new DelegateCommand(SetTracker),
-                        CommandParameter = trackerPlugin,
-                    };
-                    
-                    var activeBinding = new Binding
-                    {
-                        Source = _state,
-                        Path = new PropertyPath("TrackerPlugin"),
-                        Converter = new CompareParameterConverter(),
-                        ConverterParameter = trackerPlugin
-                    };
-                    menuItem.SetBinding(MenuItem.IsCheckedProperty, activeBinding);
-                    
-                    var enabledBinding = new Binding
-                    {
-                        Source = trackerPlugin.Content,
-                        Path = new PropertyPath("IsEnabled")
-                    };
-                    menuItem.SetBinding(MenuItem.IsEnabledProperty, enabledBinding);
-
-                    menuItems.Add(menuItem);
-                }
-                return menuItems;
-            }
-        }
-
-        public List<MenuItem> ShadersMenu
-        {
-            get
-            {
-                var menuItems = new List<MenuItem>();
-                foreach (var shaderPlugin in _pluginManager.Distortions)
-                {
-                    var menuItem = new MenuItem
-                    {
-                        Header = shaderPlugin.Name,
-                        Command = new DelegateCommand(SetShader),
-                        CommandParameter = shaderPlugin,
-                    };
-                    var binding = new Binding
-                    {
-						Source = _state,
-                        Path = new PropertyPath("DistortionPlugin"),
-                        Converter = new CompareParameterConverter(),
-                        ConverterParameter = shaderPlugin
-                    };
-                    menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
-                    menuItems.Add(menuItem);
-                }
-                return menuItems;
-            }
-        }
-
+        
         #endregion
 
         #region Commands
@@ -276,6 +169,30 @@ namespace VrPlayer.ViewModels
             get { return _aboutCommand; }
         }
 
+        private readonly ICommand _changeProjectionCommand;
+        public ICommand ChangeProjectionCommand
+        {
+            get { return _changeProjectionCommand; }
+        }
+
+        private readonly ICommand _changeEffectCommand;
+        public ICommand ChangeEffectCommand
+        {
+            get { return _changeEffectCommand; }
+        }
+
+        private readonly ICommand _changeDistortionCommand;
+        public ICommand ChangeDistortionCommand
+        {
+            get { return _changeDistortionCommand; }
+        }
+
+        private readonly ICommand _changeTrackerCommand;
+        public ICommand ChangeTrackerCommand
+        {
+            get { return _changeTrackerCommand; }
+        }
+        
         #endregion
 
         public MenuViewModel(IApplicationState state, IPluginManager pluginManager, IApplicationConfig config)
@@ -289,6 +206,10 @@ namespace VrPlayer.ViewModels
             _loadUrlCommand = new DelegateCommand(OpenUrl);
             _browseSamplesCommand = new DelegateCommand(BrowseSamples);
             _exitCommand = new DelegateCommand(Exit);
+            _changeProjectionCommand = new DelegateCommand(SetProjection);
+            _changeEffectCommand = new DelegateCommand(SetEffect);
+            _changeDistortionCommand = new DelegateCommand(SetDistortion);
+            _changeTrackerCommand = new DelegateCommand(SetTracker);
             _settingsCommand = new DelegateCommand(ShowSettings);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
             _aboutCommand = new DelegateCommand(ShowAbout);
@@ -443,7 +364,7 @@ namespace VrPlayer.ViewModels
             _state.TrackerPlugin = (IPlugin<ITracker>)o;
         }
 
-        private void SetShader(object o)
+        private void SetDistortion(object o)
         {
             _state.DistortionPlugin = (IPlugin<DistortionBase>)o;
         }
@@ -474,35 +395,6 @@ namespace VrPlayer.ViewModels
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
-
-        #endregion
-
-        #region Helpers
-
-/*
-        private List<MenuItem> LoadPluginMenuItems(List<IPlugin> plugins, ICommand command, string propertyPath)
-        {
-            var menuItems = new List<MenuItem>();
-            foreach (var plugin in plugins)
-            {
-                var menuItem = new MenuItem
-                {
-                    Header = plugin.Name,
-                    Command = command,
-                    CommandParameter = plugin,
-                };
-                var binding = new Binding
-                {
-                    Source = _state,
-                    Path = new PropertyPath(propertyPath),
-                    Converter = new CompareParameterConverter(),
-                    ConverterParameter = plugin
-                };
-                menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
-            }
-            return menuItems;
-        }
-*/
 
         #endregion
     }

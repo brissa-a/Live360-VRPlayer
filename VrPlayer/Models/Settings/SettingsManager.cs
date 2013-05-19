@@ -23,16 +23,15 @@ namespace VrPlayer.Models.Settings
 
         public void Save()
         {
-            if (_state.TrackerPlugin != null)
+            if (_state.TrackerPlugin != null && _state.TrackerPlugin.Content != null)
                 _settings["Tracker"] = _state.TrackerPlugin.Content.GetType().FullName;
+            else
+                _settings["Tracker"] = null;
 
-            if (_state.DistortionPlugin != null)
-            {
-                if (_state.DistortionPlugin.Content != null)
-                    _settings["Distortion"] = _state.DistortionPlugin.Content.GetType().FullName;
-                else
-                    _settings["Distortion"] = null;
-            }
+            if (_state.DistortionPlugin != null && _state.DistortionPlugin.Content != null)
+                _settings["Distortion"] = _state.DistortionPlugin.Content.GetType().FullName;
+            else
+                _settings["Distortion"] = null;
 
             _settings["Layout"] = _state.StereoOutput.ToString();
 

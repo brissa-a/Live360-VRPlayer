@@ -72,7 +72,7 @@ namespace VrPlayer.ViewModels
         
         void timer_Tick(object sender, EventArgs e)
         {
-            if (_state.TrackerPlugin == null)
+            if (_state.TrackerPlugin == null || _state.TrackerPlugin.Content == null)
                 return;
 
             CameraTransform = _state.TrackerPlugin.Content.Rotation;
@@ -92,7 +92,7 @@ namespace VrPlayer.ViewModels
 
         private void ToggleNavigation(object o)
         {
-            if (_state.TrackerPlugin == null)
+            if (_state.TrackerPlugin == null || _state.TrackerPlugin.Content == null)
                 return;
 
             _state.TrackerPlugin.Content.IsActive = !_state.TrackerPlugin.Content.IsActive;

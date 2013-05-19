@@ -11,10 +11,10 @@
         <converters:InvertBooleanToVisibilityConverter x:Key="InvBoolToVis"/>
     </Window.Resources>
     <DockPanel>
-        <Grid DockPanel.Dock="Top" Visibility="{Binding Path=State.TrackerPlugin.Tracker.IsActive, Converter={StaticResource InvBoolToVis}}">
+        <Grid DockPanel.Dock="Top" Visibility="{Binding Path=State.TrackerPlugin.Content.IsActive, Converter={StaticResource InvBoolToVis}}">
             <Views:Menu />
         </Grid>
-        <Grid DockPanel.Dock="Bottom" Visibility="{Binding Path=State.TrackerPlugin.Tracker.IsActive, Converter={StaticResource InvBoolToVis}}">
+        <Grid DockPanel.Dock="Bottom" Visibility="{Binding Path=State.TrackerPlugin.Content.IsActive, Converter={StaticResource InvBoolToVis}}">
             <Views:ControlPanel />
         </Grid>
         <Views:ViewPort />

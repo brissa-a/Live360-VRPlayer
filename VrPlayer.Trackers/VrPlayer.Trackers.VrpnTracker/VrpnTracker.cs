@@ -14,7 +14,35 @@ namespace VrPlayer.Trackers.VrpnTracker
         private TrackerRemote _tracker;
         private readonly ButtonRemote _button;
 
-        public VrpnTracker()//(string trackerAddress, string buttonAddress)
+        private string _trackerAddress;
+        public string TrackerAddress
+        {
+            get
+            {
+                return _trackerAddress;
+            }
+            set
+            {
+                _trackerAddress = value;
+                OnPropertyChanged("TrackerAddress");
+            }
+        }
+
+        private string _buttonAddress;
+        public string ButtonAddress
+        {
+            get
+            {
+                return _buttonAddress;
+            }
+            set
+            {
+                _buttonAddress = value;
+                OnPropertyChanged("ButtonAddress");
+            }
+        }
+        
+        public VrpnTracker()
         {
             const string trackerAddress = "";
             const string buttonAddress = "";

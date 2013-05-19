@@ -12,7 +12,7 @@ namespace VrPlayer.Trackers.WiimoteTracker
             Name = "Nintendo Wiimote";
             var tracker = new WiimoteTracker();
             Content = tracker;
-            Panel = new WiimotePanel(tracker);
+            Panel = null;
         }
     }
 }
