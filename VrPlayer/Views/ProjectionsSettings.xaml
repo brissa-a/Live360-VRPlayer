@@ -15,7 +15,7 @@
                 </ComboBox.SelectedItem>
             </ComboBox>
         </StackPanel>
-        <TabControl MinHeight="264" ItemsSource="{Binding PluginManager.Projections}">
+        <TabControl MinHeight="264" ItemsSource="{Binding PluginManager.Projections}" SelectedIndex="0" Loaded="FrameworkElement_OnLoaded">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="TabItem">
                     <Setter Property="Header" Value="{Binding Name}"/>

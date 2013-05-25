@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using VrPlayer.Contracts;
+using VrPlayer.Contracts.Projections;
 
 namespace VrPlayer.Views
 {
-    /// <summary>
-    /// Interaction logic for ProjectionsSettings.xaml
-    /// </summary>
     public partial class ProjectionsSettings : UserControl
     {
         public ProjectionsSettings()
         {
             InitializeComponent();
+        }
+
+        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var tabControl = ((TabControl)sender);
+            tabControl.SelectedItem = tabControl.Items.Cast<IPlugin<IProjection>>().First(plugin => plugin.Panel != null);
         }
     }
 }

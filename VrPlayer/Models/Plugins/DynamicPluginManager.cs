@@ -21,7 +21,8 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
-                return _effects;
+                return _effects.Where(effect => effect.Content == null)
+                    .Concat(_effects.Where(effect => effect.Content != null));
             }
         }
         
@@ -31,7 +32,8 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
-                return _distortions;
+                return _distortions.Where(distortion => distortion.Content == null)
+                    .Concat(_distortions.Where(distortion => distortion.Content != null));
             }
         }
 
@@ -41,7 +43,8 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
-                return _projections;
+                return _projections.Where(projection => projection.Content == null)
+                    .Concat(_projections.Where(projection => projection.Content != null));
             }
         }
 
@@ -51,7 +54,8 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
-                return _trackers;
+                return _trackers.Where(trackers => trackers.Content == null)
+                    .Concat(_trackers.Where(trackers => trackers.Content != null));
             }
         }
 
