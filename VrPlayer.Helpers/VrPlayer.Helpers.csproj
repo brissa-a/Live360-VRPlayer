@@ -50,6 +50,7 @@
     <Compile Include="Converters\CompareStringParameterConverter.cs" />
     <Compile Include="Converters\CompareStringToVisibilityConverter.cs" />
     <Compile Include="Converters\CompareAllParametersConverter.cs" />
+    <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Converters\PathToFileInfosConverter.cs" />
     <Compile Include="Converters\CountToBooleanConverter.cs" />
     <Compile Include="Converters\InvertBooleanToVisibilityConverter.cs" />
