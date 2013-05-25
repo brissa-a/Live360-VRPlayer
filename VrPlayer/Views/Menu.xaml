@@ -11,7 +11,7 @@
     </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
-            <MenuItem Header="_Open..." Command="{Binding OpenCommand}">
+            <MenuItem Header="_Open..." Command="{Binding OpenFileCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/fileopen.png" />
                 </MenuItem.Icon>

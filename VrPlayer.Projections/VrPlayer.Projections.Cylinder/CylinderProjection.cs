@@ -13,10 +13,18 @@ namespace VrPlayer.Projections.Cylinder
         Point3D _center;
         double _radius = 1;
 
+        public static readonly DependencyProperty ScaleProperty =
+             DependencyProperty.Register("Scale", typeof(double),
+             typeof(CylinderProjection), new FrameworkPropertyMetadata(1D));
+        public double Scale
+        {
+            get { return (double)GetValue(ScaleProperty); }
+            set { SetValue(ScaleProperty, value); }
+        }
+
         public static readonly DependencyProperty SlicesProperty =
              DependencyProperty.Register("Slices", typeof(int),
              typeof(CylinderProjection), new FrameworkPropertyMetadata(32));
-
         public int Slices
         {
             get { return (int)GetValue(SlicesProperty); }
@@ -26,7 +34,6 @@ namespace VrPlayer.Projections.Cylinder
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
              typeof(CylinderProjection), new FrameworkPropertyMetadata(16));
-
         public int Stacks
         {
             get { return (int)GetValue(StacksProperty); }
@@ -78,16 +85,16 @@ namespace VrPlayer.Projections.Cylinder
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double y = -(stack * (Radius / Stacks)) * 2 + Radius;
-                    double scale = -Radius;
+                    double y = -(stack*(Radius/Stacks))*2 + Radius;
+                    double ratio = -Radius;
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
                         double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta) + Radius;
-                        double z = scale * Math.Cos(theta);
+                        double x = ratio * Math.Sin(theta) + Radius;
+                        double z = ratio * Math.Cos(theta);
 
-                        var normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x, y*Scale, z);
                         positions.Add(normal + Center);
                     }
                 }
@@ -95,16 +102,16 @@ namespace VrPlayer.Projections.Cylinder
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double y = -(stack * (Radius / Stacks)) * 2 + Radius;
-                    double scale = -Radius;
+                    double y = -(stack*(Radius/Stacks))*2 + Radius;
+                    double ratio = -Radius;
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
                         double theta = slice * 2 * Math.PI / Slices;
-                        double x = scale * Math.Sin(theta) - Radius;
-                        double z = scale * Math.Cos(theta);
+                        double x = ratio * Math.Sin(theta) - Radius;
+                        double z = ratio * Math.Cos(theta);
 
-                        var normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x, y*Scale, z);
                         positions.Add(normal + Center);
                     }
                 }

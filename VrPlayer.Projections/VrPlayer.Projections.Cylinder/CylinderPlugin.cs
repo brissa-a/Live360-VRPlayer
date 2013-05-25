@@ -18,6 +18,7 @@ namespace VrPlayer.Projections.Cylinder
             Name = "Cylinder";
             var projection = new CylinderProjection
                 {
+                    Scale = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Scale"].Value),
                     Slices = int.Parse(Config.AppSettings.Settings["Slices"].Value),
                     Stacks = int.Parse(Config.AppSettings.Settings["Stacks"].Value)
                 };

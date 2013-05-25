@@ -9,18 +9,22 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Content="Slices:"></Label>
-            <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Slices}" Minimum="8" Maximum="256"></Slider>
-            <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Slices}" ></TextBox>
-            <Label Grid.Column="0" Grid.Row="1" Content="Stacks:"></Label>
-            <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Stacks}" Minimum="8" Maximum="256"></Slider>
-            <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Stacks}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="0" Content="Scale:"></Label>
+            <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Scale}" Minimum="0" Maximum="2"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Scale}" ></TextBox>
+            <Label Grid.Column="0" Grid.Row="1" Content="Slices:"></Label>
+            <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Slices}" Minimum="8" Maximum="256"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Slices}" ></TextBox>
+            <Label Grid.Column="0" Grid.Row="2" Content="Stacks:"></Label>
+            <Slider Grid.Column="1" Grid.Row="2" Value="{Binding Path=Stacks}" Minimum="8" Maximum="256"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding Path=Stacks}"></TextBox>
         </Grid>
     </StackPanel>
 </UserControl>
