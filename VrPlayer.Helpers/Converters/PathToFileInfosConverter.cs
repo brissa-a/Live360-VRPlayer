@@ -1,25 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Windows;
+using System.IO;
 using System.Windows.Data;
-using System.Collections;
 
 namespace VrPlayer.Helpers.Converters
 {
-    public class CountToBooleanConverter : IValueConverter
+    [ValueConversion(typeof(string), typeof(IEnumerable<FileInfo>))]
+    public class PathToFileInfosConverter: IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            bool hasElements = false;
-            try
-            {
-                var list = (ICollection)value;
-                hasElements = list.Count > 0;
-            }
-            catch (Exception)
-            {
-            }
-            return hasElements;
+        {     
+            var dir = new DirectoryInfo(value.ToString());
+            return dir.GetFiles();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

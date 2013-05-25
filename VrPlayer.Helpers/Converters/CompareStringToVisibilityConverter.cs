@@ -9,7 +9,7 @@ namespace VrPlayer.Helpers.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Visibility visibility = Visibility.Visible;
+            var visibility = Visibility.Visible;
             try
             {
                 visibility = (value.ToString() != parameter.ToString())? Visibility.Collapsed : Visibility.Visible;

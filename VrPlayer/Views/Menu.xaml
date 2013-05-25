@@ -6,27 +6,38 @@
              xmlns:converters="clr-namespace:VrPlayer.Helpers.Converters;assembly=VrPlayer.Helpers"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <converters:CountToBooleanConverter x:Key="CountToBool"/>
         <converters:CompareAllParametersConverter x:Key="CompareAllParam"/>
+        <converters:PathToFileInfosConverter x:Key="PathToFileInfos"/>
     </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
-            <MenuItem Header="_Open..." Command="{Binding LoadCommand}">
+            <MenuItem Header="_Open..." Command="{Binding OpenCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/fileopen.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open _URL..." Command="{Binding LoadUrlCommand}">
+            <MenuItem Header="Open _URL..." Command="{Binding OpenUrlCommand}">
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/browser.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
-            <MenuItem Header="_Samples" ItemsSource="{Binding Path=SamplesMenu}" IsEnabled="{Binding Path=SamplesMenu, Converter={StaticResource CountToBool}}">
+            <MenuItem Header="_Samples" ItemsSource="{Binding Path=Config.SamplesFolder, Converter={StaticResource PathToFileInfos}}">
 				<MenuItem.Icon>
 					<Image Width="20" Height="20" Source="/Medias/Nuvola/edu_science.png" />
 				</MenuItem.Icon>
-			</MenuItem>
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.LoadCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=FullName}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
             <MenuItem Header="_Browse Samples..." Command="{Binding BrowseSamplesCommand}">				
                 <MenuItem.Icon>
                     <Image Width="20" Height="20" Source="/Medias/Nuvola/folder_open.png" />

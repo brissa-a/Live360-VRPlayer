@@ -26,6 +26,10 @@ namespace VrPlayer.ViewModels
 	public class MenuViewModel: ViewModelBase
 	{
         private readonly IApplicationConfig _config;
+        public IApplicationConfig Config
+        {
+            get { return _config; }
+        }
 
         private readonly IApplicationState _state;
         public IApplicationState State
@@ -40,34 +44,6 @@ namespace VrPlayer.ViewModels
         }
 
         #region Data
-
-		public List<MenuItem> SamplesMenu
-		{
-			get
-			{
-                var menuItems = new List<MenuItem>();
-
-				string folder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + 
-                    Path.DirectorySeparatorChar + _config.SamplesFolder;
-
-                if (!Directory.Exists(folder))
-                    return menuItems;
-                
-                var files = Directory.GetFiles(folder).Where(name => !name.EndsWith(".txt"));
-				foreach (var file in files)
-				{
-					var info = new FileInfo(file);
-					var menuItem = new MenuItem
-					{
-					    Header = info.Name,
-						Command = new DelegateCommand(Load),
-						CommandParameter = info.FullName
-					};
-                    menuItems.Add(menuItem);
-				}
-				return menuItems;
-			}
-		}
 
         public List<MenuItem> StereoInputMenu
         {
@@ -132,11 +108,17 @@ namespace VrPlayer.ViewModels
         {
             get { return _loadCommand; }
         }
-
-        private readonly ICommand _loadUrlCommand;
-        public ICommand LoadUrlCommand
+        
+        private readonly ICommand _openFileCommand;
+        public ICommand OpenFileCommand
         {
-            get { return _loadUrlCommand; }
+            get { return _openFileCommand; }
+        }
+
+        private readonly ICommand _openUrlCommand;
+        public ICommand OpenUrlCommand
+        {
+            get { return _openUrlCommand; }
         }        
         
         private readonly ICommand _browseSamplesCommand;
@@ -202,8 +184,9 @@ namespace VrPlayer.ViewModels
             _config = config;
 
             //Commands
-            _loadCommand = new DelegateCommand(Open);
-            _loadUrlCommand = new DelegateCommand(OpenUrl);
+            _loadCommand = new DelegateCommand(Load);
+            _openFileCommand = new DelegateCommand(OpenFile);
+            _openUrlCommand = new DelegateCommand(OpenUrl);
             _browseSamplesCommand = new DelegateCommand(BrowseSamples);
             _exitCommand = new DelegateCommand(Exit);
             _changeProjectionCommand = new DelegateCommand(SetProjection);
@@ -228,23 +211,24 @@ namespace VrPlayer.ViewModels
                 string uriWithoutScheme = uri.Host + uri.PathAndQuery;
                 _state.MediaPlayer.Source = new Uri(uriWithoutScheme, UriKind.RelativeOrAbsolute);
             }
-            else if (SamplesMenu.Count > 0)
-            {
-                _state.MediaPlayer.Source = new Uri(SamplesMenu[0].CommandParameter.ToString(), UriKind.RelativeOrAbsolute);
-            }
             else
             {
-                //Todo: Load default grid?
+                //Todo: Use embeded resource for default media file
+                var samples = new DirectoryInfo(_config.SamplesFolder);
+                if (samples.GetFiles().Any())
+                {
+                    _state.MediaPlayer.Source = new Uri(samples.GetFiles().First().FullName, UriKind.RelativeOrAbsolute);
+                }
             }
             _state.MediaPlayer.Play();
         }
 
         #region Logic
 
-        private void Open(object o)
+        private void OpenFile(object o)
         {
             //Todo: Extract dialog to UI layer
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Movies|*.avi;*.flv;*.f4v;*.mp4;*.wmv;*.mpeg;*.mkv|Images|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files|*.*";
             if (openFileDialog.ShowDialog().Value)
             {
@@ -314,7 +298,7 @@ namespace VrPlayer.ViewModels
 
         private void BrowseSamples(object o)
 		{   
-            DirectoryInfo dirInfo = new DirectoryInfo(_config.SamplesFolder);
+            var dirInfo = new DirectoryInfo(_config.SamplesFolder);
             if (Directory.Exists(dirInfo.FullName))
             {
                 Process.Start(dirInfo.FullName);
