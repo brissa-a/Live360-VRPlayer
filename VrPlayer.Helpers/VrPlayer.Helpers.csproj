@@ -58,6 +58,7 @@
     <Compile Include="Converters\QuaternionToCoordConverter.cs" />
     <Compile Include="Converters\Vector3DToQuaternionConverter.cs" />
     <Compile Include="Converters\ViewportDistanceConverter.cs" />
+    <Compile Include="FileFilterHelper.cs" />
     <Compile Include="MouseUtilities.cs" />
     <Compile Include="Mvvm\DelegateCommand.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />

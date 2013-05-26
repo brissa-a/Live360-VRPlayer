@@ -11,6 +11,7 @@ using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Contracts.Trackers;
+using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
@@ -182,7 +183,7 @@ namespace VrPlayer.ViewModels
         {
             //Todo: Extract dialog to UI layer
             var openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Movies|*.avi;*.flv;*.f4v;*.mp4;*.wmv;*.mpeg;*.mkv|Images|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files|*.*";
+            openFileDialog.Filter = FileFilterHelper.GetFilter();
             if (openFileDialog.ShowDialog().Value)
             {
                 Load(openFileDialog.FileName);

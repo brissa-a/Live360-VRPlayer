@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows.Data;
 
 namespace VrPlayer.Helpers.Converters
@@ -13,7 +14,8 @@ namespace VrPlayer.Helpers.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var dir = new DirectoryInfo(value.ToString());
-            return dir.GetFiles();   
+            var filter = FileFilterHelper.GetFilter();
+            return dir.GetFiles().Where(info => filter.Contains(info.Extension));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
