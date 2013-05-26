@@ -12,6 +12,11 @@ namespace VrPlayer.Helpers.Converters
             if (!values.Any())
                 return false;
 
+            if (parameter != null && parameter.ToString().ToLower() == "string")
+            {
+                return values.All(val => val.ToString() == values[0].ToString());
+            }
+
             return values.All(val => val == values[0]);
         }
 

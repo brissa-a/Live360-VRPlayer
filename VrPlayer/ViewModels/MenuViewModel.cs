@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
-using System.Windows.Data;
 using Microsoft.Win32;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Contracts.Trackers;
-using VrPlayer.Helpers.Converters;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
@@ -43,64 +39,7 @@ namespace VrPlayer.ViewModels
             get { return _pluginManager; }
         }
 
-        #region Data
-
-        public List<MenuItem> StereoInputMenu
-        {
-            get
-            {
-                var menuItems = new List<MenuItem>();
-                foreach (var stereoMode in Enum.GetValues(typeof(StereoMode)))
-                {
-                    var menuItem = new MenuItem
-                    {
-                        Header = stereoMode.ToString(),
-                        Command = new DelegateCommand(SetStereoInput),
-                        CommandParameter = stereoMode,
-                    };
-                    var binding = new Binding
-                    {
-                        Source = _state,
-                        Path = new PropertyPath("StereoInput"),
-                        Converter = new CompareStringParameterConverter(),
-                        ConverterParameter = stereoMode
-                    };
-                    menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
-                    menuItems.Add(menuItem);
-                }
-                return menuItems;
-            }
-        }
-
-        public List<MenuItem> StereoOutputMenu
-        {
-            get
-            {
-                var menuItems = new List<MenuItem>();
-                foreach (var stereoMode in Enum.GetValues(typeof(StereoMode)))
-                {
-                    var menuItem = new MenuItem
-                    {
-                        Header = stereoMode.ToString(),
-                        Command = new DelegateCommand(SetStereoOutput),
-                        CommandParameter = stereoMode,
-                    };
-                    var binding = new Binding
-                    {
-                        Source = _state,
-                        Path = new PropertyPath("StereoOutput"),
-                        Converter = new CompareStringParameterConverter(),
-                        ConverterParameter = stereoMode
-                    };
-                    menuItem.SetBinding(MenuItem.IsCheckedProperty, binding);
-                    menuItems.Add(menuItem);
-                }
-                return menuItems;
-            }
-        }
         
-        #endregion
-
         #region Commands
 
         private readonly ICommand _loadCommand;
@@ -174,7 +113,19 @@ namespace VrPlayer.ViewModels
         {
             get { return _changeTrackerCommand; }
         }
-        
+
+        private readonly ICommand _changeFormatCommand;
+        public ICommand ChangeFormatCommand
+        {
+            get { return _changeFormatCommand; }
+        }
+
+        private readonly ICommand _changeLayoutCommand;
+        public ICommand ChangeLayoutCommand
+        {
+            get { return _changeLayoutCommand; }
+        }
+
         #endregion
 
         public MenuViewModel(IApplicationState state, IPluginManager pluginManager, IApplicationConfig config)
@@ -189,8 +140,10 @@ namespace VrPlayer.ViewModels
             _openUrlCommand = new DelegateCommand(OpenUrl);
             _browseSamplesCommand = new DelegateCommand(BrowseSamples);
             _exitCommand = new DelegateCommand(Exit);
+            _changeFormatCommand = new DelegateCommand(SetStereoInput);
             _changeProjectionCommand = new DelegateCommand(SetProjection);
             _changeEffectCommand = new DelegateCommand(SetEffect);
+            _changeLayoutCommand = new DelegateCommand(SetStereoOutput);
             _changeDistortionCommand = new DelegateCommand(SetDistortion);
             _changeTrackerCommand = new DelegateCommand(SetTracker);
             _settingsCommand = new DelegateCommand(ShowSettings);

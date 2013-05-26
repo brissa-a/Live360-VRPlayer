@@ -4,10 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:VrPlayer.Helpers.Converters;assembly=VrPlayer.Helpers"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:VrPlayer.Contracts.Projections;assembly=VrPlayer.Contracts"
              mc:Ignorable="d">
     <UserControl.Resources>
         <converters:CompareAllParametersConverter x:Key="CompareAllParam"/>
         <converters:PathToFileInfosConverter x:Key="PathToFileInfos"/>
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:StereoMode"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
@@ -51,7 +58,27 @@
             </MenuItem>
         </MenuItem>
         <MenuItem Header="_Media">
-            <MenuItem Header="_Format" ItemsSource="{Binding Path=StereoInputMenu}"/>
+            <!--Format-->
+            <MenuItem Header="_Format" ItemsSource="{Binding Source={StaticResource dataFromEnum}}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="IsChecked">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource CompareAllParam}" ConverterParameter="String">
+                                    <Binding Path="." />
+                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.StereoInput" />
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.ChangeFormatCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
             <!--Projections-->
             <MenuItem Header="_Projection" ItemsSource="{Binding Path=PluginManager.Projections}">
                 <MenuItem.ItemContainerStyle>
@@ -98,7 +125,27 @@
             </MenuItem>
         </MenuItem>
         <MenuItem Header="_Settings">
-            <MenuItem Header="_Layout" ItemsSource="{Binding Path=StereoOutputMenu}"/>
+            <!--Layout-->
+            <MenuItem Header="_Layout" ItemsSource="{Binding Source={StaticResource dataFromEnum}}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="IsChecked">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource CompareAllParam}" ConverterParameter="String">
+                                    <Binding Path="." />
+                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.StereoOutput" />
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.ChangeLayoutCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
             <!--Distortions-->
             <MenuItem Header="_Distortion" ItemsSource="{Binding Path=PluginManager.Distortions}">
                 <MenuItem.ItemContainerStyle>
