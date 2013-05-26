@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using VrPlayer.Contracts;
-using VrPlayer.Contracts.Distortions;
+﻿using System.Windows.Controls;
 
 namespace VrPlayer.Views
 {

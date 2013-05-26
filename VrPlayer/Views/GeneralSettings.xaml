@@ -15,7 +15,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" MinWidth="200" />
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="Field of view (FOV):"></Label>
@@ -32,7 +32,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" MinWidth="200" />
                 <ColumnDefinition Width="32" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="Directory path:"></Label>
