@@ -19,14 +19,6 @@ namespace VrPlayer.Distortions.Barrel
             set { SetValue(InputProperty, value); }
         }
 
-        public static readonly DependencyProperty FactorProperty =
-            DependencyProperty.Register("Factor", typeof(double), typeof(BarrelEffect), new UIPropertyMetadata(1.45D, PixelShaderConstantCallback(0)));
-        public double Factor
-        {
-            get { return ((double)(GetValue(FactorProperty))); }
-            set { SetValue(FactorProperty, value); }
-        }
-
         public BarrelEffect()
         {
             var pixelShader = new PixelShader();
@@ -37,7 +29,6 @@ namespace VrPlayer.Distortions.Barrel
             PixelShader = pixelShader;
 
             UpdateShaderValue(InputProperty);
-            UpdateShaderValue(FactorProperty);
-        }        
+         }        
     }
 }

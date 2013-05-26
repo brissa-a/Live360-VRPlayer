@@ -14,12 +14,9 @@ namespace VrPlayer.Distortions.Barrel
         public BarrelPlugin()
         {
             Name = "Barrel";
-            var effect = new BarrelEffect()
-            {
-                Factor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Factor"].Value)
-            };
+            var effect = new BarrelEffect();
             Content = effect;
-            Panel = new BarrelPanel(effect);
+            Panel = null;
         }
     }
 }
