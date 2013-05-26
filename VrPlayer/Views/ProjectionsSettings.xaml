@@ -15,18 +15,12 @@
                 </ComboBox.SelectedItem>
             </ComboBox>
         </StackPanel>
-        <TabControl MinHeight="264" ItemsSource="{Binding PluginManager.Projections}" SelectedIndex="0" Loaded="FrameworkElement_OnLoaded">
-            <TabControl.ItemContainerStyle>
-                <Style TargetType="TabItem">
-                    <Setter Property="Header" Value="{Binding Name}"/>
-                    <Setter Property="Content" Value="{Binding Panel}"/>
-                    <Style.Triggers>
-                        <Trigger Property="Content" Value="{x:Null}">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TabControl.ItemContainerStyle>
-        </TabControl>
+        <Border MinHeight="264" BorderBrush="Gray" BorderThickness="1">
+            <ContentControl>
+                <ContentControl.Content>
+                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.ProjectionPlugin.Panel" />
+                </ContentControl.Content>
+            </ContentControl>
+        </Border>
     </StackPanel>
 </UserControl>
