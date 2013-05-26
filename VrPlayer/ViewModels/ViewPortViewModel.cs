@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Input;
-using System.Windows.Media.Media3D;
 using System.Windows.Threading;
 
 using VrPlayer.Contracts.Projections;
@@ -25,24 +24,6 @@ namespace VrPlayer.ViewModels
             get { return _config; }
         }
 
-        #region Fields
-
-		private Quaternion _cameraTransform;
-		public Quaternion CameraTransform
-		{
-			get
-			{
-				return _cameraTransform;
-			}
-			set
-			{
-				_cameraTransform = value;
-				OnPropertyChanged("CameraTransform");
-			}
-		}
-
-        #endregion
-
         #region Commands
 
         private readonly ICommand _toggleNavigationCommand;
@@ -52,7 +33,7 @@ namespace VrPlayer.ViewModels
         }
 
         #endregion
-
+        
         public ViewPortViewModel(IApplicationState state, IApplicationConfig config)
         {
             _state = state;
@@ -60,14 +41,14 @@ namespace VrPlayer.ViewModels
 
             //Commands
             _toggleNavigationCommand = new RelayCommand(ToggleNavigation);
-
-            DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Input);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, config.OrientationRefreshRateInMs);
-            timer.Tick += new EventHandler(timer_Tick);
+            
+            var timer = new DispatcherTimer(DispatcherPriority.Input);
+            timer.Interval = new TimeSpan(0, 0, 0, 1);
+            timer.Tick += timer_Tick;
             timer.Start();
-
-            State.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(State_PropertyChanged);
-            State.StereoOutput = State.StereoOutput;
+            
+            State.PropertyChanged += State_PropertyChanged;
+            State.StereoOutput = State.StereoOutput;//Force refresh
         }
         
         void timer_Tick(object sender, EventArgs e)
@@ -75,11 +56,10 @@ namespace VrPlayer.ViewModels
             if (_state.TrackerPlugin == null || _state.TrackerPlugin.Content == null)
                 return;
 
-            CameraTransform = _state.TrackerPlugin.Content.Rotation;
             //Todo: Extract.. This is not view model responsability
             if (_state.MediaPlayer is MediaGraphElement)
             {
-                IAudioEngine audioEngine = ((MediaGraphElement)_state.MediaPlayer).MediaGraphPlayer.AudioEngine;
+                var audioEngine = ((MediaGraphElement)_state.MediaPlayer).MediaGraphPlayer.AudioEngine;
                 if (audioEngine != null)
                 {
                     audioEngine.Position = _state.TrackerPlugin.Content.Position;
@@ -87,7 +67,7 @@ namespace VrPlayer.ViewModels
                 }
             }
         }
-
+        
         #region Logic
 
         private void ToggleNavigation(object o)

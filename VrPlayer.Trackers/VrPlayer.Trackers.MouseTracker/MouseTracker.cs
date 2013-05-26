@@ -16,7 +16,7 @@ namespace VrPlayer.Trackers.MouseTracker
         #region Fields
 
         public static readonly DependencyProperty SensitivityProperty =
-            DependencyProperty.Register("SensitivityProperty", typeof(double),
+            DependencyProperty.Register("Sensitivity", typeof(double),
             typeof(MouseTracker), new FrameworkPropertyMetadata(1D));
 
         public double Sensitivity

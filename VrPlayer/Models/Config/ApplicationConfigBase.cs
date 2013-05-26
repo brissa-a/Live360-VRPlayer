@@ -7,7 +7,6 @@ namespace VrPlayer.Models.Config
         private string _defaultMediaFile;
         private string _samplesFolder;
         private int _cameraFieldOfView;
-        private int _orientationRefreshRateInMs;
         private int _viewportsHorizontalOffset;
         private bool _positionalAudio;
         private bool _evrRendering;
@@ -40,16 +39,6 @@ namespace VrPlayer.Models.Config
             {
                 _cameraFieldOfView = value;
                 OnPropertyChanged("CameraFieldOfView");
-            }
-        }
-
-        public int OrientationRefreshRateInMs
-        {
-            get { return _orientationRefreshRateInMs; }
-            set
-            {
-                _orientationRefreshRateInMs = value;
-                OnPropertyChanged("OrientationRefreshRateInMs");
             }
         }
 

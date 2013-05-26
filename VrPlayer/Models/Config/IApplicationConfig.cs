@@ -5,7 +5,6 @@
         string DefaultMediaFile { get; set; }
         string SamplesFolder { get; set; }
         int CameraFieldOfView { get; set; }
-        int OrientationRefreshRateInMs { get; set; }
         int ViewportsHorizontalOffset { get; set; }
         bool PositionalAudio { get; set; }
         bool EvrRendering { get; set; }
