@@ -96,7 +96,7 @@
     
     </UserControl.Resources>
     <Border Background="Transparent" MouseDown="Border_MouseDown">
-        <Grid>
+        <Grid Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />

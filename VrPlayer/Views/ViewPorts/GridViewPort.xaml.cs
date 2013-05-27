@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using VrPlayer.ViewModels;
 
 namespace VrPlayer.Views.ViewPorts
@@ -16,6 +18,9 @@ namespace VrPlayer.Views.ViewPorts
             {
                 _viewModel = ((App)Application.Current).ViewModelFactory.CreateViewPortViewModel();
                 DataContext = _viewModel;
+
+                new LeftViewPort(Resources["Geometry"] as GeometryModel3D).Show();
+                new RightViewPort(Resources["Geometry"] as GeometryModel3D).Show();
             }
             catch (Exception exc)
             {

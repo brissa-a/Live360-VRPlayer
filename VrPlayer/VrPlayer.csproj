@@ -156,8 +156,14 @@
     <Compile Include="Views\Settings\TrackersSettings.xaml.cs">
       <DependentUpon>TrackersSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewPorts\RightViewPort.xaml.cs">
+      <DependentUpon>RightViewPort.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewPorts\GridViewPort.xaml.cs">
       <DependentUpon>GridViewPort.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewPorts\LeftViewPort.xaml.cs">
+      <DependentUpon>LeftViewPort.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Settings\SettingsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -208,7 +214,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ViewPorts\RightViewPort.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ViewPorts\GridViewPort.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewPorts\LeftViewPort.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
