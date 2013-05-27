@@ -3,13 +3,13 @@ using System.Windows;
 using System.Windows.Controls;
 using VrPlayer.ViewModels;
 
-namespace VrPlayer.Views
+namespace VrPlayer.Views.ViewPorts
 {
-    public partial class ViewPort : UserControl
+    public partial class GridViewPort : UserControl
     {
         private readonly ViewPortViewModel _viewModel;
 
-        public ViewPort()
+        public GridViewPort()
         {
             InitializeComponent();
             try

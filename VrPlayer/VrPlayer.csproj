@@ -111,13 +111,13 @@
     </ApplicationDefinition>
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="Models\Plugins\DynamicPluginManager.cs" />
-    <Compile Include="SettingsWindow.xaml.cs">
+    <Compile Include="Views\Settings\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata\MetadataResult.cs" />
     <Compile Include="Models\Settings\SettingsManager.cs" />
     <Compile Include="Models\Metadata\MetadataParser.cs" />
-    <Compile Include="UrlInputDialog.xaml.cs">
+    <Compile Include="Views\Dialogs\UrlInputDialog.xaml.cs">
       <DependentUpon>UrlInputDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Media\AudioEngineBase.cs" />
@@ -138,32 +138,32 @@
     <Compile Include="Views\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DistortionsSettings.xaml.cs">
+    <Compile Include="Views\Settings\DistortionsSettings.xaml.cs">
       <DependentUpon>DistortionsSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EffectsSettings.xaml.cs">
+    <Compile Include="Views\Settings\EffectsSettings.xaml.cs">
       <DependentUpon>EffectsSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GeneralSettings.xaml.cs">
+    <Compile Include="Views\Settings\GeneralSettings.xaml.cs">
       <DependentUpon>GeneralSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjectionsSettings.xaml.cs">
+    <Compile Include="Views\Settings\ProjectionsSettings.xaml.cs">
       <DependentUpon>ProjectionsSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TrackersSettings.xaml.cs">
+    <Compile Include="Views\Settings\TrackersSettings.xaml.cs">
       <DependentUpon>TrackersSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewPort.xaml.cs">
-      <DependentUpon>ViewPort.xaml</DependentUpon>
+    <Compile Include="Views\ViewPorts\GridViewPort.xaml.cs">
+      <DependentUpon>GridViewPort.xaml</DependentUpon>
     </Compile>
-    <Page Include="SettingsWindow.xaml">
+    <Page Include="Views\Settings\SettingsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UrlInputDialog.xaml">
+    <Page Include="Views\Dialogs\UrlInputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -171,7 +171,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -180,19 +180,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\DistortionsSettings.xaml">
+    <Page Include="Views\Settings\DistortionsSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EffectsSettings.xaml">
+    <Page Include="Views\Settings\EffectsSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GeneralSettings.xaml">
+    <Page Include="Views\Settings\GeneralSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -200,15 +200,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProjectionsSettings.xaml">
+    <Page Include="Views\Settings\ProjectionsSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TrackersSettings.xaml">
+    <Page Include="Views\Settings\TrackersSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ViewPort.xaml">
+    <Page Include="Views\ViewPorts\GridViewPort.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
