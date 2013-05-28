@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -55,6 +56,7 @@
     <Compile Include="Converters\Vector3DToQuaternionConverter.cs" />
     <Compile Include="Converters\ViewportDistanceConverter.cs" />
     <Compile Include="FileFilterHelper.cs" />
+    <Compile Include="FullScreenWindow.cs" />
     <Compile Include="MouseUtilities.cs" />
     <Compile Include="Mvvm\DelegateCommand.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />

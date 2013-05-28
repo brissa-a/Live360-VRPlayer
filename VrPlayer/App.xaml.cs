@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-
+using System.Windows.Navigation;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.Settings;
@@ -31,6 +31,10 @@ namespace VrPlayer
         {
             _settingsManager.Save();
             _pluginManager.Dispose();
+            foreach (NavigationWindow win in Current.Windows)
+            {
+                win.Close();
+            }
         }
     }
 }

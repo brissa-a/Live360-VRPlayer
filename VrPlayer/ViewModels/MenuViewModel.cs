@@ -270,8 +270,7 @@ namespace VrPlayer.ViewModels
 
         private void Exit(object o)
         {
-            //Todo: Close windows instead. Move to UI
-            App.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
         private void SetEffect(object o)

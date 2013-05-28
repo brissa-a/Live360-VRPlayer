@@ -68,6 +68,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -94,6 +95,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="Models\Plugins\DynamicPluginManager.cs" />
+    <Compile Include="Models\State\DisplayMode.cs" />
     <Compile Include="Views\Settings\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
