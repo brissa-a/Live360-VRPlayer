@@ -54,7 +54,7 @@
     <Compile Include="Converters\ObjectToTypeConverter.cs" />
     <Compile Include="Converters\QuaternionToCoordConverter.cs" />
     <Compile Include="Converters\Vector3DToQuaternionConverter.cs" />
-    <Compile Include="Converters\ViewportDistanceConverter.cs" />
+    <Compile Include="Converters\ThicknessMultiConverter.cs" />
     <Compile Include="FileFilterHelper.cs" />
     <Compile Include="FullScreenWindow.cs" />
     <Compile Include="MouseUtilities.cs" />

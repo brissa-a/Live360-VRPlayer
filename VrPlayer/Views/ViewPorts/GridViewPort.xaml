@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:VrPlayer.Helpers.Converters;assembly=VrPlayer.Helpers"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <converters:ViewportDistanceConverter x:Key="ValToThickness" />
+        <converters:ThicknessMultiConverter x:Key="ThicknessMulti" />
+        <System:Double x:Key="Zero">0</System:Double>
         <VisualBrush x:Key="Media"
                      RenderOptions.CachingHint="Cache"
                      RenderOptions.CacheInvalidationThresholdMaximum="2.0"
@@ -22,7 +24,15 @@
             </GeometryModel3D.BackMaterial>
         </GeometryModel3D>
 
-        <Viewport3D x:Key="view1" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased" Margin="{Binding Path=Config.ViewportsHorizontalOffset, Converter={StaticResource ValToThickness}, ConverterParameter=Left}">
+        <Viewport3D x:Key="view1" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased">
+            <Viewport3D.Margin>
+                <MultiBinding Converter="{StaticResource ThicknessMulti}">
+                    <Binding Path="Config.ViewportsHorizontalOffset"/>
+                    <Binding Source="{StaticResource Zero}" />
+                    <Binding Source="{StaticResource Zero}" />
+                    <Binding Source="{StaticResource Zero}" />
+                </MultiBinding>
+            </Viewport3D.Margin>
             <Viewport3D.Camera>
                 <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Content.CameraLeftPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}" >
                     <PerspectiveCamera.Transform>
@@ -58,7 +68,15 @@
             </ModelVisual3D>
         </Viewport3D>
 
-        <Viewport3D x:Key="view2" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased" Margin="{Binding Path=Config.ViewportsHorizontalOffset, Converter={StaticResource ValToThickness}, ConverterParameter=Right}">
+        <Viewport3D x:Key="view2" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased">
+            <Viewport3D.Margin>
+                <MultiBinding Converter="{StaticResource ThicknessMulti}">
+                    <Binding Source="{StaticResource Zero}" />
+                    <Binding Source="{StaticResource Zero}" />
+                    <Binding Path="Config.ViewportsHorizontalOffset"/>
+                    <Binding Source="{StaticResource Zero}" />
+                </MultiBinding>
+            </Viewport3D.Margin>
             <Viewport3D.Camera>
                 <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}">
                     <PerspectiveCamera.Transform>
