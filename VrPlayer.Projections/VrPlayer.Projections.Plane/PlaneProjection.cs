@@ -10,8 +10,8 @@ namespace VrPlayer.Projections.Plane
     public class PlaneProjection : ProjectionBase, IProjection
     {
         private const double _distance = 1000;
-        private const double _cameraProximity = -1;
-        private const double _cameraHeight = -0.5;
+        private const double _cameraProximity = -0.5;
+        private const double _cameraHeight = -0.25;
 
         public static readonly DependencyProperty RatioProperty =
             DependencyProperty.Register("Ratio", typeof(double),

@@ -20,6 +20,6 @@
         <Grid DockPanel.Dock="Bottom" Visibility="{Binding Path=State.TrackerPlugin.Content.IsActive, Converter={StaticResource InvBoolToVis}}">
             <views:ControlPanel />
         </Grid>
-        <viewPorts:GridViewPort />
+        <viewPorts:MainViewPort />
     </DockPanel>
 </helpers:FullScreenWindow>

@@ -12,6 +12,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -24,6 +25,9 @@
             <Label Grid.Column="0" Grid.Row="1" Content="Horizontal offset:"></Label>
             <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.ViewportsHorizontalOffset}" Minimum="-1000" Maximum="1000"></Slider>
             <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.ViewportsHorizontalOffset}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="2" Content="Vertical offset:"></Label>
+            <Slider Grid.Column="1" Grid.Row="2" Value="{Binding Path=Config.ViewportsVerticalOffset}" Minimum="-1000" Maximum="1000"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding Path=Config.ViewportsVerticalOffset}"></TextBox>
         </Grid>
         <TextBlock Text="Samples" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>
         <Grid Margin="0,0,0,16">

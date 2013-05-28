@@ -5,12 +5,12 @@ using VrPlayer.ViewModels;
 
 namespace VrPlayer.Views.ViewPorts
 {
-    public partial class LeftViewPort : FullScreenWindow
+    public partial class ExternalViewPort : FullScreenWindow
     {
         private readonly ViewPortViewModel _viewModel;
         public GeometryModel3D Geometry { get; set; }
 
-        public LeftViewPort(GeometryModel3D geometry)
+        public ExternalViewPort(GeometryModel3D geometry)
         {
             Geometry = geometry;
             InitializeComponent();

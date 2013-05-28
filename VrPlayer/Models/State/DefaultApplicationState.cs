@@ -7,7 +7,6 @@ using WPFMediaKit.DirectShow.Controls;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Contracts.Projections;
-using VrPlayer.Models.Plugins;
 using VrPlayer.Models.Media;
 
 namespace VrPlayer.Models.State
@@ -39,8 +38,8 @@ namespace VrPlayer.Models.State
             }
         }
 
-        private StereoMode _stereoOutput;
-        public StereoMode StereoOutput
+        private LayoutMode _stereoOutput;
+        public LayoutMode StereoOutput
         {
             get
             {

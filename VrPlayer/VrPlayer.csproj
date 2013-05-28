@@ -95,7 +95,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="Models\Plugins\DynamicPluginManager.cs" />
-    <Compile Include="Models\State\DisplayMode.cs" />
+    <Compile Include="Models\State\LayoutMode.cs" />
     <Compile Include="Views\Settings\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -141,14 +141,11 @@
     <Compile Include="Views\Settings\TrackersSettings.xaml.cs">
       <DependentUpon>TrackersSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewPorts\RightViewPort.xaml.cs">
-      <DependentUpon>RightViewPort.xaml</DependentUpon>
+    <Compile Include="Views\ViewPorts\ExternalViewPort.xaml.cs">
+      <DependentUpon>ExternalViewPort.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewPorts\GridViewPort.xaml.cs">
-      <DependentUpon>GridViewPort.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ViewPorts\LeftViewPort.xaml.cs">
-      <DependentUpon>LeftViewPort.xaml</DependentUpon>
+    <Compile Include="Views\ViewPorts\MainViewPort.xaml.cs">
+      <DependentUpon>MainViewPort.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Settings\SettingsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -199,15 +196,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ViewPorts\RightViewPort.xaml">
+    <Page Include="Views\ViewPorts\ExternalViewPort.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ViewPorts\GridViewPort.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ViewPorts\LeftViewPort.xaml">
+    <Page Include="Views\ViewPorts\MainViewPort.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,6 +8,7 @@ namespace VrPlayer.Models.Config
         private string _samplesFolder;
         private int _cameraFieldOfView;
         private int _viewportsHorizontalOffset;
+        private int _viewportsVerticalOffset;
         private bool _positionalAudio;
         private bool _evrRendering;
         private bool _metaDataReadOnLoad;
@@ -49,6 +50,16 @@ namespace VrPlayer.Models.Config
             {
                 _viewportsHorizontalOffset = value;
                 OnPropertyChanged("ViewportsHorizontalOffset");
+            }
+        }
+
+        public int ViewportsVerticalOffset
+        {
+            get { return _viewportsVerticalOffset; }
+            set
+            {
+                _viewportsVerticalOffset = value;
+                OnPropertyChanged("ViewportsVerticalOffset");
             }
         }
 

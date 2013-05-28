@@ -6,13 +6,19 @@
              xmlns:converters="clr-namespace:VrPlayer.Helpers.Converters;assembly=VrPlayer.Helpers"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:VrPlayer.Contracts.Projections;assembly=VrPlayer.Contracts"
+             xmlns:state="clr-namespace:VrPlayer.Models.State"
              mc:Ignorable="d">
     <UserControl.Resources>
         <converters:CompareAllParametersConverter x:Key="CompareAllParam"/>
         <converters:PathToFileInfosConverter x:Key="PathToFileInfos"/>
-        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+        <ObjectDataProvider x:Key="FormatsEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="local:StereoMode"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="LayoutsEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="state:LayoutMode"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
@@ -59,7 +65,7 @@
         </MenuItem>
         <MenuItem Header="_Media">
             <!--Format-->
-            <MenuItem Header="_Format" ItemsSource="{Binding Source={StaticResource dataFromEnum}}">
+            <MenuItem Header="_Format" ItemsSource="{Binding Source={StaticResource FormatsEnum}}">
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
                         <Setter Property="IsChecked">
@@ -126,9 +132,18 @@
         </MenuItem>
         <MenuItem Header="_Settings">
             <!--Layout-->
-            <MenuItem Header="_Layout" ItemsSource="{Binding Source={StaticResource dataFromEnum}}">
+            <MenuItem Header="_Layout" ItemsSource="{Binding Source={StaticResource LayoutsEnum}}">
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
+                        <Style.Triggers>
+                            <Trigger Property="Header" Value="{x:Static state:LayoutMode.DualScreen}">
+                                <Setter Property="IsEnabled">
+                                    <Setter.Value>
+                                        <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.SupportDualScreen" />
+                                    </Setter.Value>
+                                </Setter>    
+                            </Trigger>
+                        </Style.Triggers>
                         <Setter Property="IsChecked">
                             <Setter.Value>
                                 <MultiBinding Converter="{StaticResource CompareAllParam}" ConverterParameter="String">

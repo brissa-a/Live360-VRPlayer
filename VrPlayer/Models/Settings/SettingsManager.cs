@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Linq;
-
-using VrPlayer.Contracts.Projections;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 
@@ -48,7 +46,7 @@ namespace VrPlayer.Models.Settings
                 .Where(plugin => plugin.Content != null)
                 .FirstOrDefault(plugin => plugin.Content.GetType().FullName == _settings["Distortion"].ToString());
 
-            _state.StereoOutput = (StereoMode)Enum.Parse(typeof(StereoMode), _settings["Layout"].ToString());
+            _state.StereoOutput = (LayoutMode)Enum.Parse(typeof(LayoutMode), _settings["Layout"].ToString());
         }
     }
 }

@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows;
-using Microsoft.Win32;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
@@ -17,6 +17,9 @@ using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Config;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace VrPlayer.ViewModels
 {
@@ -40,8 +43,13 @@ namespace VrPlayer.ViewModels
             get { return _pluginManager; }
         }
 
-        
-        #region Commands
+        //Todo: Create a manager to detect screens activites
+	    public bool SupportDualScreen
+	    {
+            get { return Screen.AllScreens.Count() >= 2; }
+	    }
+
+	    #region Commands
 
         private readonly ICommand _loadCommand;
         public ICommand LoadCommand
@@ -286,7 +294,7 @@ namespace VrPlayer.ViewModels
 
         private void SetStereoOutput(object o)
         {
-            _state.StereoOutput = (StereoMode)o;
+            _state.StereoOutput = (LayoutMode)o;
         }
 
         private void SetProjection(object o)

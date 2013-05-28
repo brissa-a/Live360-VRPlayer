@@ -10,6 +10,7 @@ namespace VrPlayer.Models.Config
             SamplesFolder = ConfigurationManager.AppSettings["SamplesFolder"];
             CameraFieldOfView = int.Parse(ConfigurationManager.AppSettings["CameraFieldOfView"]);
             ViewportsHorizontalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsHorizontalOffset"]);
+            ViewportsVerticalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsVerticalOffset"]);
             PositionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
             EvrRendering = bool.Parse(ConfigurationManager.AppSettings["EvrRendering"]);
             MetaDataReadOnLoad = bool.Parse(ConfigurationManager.AppSettings["MetaDataReadOnLoad"]);

@@ -88,7 +88,8 @@ namespace VrPlayer.ViewModels
             {
                 switch (_state.StereoOutput)
                 {
-                    case StereoMode.Mono:
+                    case LayoutMode.Mono:
+                    case LayoutMode.DualScreen:
                         Viewport1Col = 0;
                         Viewport1ColSpan = 2;
                         Viewport1Row = 0;
@@ -98,7 +99,7 @@ namespace VrPlayer.ViewModels
                         Viewport2Row = 0;
                         Viewport2RowSpan = 2;
                         break;
-                    case StereoMode.OverUnder:
+                    case LayoutMode.OverUnder:
                         Viewport1Col = 0;
                         Viewport1ColSpan = 2;
                         Viewport1Row = 0;
@@ -108,7 +109,7 @@ namespace VrPlayer.ViewModels
                         Viewport2Row = 1;
                         Viewport2RowSpan = 1;
                         break;
-                    case StereoMode.SideBySide:
+                    case LayoutMode.SideBySide:
                         Viewport1Col = 0;
                         Viewport1ColSpan = 1;
                         Viewport1Row = 0;

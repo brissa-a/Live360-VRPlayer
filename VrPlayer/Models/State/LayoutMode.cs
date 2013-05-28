@@ -1,9 +1,8 @@
 ﻿namespace VrPlayer.Models.State
 {
-    public enum DisplayMode
+    public enum LayoutMode
     {
-        MonoLeft,
-        MonoRight,
+        Mono,
         OverUnder,
         SideBySide,
         DualScreen
