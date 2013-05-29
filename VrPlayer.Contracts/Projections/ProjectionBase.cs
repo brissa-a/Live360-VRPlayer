@@ -37,7 +37,7 @@ namespace VrPlayer.Contracts.Projections
             _cameraRightPosition = defaultCameraPosition;
         }
 
-        public MeshGeometry3D Geometry 
+        public virtual MeshGeometry3D Geometry 
         {
             get
             {
