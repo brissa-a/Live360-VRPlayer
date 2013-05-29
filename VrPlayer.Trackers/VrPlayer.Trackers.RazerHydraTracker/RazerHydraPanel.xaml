@@ -13,6 +13,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -25,6 +26,8 @@
             <Label Grid.Column="0" Grid.Row="1" Content="Tilt (pitch offset):"></Label>
             <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}}" Minimum="0" Maximum="360"></Slider>
             <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="2" Content="Jitter filter:"></Label>
+            <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding Path=FilterEnabled}" VerticalAlignment="Center"></CheckBox>
         </Grid>
     </StackPanel>
 </UserControl>

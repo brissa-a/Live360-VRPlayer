@@ -14,10 +14,11 @@ namespace VrPlayer.Trackers.RazerHydraTracker
         public RazerHydraPlugin()
         {
             Name = "Razer Hydra";
-            var tracker = new RazerHydraTracker()
+            var tracker = new RazerHydraTracker
                 {
                     PositionScaleFactor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["PositionScaleFactor"].Value),
-                    RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(ConfigHelper.ParseVector3D(Config.AppSettings.Settings["RotationOffset"].Value))
+                    RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(ConfigHelper.ParseVector3D(Config.AppSettings.Settings["RotationOffset"].Value)),
+                    FilterEnabled = bool.Parse(Config.AppSettings.Settings["FilterEnabled"].Value),
                 };
             Content = tracker;
             Panel = new RazerHydraPanel(tracker);

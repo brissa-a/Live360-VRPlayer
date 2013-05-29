@@ -313,6 +313,7 @@
       <Name>VrPlayer.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)Lib\CsXmpToolkit\*.dll" "$(TargetDir)" /y

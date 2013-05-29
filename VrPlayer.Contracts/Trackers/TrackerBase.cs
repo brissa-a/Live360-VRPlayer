@@ -69,7 +69,6 @@ namespace VrPlayer.Contracts.Trackers
         public static readonly DependencyProperty PositionScaleFactorProperty =
             DependencyProperty.Register("PositionScaleFactor", typeof(double),
             typeof(TrackerBase), new FrameworkPropertyMetadata(1D));
-
         public double PositionScaleFactor
         {
             get { return (double)GetValue(PositionScaleFactorProperty); }

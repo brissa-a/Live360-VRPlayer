@@ -1,6 +1,7 @@
 ﻿﻿using System;
-using System.ComponentModel.Composition;
-using System.Windows.Threading;
+﻿using System.ComponentModel.Composition;
+﻿using System.Windows;
+﻿using System.Windows.Threading;
 using System.Windows.Media.Media3D;
 
 using VrPlayer.Contracts.Trackers;
@@ -15,6 +16,15 @@ namespace VrPlayer.Trackers.RazerHydraTracker
 
         private readonly RazerHydraWrapper _hydra = new RazerHydraWrapper();
 
+        public static readonly DependencyProperty FilterEnabledProperty =
+            DependencyProperty.Register("FilterEnabledFilterEnabled", typeof(bool),
+            typeof(RazerHydraTracker), new FrameworkPropertyMetadata(false));
+        public bool FilterEnabled
+        {
+            get { return (bool)GetValue(FilterEnabledProperty); }
+            set { SetValue(FilterEnabledProperty, value); }
+        }
+
         public RazerHydraTracker()
         {
             try
@@ -25,8 +35,9 @@ namespace VrPlayer.Trackers.RazerHydraTracker
                 int result = _hydra.Init();
                 ThrowErrorOnResult(result, "Error while initializing the Razer Hydra");
 
-                result = _hydra.SetFilterEnabled(0);
-                ThrowErrorOnResult(result, "Error while enabling the Razer Hydra filter");
+                var filter = FilterEnabled ? 1 : 0;
+                result = _hydra.SetFilterEnabled(filter);
+                ThrowErrorOnResult(result, "Error while settings the Razer Hydra filter");
 
                 var timer = new DispatcherTimer(DispatcherPriority.Input);
                 timer.Interval = new TimeSpan(0, 0, 0, 0, 5);
