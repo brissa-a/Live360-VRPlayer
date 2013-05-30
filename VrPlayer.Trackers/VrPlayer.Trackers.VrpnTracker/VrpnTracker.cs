@@ -97,9 +97,9 @@ namespace VrPlayer.Trackers.VrpnTracker
 
                     RawRotation = new System.Windows.Media.Media3D.Quaternion(
                         e.Orientation.Y,
-                        e.Orientation.Z,
+                        e.Orientation.W,
                         -e.Orientation.X,
-                        e.Orientation.W);
+                        e.Orientation.Z);
 
                     UpdatePositionAndRotation();
                 }
