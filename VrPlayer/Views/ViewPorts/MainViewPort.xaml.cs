@@ -45,18 +45,24 @@ namespace VrPlayer.Views.ViewPorts
 
             cancelEventArgs.Cancel = true;
             ((Window)sender).Hide();
-            _viewModel.State.StereoOutput = LayoutMode.Mono;
+            _viewModel.State.StereoOutput = LayoutMode.MonoLeft;
         }
 
         private void StateOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             if (propertyChangedEventArgs.PropertyName != "StereoOutput") return;
 
-            ViewPort2.Visibility = Visibility.Visible;
-            if (_viewModel.State.StereoOutput == LayoutMode.Mono ||
+            ViewPortLeft.Visibility = Visibility.Visible;
+            if (_viewModel.State.StereoOutput == LayoutMode.MonoRight)
+            {
+                ViewPortLeft.Visibility = Visibility.Hidden;
+            }
+
+            ViewPortRight.Visibility = Visibility.Visible;
+            if (_viewModel.State.StereoOutput == LayoutMode.MonoLeft ||
                 _viewModel.State.StereoOutput == LayoutMode.DualScreen)
             {
-                ViewPort2.Visibility = Visibility.Hidden;
+                ViewPortRight.Visibility = Visibility.Hidden;
             }
             
             if (_viewModel.State.StereoOutput == LayoutMode.DualScreen)

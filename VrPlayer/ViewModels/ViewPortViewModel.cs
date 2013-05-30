@@ -88,7 +88,8 @@ namespace VrPlayer.ViewModels
             {
                 switch (_state.StereoOutput)
                 {
-                    case LayoutMode.Mono:
+                    case LayoutMode.MonoLeft:
+                    case LayoutMode.MonoRight:
                     case LayoutMode.DualScreen:
                         Viewport1Col = 0;
                         Viewport1ColSpan = 2;

@@ -2,7 +2,8 @@
 {
     public enum LayoutMode
     {
-        Mono,
+        MonoLeft,
+        MonoRight,
         OverUnder,
         SideBySide,
         DualScreen

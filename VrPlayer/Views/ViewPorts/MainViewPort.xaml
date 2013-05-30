@@ -118,8 +118,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!--ViewPort 1-->
-            <Grid Background="Black" ClipToBounds="True" 
+            <!--ViewPort Left-->
+            <Grid Background="Black" ClipToBounds="True" x:Name="ViewPortLeft"
                   Effect="{Binding Path=State.DistortionPlugin.Content}"
                   Grid.Column="{Binding Path=Viewport1Col}" 
                   Grid.ColumnSpan="{Binding Path=Viewport1ColSpan}"  
@@ -127,8 +127,8 @@
                   Grid.RowSpan="{Binding Path=Viewport1RowSpan}">
                 <ContentControl Content="{StaticResource view1}" />
             </Grid>
-            <!--ViewPort 2-->
-            <Grid Background="Black" ClipToBounds="True" x:Name="ViewPort2"
+            <!--ViewPort Right-->
+            <Grid Background="Black" ClipToBounds="True" x:Name="ViewPortRight"
                   Effect="{Binding Path=State.DistortionPlugin.Content}"
                   Grid.Column="{Binding Path=Viewport2Col}" 
                   Grid.ColumnSpan="{Binding Path=Viewport2ColSpan}" 

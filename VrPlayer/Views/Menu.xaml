@@ -11,6 +11,7 @@
     <UserControl.Resources>
         <converters:CompareAllParametersConverter x:Key="CompareAllParam"/>
         <converters:PathToFileInfosConverter x:Key="PathToFileInfos"/>
+        <converters:TranslationConverter x:Key="Translation"/>
         <ObjectDataProvider x:Key="FormatsEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="local:StereoMode"/>
@@ -66,8 +67,16 @@
         <MenuItem Header="_Media">
             <!--Format-->
             <MenuItem Header="_Format" ItemsSource="{Binding Source={StaticResource FormatsEnum}}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/edit.png" />
+                </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Header">
+                            <Setter.Value>
+                                <Binding Path="." Converter="{StaticResource Translation}"></Binding>
+                            </Setter.Value>
+                        </Setter>
                         <Setter Property="IsChecked">
                             <Setter.Value>
                                 <MultiBinding Converter="{StaticResource CompareAllParam}" ConverterParameter="String">
@@ -87,6 +96,9 @@
             </MenuItem>
             <!--Projections-->
             <MenuItem Header="_Projection" ItemsSource="{Binding Path=PluginManager.Projections}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kpovmodeler.png" />
+                </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
                         <Setter Property="Header" Value="{Binding Path=Name}" />
@@ -109,6 +121,9 @@
             </MenuItem>
             <!--Effects-->
             <MenuItem Header="_Effects" ItemsSource="{Binding Path=PluginManager.Effects}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kcoloredit.png" />
+                </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
                         <Setter Property="Header" Value="{Binding Path=Name}" />
@@ -130,20 +145,28 @@
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
         </MenuItem>
-        <MenuItem Header="_Settings">
+        <MenuItem Header="_Device">
             <!--Layout-->
             <MenuItem Header="_Layout" ItemsSource="{Binding Source={StaticResource LayoutsEnum}}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/view_left_right.png" />
+                </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
                         <Style.Triggers>
-                            <Trigger Property="Header" Value="{x:Static state:LayoutMode.DualScreen}">
+                            <DataTrigger Value="{x:Static state:LayoutMode.DualScreen}" Binding="{Binding Path=.}">
                                 <Setter Property="IsEnabled">
                                     <Setter.Value>
                                         <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.SupportDualScreen" />
                                     </Setter.Value>
-                                </Setter>    
-                            </Trigger>
+                                </Setter>
+                            </DataTrigger>
                         </Style.Triggers>
+                        <Setter Property="Header">
+                            <Setter.Value>
+                                <Binding Path="." Converter="{StaticResource Translation}"></Binding>
+                            </Setter.Value>
+                        </Setter>
                         <Setter Property="IsChecked">
                             <Setter.Value>
                                 <MultiBinding Converter="{StaticResource CompareAllParam}" ConverterParameter="String">
@@ -163,6 +186,9 @@
             </MenuItem>
             <!--Distortions-->
             <MenuItem Header="_Distortion" ItemsSource="{Binding Path=PluginManager.Distortions}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/xmag.png" />
+                </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
                         <Setter Property="Header" Value="{Binding Path=Name}" />
@@ -185,6 +211,9 @@
             </MenuItem>
             <!--Trackers-->
             <MenuItem Header="Trac_ker" ItemsSource="{Binding Path=PluginManager.Trackers}">
+                <MenuItem.Icon>
+                    <Image Width="20" Height="20" Source="/Medias/Nuvola/package_games_arcade.png" />
+                </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
                         <Setter Property="Header" Value="{Binding Path=Name}" />

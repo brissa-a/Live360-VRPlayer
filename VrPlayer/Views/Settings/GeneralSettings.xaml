@@ -23,10 +23,10 @@
             <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.CameraFieldOfView}" Minimum="0" Maximum="180"></Slider>
             <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Config.CameraFieldOfView}" ></TextBox>
             <Label Grid.Column="0" Grid.Row="1" Content="Horizontal offset:"></Label>
-            <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.ViewportsHorizontalOffset}" Minimum="-1000" Maximum="1000"></Slider>
+            <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Config.ViewportsHorizontalOffset}" Minimum="-500" Maximum="500"></Slider>
             <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Config.ViewportsHorizontalOffset}"></TextBox>
             <Label Grid.Column="0" Grid.Row="2" Content="Vertical offset:"></Label>
-            <Slider Grid.Column="1" Grid.Row="2" Value="{Binding Path=Config.ViewportsVerticalOffset}" Minimum="-1000" Maximum="1000"></Slider>
+            <Slider Grid.Column="1" Grid.Row="2" Value="{Binding Path=Config.ViewportsVerticalOffset}" Minimum="-500" Maximum="500"></Slider>
             <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding Path=Config.ViewportsVerticalOffset}"></TextBox>
         </Grid>
         <TextBlock Text="Samples" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>

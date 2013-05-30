@@ -209,11 +209,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -226,10 +221,6 @@
     <Resource Include="Medias\Nuvola\xmag.png" />
     <Resource Include="Medias\Nuvola\terminal.png" />
     <Resource Include="vrplayer.ico" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -239,6 +230,12 @@
     <Resource Include="Medias\Nuvola\browser.png" />
     <Resource Include="Medias\Nuvola\folder_open.png" />
     <Resource Include="Medias\icon48.png" />
+    <Resource Include="Medias\Nuvola\view_left_right.png" />
+    <Resource Include="Medias\Nuvola\view_remove.png" />
+    <Resource Include="Medias\Nuvola\view_top_bottom.png" />
+    <Resource Include="Medias\Nuvola\edit.png" />
+    <Resource Include="Medias\Nuvola\view_fullscreen.png" />
+    <Resource Include="Medias\Nuvola\window_list.png" />
     <Content Include="Samples\1-Grid.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -313,7 +310,6 @@
       <Name>VrPlayer.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)Lib\CsXmpToolkit\*.dll" "$(TargetDir)" /y
