@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:VrPlayer.Helpers.Converters;assembly=VrPlayer.Helpers"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
     <UserControl.Resources>
         <converters:QuaternionToCoordConverter x:Key="CoordConverter" />
+        <system:String x:Key="X">X</system:String>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical" Margin="16">
         <Grid>
@@ -25,8 +27,8 @@
             <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=PositionScaleFactor}" Minimum="0" Maximum="50"></Slider>
             <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=PositionScaleFactor}"></TextBox>
             <Label Grid.Column="0" Grid.Row="1" Content="Tilt (pitch offset):"></Label>
-            <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}}" Minimum="0" Maximum="360"></Slider>
-            <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}}"></TextBox>
+            <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}, ConverterParameter={StaticResource X}}" Minimum="0" Maximum="360"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}, ConverterParameter={StaticResource X}}"></TextBox>
             <Label Grid.Column="0" Grid.Row="2" Content="Tracker address:"></Label>
             <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Path=TrackerAddress}"></TextBox>
             <Label Grid.Column="0" Grid.Row="3" Content="Buttons address:"></Label>

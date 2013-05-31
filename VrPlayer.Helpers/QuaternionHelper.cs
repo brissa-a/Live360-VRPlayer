@@ -86,6 +86,17 @@ namespace VrPlayer.Helpers
 	        return q;
         }
 
+        //Source: http://stackoverflow.com/questions/11514063/extract-yaw-pitch-and-roll-from-a-rotationmatrix
+        public static Vector3D EulerAnglesFromQuaternion(Quaternion q)
+        {
+            var m = Matrix3D.Identity;
+            m.Rotate(q);
+            var pitch = Math.Atan2(m.M31, m.M32);
+            var yaw = Math.Acos(m.M33);
+            var roll = Math.Atan2(m.M13, m.M23);
+            return new Vector3D(pitch,yaw,roll);
+        }
+
         public static Vector3D FrontVectorFromQuaternion(Quaternion q)
         {
             return new Vector3D(

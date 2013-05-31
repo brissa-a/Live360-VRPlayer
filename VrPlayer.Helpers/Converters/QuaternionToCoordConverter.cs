@@ -10,15 +10,38 @@ namespace VrPlayer.Helpers.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var quaternion = (Quaternion)value;
-            //Todo: temp - return Vector3D X
-            //Todo: support Y and Z via parameter
-            return quaternion.X;
+            var angles = QuaternionHelper.EulerAnglesFromQuaternion(quaternion);
+
+            var axis = parameter.ToString().ToLower();
+            switch (axis)
+            {
+                case "x":
+                    return angles.X;
+                case "y":
+                    return angles.Y;
+                case "z":
+                    return angles.Z;
+                default:
+                    throw new Exception("Invalid parameter in QuaternionToCoordConverter.");
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var coord = (double)value;
-            return new Vector3D(coord, 0, 0);
+
+            var axis = parameter.ToString().ToLower();
+            switch (axis)
+            {
+                case "x":
+                    return QuaternionHelper.QuaternionFromEulerAngles(coord, 0, 0);
+                case "y":
+                    return QuaternionHelper.QuaternionFromEulerAngles(0, coord, 0);
+                case "z":
+                    return QuaternionHelper.QuaternionFromEulerAngles(0, 0, coord);
+                default:
+                    throw new Exception("Invalid parameter in QuaternionToCoordConverter.");
+            }
         }
     }
 }
