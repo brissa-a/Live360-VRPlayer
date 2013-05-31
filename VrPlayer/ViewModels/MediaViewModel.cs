@@ -13,6 +13,10 @@ namespace VrPlayer.ViewModels
 	public class MediaViewModel: ViewModelBase
 	{
         private readonly IApplicationState _state;
+        public IApplicationState State
+        {
+            get { return _state; }
+        }
 
         #region Fields
 
