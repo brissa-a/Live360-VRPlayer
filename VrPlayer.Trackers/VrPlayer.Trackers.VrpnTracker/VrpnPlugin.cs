@@ -17,7 +17,7 @@ namespace VrPlayer.Trackers.VrpnTracker
             var tracker = new VrpnTracker()
                 {
                     PositionScaleFactor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["PositionScaleFactor"].Value),
-                    RotationOffset = QuaternionHelper.QuaternionFromEulerAngles(ConfigHelper.ParseVector3D(Config.AppSettings.Settings["RotationOffset"].Value)),
+                    RotationOffset = QuaternionHelper.EulerAnglesInDegToQuaternion(ConfigHelper.ParseVector3D(Config.AppSettings.Settings["RotationOffset"].Value)),
                     TrackerAddress = Config.AppSettings.Settings["TrackerAddress"].Value,
                     ButtonAddress = Config.AppSettings.Settings["ButtonAddress"].Value
                 };

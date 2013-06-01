@@ -66,10 +66,12 @@
     <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="QuaternionHelperTests.cs" />
     <Compile Include="SettingsTests.cs" />
     <Compile Include="MetadataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +80,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VrPlayer.Helpers\VrPlayer.Helpers.csproj">
+      <Project>{D4A54A70-3BB5-4BE5-BEDB-3A41B6C43033}</Project>
+      <Name>VrPlayer.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VrPlayer\VrPlayer.csproj">
       <Project>{D57FC621-BC2F-48B8-804C-F836C0BD1B3C}</Project>
       <Name>VrPlayer</Name>

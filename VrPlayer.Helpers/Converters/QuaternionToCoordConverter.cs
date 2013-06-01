@@ -10,7 +10,7 @@ namespace VrPlayer.Helpers.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var quaternion = (Quaternion)value;
-            var angles = QuaternionHelper.EulerAnglesFromQuaternion(quaternion);
+            var angles = QuaternionHelper.QuaternionToEulerAnglesInDeg(quaternion);
 
             var axis = parameter.ToString().ToLower();
             switch (axis)
@@ -34,11 +34,11 @@ namespace VrPlayer.Helpers.Converters
             switch (axis)
             {
                 case "x":
-                    return QuaternionHelper.QuaternionFromEulerAngles(coord, 0, 0);
+                    return QuaternionHelper.EulerAnglesInDegToQuaternion(coord, 0, 0);
                 case "y":
-                    return QuaternionHelper.QuaternionFromEulerAngles(0, coord, 0);
+                    return QuaternionHelper.EulerAnglesInDegToQuaternion(0, coord, 0);
                 case "z":
-                    return QuaternionHelper.QuaternionFromEulerAngles(0, 0, coord);
+                    return QuaternionHelper.EulerAnglesInDegToQuaternion(0, 0, coord);
                 default:
                     throw new Exception("Invalid parameter in QuaternionToCoordConverter.");
             }

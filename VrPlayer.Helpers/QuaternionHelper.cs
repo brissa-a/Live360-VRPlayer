@@ -5,97 +5,62 @@ namespace VrPlayer.Helpers
 {
     public class QuaternionHelper
     {
-        public static Quaternion QuaternionFromEulerAngles(Vector3D eulerAngles)
+        public static Quaternion EulerAnglesInDegToQuaternion(Vector3D angles)
         {
-            return QuaternionFromEulerAngles(eulerAngles.X, eulerAngles.Y, eulerAngles.Z);
+            return EulerAnglesInDegToQuaternion(angles.X, angles.Y, angles.Z);
         }
 
-        //Source: http://www.vbforums.com/showthread.php?637168-WPF-3D-orbiting-camera-(pitch-yaw-rotation-only)
-        public static Quaternion QuaternionFromEulerAngles(double pitch, double yaw, double roll)
+        public static Quaternion EulerAnglesInDegToQuaternion(double yaw, double pitch, double roll)
         {
-            var yawAxis = new Vector3D(0, 1, 0);
-            var pitchAxis = new Vector3D(1, 0, 0);
-            var rollAxis = new Vector3D(0, 0, 1);
-
-            var group = new Transform3DGroup();
-            QuaternionRotation3D r;
-            r = new QuaternionRotation3D(new Quaternion(yawAxis, yaw));
-            group.Children.Add(new RotateTransform3D(r));
-            r = new QuaternionRotation3D(new Quaternion(pitchAxis, pitch));
-            group.Children.Add(new RotateTransform3D(r));
-            r = new QuaternionRotation3D(new Quaternion(rollAxis, roll));
-            group.Children.Add(new RotateTransform3D(r));
-
-            return QuaternionFromMatrix(group.Value);
+            return EulerAnglesInRadToQuaternion(
+                DegreeToRadian(yaw),
+                DegreeToRadian(pitch),
+                DegreeToRadian(roll));
         }
 
-        //Source: http://www.gamedev.net/topic/543583-quaternion-to-matrix-and-back/
-        public static Quaternion QuaternionFromMatrix(Matrix3D m)
+        public static Quaternion EulerAnglesInRadToQuaternion(Vector3D angles)
         {
-            var ZERO_THRESHOLD = 0.00001;
-
-            var q = new Quaternion();
-
-	        //det(m) must b 1
-            var det = m.Determinant;
-	        // we'll accept something very close because of rounding errors
-	        if(Math.Abs(det-1) > ZERO_THRESHOLD)
-	        {
-		        return q;
-	        }
-	
-            // diagonal elements must sum > 0
-	        var trace = m.M11 + m.M22 + m.M33 + m.M44;
-	
-            if(trace > ZERO_THRESHOLD)
-	        {			
-		        q.W = Math.Sqrt(trace) / 2;
-		        q.X = (m.M32 - m.M23) / (4*q.W);
-		        q.Y = (m.M13 - m.M31) / (4*q.W);
-		        q.Z = (m.M21 - m.M12) / (4*q.W);
-	        }
-	        else
-	        {
-		        if ((m.M11 > m.M22)&&(m.M11 > m.M33))
-		        { 
-			        var S = Math.Sqrt( 1.0f + m.M11 - m.M22 - m.M33 ) * 2; // S=4*qx 
-			        q.W = (m.M32 - m.M23) / S;
-			        q.X = 0.25f * S;
-			        q.Y = (m.M12 + m.M21) / S; 
-			        q.Z = (m.M13 + m.M31) / S; 
-		        }
-		        else if (m.M22 > m.M33) 
-		        { 
-			        var S = Math.Sqrt( 1.0 + m.M22 - m.M11 - m.M33 ) * 2; // S=4*qy
-			        q.W = (m.M13 - m.M31) / S;
-			        q.X = (m.M12 + m.M21) / S; 
-			        q.Y = 0.25f * S;
-			        q.Z = (m.M23 + m.M32) / S; 
-		        }
-		        else 
-		        { 
-			        var S = Math.Sqrt( 1.0 + m.M33 - m.M11 - m.M22 ) * 2; // S=4*qz
-			        q.W = (m.M21 - m.M12) / S;
-			        q.X = (m.M13 + m.M31) / S; 
-			        q.Y = (m.M23 + m.M32) / S; 
-			        q.Z = 0.25f * S;
-		        } 
-	        }
-
-	        q.Normalize();
-	        return q;
+            return EulerAnglesInRadToQuaternion(angles.X, angles.Y, angles.Z);
         }
 
-        //Source: http://stackoverflow.com/questions/11514063/extract-yaw-pitch-and-roll-from-a-rotationmatrix
-        public static Vector3D EulerAnglesFromQuaternion(Quaternion q)
+        public static Quaternion EulerAnglesInRadToQuaternion(double pitch, double yaw, double roll)
         {
-            var m = Matrix3D.Identity;
-            m.Rotate(q);
-            var pitch = Math.Atan2(m.M31, m.M32);
-            var yaw = Math.Acos(m.M33);
-            var roll = Math.Atan2(m.M13, m.M23);
-            return new Vector3D(pitch,yaw,roll);
+            var rollOver2 = roll * 0.5;
+            var sinRollOver2 = Math.Sin(rollOver2);
+            var cosRollOver2 = Math.Cos(rollOver2);
+            var yawOver2 = -yaw * 0.5;
+            var sinYawOver2 = Math.Sin(yawOver2);
+            var cosYawOver2 = Math.Cos(yawOver2);
+            var pitchOver2 = pitch * 0.5;
+            var sinPitchOver2 = Math.Sin(pitchOver2);
+            var cosPitchOver2 = Math.Cos(pitchOver2);
+            var result = new Quaternion
+            {
+                X = cosPitchOver2 * cosYawOver2 * cosRollOver2 + sinPitchOver2 * sinYawOver2 * sinRollOver2,
+                Y = cosPitchOver2 * cosYawOver2 * sinRollOver2 - sinPitchOver2 * sinYawOver2 * cosRollOver2,
+                Z = cosPitchOver2 * sinYawOver2 * cosRollOver2 + sinPitchOver2 * cosYawOver2 * sinRollOver2,
+                W = sinPitchOver2 * cosYawOver2 * cosRollOver2 - cosPitchOver2 * sinYawOver2 * sinRollOver2
+            };
+            return result;
         }
+
+        public static Vector3D QuaternionToEulerAnglesInDeg(Quaternion q)
+        {
+            return RadianToDegree(QuaternionToEulerAnglesInRad(q));
+        }
+
+        public static Vector3D QuaternionToEulerAnglesInRad(Quaternion q)
+        {
+            var pitchYawRoll = new Vector3D
+            {
+                Y = (float)Math.Atan2(2f * q.X * q.W + 2f * q.Y * q.Z, 1 - 2f * (q.Z * q.Z + q.W * q.W)),
+                X = (float)Math.Asin(2f * (q.X * q.Z - q.W * q.Y)),
+                Z = (float)Math.Atan2(2f * q.X * q.Y + 2f * q.Z * q.W, 1 - 2f * (q.Y * q.Y + q.Z * q.Z))
+            };
+            return pitchYawRoll;
+        }
+
+        #region Specifics Vectors
 
         public static Vector3D FrontVectorFromQuaternion(Quaternion q)
         {
@@ -114,5 +79,41 @@ namespace VrPlayer.Helpers
                 2 * (q.Y * q.Z + q.W * q.X)
             );
         }
+
+        #endregion
+
+        #region Deg / Rad conversion
+
+        public static double DegreeToRadian(double angle)
+        {
+            return Math.PI * angle / 180.0;
+        }
+
+        public static Vector3D DegreeToRadian(Vector3D angles)
+        {
+            return new Vector3D
+            {
+                X = DegreeToRadian(angles.X),
+                Y = DegreeToRadian(angles.Y),
+                Z = DegreeToRadian(angles.Z)
+            };
+        }
+
+        public static double RadianToDegree(double angle)
+        {
+            return angle * (180.0 / Math.PI);
+        }
+
+        public static Vector3D RadianToDegree(Vector3D angles)
+        {
+            return new Vector3D
+            {
+                X = RadianToDegree(angles.X),
+                Y = RadianToDegree(angles.Y),
+                Z = RadianToDegree(angles.Z)
+            };
+        }
+
+        #endregion
     }
 }
