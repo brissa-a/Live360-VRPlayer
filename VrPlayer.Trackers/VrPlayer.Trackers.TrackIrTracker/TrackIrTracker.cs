@@ -58,7 +58,7 @@ namespace VrPlayer.Trackers.TrackIrTracker
 
                     RawPosition = new Vector3D(-x,-y,z) * PositionScaleFactor;
                     RawRotation = QuaternionHelper.EulerAnglesInDegToQuaternion(
-                        (yaw - Int16.MaxValue) / UnitsByDeg,
+                        -(yaw - Int16.MaxValue) / UnitsByDeg,
                         -(pitch - Int16.MaxValue) / UnitsByDeg,
                         (roll - Int16.MaxValue) / UnitsByDeg);
 

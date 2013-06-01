@@ -43,19 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigHelper.cs" />
-    <Compile Include="Converters\CompareParameterConverter.cs" />
-    <Compile Include="Converters\CompareStringParameterConverter.cs" />
-    <Compile Include="Converters\CompareStringToVisibilityConverter.cs" />
     <Compile Include="Converters\CompareAllParametersConverter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Converters\TimeFormatConverter.cs" />
     <Compile Include="Converters\TranslationConverter.cs" />
     <Compile Include="Converters\PathToFileInfosConverter.cs" />
-    <Compile Include="Converters\CountToBooleanConverter.cs" />
     <Compile Include="Converters\InvertBooleanToVisibilityConverter.cs" />
-    <Compile Include="Converters\ObjectToTypeConverter.cs" />
     <Compile Include="Converters\QuaternionToCoordConverter.cs" />
-    <Compile Include="Converters\Vector3DToQuaternionConverter.cs" />
     <Compile Include="Converters\ThicknessMultiConverter.cs" />
     <Compile Include="FileFilterHelper.cs" />
     <Compile Include="FullScreenWindow.cs" />

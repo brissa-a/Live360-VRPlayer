@@ -11,13 +11,13 @@
         KeyDown="Window_KeyDown"
         Closed="MainWindow_OnClosed">
     <helpers:FullScreenWindow.Resources>
-        <converters:InvertBooleanToVisibilityConverter x:Key="InvBoolToVis"/>
+        <converters:InvertBooleanToVisibilityConverter x:Key="InvertBooleanToVisibility"/>
     </helpers:FullScreenWindow.Resources>
     <DockPanel>
-        <Grid DockPanel.Dock="Top" Visibility="{Binding Path=State.TrackerPlugin.Content.IsActive, Converter={StaticResource InvBoolToVis}}">
+        <Grid DockPanel.Dock="Top" Visibility="{Binding Path=State.TrackerPlugin.Content.IsActive, Converter={StaticResource InvertBooleanToVisibility}}">
             <views:Menu />
         </Grid>
-        <Grid DockPanel.Dock="Bottom" Visibility="{Binding Path=State.TrackerPlugin.Content.IsActive, Converter={StaticResource InvBoolToVis}}">
+        <Grid DockPanel.Dock="Bottom" Visibility="{Binding Path=State.TrackerPlugin.Content.IsActive, Converter={StaticResource InvertBooleanToVisibility}}">
             <views:ControlPanel />
         </Grid>
         <viewPorts:MainViewPort />

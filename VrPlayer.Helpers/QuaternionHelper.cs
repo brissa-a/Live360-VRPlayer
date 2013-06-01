@@ -5,16 +5,18 @@ namespace VrPlayer.Helpers
 {
     public class QuaternionHelper
     {
+        private const int Digits = 6;
+
         public static Quaternion EulerAnglesInDegToQuaternion(Vector3D angles)
         {
             return EulerAnglesInDegToQuaternion(angles.X, angles.Y, angles.Z);
         }
 
-        public static Quaternion EulerAnglesInDegToQuaternion(double yaw, double pitch, double roll)
+        public static Quaternion EulerAnglesInDegToQuaternion(double pitch, double yaw, double roll)
         {
             return EulerAnglesInRadToQuaternion(
-                DegreeToRadian(yaw),
                 DegreeToRadian(pitch),
+                DegreeToRadian(yaw),
                 DegreeToRadian(roll));
         }
 
@@ -23,42 +25,99 @@ namespace VrPlayer.Helpers
             return EulerAnglesInRadToQuaternion(angles.X, angles.Y, angles.Z);
         }
 
+        //Source: http://www.euclideanspace.com/maths/geometry/rotations/conversions/eulerToQuaternion/index.htm
         public static Quaternion EulerAnglesInRadToQuaternion(double pitch, double yaw, double roll)
         {
-            var rollOver2 = roll * 0.5;
-            var sinRollOver2 = Math.Sin(rollOver2);
-            var cosRollOver2 = Math.Cos(rollOver2);
-            var yawOver2 = -yaw * 0.5;
-            var sinYawOver2 = Math.Sin(yawOver2);
-            var cosYawOver2 = Math.Cos(yawOver2);
-            var pitchOver2 = pitch * 0.5;
-            var sinPitchOver2 = Math.Sin(pitchOver2);
-            var cosPitchOver2 = Math.Cos(pitchOver2);
-            var result = new Quaternion
-            {
-                X = cosPitchOver2 * cosYawOver2 * cosRollOver2 + sinPitchOver2 * sinYawOver2 * sinRollOver2,
-                Y = cosPitchOver2 * cosYawOver2 * sinRollOver2 - sinPitchOver2 * sinYawOver2 * cosRollOver2,
-                Z = cosPitchOver2 * sinYawOver2 * cosRollOver2 + sinPitchOver2 * cosYawOver2 * sinRollOver2,
-                W = sinPitchOver2 * cosYawOver2 * cosRollOver2 - cosPitchOver2 * sinYawOver2 * sinRollOver2
-            };
-            return result;
+            var c1 = Math.Cos(-yaw / 2);
+            var s1 = Math.Sin(-yaw / 2);
+            var c2 = Math.Cos(roll / 2);
+            var s2 = Math.Sin(roll / 2);
+            var c3 = Math.Cos(-pitch / 2);
+            var s3 = Math.Sin(-pitch / 2);
+            var c1c2 = c1 * c2;
+            var s1s2 = s1 * s2;
+            var q = new Quaternion
+                {
+                    W = c1c2*c3 - s1s2*s3,
+                    X = c1c2*s3 + s1s2*c3,
+                    Y = s1*c2*c3 + c1*s2*s3,
+                    Z = c1*s2*c3 - s1*c2*s3
+                };
+            return FormatQuaternion(q);
         }
 
         public static Vector3D QuaternionToEulerAnglesInDeg(Quaternion q)
         {
-            return RadianToDegree(QuaternionToEulerAnglesInRad(q));
+            return Format(RadianToDegree(QuaternionToEulerAnglesInRad(q)));
         }
 
+        //Source: http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToEuler/index.htm
         public static Vector3D QuaternionToEulerAnglesInRad(Quaternion q)
         {
-            var pitchYawRoll = new Vector3D
-            {
-                Y = (float)Math.Atan2(2f * q.X * q.W + 2f * q.Y * q.Z, 1 - 2f * (q.Z * q.Z + q.W * q.W)),
-                X = (float)Math.Asin(2f * (q.X * q.Z - q.W * q.Y)),
-                Z = (float)Math.Atan2(2f * q.X * q.Y + 2f * q.Z * q.W, 1 - 2f * (q.Y * q.Y + q.Z * q.Z))
+            q = FormatQuaternion(q);
+
+            var sqw = Math.Pow(q.W,2);
+            var sqx = Math.Pow(q.X,2);
+            var sqy = Math.Pow(q.Y, 2);
+            var sqz = Math.Pow(q.Z, 2);
+	        var unit = sqx + sqy + sqz + sqw; // if normalised is one, otherwise is correction factor
+	        var test = q.X*q.Y + q.Z*q.W;
+	        if (test > 0.499*unit) 
+            { // singularity at north pole
+	            return new Vector3D
+	                {
+	                    Y = 2*Math.Atan2(q.X, q.W),
+	                    Z = Math.PI/2,
+	                    X = 0
+	                };
+	        }
+	        if (test < -0.499*unit) 
+            { // singularity at south pole
+	            return new Vector3D
+	                {
+	                    Y = -2*Math.Atan2(q.X, q.W),
+	                    Z = -Math.PI/2,
+	                    X = 0
+	                };
+	        }
+            return new Vector3D
+                {
+                    Y = -Math.Atan2(2*q.Y*q.W - 2*q.X*q.Z, sqx - sqy - sqz + sqw),
+                    Z = Math.Asin(2 * test / unit),
+                    X = -Math.Atan2(2 * q.X * q.W - 2 * q.Y * q.Z, -sqx + sqy - sqz + sqw)
             };
-            return pitchYawRoll;
         }
+
+        #region Formatting
+
+        private static Quaternion FormatQuaternion(Quaternion q)
+        {
+            return new Quaternion
+                {
+                    X = Math.Round(q.X, Digits),
+                    Y = Math.Round(q.Y, Digits),
+                    Z = Math.Round(q.Z, Digits),
+                    W = Math.Round(q.W, Digits)
+                };
+        }
+
+        private static Vector3D Format(Vector3D v)
+        {
+            return new Vector3D
+            {
+                X = NormaliseAngle(Math.Round(v.X)),
+                Y = NormaliseAngle(Math.Round(v.Y)),
+                Z = NormaliseAngle(Math.Round(v.Z))
+            };
+        }
+
+        //Source: http://stackoverflow.com/questions/3176849/clockwise-angle-between-two-line
+        public static double NormaliseAngle(double degrees)
+        {
+            return ((degrees % 360) + 360) % 360;
+        }
+
+        #endregion
 
         #region Specifics Vectors
 

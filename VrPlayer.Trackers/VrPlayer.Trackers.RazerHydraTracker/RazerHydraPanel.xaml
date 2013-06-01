@@ -26,7 +26,7 @@
             <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=PositionScaleFactor}" Minimum="0" Maximum="0.01"></Slider>
             <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=PositionScaleFactor}"></TextBox>
             <Label Grid.Column="0" Grid.Row="1" Content="Tilt (pitch offset):"></Label>
-            <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}, ConverterParameter={StaticResource X}}" Minimum="0" Maximum="360"></Slider>
+            <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}, ConverterParameter={StaticResource X}}" Minimum="0" Maximum="359"></Slider>
             <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}, ConverterParameter={StaticResource X}}"></TextBox>
             <Label Grid.Column="0" Grid.Row="2" Content="Jitter filter:"></Label>
             <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding Path=FilterEnabled}" VerticalAlignment="Center"></CheckBox>

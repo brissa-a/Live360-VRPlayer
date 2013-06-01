@@ -9,7 +9,7 @@
              xmlns:state="clr-namespace:VrPlayer.Models.State"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <converters:CompareAllParametersConverter x:Key="CompareAllParam"/>
+        <converters:CompareAllParametersConverter x:Key="CompareAllParameters"/>
         <converters:PathToFileInfosConverter x:Key="PathToFileInfos"/>
         <converters:TranslationConverter x:Key="Translation"/>
         <ObjectDataProvider x:Key="FormatsEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
@@ -79,7 +79,7 @@
                         </Setter>
                         <Setter Property="IsChecked">
                             <Setter.Value>
-                                <MultiBinding Converter="{StaticResource CompareAllParam}" ConverterParameter="String">
+                                <MultiBinding Converter="{StaticResource CompareAllParameters}" ConverterParameter="String">
                                     <Binding Path="." />
                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.StereoInput" />
                                 </MultiBinding>
@@ -104,7 +104,7 @@
                         <Setter Property="Header" Value="{Binding Path=Name}" />
                         <Setter Property="IsChecked">
                             <Setter.Value>
-                                <MultiBinding Converter="{StaticResource CompareAllParam}">
+                                <MultiBinding Converter="{StaticResource CompareAllParameters}">
                                     <Binding Path="." />
                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.ProjectionPlugin" /> 
                                 </MultiBinding>
@@ -129,7 +129,7 @@
                         <Setter Property="Header" Value="{Binding Path=Name}" />
                         <Setter Property="IsChecked">
                             <Setter.Value>
-                                <MultiBinding Converter="{StaticResource CompareAllParam}">
+                                <MultiBinding Converter="{StaticResource CompareAllParameters}">
                                     <Binding Path="." />
                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.EffectPlugin" />
                                 </MultiBinding>
@@ -169,7 +169,7 @@
                         </Setter>
                         <Setter Property="IsChecked">
                             <Setter.Value>
-                                <MultiBinding Converter="{StaticResource CompareAllParam}" ConverterParameter="String">
+                                <MultiBinding Converter="{StaticResource CompareAllParameters}" ConverterParameter="String">
                                     <Binding Path="." />
                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.StereoOutput" />
                                 </MultiBinding>
@@ -194,7 +194,7 @@
                         <Setter Property="Header" Value="{Binding Path=Name}" />
                         <Setter Property="IsChecked">
                             <Setter.Value>
-                                <MultiBinding Converter="{StaticResource CompareAllParam}">
+                                <MultiBinding Converter="{StaticResource CompareAllParameters}">
                                     <Binding Path="." />
                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.DistortionPlugin" />
                                 </MultiBinding>
@@ -219,7 +219,7 @@
                         <Setter Property="Header" Value="{Binding Path=Name}" />
                         <Setter Property="IsChecked">
                             <Setter.Value>
-                                <MultiBinding Converter="{StaticResource CompareAllParam}">
+                                <MultiBinding Converter="{StaticResource CompareAllParameters}">
                                     <Binding Path="." />
                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.TrackerPlugin" />
                                 </MultiBinding>
