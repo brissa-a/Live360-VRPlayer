@@ -16,7 +16,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="Factor:"></Label>
             <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Factor}" Minimum="0" Maximum="10"></Slider>
-            <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Factor}" ></TextBox>
+            <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Factor}"></TextBox>
         </Grid>
     </StackPanel>
 </UserControl>

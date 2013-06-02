@@ -14,7 +14,7 @@ namespace VrPlayer.Distortions.Pincushion
         public PincushionPlugin()
         {
             Name = "Pincushion";
-            var effect = new PincushionEffect()
+            var effect = new PincushionEffect
             {
                 Factor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Factor"].Value)
             };
