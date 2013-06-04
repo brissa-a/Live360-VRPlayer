@@ -138,7 +138,7 @@ namespace VrPlayer.Contracts.Trackers
             Position = new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
         }
 
-        public void Calibrate()
+        public virtual void Calibrate()
         {
             var conjugate = new Quaternion(RawRotation.X, RawRotation.Y, RawRotation.Z, RawRotation.W) * RotationOffset;
             conjugate.Conjugate();

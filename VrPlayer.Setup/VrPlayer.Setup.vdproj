@@ -579,11 +579,6 @@
             "AssemblyAsmDisplayName" = "8:VrPlayer.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E66AEF281ED124E0E7F6E7441179AA48"
-                    {
-                    "Name" = "8:VrPlayer.Helpers.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:VrPlayer.Helpers.dll"
             "TargetName" = "8:"
@@ -650,11 +645,6 @@
             "AssemblyAsmDisplayName" = "8:VrPlayer.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F686C93B4A70AD905E0C61C012F42537"
-                    {
-                    "Name" = "8:VrPlayer.Contracts.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:VrPlayer.Contracts.dll"
             "TargetName" = "8:"
@@ -797,7 +787,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{BD0AB48D-E45B-41DF-BA28-85F234849AC8}"
+        "PackageCode" = "8:{BB4838D3-73E1-4136-B89A-1C44A08385FE}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

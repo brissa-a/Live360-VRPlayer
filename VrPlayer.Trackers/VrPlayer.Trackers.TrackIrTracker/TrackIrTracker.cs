@@ -19,6 +19,9 @@ namespace VrPlayer.Trackers.TrackIrTracker
         [DllImport(@"TrackIrWrapper.dll", CallingConvention = CallingConvention.Cdecl)]
         static extern int TIR_Update(float* x, float* y, float* z, float* pitch, float* yaw, float* roll);
 
+        [DllImport(@"TrackIrWrapper.dll")]
+        static extern int TIR_ReCenter();
+
         private const double UnitsByDeg = Int16.MaxValue / 180;
 
         public TrackIrTracker()
@@ -69,6 +72,13 @@ namespace VrPlayer.Trackers.TrackIrTracker
                     //Todo: log error from dll
                 }    
             }
+        }
+
+        public override void Calibrate()
+        {
+            var result = TIR_ReCenter();
+            ThrowErrorOnResult(result, "Error while re-centering Track IR");
+            base.Calibrate();
         }
 
         public override void Dispose()
