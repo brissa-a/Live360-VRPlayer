@@ -14,12 +14,12 @@ namespace VrPlayer.Trackers.VrpnTracker
         public VrpnPlugin()
         {
             Name = "VRPN";
-            var tracker = new VrpnTracker()
+            var tracker = new VrpnTracker(
+                    Config.AppSettings.Settings["TrackerAddress"].Value,
+                    Config.AppSettings.Settings["ButtonAddress"].Value)
                 {
                     PositionScaleFactor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["PositionScaleFactor"].Value),
                     RotationOffset = QuaternionHelper.EulerAnglesInDegToQuaternion(ConfigHelper.ParseVector3D(Config.AppSettings.Settings["RotationOffset"].Value)),
-                    TrackerAddress = Config.AppSettings.Settings["TrackerAddress"].Value,
-                    ButtonAddress = Config.AppSettings.Settings["ButtonAddress"].Value
                 };
             Content = tracker;
             Panel = new VrpnPanel(tracker);

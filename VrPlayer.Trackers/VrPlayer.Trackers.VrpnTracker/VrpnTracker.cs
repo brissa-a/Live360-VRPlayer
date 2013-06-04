@@ -42,26 +42,26 @@ namespace VrPlayer.Trackers.VrpnTracker
             }
         }
         
-        public VrpnTracker()
+        public VrpnTracker(string trackerAddress, string buttonAddress)
         {
-            const string trackerAddress = "";
-            const string buttonAddress = "";
-            
+            _buttonAddress = buttonAddress;
+            _trackerAddress = trackerAddress;
+
             try
             {
                 IsEnabled = true;
                 PositionScaleFactor = 0.001;
 
-                _tracker = new TrackerRemote(trackerAddress);
+                _tracker = new TrackerRemote(_trackerAddress);
                 _tracker.PositionChanged += PositionChanged;
                 _tracker.MuteWarnings = true;
-                
-                _button = new ButtonRemote(buttonAddress);
+
+                _button = new ButtonRemote(_buttonAddress);
                 _button.ButtonChanged += ButtonChanged;
                 _button.MuteWarnings = true;
                 
-                var timer = new DispatcherTimer(DispatcherPriority.Input);
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 5);
+                var timer = new DispatcherTimer(DispatcherPriority.Send);
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
                 timer.Tick += timer_Tick;
                 timer.Start();
             }
