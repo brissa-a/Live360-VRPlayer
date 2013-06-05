@@ -7,7 +7,7 @@
         <TabItem UseLayoutRounding="False">
             <TabItem.Header>
                 <StackPanel Orientation="Vertical" Width="64">
-                    <Image Height="48" Width="48" Source="/Medias/Nuvola/kservices.png" />
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/48x48/kservices.png" />
                     <TextBlock Text="General" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
@@ -16,7 +16,7 @@
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Vertical" Width="64">
-                    <Image Height="48" Width="48" Source="/Medias/Nuvola/kpovmodeler.png" />
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/48x48/kpovmodeler.png" />
                     <TextBlock Text="Projections" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
@@ -25,7 +25,7 @@
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Vertical" Width="64">
-                    <Image Height="48" Width="48" Source="/Medias/Nuvola/kcoloredit.png" />
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/48x48/kcoloredit.png" />
                     <TextBlock Text="Effects" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
@@ -34,7 +34,7 @@
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Vertical" Width="64">
-                    <Image Height="48" Width="48" Source="/Medias/Nuvola/xmag.png" />
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/48x48/xmag.png" />
                     <TextBlock Text="Distortions" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
@@ -43,7 +43,7 @@
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Vertical" Width="64">
-                    <Image Height="48" Width="48" Source="/Medias/Nuvola/package_games_arcade.png" />
+                    <Image Height="48" Width="48" Source="/Medias/Nuvola/48x48/package_games_arcade.png" />
                     <TextBlock Text="Trackers" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>

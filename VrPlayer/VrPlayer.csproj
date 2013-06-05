@@ -215,28 +215,34 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Medias\Nuvola\kservices.png" />
-    <Resource Include="Medias\Nuvola\kcoloredit.png" />
-    <Resource Include="Medias\Nuvola\kpovmodeler.png" />
-    <Resource Include="Medias\Nuvola\package_games_arcade.png" />
-    <Resource Include="Medias\Nuvola\xmag.png" />
-    <Resource Include="Medias\Nuvola\terminal.png" />
     <Resource Include="vrplayer.ico" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Resource Include="Medias\Nuvola\edu_science.png" />
-    <Resource Include="Medias\Nuvola\kcontrol.png" />
-    <Resource Include="Medias\Nuvola\noatunloopsong.png" />
-    <Resource Include="Medias\Nuvola\browser.png" />
-    <Resource Include="Medias\Nuvola\folder_open.png" />
     <Resource Include="Medias\icon48.png" />
-    <Resource Include="Medias\Nuvola\view_left_right.png" />
-    <Resource Include="Medias\Nuvola\view_remove.png" />
-    <Resource Include="Medias\Nuvola\view_top_bottom.png" />
-    <Resource Include="Medias\Nuvola\edit.png" />
-    <Resource Include="Medias\Nuvola\view_fullscreen.png" />
-    <Resource Include="Medias\Nuvola\window_list.png" />
+    <Resource Include="Medias\Nuvola\16x16\browser.png" />
+    <Resource Include="Medias\Nuvola\16x16\edit.png" />
+    <Resource Include="Medias\Nuvola\16x16\edu_science.png" />
+    <Resource Include="Medias\Nuvola\16x16\exit.png" />
+    <Resource Include="Medias\Nuvola\16x16\fileopen.png" />
+    <Resource Include="Medias\Nuvola\16x16\folder_open.png" />
+    <Resource Include="Medias\Nuvola\16x16\help.png" />
+    <Resource Include="Medias\Nuvola\16x16\krec.png" />
+    <Resource Include="Medias\Nuvola\16x16\kservices.png" />
+    <Resource Include="Medias\Nuvola\16x16\package_games_arcade.png" />
+    <Resource Include="Medias\Nuvola\16x16\package_graphics.png" />
+    <Resource Include="Medias\Nuvola\16x16\view_left_right.png" />
+    <Resource Include="Medias\Nuvola\16x16\xmag.png" />
+    <Resource Include="Medias\Nuvola\48x48\kcoloredit.png" />
+    <Resource Include="Medias\Nuvola\48x48\kpovmodeler.png" />
+    <Resource Include="Medias\Nuvola\48x48\noatunloopsong.png" />
+    <Resource Include="Medias\Nuvola\48x48\package_games_arcade.png" />
+    <Resource Include="Medias\Nuvola\48x48\player_pause.png" />
+    <Resource Include="Medias\Nuvola\48x48\player_play.png" />
+    <Resource Include="Medias\Nuvola\48x48\player_stop.png" />
+    <Resource Include="Medias\Nuvola\48x48\xmag.png" />
+    <Resource Include="Medias\Nuvola\16x16\kpovmodeler.png" />
+    <Resource Include="Medias\Nuvola\48x48\kservices.png" />
     <Content Include="Samples\1-Grid.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -267,14 +273,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Resource Include="Medias\Nuvola\exit.png" />
-    <Resource Include="Medias\Nuvola\fileopen.png" />
-    <Resource Include="Medias\Nuvola\help.png" />
     <Resource Include="Medias\Nuvola\Nuvola-copyright.txt" />
     <Resource Include="Medias\Nuvola\Nuvola-license.txt" />
-    <Resource Include="Medias\Nuvola\player_pause.png" />
-    <Resource Include="Medias\Nuvola\player_play.png" />
-    <Resource Include="Medias\Nuvola\player_stop.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

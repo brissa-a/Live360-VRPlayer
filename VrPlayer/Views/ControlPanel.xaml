@@ -25,13 +25,13 @@
         <StatusBarItem>
             <WrapPanel>
 				<Button Height="25" Width="25" Command="{Binding PlayCommand}">
-                    <Image Source="/Medias/Nuvola/player_play.png"></Image>
+                    <Image Source="/Medias/Nuvola/48x48/player_play.png"></Image>
 				</Button>
 				<Button Height="25" Width="25" Command="{Binding PauseCommand}">
-                    <Image Source="/Medias/Nuvola/player_pause.png"></Image>
+                    <Image Source="/Medias/Nuvola/48x48/player_pause.png"></Image>
 				</Button>
 				<Button Height="25" Width="25" Command="{Binding StopCommand}">
-                    <Image Source="/Medias/Nuvola/player_stop.png"></Image>
+                    <Image Source="/Medias/Nuvola/48x48/player_stop.png"></Image>
 				</Button>
             </WrapPanel>
         </StatusBarItem>
@@ -47,7 +47,7 @@
             </StatusBarItem>
         <StatusBarItem Grid.Column="3">
             <ToggleButton Height="25" Width="25" Command="{Binding LoopCommand}" CommandParameter="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}">
-                <Image Source="/Medias/Nuvola/noatunloopsong.png"></Image>
+                <Image Source="/Medias/Nuvola/48x48/noatunloopsong.png"></Image>
             </ToggleButton>
         </StatusBarItem>
     </StatusBar>
