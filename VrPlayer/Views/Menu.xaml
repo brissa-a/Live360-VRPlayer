@@ -11,6 +11,7 @@
     <UserControl.Resources>
         <converters:CompareAllParametersConverter x:Key="CompareAllParameters"/>
         <converters:PathToFileInfosConverter x:Key="PathToFileInfos"/>
+        <converters:NotZeroConverter x:Key="NotZero"/>
         <converters:TranslationConverter x:Key="Translation"/>
         <ObjectDataProvider x:Key="FormatsEnum" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -102,7 +103,7 @@
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
             <!--Projections-->
-            <MenuItem Header="_Projection" ItemsSource="{Binding Path=PluginManager.Projections}">
+            <MenuItem Header="_Projection" ItemsSource="{Binding Path=PluginManager.Projections}" IsEnabled="{Binding Path=PluginManager.Projections.Count, Converter={StaticResource NotZero}}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/kpovmodeler.png" />
                 </MenuItem.Icon>
@@ -127,7 +128,7 @@
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
             <!--Effects-->
-            <MenuItem Header="_Effects" ItemsSource="{Binding Path=PluginManager.Effects}">
+            <MenuItem Header="_Effects" ItemsSource="{Binding Path=PluginManager.Effects}" IsEnabled="{Binding Path=PluginManager.Effects.Count, Converter={StaticResource NotZero}}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/kcoloredit.png" />
                 </MenuItem.Icon>
@@ -192,7 +193,7 @@
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
             <!--Distortions-->
-            <MenuItem Header="_Distortion" ItemsSource="{Binding Path=PluginManager.Distortions}">
+            <MenuItem Header="_Distortion" ItemsSource="{Binding Path=PluginManager.Distortions}" IsEnabled="{Binding Path=PluginManager.Distortions.Count, Converter={StaticResource NotZero}}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/xmag.png" />
                 </MenuItem.Icon>
@@ -217,7 +218,7 @@
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
             <!--Trackers-->
-            <MenuItem Header="Trac_ker" ItemsSource="{Binding Path=PluginManager.Trackers}">
+            <MenuItem Header="Trac_ker" ItemsSource="{Binding Path=PluginManager.Trackers}" IsEnabled="{Binding Path=PluginManager.Trackers.Count, Converter={StaticResource NotZero}}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/package_games_arcade.png" />
                 </MenuItem.Icon>

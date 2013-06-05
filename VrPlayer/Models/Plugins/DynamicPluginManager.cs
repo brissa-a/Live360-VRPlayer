@@ -65,11 +65,12 @@ namespace VrPlayer.Models.Plugins
             var path = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
 
             string[] pluginFolders = { "Effects", "Distortions", "Trackers", "Projections" };
-            foreach (var folder in pluginFolders.SelectMany(pluginFolder => Directory.GetDirectories(Path.Combine(path, pluginFolder))).Where(Directory.Exists))
+            foreach (var dir in from folder in pluginFolders 
+                select new DirectoryInfo(Path.Combine(path, folder)) into info 
+                where info.Exists from dir in info.GetDirectories() select dir)
             {
-                catalog.Catalogs.Add(new DirectoryCatalog(folder));
+                catalog.Catalogs.Add(new DirectoryCatalog(dir.FullName));
             }
-
             var container = new CompositionContainer(catalog);
             container.ComposeParts(this);
         }

@@ -579,6 +579,11 @@
             "AssemblyAsmDisplayName" = "8:VrPlayer.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_E66AEF281ED124E0E7F6E7441179AA48"
+                    {
+                    "Name" = "8:VrPlayer.Helpers.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:VrPlayer.Helpers.dll"
             "TargetName" = "8:"
@@ -645,6 +650,11 @@
             "AssemblyAsmDisplayName" = "8:VrPlayer.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_F686C93B4A70AD905E0C61C012F42537"
+                    {
+                    "Name" = "8:VrPlayer.Contracts.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:VrPlayer.Contracts.dll"
             "TargetName" = "8:"
@@ -716,7 +726,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_40B821FAA61C4B8FB28B44005FAC5FFC"
                     {
                     "Name" = "8:Effects"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_0CC911AA101749BA98D28847FCC81B70"
@@ -738,7 +748,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_A2FA71950C064DE1A962648BAD895F7A"
                     {
                     "Name" = "8:Projections"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_278A177EE7474CA09CEE89B1035D8D26"
@@ -749,7 +759,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_ED25DBC2BF5C4A1984092EB8709FA9D7"
                     {
                     "Name" = "8:Trackers"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_59A944EF5F9344D785E0677B1433E9FF"
@@ -760,7 +770,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_F09DC9D9649C470CBBEA60EFC45C26EC"
                     {
                     "Name" = "8:Distortions"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_D125DD75C69C4749A9036BD86A5306D3"
@@ -787,7 +797,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{BB4838D3-73E1-4136-B89A-1C44A08385FE}"
+        "PackageCode" = "8:{2785A6A6-AC1A-4EED-83AE-EB143EF1B7B8}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
