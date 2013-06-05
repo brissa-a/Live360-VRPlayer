@@ -22,23 +22,30 @@
                 <x:Type TypeName="state:LayoutMode"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="2" />
+        </Style>
     </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
             <MenuItem Header="_Open..." Command="{Binding OpenFileCommand}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/fileopen.png" />
+                    <Image Source="/Medias/Nuvola/fileopen.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Open _URL..." Command="{Binding OpenUrlCommand}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/browser.png" />
+                    <Image Source="/Medias/Nuvola/browser.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
             <MenuItem Header="_Samples" ItemsSource="{Binding Path=Config.SamplesFolder, Converter={StaticResource PathToFileInfos}}">
 				<MenuItem.Icon>
-					<Image Width="20" Height="20" Source="/Medias/Nuvola/edu_science.png" />
+					<Image Source="/Medias/Nuvola/edu_science.png" />
 				</MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
@@ -54,13 +61,13 @@
             </MenuItem>
             <MenuItem Header="_Browse Samples..." Command="{Binding BrowseSamplesCommand}">				
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/folder_open.png" />
+                    <Image Source="/Medias/Nuvola/folder_open.png" />
 				</MenuItem.Icon>
             </MenuItem>
             <Separator />
             <MenuItem Header="E_xit" Command="{Binding ExitCommand}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/exit.png" />
+                    <Image Source="/Medias/Nuvola/exit.png" />
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
@@ -68,7 +75,7 @@
             <!--Format-->
             <MenuItem Header="_Format" ItemsSource="{Binding Source={StaticResource FormatsEnum}}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/edit.png" />
+                    <Image Source="/Medias/Nuvola/edit.png" />
                 </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
@@ -97,7 +104,7 @@
             <!--Projections-->
             <MenuItem Header="_Projection" ItemsSource="{Binding Path=PluginManager.Projections}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kpovmodeler.png" />
+                    <Image Source="/Medias/Nuvola/kpovmodeler.png" />
                 </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
@@ -122,7 +129,7 @@
             <!--Effects-->
             <MenuItem Header="_Effects" ItemsSource="{Binding Path=PluginManager.Effects}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kcoloredit.png" />
+                    <Image Source="/Medias/Nuvola/kcoloredit.png" />
                 </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
@@ -149,7 +156,7 @@
             <!--Layout-->
             <MenuItem Header="_Layout" ItemsSource="{Binding Source={StaticResource LayoutsEnum}}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/view_left_right.png" />
+                    <Image Source="/Medias/Nuvola/view_left_right.png" />
                 </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
@@ -187,7 +194,7 @@
             <!--Distortions-->
             <MenuItem Header="_Distortion" ItemsSource="{Binding Path=PluginManager.Distortions}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/xmag.png" />
+                    <Image Source="/Medias/Nuvola/xmag.png" />
                 </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
@@ -212,7 +219,7 @@
             <!--Trackers-->
             <MenuItem Header="Trac_ker" ItemsSource="{Binding Path=PluginManager.Trackers}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/package_games_arcade.png" />
+                    <Image Source="/Medias/Nuvola/package_games_arcade.png" />
                 </MenuItem.Icon>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
@@ -238,20 +245,20 @@
         <MenuItem Header="_Tools" Command="{Binding SettingsCommand}">
             <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" CommandParameter="0">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/kservices.png" />
+                    <Image Source="/Medias/Nuvola/kservices.png" />
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
         <MenuItem Header="_?">
             <MenuItem Header="_Visit vrplayer.tv..." Command="{Binding LaunchWebBrowserCommand}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/icon48.png" />
+                    <Image Source="/Medias/icon48.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
             <MenuItem Header="_About..." Command="{Binding AboutCommand}">
                 <MenuItem.Icon>
-                    <Image Width="20" Height="20" Source="/Medias/Nuvola/help.png" />
+                    <Image Source="/Medias/Nuvola/help.png" />
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
