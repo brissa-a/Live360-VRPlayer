@@ -30,9 +30,9 @@
             <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}, ConverterParameter={StaticResource X}}" Minimum="0" Maximum="359"></Slider>
             <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=RotationOffset, Converter={StaticResource CoordConverter}, ConverterParameter={StaticResource X}}"></TextBox>
             <Label Grid.Column="0" Grid.Row="2" Content="Tracker address:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Path=TrackerAddress}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Path=TrackerAddress}" IsEnabled="False"></TextBox>
             <Label Grid.Column="0" Grid.Row="3" Content="Buttons address:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Path=ButtonAddress}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Path=ButtonAddress}" IsEnabled="False"></TextBox>
         </Grid>
     </StackPanel>
 </UserControl>

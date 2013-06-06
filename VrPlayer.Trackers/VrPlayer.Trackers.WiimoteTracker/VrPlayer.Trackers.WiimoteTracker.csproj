@@ -44,7 +44,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WiimoteLib">
-      <HintPath>..\Lib\Wiimote\WiimoteLib.dll</HintPath>
+      <HintPath>..\..\Lib\Wiimote\WiimoteLib.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>

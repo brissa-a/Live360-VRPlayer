@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MoveFramework CS">
-      <HintPath>..\Lib\PsMove\MoveFramework CS.dll</HintPath>
+      <HintPath>..\..\Lib\PsMove\MoveFramework CS.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

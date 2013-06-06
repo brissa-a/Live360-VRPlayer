@@ -5,14 +5,6 @@ namespace VrPlayer.Models.Config
     public abstract class ApplicationConfigBase : ViewModelBase, IApplicationConfig
     {
         private string _defaultMediaFile;
-        private string _samplesFolder;
-        private int _cameraFieldOfView;
-        private int _viewportsHorizontalOffset;
-        private int _viewportsVerticalOffset;
-        private bool _positionalAudio;
-        private bool _evrRendering;
-        private bool _metaDataReadOnLoad;
-        
         public string DefaultMediaFile
         {
             get { return _defaultMediaFile; }
@@ -23,6 +15,7 @@ namespace VrPlayer.Models.Config
             }
         }
 
+        private string _samplesFolder;
         public string SamplesFolder
         {
             get { return _samplesFolder; }
@@ -33,6 +26,7 @@ namespace VrPlayer.Models.Config
             }
         }
         
+        private int _cameraFieldOfView;
         public int CameraFieldOfView
         {
             get { return _cameraFieldOfView; }
@@ -43,6 +37,7 @@ namespace VrPlayer.Models.Config
             }
         }
 
+        private int _viewportsHorizontalOffset;
         public int ViewportsHorizontalOffset
         {
             get { return _viewportsHorizontalOffset; }
@@ -53,6 +48,7 @@ namespace VrPlayer.Models.Config
             }
         }
 
+        private int _viewportsVerticalOffset;
         public int ViewportsVerticalOffset
         {
             get { return _viewportsVerticalOffset; }
@@ -63,6 +59,7 @@ namespace VrPlayer.Models.Config
             }
         }
 
+        private bool _positionalAudio;
         public bool PositionalAudio
         {
             get { return _positionalAudio; }
@@ -73,6 +70,7 @@ namespace VrPlayer.Models.Config
             }
         }
 
+        private bool _evrRendering;
         public bool EvrRendering
         {
             get { return _evrRendering; }
@@ -83,6 +81,7 @@ namespace VrPlayer.Models.Config
             }
         }
 
+        private bool _metaDataReadOnLoad;
         public bool MetaDataReadOnLoad
         {
             get { return _metaDataReadOnLoad; }
@@ -92,5 +91,49 @@ namespace VrPlayer.Models.Config
                 OnPropertyChanged("MetaDataReadOnLoad");
             }
         }
+
+        private string _defaultEffect;
+        public string DefaultEffect
+        {
+            get { return _defaultEffect; }
+            set
+            {
+                _defaultEffect = value;
+                OnPropertyChanged("DefaultEffect");
+            }
+        }
+
+        private string _defaultDistortion;
+        public string DefaultDistortion
+        {
+            get { return _defaultDistortion; }
+            set
+            {
+                _defaultDistortion = value;
+                OnPropertyChanged("DefaultDistortion");
+            }
+        }
+
+        private string _defaultProjection;
+        public string DefaultProjection
+        {
+            get { return _defaultProjection; }
+            set
+            {
+                _defaultProjection = value;
+                OnPropertyChanged("DefaultProjection");
+            }
+        }
+        
+        private string _defaultTracker;
+        public string DefaultTracker
+        {
+            get { return _defaultTracker; }
+            set
+            {
+                _defaultTracker = value;
+                OnPropertyChanged("DefaultTracker");
+            }
+        }     
     }
 }

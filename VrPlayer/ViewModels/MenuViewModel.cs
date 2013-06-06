@@ -158,31 +158,6 @@ namespace VrPlayer.ViewModels
             _settingsCommand = new DelegateCommand(ShowSettings);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
             _aboutCommand = new DelegateCommand(ShowAbout);
-
-            //Todo: Extract Default values
-            _state.EffectPlugin = _state.EffectPlugin ?? _pluginManager.Effects.FirstOrDefault();
-            _state.ProjectionPlugin = _state.ProjectionPlugin ?? _pluginManager.Projections.FirstOrDefault();
-            _state.TrackerPlugin = _state.TrackerPlugin ?? _pluginManager.Trackers.FirstOrDefault();
-            _state.DistortionPlugin = _state.DistortionPlugin ?? _pluginManager.Distortions.FirstOrDefault();
-            
-            //Todo: Should not set the media value directly
-            string[] parameters = Environment.GetCommandLineArgs();
-            if (parameters.Length > 1)
-            {
-                Uri uri = new Uri(parameters[1]);
-                string uriWithoutScheme = uri.Host + uri.PathAndQuery;
-                _state.MediaPlayer.Source = new Uri(uriWithoutScheme, UriKind.RelativeOrAbsolute);
-            }
-            else
-            {
-                //Todo: Use embeded resource for default media file
-                var samples = new DirectoryInfo(_config.SamplesFolder);
-                if (samples.GetFiles().Any())
-                {
-                    _state.MediaPlayer.Source = new Uri(samples.GetFiles().First().FullName, UriKind.RelativeOrAbsolute);
-                }
-            }
-            _state.MediaPlayer.Play();
         }
 
         #region Logic

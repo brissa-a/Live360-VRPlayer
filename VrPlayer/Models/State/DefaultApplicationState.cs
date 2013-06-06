@@ -1,7 +1,11 @@
-﻿using VrPlayer.Contracts;
+﻿using System;
+using System.IO;
+using System.Linq;
+using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Trackers;
+using VrPlayer.Models.Plugins;
 using WPFMediaKit.DirectShow.Controls;
 
 using VrPlayer.Helpers.Mvvm;
@@ -110,16 +114,31 @@ namespace VrPlayer.Models.State
 
         #endregion
 
-        public DefaultApplicationState(IApplicationConfig config)
+        public DefaultApplicationState(IApplicationConfig config, IPluginManager pluginManager)
         {
-            if (config.PositionalAudio)
-            {
-                _mediaPlayer = new MediaGraphElement();
-            }
-            else
-            {
-                _mediaPlayer = new MediaUriElement();
-            }
+            //Set plugins
+            _effectPlugin = pluginManager.Effects
+                .Where(e => e.GetType().FullName.Contains(config.DefaultEffect))
+                .DefaultIfEmpty(pluginManager.Effects.FirstOrDefault())
+                .First();
+            
+            _distortionPlugin = pluginManager.Distortions
+                .Where(d => d.GetType().FullName.Contains(config.DefaultDistortion))
+                .DefaultIfEmpty(pluginManager.Distortions.FirstOrDefault())
+                .First();
+            
+            _projectionPlugin = pluginManager.Projections
+                .Where(p => p.GetType().FullName.Contains(config.DefaultProjection))
+                .DefaultIfEmpty(pluginManager.Projections.FirstOrDefault())
+                .First();
+            
+            _trackerPlugin = pluginManager.Trackers
+                .Where(t => t.GetType().FullName.Contains(config.DefaultTracker))
+                .DefaultIfEmpty(pluginManager.Trackers.FirstOrDefault())
+                .First();
+
+            //Set media player
+            _mediaPlayer = config.PositionalAudio ? new MediaGraphElement() : new MediaUriElement();
 
             if (config.EvrRendering)
             {
@@ -128,6 +147,24 @@ namespace VrPlayer.Models.State
 
             _mediaPlayer.BeginInit();
             _mediaPlayer.EndInit();
+
+            var parameters = Environment.GetCommandLineArgs();
+            if (parameters.Length > 1)
+            {
+                var uri = new Uri(parameters[1]);
+                var uriWithoutScheme = uri.Host + uri.PathAndQuery;
+                _mediaPlayer.Source = new Uri(uriWithoutScheme, UriKind.RelativeOrAbsolute);
+            }
+            else
+            {
+                var samples = new DirectoryInfo(config.SamplesFolder);
+                if (samples.GetFiles().Any())
+                {
+                    _mediaPlayer.Source = new Uri(samples.GetFiles().First().FullName, UriKind.RelativeOrAbsolute);
+                }
+            }
+
+            _mediaPlayer.Play();
         }
     }
 }

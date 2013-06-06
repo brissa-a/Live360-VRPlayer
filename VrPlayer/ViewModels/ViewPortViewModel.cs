@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using System.Windows.Threading;
-
-using VrPlayer.Contracts.Projections;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.State;
