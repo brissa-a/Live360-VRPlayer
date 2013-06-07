@@ -59,7 +59,7 @@ namespace VrPlayer.Trackers.TrackIrTracker
                     var result = TIR_Update(&x, &y, &z, &pitch, &yaw, &roll);
                     ThrowErrorOnResult(result, "Error while getting data from the Track IR");
 
-                    RawPosition = new Vector3D(-x,-y,z) * PositionScaleFactor;
+                    RawPosition = new Vector3D(-x,-y,z);
                     RawRotation = QuaternionHelper.EulerAnglesInDegToQuaternion(
                         -(yaw - Int16.MaxValue) / UnitsByDeg,
                         -(pitch - Int16.MaxValue) / UnitsByDeg,

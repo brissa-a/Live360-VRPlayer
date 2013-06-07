@@ -130,7 +130,7 @@ namespace VrPlayer.Contracts.Trackers
         protected void UpdatePositionAndRotation()
         {
             Rotation = BaseRotation * RawRotation * RotationOffset;
-            var relativePos = BasePosition + RawPosition;
+            var relativePos = BasePosition + (RawPosition * PositionScaleFactor);
             var m = Matrix3D.Identity;
             m.Rotate(BaseRotation);
             m.Translate(relativePos);
@@ -143,13 +143,13 @@ namespace VrPlayer.Contracts.Trackers
             var conjugate = new Quaternion(RawRotation.X, RawRotation.Y, RawRotation.Z, RawRotation.W) * RotationOffset;
             conjugate.Conjugate();
             BaseRotation = conjugate;
-            BasePosition = -RawPosition + _positionOffset;
+            BasePosition = -(RawPosition * PositionScaleFactor) + _positionOffset;
         }
 
         public void CalibratePosition()
         {
             BaseRotation = new Quaternion();
-            BasePosition = -RawPosition + _positionOffset;
+            BasePosition = -(RawPosition * PositionScaleFactor) + _positionOffset;
         }
 
         public void CalibrateRotation()

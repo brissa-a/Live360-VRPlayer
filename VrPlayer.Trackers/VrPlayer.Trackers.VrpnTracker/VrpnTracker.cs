@@ -90,7 +90,7 @@ namespace VrPlayer.Trackers.VrpnTracker
                 //TODO: Support user defined sensor index or autodetect
                 if (e.Sensor == 0)
                 {
-                    RawPosition = PositionScaleFactor * new Vector3D(
+                    RawPosition = new Vector3D(
                         -e.Position.X,
                         -e.Position.Z,
                         e.Position.Y);

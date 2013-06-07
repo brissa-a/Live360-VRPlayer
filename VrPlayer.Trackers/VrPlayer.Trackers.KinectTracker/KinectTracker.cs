@@ -51,15 +51,15 @@ namespace VrPlayer.Trackers.KinectTracker
                 return;
             }
             var point = skeleton.Joints[JointType.Head].Position;
-            RawPosition = PositionScaleFactor * new Vector3D(point.X, -point.Y, point.Z);
+            RawPosition = new Vector3D(point.X, -point.Y, point.Z);
 
             //Raising right hand for calibration..
             if (skeleton.Joints[JointType.HandRight].Position.Y > point.Y)
             {
-                Calibrate();
+                Dispatcher.Invoke((Action)(Calibrate));
             }
 
-            UpdatePositionAndRotation();
+            Dispatcher.Invoke((Action)(UpdatePositionAndRotation));
         }
 
         public override void Dispose()
