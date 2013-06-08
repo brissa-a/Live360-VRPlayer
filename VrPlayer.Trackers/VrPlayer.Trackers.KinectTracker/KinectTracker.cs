@@ -5,6 +5,7 @@ using System.Windows.Media.Media3D;
 using Microsoft.Kinect;
 
 using VrPlayer.Contracts.Trackers;
+using VrPlayer.Helpers;
 
 namespace VrPlayer.Trackers.KinectTracker
 {
@@ -39,6 +40,7 @@ namespace VrPlayer.Trackers.KinectTracker
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
                 IsEnabled = false;
             }
         }

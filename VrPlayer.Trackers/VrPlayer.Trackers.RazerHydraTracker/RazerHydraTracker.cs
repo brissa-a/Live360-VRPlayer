@@ -5,6 +5,7 @@
 using System.Windows.Media.Media3D;
 
 using VrPlayer.Contracts.Trackers;
+﻿using VrPlayer.Helpers;
 
 namespace VrPlayer.Trackers.RazerHydraTracker
 {
@@ -44,8 +45,9 @@ namespace VrPlayer.Trackers.RazerHydraTracker
                 timer.Tick += timer_Tick;
                 timer.Start();
             }
-            catch
+            catch(Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
                 IsEnabled = false;
             }  
         }
@@ -54,7 +56,7 @@ namespace VrPlayer.Trackers.RazerHydraTracker
         {
             try
             {
-                int result = _hydra.GetNewestData(HYDRA_ID);
+                var result = _hydra.GetNewestData(HYDRA_ID);
                 ThrowErrorOnResult(result, "Error while getting data from the Razer Hydra");
 
                 RawPosition = new Vector3D(
@@ -75,9 +77,9 @@ namespace VrPlayer.Trackers.RazerHydraTracker
 
                 UpdatePositionAndRotation();
             }
-            catch
+            catch(Exception exc)
             {
-                //Todo: log error
+                Logger.Instance.Error(exc.Message, exc);
             }
         }
 
@@ -85,11 +87,12 @@ namespace VrPlayer.Trackers.RazerHydraTracker
         {
             try
             {
-                int result = _hydra.Exit();
+                var result = _hydra.Exit();
                 ThrowErrorOnResult(result, "Error shutting down the Razer Hydra");
             }
-            catch
+            catch(Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
             }
         }
 

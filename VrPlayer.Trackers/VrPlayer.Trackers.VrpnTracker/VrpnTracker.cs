@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
+using VrPlayer.Helpers;
 using Vrpn;
 
 using VrPlayer.Contracts.Trackers;
@@ -67,6 +68,7 @@ namespace VrPlayer.Trackers.VrpnTracker
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
                 IsEnabled = false;
             }
         }
@@ -78,8 +80,9 @@ namespace VrPlayer.Trackers.VrpnTracker
                 _tracker.Update();
                 _button.Update();
             }
-            catch
+            catch(Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
             }
         }
 
@@ -104,9 +107,9 @@ namespace VrPlayer.Trackers.VrpnTracker
                     UpdatePositionAndRotation();
                 }
             }
-            catch
+            catch(Exception exc)
             {
-                //Todo: log error
+                Logger.Instance.Error(exc.Message, exc);
             }
         }
 

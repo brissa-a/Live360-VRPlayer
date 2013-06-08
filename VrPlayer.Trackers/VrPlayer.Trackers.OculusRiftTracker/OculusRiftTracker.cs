@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Threading;
 using System.Windows.Media.Media3D;
 using VrPlayer.Contracts.Trackers;
+using VrPlayer.Helpers;
 
 namespace VrPlayer.Trackers.OculusRiftTracker
 {
@@ -30,6 +31,7 @@ namespace VrPlayer.Trackers.OculusRiftTracker
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
                 IsEnabled = false;
             }
         }
@@ -46,9 +48,9 @@ namespace VrPlayer.Trackers.OculusRiftTracker
 
                 UpdatePositionAndRotation();
             }
-            catch
+            catch(Exception exc)
             {
-                //Todo: log error
+                Logger.Instance.Error(exc.Message, exc);
             }
         }
 

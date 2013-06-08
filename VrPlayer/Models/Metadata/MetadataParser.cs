@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using SE.Halligang.CsXmpToolkit;
 using SE.Halligang.CsXmpToolkit.Schemas;
+using VrPlayer.Helpers;
 
 namespace VrPlayer.Models.Metadata
 {
@@ -39,7 +40,7 @@ namespace VrPlayer.Models.Metadata
                     }
                     catch(Exception exc)
                     {
-                        //Todo: log
+                        Logger.Instance.Error("Error while parsing XMP metadata.", exc);
                     }
                 }
             }

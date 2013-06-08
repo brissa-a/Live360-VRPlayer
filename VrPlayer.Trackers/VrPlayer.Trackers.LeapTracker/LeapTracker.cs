@@ -45,6 +45,7 @@ namespace VrPlayer.Trackers.LeapTracker
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
                 IsEnabled = false;
             }
         }

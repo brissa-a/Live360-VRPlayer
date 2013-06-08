@@ -32,14 +32,16 @@ namespace VrPlayer.Trackers.WiimoteTracker
 
                 RawPosition = new Vector3D();
             }
-            catch
+            catch(Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
                 try
                 {
                     _wiimote.SetLEDs(false, false, false, false);
                 }
-                catch
+                catch(Exception exception)
                 {
+                    Logger.Instance.Error(exception.Message, exception);
                 }
                 IsEnabled = false;
             }
@@ -67,9 +69,9 @@ namespace VrPlayer.Trackers.WiimoteTracker
                 _wiimote.SetLEDs(false, false, false, false);
                 _wiimote.Disconnect();
             }
-            catch
+            catch(Exception exc)
             {
-                
+                Logger.Instance.Error(exc.Message, exc);
             }
             _wiimote = null;
         }

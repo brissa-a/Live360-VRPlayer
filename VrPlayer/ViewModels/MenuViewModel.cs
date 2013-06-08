@@ -217,8 +217,9 @@ namespace VrPlayer.ViewModels
                 }
                 catch (Exception exc)
                 {
-                    //Todo: log
-                    MessageBox.Show(String.Format("Unable to parse meta data from file '{0}: {1}'", filePath, exc.Message), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    var message = String.Format("Unable to parse meta data from file '{0}'.", filePath);
+                    Logger.Instance.Warn(message, exc);
+                    MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }    
             }
             
@@ -228,8 +229,9 @@ namespace VrPlayer.ViewModels
             }
             catch (Exception exc)
             {
-                //Todo: log
-                MessageBox.Show(String.Format("Unable to load '{0}'", filePath), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                var message = String.Format("Unable to load '{0}'.", filePath);
+                Logger.Instance.Warn(message, exc);
+                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

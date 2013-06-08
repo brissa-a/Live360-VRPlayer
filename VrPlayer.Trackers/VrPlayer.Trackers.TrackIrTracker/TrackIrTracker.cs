@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows;
 using System.Windows.Threading;
 using System.Windows.Media.Media3D;
 using VrPlayer.Contracts.Trackers;
@@ -25,62 +23,71 @@ namespace VrPlayer.Trackers.TrackIrTracker
         static extern int TIR_ReCenter();
 
         private const double UnitsByDeg = Int16.MaxValue / 180;
+        private readonly DispatcherTimer _timer;
+
+        private const int MaxConnection = 10;
+        private int _connectCounter;
 
         public TrackIrTracker()
         {
-            Logger.Instance.Info("Initializing Track IR", null);
             IsEnabled = false;
-            var timer = new DispatcherTimer(DispatcherPriority.Send);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            _timer = new DispatcherTimer(DispatcherPriority.Send);
+            _timer.Interval = new TimeSpan(0, 0, 0, 1);
+            _timer.Tick += init_timer_Tick;
+            _timer.Start();
         }
 
-        private void Init()
+        void init_timer_Tick(object sender, EventArgs e)
         {
-            if (Process.GetCurrentProcess().MainWindowHandle != IntPtr.Zero)
+            if(_connectCounter++ == MaxConnection)
+            {  
+                _timer.Stop();
+                return;
+            }
+
+            if (Process.GetCurrentProcess().MainWindowHandle == IntPtr.Zero) 
+                return;
+            
+            try
             {
-                try
-                {
-                    var result = TIR_Init();
-                    ThrowErrorOnResult(result, "Error while initializing Track IR");
-                    IsEnabled = true;
-                }
-                catch (Exception exc)
-                {
-                    Logger.Instance.Error(exc.Message, exc);
-                }
+                var result = TIR_Init();
+                ThrowErrorOnResult(result, "Error while initializing Track IR");
+
+                _timer.Stop();
+                _timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
+                _timer.Tick -= init_timer_Tick;
+                _timer.Tick += data_timer_Tick;
+                _timer.Start();
+
+                IsEnabled = true;
+            }
+            catch (Exception exc)
+            {
+                IsEnabled = false;
+                Logger.Instance.Error(exc.Message, exc);
             }
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        void data_timer_Tick(object sender, EventArgs e)
         {
-            if (!IsEnabled)
+            try
             {
-                Init();
+                float x, y, z, pitch, yaw, roll;
+                var result = TIR_Update(&x, &y, &z, &pitch, &yaw, &roll);
+                ThrowErrorOnResult(result, "Error while getting data from the Track IR");
+
+                RawPosition = new Vector3D(-x,-y,z);
+                RawRotation = QuaternionHelper.EulerAnglesInDegToQuaternion(
+                    -(yaw - Int16.MaxValue) / UnitsByDeg,
+                    -(pitch - Int16.MaxValue) / UnitsByDeg,
+                    (roll - Int16.MaxValue) / UnitsByDeg);
+
+                UpdatePositionAndRotation();
             }
-            else
+            catch(Exception exc)
             {
-                try
-                {
-                    float x, y, z, pitch, yaw, roll;
-                    var result = TIR_Update(&x, &y, &z, &pitch, &yaw, &roll);
-                    ThrowErrorOnResult(result, "Error while getting data from the Track IR");
-
-                    RawPosition = new Vector3D(-x,-y,z);
-                    RawRotation = QuaternionHelper.EulerAnglesInDegToQuaternion(
-                        -(yaw - Int16.MaxValue) / UnitsByDeg,
-                        -(pitch - Int16.MaxValue) / UnitsByDeg,
-                        (roll - Int16.MaxValue) / UnitsByDeg);
-
-                    UpdatePositionAndRotation();
-                }
-                catch(Exception exc)
-                {
-                    Logger.Instance.Error(exc.Message, exc);
-                    Init();
-                }    
-            }
+                Logger.Instance.Error(exc.Message, exc);
+            }    
         }
 
         public override void Calibrate()
@@ -96,7 +103,7 @@ namespace VrPlayer.Trackers.TrackIrTracker
             ThrowErrorOnResult(result, "Error while shuting down Track IR");
         }
 
-        private void ThrowErrorOnResult(int result, string message)
+        private static void ThrowErrorOnResult(int result, string message)
         {
             if (result != 0)
             {

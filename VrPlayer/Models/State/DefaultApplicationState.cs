@@ -5,6 +5,7 @@ using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Trackers;
+using VrPlayer.Helpers;
 using VrPlayer.Models.Plugins;
 using WPFMediaKit.DirectShow.Controls;
 
@@ -149,8 +150,10 @@ namespace VrPlayer.Models.State
             _mediaPlayer.EndInit();
 
             var parameters = Environment.GetCommandLineArgs();
+
             if (parameters.Length > 1)
             {
+                Logger.Instance.Info(string.Format("Loading '{0}'...", parameters[1]));
                 var uri = new Uri(parameters[1]);
                 var uriWithoutScheme = uri.Host + uri.PathAndQuery;
                 _mediaPlayer.Source = new Uri(uriWithoutScheme, UriKind.RelativeOrAbsolute);

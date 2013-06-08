@@ -5,6 +5,7 @@ using System.Windows.Media.Media3D;
 using MoveFramework_CS;
 
 using VrPlayer.Contracts.Trackers;
+using VrPlayer.Helpers;
 
 namespace VrPlayer.Trackers.PsMoveTracker
 {
@@ -21,6 +22,7 @@ namespace VrPlayer.Trackers.PsMoveTracker
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
                 IsEnabled = false;
             }  
         }
@@ -88,8 +90,9 @@ namespace VrPlayer.Trackers.PsMoveTracker
             {
                 MoveWrapper.unsubscribeMove();
             }
-            catch
+            catch(Exception exc)
             {
+                Logger.Instance.Error(exc.Message, exc);
             }
         }
     }

@@ -21,9 +21,9 @@ namespace VrPlayer.Helpers
             log4net.Config.XmlConfigurator.ConfigureAndWatch(configFileInfo);
         }
         
-        public void Debug(string message, Exception exception)
+        public void Debug(string message)
         {
-            Log.Debug(message, exception);
+            Log.Debug(message);
         }
 
         public void Error(string message, Exception exception)
@@ -36,9 +36,9 @@ namespace VrPlayer.Helpers
             Log.Fatal(message, exception);
         }
 
-        public void Info(string message, Exception exception)
+        public void Info(string message)
         {
-            Log.Info(message, exception);
+            Log.Info(message);
         }
 
         public void Warn(string message, Exception exception)
