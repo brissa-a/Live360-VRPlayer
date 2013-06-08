@@ -16,10 +16,10 @@ namespace VrPlayer.Trackers.WiimoteTracker
 
         public WiimoteTracker()
         {
-            //Todo: Use a connecion method in the Tracker Interface
+            IsEnabled = true;
+                
             try
             {
-                IsEnabled = true;
                 _wiimote = new Wiimote();
                 _wiimote.Connect();
                 _wiimote.InitializeMotionPlus();
@@ -32,9 +32,15 @@ namespace VrPlayer.Trackers.WiimoteTracker
 
                 RawPosition = new Vector3D();
             }
-            catch (Exception exc)
+            catch
             {
-                _wiimote.SetLEDs(false, false, false, false);
+                try
+                {
+                    _wiimote.SetLEDs(false, false, false, false);
+                }
+                catch
+                {
+                }
                 IsEnabled = false;
             }
         }
@@ -42,22 +48,29 @@ namespace VrPlayer.Trackers.WiimoteTracker
         void wiimote_WiimoteChanged(object sender, WiimoteChangedEventArgs e)
         {
             RawRotation = QuaternionHelper.EulerAnglesInDegToQuaternion(
-                e.WiimoteState.MotionPlusState.Values.Y,
-                e.WiimoteState.MotionPlusState.Values.X,
-                e.WiimoteState.MotionPlusState.Values.Z);
+            e.WiimoteState.MotionPlusState.Values.Y,
+            e.WiimoteState.MotionPlusState.Values.X,
+            e.WiimoteState.MotionPlusState.Values.Z);
 
             if (e.WiimoteState.ButtonState.Plus)
             {
-                Calibrate();
+                Dispatcher.Invoke((Action)(Calibrate));
             }
 
-            UpdatePositionAndRotation();
+            Dispatcher.Invoke((Action)(UpdatePositionAndRotation));
         }
 
         public override void Dispose()
         {
-            _wiimote.SetLEDs(false, false, false, false);
-            _wiimote.Disconnect();
+            try
+            {
+                _wiimote.SetLEDs(false, false, false, false);
+                _wiimote.Disconnect();
+            }
+            catch
+            {
+                
+            }
             _wiimote = null;
         }
     }

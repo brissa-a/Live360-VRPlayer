@@ -28,24 +28,21 @@ namespace VrPlayer.Trackers.PsMoveTracker
         private void Init()
         {
             MoveWrapper.init();
+            var moveCount = MoveWrapper.getMovesCount();
+            if (moveCount <= 0) return;
+                
+            MoveWrapper.setRumble(0, 255);
+            Thread.Sleep(40);
+            MoveWrapper.setRumble(0, 0);
 
-            int moveCount = MoveWrapper.getMovesCount();
-
-            if (moveCount > 0)
-            {
-				MoveWrapper.setRumble(0, 255);
-                Thread.Sleep(40);
-                MoveWrapper.setRumble(0, 0);
-
-                MoveWrapper.subscribeMoveUpdate(
-                    MoveUpdateCallback,
-                    MoveKeyDownCallback,
-                    MoveKeyUpCallback,
-                    NavUpdateCallback,
-                    NavKeyDownCallback,
-                    NavKeyUpCallback
+            MoveWrapper.subscribeMoveUpdate(
+                MoveUpdateCallback,
+                MoveKeyDownCallback,
+                MoveKeyUpCallback,
+                NavUpdateCallback,
+                NavKeyDownCallback,
+                NavKeyUpCallback
                 );
-            }   
         }
 
         void MoveUpdateCallback(int id, MoveWrapper.Vector3 pos, MoveWrapper.Quaternion rot, int trigger)
@@ -55,10 +52,10 @@ namespace VrPlayer.Trackers.PsMoveTracker
 
             if (MoveWrapper.getButtonState(0, MoveButton.B_START))
             {
-                Calibrate();
+                Dispatcher.Invoke((Action)(Calibrate));
             }
 
-            UpdatePositionAndRotation();
+            Dispatcher.Invoke((Action)(UpdatePositionAndRotation));
         }
 
     	void MoveKeyUpCallback(int id, int keyCode)
@@ -83,7 +80,13 @@ namespace VrPlayer.Trackers.PsMoveTracker
 
         public override void Dispose()
         {
-            MoveWrapper.unsubscribeMove();
+            try
+            {
+                MoveWrapper.unsubscribeMove();
+            }
+            catch
+            {
+            }
         }
     }
 }
