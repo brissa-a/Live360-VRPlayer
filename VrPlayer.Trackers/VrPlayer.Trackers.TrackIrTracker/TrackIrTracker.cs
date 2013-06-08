@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Threading;
 using System.Windows.Media.Media3D;
 using VrPlayer.Contracts.Trackers;
@@ -26,30 +28,36 @@ namespace VrPlayer.Trackers.TrackIrTracker
 
         public TrackIrTracker()
         {
-                IsEnabled = false;
-                var timer = new DispatcherTimer(DispatcherPriority.Send);
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
-                timer.Tick += timer_Tick;
-                timer.Start();
-         }
+            Logger.Instance.Info("Initializing Track IR", null);
+            IsEnabled = false;
+            var timer = new DispatcherTimer(DispatcherPriority.Send);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+
+        private void Init()
+        {
+            if (Process.GetCurrentProcess().MainWindowHandle != IntPtr.Zero)
+            {
+                try
+                {
+                    var result = TIR_Init();
+                    ThrowErrorOnResult(result, "Error while initializing Track IR");
+                    IsEnabled = true;
+                }
+                catch (Exception exc)
+                {
+                    Logger.Instance.Error(exc.Message, exc);
+                }
+            }
+        }
 
         void timer_Tick(object sender, EventArgs e)
         {
             if (!IsEnabled)
             {
-                if (Process.GetCurrentProcess().MainWindowHandle != IntPtr.Zero)
-                {
-                    try
-                    {
-                        var result = TIR_Init();
-                        ThrowErrorOnResult(result, "Error while initializing Track IR");
-                        IsEnabled = true;
-                    }
-                    catch (Exception)
-                    {
-                        //Todo: log error from dll
-                    }
-                }
+                Init();
             }
             else
             {
@@ -67,9 +75,10 @@ namespace VrPlayer.Trackers.TrackIrTracker
 
                     UpdatePositionAndRotation();
                 }
-                catch
+                catch(Exception exc)
                 {
-                    //Todo: log error from dll
+                    Logger.Instance.Error(exc.Message, exc);
+                    Init();
                 }    
             }
         }
