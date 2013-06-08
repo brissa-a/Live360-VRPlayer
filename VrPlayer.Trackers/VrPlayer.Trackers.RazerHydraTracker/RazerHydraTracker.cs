@@ -32,7 +32,7 @@ namespace VrPlayer.Trackers.RazerHydraTracker
                 IsEnabled = true;
                 PositionScaleFactor = 0.002;
 
-                int result = _hydra.Init();
+                var result = _hydra.Init();
                 ThrowErrorOnResult(result, "Error while initializing the Razer Hydra");
 
                 var filter = FilterEnabled ? 1 : 0;
@@ -40,11 +40,11 @@ namespace VrPlayer.Trackers.RazerHydraTracker
                 ThrowErrorOnResult(result, "Error while settings the Razer Hydra filter");
 
                 var timer = new DispatcherTimer(DispatcherPriority.Input);
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 5);
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
                 timer.Tick += timer_Tick;
                 timer.Start();
             }
-            catch (Exception exc)
+            catch
             {
                 IsEnabled = false;
             }  
@@ -83,8 +83,14 @@ namespace VrPlayer.Trackers.RazerHydraTracker
 
         public override void Dispose()
         {
-            int result = _hydra.Exit();
-            ThrowErrorOnResult(result, "Error shutting down the Razer Hydra");
+            try
+            {
+                int result = _hydra.Exit();
+                ThrowErrorOnResult(result, "Error shutting down the Razer Hydra");
+            }
+            catch
+            {
+            }
         }
 
         private void ThrowErrorOnResult(int result, string message)

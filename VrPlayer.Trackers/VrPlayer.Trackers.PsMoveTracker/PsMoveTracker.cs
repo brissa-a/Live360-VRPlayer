@@ -29,7 +29,11 @@ namespace VrPlayer.Trackers.PsMoveTracker
         {
             MoveWrapper.init();
             var moveCount = MoveWrapper.getMovesCount();
-            if (moveCount <= 0) return;
+            if (moveCount <= 0)
+            {
+                IsEnabled = false; 
+                return;
+            }
                 
             MoveWrapper.setRumble(0, 255);
             Thread.Sleep(40);
