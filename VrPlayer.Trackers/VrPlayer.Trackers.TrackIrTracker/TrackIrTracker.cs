@@ -50,10 +50,11 @@ namespace VrPlayer.Trackers.TrackIrTracker
             
             try
             {
+                _timer.Stop();
+
                 var result = TIR_Init();
                 ThrowErrorOnResult(result, "Error while initializing Track IR");
 
-                _timer.Stop();
                 _timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
                 _timer.Tick -= init_timer_Tick;
                 _timer.Tick += data_timer_Tick;

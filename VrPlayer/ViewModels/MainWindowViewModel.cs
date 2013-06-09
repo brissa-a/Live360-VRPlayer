@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.State;
@@ -41,9 +43,28 @@ namespace VrPlayer.ViewModels
                 case Key.F1:
                     _state.TrackerPlugin.Content.Calibrate();
                     break;
+                case Key.MediaPlayPause:
+                case Key.Space:
+                    TogglePlayPause();
+                    break;
+                case Key.LeftCtrl:
+                    SettingsWindow.ShowSettings();
+                    break;
                 default:
                     break;
             }
         }
-    }
+
+        private void TogglePlayPause()
+        {
+            if (_state.MediaPlayer.IsPlaying)
+            {
+                _state.MediaPlayer.Pause();
+            }
+            else
+            {
+                _state.MediaPlayer.Play();
+            }
+        }
+	}
 }

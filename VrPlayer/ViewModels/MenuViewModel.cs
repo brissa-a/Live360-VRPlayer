@@ -293,16 +293,7 @@ namespace VrPlayer.ViewModels
 
         private void ShowSettings(object o)
         {
-            var window = Application.Current.Windows.Cast<Window>().SingleOrDefault(w => w.GetType() == typeof(SettingsWindow));
-            if (window != null) 
-            {
-                window.Activate();
-            }
-            else 
-            {
-                window = new SettingsWindow();
-                window.Show();
-            }
+            SettingsWindow.ShowSettings();
         }
 
         private void ShowAbout(object o)
