@@ -197,7 +197,7 @@ namespace VrPlayer.ViewModels
                     if (!string.IsNullOrEmpty(metadata.ProjectionType))
                     {
                         _state.ProjectionPlugin = _pluginManager.Projections.FirstOrDefault(
-                            plugin => plugin.Content.GetType().FullName == metadata.ProjectionType);
+                            plugin => plugin.Content.GetType().Namespace == metadata.ProjectionType);
                     }
 
                     if (!string.IsNullOrEmpty(metadata.FormatType))
@@ -212,7 +212,7 @@ namespace VrPlayer.ViewModels
                     {
                         _state.EffectPlugin = _pluginManager.Effects
                             .Where(plugin => plugin.Content != null)
-                            .FirstOrDefault(plugin => plugin.Content.GetType().FullName == metadata.Effects);
+                            .FirstOrDefault(plugin => plugin.Content.GetType().Namespace == metadata.Effects);
                     }
                 }
                 catch (Exception exc)
