@@ -1661,11 +1661,6 @@
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5021BE9F4F46BE38F9E8A49A7BADC6C1"
-                    {
-                    "Name" = "8:log4net.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:log4net.dll"
             "TargetName" = "8:"
@@ -2903,11 +2898,6 @@
             "AssemblyAsmDisplayName" = "8:VrPlayer.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E66AEF281ED124E0E7F6E7441179AA48"
-                    {
-                    "Name" = "8:VrPlayer.Helpers.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:VrPlayer.Helpers.dll"
             "TargetName" = "8:"
@@ -3158,11 +3148,6 @@
             "AssemblyAsmDisplayName" = "8:VrPlayer.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F686C93B4A70AD905E0C61C012F42537"
-                    {
-                    "Name" = "8:VrPlayer.Contracts.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:VrPlayer.Contracts.dll"
             "TargetName" = "8:"
@@ -3609,7 +3594,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{1EB4A789-9AE7-4666-B04A-796EFCD96267}"
+        "PackageCode" = "8:{29774642-F093-4D05-A0E1-CC98C522809A}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
