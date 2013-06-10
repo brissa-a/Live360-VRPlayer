@@ -120,21 +120,24 @@
 
             <!--ViewPort Left-->
             <Grid Background="Black" ClipToBounds="True" x:Name="ViewPortLeft"
-                  Effect="{Binding Path=State.DistortionPlugin.Content}"
                   Grid.Column="{Binding Path=Viewport1Col}" 
                   Grid.ColumnSpan="{Binding Path=Viewport1ColSpan}"  
                   Grid.Row="{Binding Path=Viewport1Row}" 
                   Grid.RowSpan="{Binding Path=Viewport1RowSpan}">
-                <ContentControl Content="{StaticResource view1}" />
+                <Border  Effect="{Binding Path=State.DistortionPlugin.Content}">
+                    <ContentControl Content="{StaticResource view1}" />
+                </Border>
+                
             </Grid>
             <!--ViewPort Right-->
             <Grid Background="Black" ClipToBounds="True" x:Name="ViewPortRight"
-                  Effect="{Binding Path=State.DistortionPlugin.Content}"
                   Grid.Column="{Binding Path=Viewport2Col}" 
                   Grid.ColumnSpan="{Binding Path=Viewport2ColSpan}" 
                   Grid.Row="{Binding Path=Viewport2Row}" 
                   Grid.RowSpan="{Binding Path=Viewport2RowSpan}">
-                <ContentControl Content="{StaticResource view2}" />
+                <Border  Effect="{Binding Path=State.DistortionPlugin.Content}">
+                    <ContentControl Content="{StaticResource view2}" />
+                </Border>
             </Grid>
         </Grid>
     </Border>

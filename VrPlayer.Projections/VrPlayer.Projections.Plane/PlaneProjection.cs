@@ -11,8 +11,7 @@ namespace VrPlayer.Projections.Plane
     {
         private const double _distance = 1000;
         private const double _cameraProximity = -0.5;
-        private const double _cameraHeight = -0.25;
-
+        
         public static readonly DependencyProperty RatioProperty =
             DependencyProperty.Register("Ratio", typeof(double),
             typeof(PlaneProjection), new FrameworkPropertyMetadata(1D));
@@ -26,7 +25,7 @@ namespace VrPlayer.Projections.Plane
         {
             get
             {
-                return new Vector3D(_distance, _cameraHeight, _cameraProximity);
+                return new Vector3D(_distance, 0, _cameraProximity);
             }
         }
 
@@ -34,7 +33,7 @@ namespace VrPlayer.Projections.Plane
         {
             get
             {
-                return new Vector3D(-_distance, _cameraHeight, _cameraProximity);
+                return new Vector3D(-_distance, 0, _cameraProximity);
             }
         }
 

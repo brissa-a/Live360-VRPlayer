@@ -41,7 +41,7 @@ namespace VrPlayer.ViewModels
             switch (key)
             {
                 case Key.F1:
-                    _state.TrackerPlugin.Content.Calibrate();
+                    Calibrate();
                     break;
                 case Key.MediaPlayPause:
                 case Key.Space:
@@ -53,6 +53,12 @@ namespace VrPlayer.ViewModels
                 default:
                     break;
             }
+        }
+
+        private void Calibrate()
+        {
+            if (_state.TrackerPlugin != null && _state.TrackerPlugin.Content != null)
+                _state.TrackerPlugin.Content.Calibrate();
         }
 
         private void TogglePlayPause()
