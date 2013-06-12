@@ -17,6 +17,7 @@ using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Config;
+using VrPlayer.Views.Deshaker;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -79,6 +80,12 @@ namespace VrPlayer.ViewModels
         public ICommand ExitCommand
         {
             get { return _exitCommand; }
+        }
+
+        private readonly ICommand _deshakerCommand;
+        public ICommand DeshakerCommand
+        {
+            get { return _deshakerCommand; }
         }
 
         private readonly ICommand _settingsCommand;
@@ -155,6 +162,7 @@ namespace VrPlayer.ViewModels
             _changeLayoutCommand = new DelegateCommand(SetStereoOutput);
             _changeDistortionCommand = new DelegateCommand(SetDistortion);
             _changeTrackerCommand = new DelegateCommand(SetTracker);
+            _deshakerCommand = new DelegateCommand(ShowDeshakerWindow);
             _settingsCommand = new DelegateCommand(ShowSettings);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
             _aboutCommand = new DelegateCommand(ShowAbout);
@@ -291,9 +299,14 @@ namespace VrPlayer.ViewModels
             _state.DistortionPlugin = (IPlugin<DistortionBase>)o;
         }
 
+        private void ShowDeshakerWindow(object o)
+        {
+            DeshakerWindow.ShowSingle();
+        }
+
         private void ShowSettings(object o)
         {
-            SettingsWindow.ShowSettings();
+            SettingsWindow.ShowSingle();
         }
 
         private void ShowAbout(object o)

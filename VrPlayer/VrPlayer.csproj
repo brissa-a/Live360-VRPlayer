@@ -95,8 +95,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
+    <Compile Include="Models\Stabilization\Deshaker.cs" />
+    <Compile Include="Models\Stabilization\DeshakerFrame.cs" />
+    <Compile Include="Models\Stabilization\DeshakerParser.cs" />
     <Compile Include="Models\Plugins\DynamicPluginManager.cs" />
     <Compile Include="Models\State\LayoutMode.cs" />
+    <Compile Include="ViewModels\DeshakerViewModel.cs" />
+    <Compile Include="Views\Deshaker\DeshakerWindow.xaml.cs">
+      <DependentUpon>DeshakerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -148,6 +155,10 @@
     <Compile Include="Views\ViewPorts\MainViewPort.xaml.cs">
       <DependentUpon>MainViewPort.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Deshaker\DeshakerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Settings\SettingsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -244,6 +255,7 @@
     <Resource Include="Medias\Nuvola\16x16\kpovmodeler.png" />
     <Resource Include="Medias\Nuvola\48x48\kservices.png" />
     <Resource Include="Medias\banner.jpg" />
+    <Resource Include="Medias\Nuvola\16x16\wizard.png" />
     <Content Include="Samples\1-Grid.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using Application = System.Windows.Application;
 
-namespace VrPlayer
+namespace VrPlayer.Views.Deshaker
 {
-    public partial class SettingsWindow : Window
+    public partial class DeshakerWindow : Window
     {
-        public SettingsWindow()
+        public DeshakerWindow()
         {
             InitializeComponent();
             try
             {
-                DataContext = ((App)Application.Current).ViewModelFactory.CreateSettingsWindowViewModel();
+                DataContext = ((App)Application.Current).ViewModelFactory.CreateDeshakerViewModel();
             }
             catch (Exception exc)
             {
@@ -20,14 +21,14 @@ namespace VrPlayer
 
         public static void ShowSingle()
         {
-            var window = Application.Current.Windows.Cast<Window>().SingleOrDefault(w => w.GetType() == typeof(SettingsWindow));
+            var window = Application.Current.Windows.Cast<Window>().SingleOrDefault(w => w.GetType() == typeof(DeshakerWindow));
             if (window != null)
             {
                 window.Activate();
             }
             else
             {
-                window = new SettingsWindow();
+                window = new DeshakerWindow();
                 window.Show();
             }
         }

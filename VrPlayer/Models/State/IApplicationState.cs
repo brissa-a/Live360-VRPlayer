@@ -3,6 +3,7 @@ using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Trackers;
+using VrPlayer.Models.Stabilization;
 using WPFMediaKit.DirectShow.Controls;
 
 using VrPlayer.Contracts.Projections;
@@ -18,5 +19,6 @@ namespace VrPlayer.Models.State
         IPlugin<IProjection> ProjectionPlugin { get; set; }
         IPlugin<ITracker> TrackerPlugin { get; set; }
         IPlugin<DistortionBase> DistortionPlugin { get; set; }
+        Deshaker Deshaker { get; set; }
     }
 }

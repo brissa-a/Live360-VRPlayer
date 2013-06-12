@@ -7,6 +7,7 @@ using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
 using VrPlayer.Models.Plugins;
+using VrPlayer.Models.Stabilization;
 using WPFMediaKit.DirectShow.Controls;
 
 using VrPlayer.Helpers.Mvvm;
@@ -113,6 +114,20 @@ namespace VrPlayer.Models.State
             }
         }
 
+        private Deshaker _deshaker;
+        public Deshaker Deshaker
+        {
+            get
+            {
+                return _deshaker;
+            }
+            set
+            {
+                _deshaker = value;
+                OnPropertyChanged("Deshaker");
+            }
+        }
+
         #endregion
 
         public DefaultApplicationState(IApplicationConfig config, IPluginManager pluginManager)
@@ -137,6 +152,9 @@ namespace VrPlayer.Models.State
                 .Where(t => t.GetType().FullName.Contains(config.DefaultTracker))
                 .DefaultIfEmpty(pluginManager.Trackers.FirstOrDefault())
                 .First();
+
+            //Set deshaker
+            _deshaker = new Deshaker();
 
             //Set media player
             _mediaPlayer = config.PositionalAudio ? new MediaGraphElement() : new MediaUriElement();

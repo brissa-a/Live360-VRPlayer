@@ -243,7 +243,13 @@
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
         </MenuItem>
-        <MenuItem Header="_Tools" Command="{Binding SettingsCommand}">
+        <MenuItem Header="_Tools">
+            <MenuItem Header="_Deshaker..." Command="{Binding DeshakerCommand}">
+                <MenuItem.Icon>
+                    <Image Source="/Medias/Nuvola/16x16/wizard.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator />
             <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" CommandParameter="0">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/kservices.png" />
@@ -253,7 +259,7 @@
         <MenuItem Header="_?">
             <MenuItem Header="_Visit vrplayer.tv..." Command="{Binding LaunchWebBrowserCommand}">
                 <MenuItem.Icon>
-                    <Image Source="/Medias/icon48.png" />
+                    <Image Source="../vrplayer.ico" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />

@@ -48,7 +48,7 @@ namespace VrPlayer.ViewModels
                     TogglePlayPause();
                     break;
                 case Key.LeftCtrl:
-                    SettingsWindow.ShowSettings();
+                    SettingsWindow.ShowSingle();
                     break;
                 default:
                     break;
