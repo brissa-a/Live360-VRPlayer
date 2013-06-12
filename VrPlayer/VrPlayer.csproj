@@ -243,6 +243,7 @@
     <Resource Include="Medias\Nuvola\48x48\xmag.png" />
     <Resource Include="Medias\Nuvola\16x16\kpovmodeler.png" />
     <Resource Include="Medias\Nuvola\48x48\kservices.png" />
+    <Resource Include="Medias\banner.jpg" />
     <Content Include="Samples\1-Grid.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

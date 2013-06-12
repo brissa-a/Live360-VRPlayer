@@ -165,6 +165,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5E7ED268864D49BE82480721E07CAAE2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1661,6 +1667,11 @@
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_5021BE9F4F46BE38F9E8A49A7BADC6C1"
+                    {
+                    "Name" = "8:log4net.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:log4net.dll"
             "TargetName" = "8:"
@@ -1760,6 +1771,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5D57616DA37849A3AEA9184E8F3A61BA"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\Medias\\banner.jpg"
+            "TargetName" = "8:banner.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5E7ED268864D49BE82480721E07CAAE2"
@@ -2898,6 +2929,11 @@
             "AssemblyAsmDisplayName" = "8:VrPlayer.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_E66AEF281ED124E0E7F6E7441179AA48"
+                    {
+                    "Name" = "8:VrPlayer.Helpers.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:VrPlayer.Helpers.dll"
             "TargetName" = "8:"
@@ -3148,6 +3184,11 @@
             "AssemblyAsmDisplayName" = "8:VrPlayer.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_F686C93B4A70AD905E0C61C012F42537"
+                    {
+                    "Name" = "8:VrPlayer.Contracts.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:VrPlayer.Contracts.dll"
             "TargetName" = "8:"
@@ -3594,7 +3635,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{29774642-F093-4D05-A0E1-CC98C522809A}"
+        "PackageCode" = "8:{30F30B79-2E1B-4CB9-80E7-134F345B67B2}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -3871,7 +3912,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -3902,7 +3944,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -3952,7 +3995,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -3996,7 +4040,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -4040,7 +4085,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -4062,7 +4108,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -4084,7 +4131,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -4147,7 +4195,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -4182,7 +4231,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -4204,7 +4254,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5D57616DA37849A3AEA9184E8F3A61BA"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
