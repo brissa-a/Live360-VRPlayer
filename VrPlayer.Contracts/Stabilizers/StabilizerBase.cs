@@ -1,9 +1,10 @@
 ﻿using System.Windows.Media.Media3D;
+
 using VrPlayer.Helpers.Mvvm;
 
-namespace VrPlayer.Models.Stabilization
+namespace VrPlayer.Contracts.Stabilizers
 {
-    public class Deshaker: ViewModelBase
+    public abstract class StabilizerBase: ViewModelBase, IStabilizer
     {
         private Vector3D _translation;
         public Vector3D Translation
@@ -32,5 +33,8 @@ namespace VrPlayer.Models.Stabilization
                 OnPropertyChanged("Rotation");
             }
         }
+
+        public abstract int GetFramesCount();
+        public abstract void UpdateCurrentFrame(int frame);
     }
 }

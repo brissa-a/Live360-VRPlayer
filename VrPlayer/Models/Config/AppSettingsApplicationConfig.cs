@@ -20,6 +20,7 @@ namespace VrPlayer.Models.Config
             DefaultDistortion = ConfigurationManager.AppSettings["DefaultDistortion"];
             DefaultProjection = ConfigurationManager.AppSettings["DefaultProjection"];
             DefaultTracker = ConfigurationManager.AppSettings["DefaultTracker"];
+            DefaultStabilizer = ConfigurationManager.AppSettings["DefaultStabilizer"];
         }
     }
 }

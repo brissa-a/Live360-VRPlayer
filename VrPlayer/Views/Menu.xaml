@@ -244,12 +244,6 @@
             </MenuItem>
         </MenuItem>
         <MenuItem Header="_Tools">
-            <MenuItem Header="_Deshaker..." Command="{Binding DeshakerCommand}">
-                <MenuItem.Icon>
-                    <Image Source="/Medias/Nuvola/16x16/wizard.png" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <Separator />
             <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" CommandParameter="0">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/kservices.png" />

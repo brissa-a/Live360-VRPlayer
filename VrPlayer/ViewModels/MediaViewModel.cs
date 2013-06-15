@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Threading;
 using System.Windows.Input;
-
+using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.State;
 using System.Windows.Media.Effects;
@@ -121,9 +121,9 @@ namespace VrPlayer.ViewModels
             _setEffectCommand = new RelayCommand(SetEffect);
             _loopCommand = new RelayCommand(Loop);
 
-            DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.DataBind);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            timer.Tick += new EventHandler(timer_Tick);
+            var timer = new DispatcherTimer(DispatcherPriority.DataBind);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 5);
+            timer.Tick += timer_Tick;
             timer.Start();
 		}
 
@@ -133,7 +133,16 @@ namespace VrPlayer.ViewModels
         {
             if (_state.MediaPlayer.MediaDuration > 0)
             {
-                Progress = _state.MediaPlayer.MediaPosition / (double)_state.MediaPlayer.MediaDuration * 100;
+                var ratio = _state.MediaPlayer.MediaPosition/(double) _state.MediaPlayer.MediaDuration;
+                Progress = ratio * 100;
+
+                //Set Stabilizer plugin frame
+                var frame = (int)Math.Round(_state.StabilizerPlugin.Content.GetFramesCount() * ratio);
+                _state.StabilizerPlugin.Content.UpdateCurrentFrame(frame);
+                //Debug:
+                Logger.Instance.Info(
+                    frame.ToString() + "/" + _state.StabilizerPlugin.Content.GetFramesCount() 
+                    + " (" + _state.MediaPlayer.MediaPosition + "/" + _state.MediaPlayer.MediaDuration + ") ->" + ratio);
             }
             CommandManager.InvalidateRequerySuggested();
         }

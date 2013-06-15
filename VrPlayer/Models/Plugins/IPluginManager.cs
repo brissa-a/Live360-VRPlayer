@@ -4,6 +4,7 @@ using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Projections;
+using VrPlayer.Contracts.Stabilizers;
 using VrPlayer.Contracts.Trackers;
 
 namespace VrPlayer.Models.Plugins
@@ -14,5 +15,6 @@ namespace VrPlayer.Models.Plugins
         IEnumerable<IPlugin<IProjection>> Projections { get; }
         IEnumerable<IPlugin<ITracker>> Trackers { get; }
         IEnumerable<IPlugin<DistortionBase>> Distortions { get; }
+        IEnumerable<IPlugin<IStabilizer>> Stabilizers { get; }
     }
 }

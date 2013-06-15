@@ -1,6 +1,6 @@
-﻿// Specs at: http://www.guthspot.se/video/deshaker.htm
+﻿// Specs: http://www.guthspot.se/video/deshaker.htm
 
-namespace VrPlayer.Models.Stabilization
+namespace VrPlayer.Stabilizers.Deshaker
 {
     public class DeshakerFrame
     {

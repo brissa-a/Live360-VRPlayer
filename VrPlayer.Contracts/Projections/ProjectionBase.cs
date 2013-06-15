@@ -6,7 +6,7 @@ using VrPlayer.Helpers.Mvvm;
 
 namespace VrPlayer.Contracts.Projections
 {
-    public abstract class ProjectionBase: ViewModelBase
+    public abstract class ProjectionBase: ViewModelBase, IProjection
     {
         private StereoMode _stereoMode;
         private readonly Vector3D _cameraLeftPosition;
@@ -32,7 +32,7 @@ namespace VrPlayer.Contracts.Projections
         public ProjectionBase()
         {
             _stereoMode = StereoMode.Mono;
-            Vector3D defaultCameraPosition = new Vector3D(0, 0, 0);
+            var defaultCameraPosition = new Vector3D(0, 0, 0);
             _cameraLeftPosition = defaultCameraPosition;
             _cameraRightPosition = defaultCameraPosition;
         }
@@ -41,7 +41,7 @@ namespace VrPlayer.Contracts.Projections
         {
             get
             {
-                MeshGeometry3D geometry = new MeshGeometry3D();
+                var geometry = new MeshGeometry3D();
                 geometry.Positions = Positions;
                 geometry.TriangleIndices = TriangleIndices;
                 switch (_stereoMode)

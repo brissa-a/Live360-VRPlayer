@@ -41,10 +41,5 @@ namespace VrPlayer.ViewModels
         {
             return new SettingsWindowViewModel(_state, _config, _pluginManager);
         }
-
-        public DeshakerViewModel CreateDeshakerViewModel()
-        {
-            return new DeshakerViewModel(_state, _config);
-        }
     }
 }

@@ -15,7 +15,7 @@
                 </ComboBox.SelectedItem>
             </ComboBox>
         </StackPanel>
-        <Border MinHeight="200" BorderBrush="Gray" BorderThickness="1">
+        <Border MinHeight="280" BorderBrush="Silver" BorderThickness="1">
             <ContentControl>
                 <ContentControl.Content>
                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.EffectPlugin.Panel" />

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace VrPlayer.Models.Stabilization
+namespace VrPlayer.Stabilizers.Deshaker
 {
     public class DeshakerParser
     {
@@ -13,6 +13,7 @@ namespace VrPlayer.Models.Stabilization
 
             using (var reader = new StreamReader(filePath))
             {
+                var i = 0;
                 while (true)
                 {
                     var line = reader.ReadLine();
@@ -30,6 +31,16 @@ namespace VrPlayer.Models.Stabilization
                         Rotation = double.Parse(parts[3]),
                         Zoom = double.Parse(parts[4])
                     };
+
+                    //Convert relative to absolute values
+                    if (i > 0)
+                    {
+                        frame.PanX += deshakerFrames[i - 1].PanX;
+                        frame.PanY += deshakerFrames[i - 1].PanY;
+                        frame.Rotation += deshakerFrames[i - 1].Rotation;
+                        frame.Zoom += deshakerFrames[i - 1].Zoom;
+                    }
+                    i++;
 
                     deshakerFrames.Add(frame);
                 }

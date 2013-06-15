@@ -16,5 +16,6 @@
         string DefaultDistortion { get; set; }
         string DefaultProjection { get; set; }
         string DefaultTracker { get; set; }
+        string DefaultStabilizer { get; set; }
     }
 }

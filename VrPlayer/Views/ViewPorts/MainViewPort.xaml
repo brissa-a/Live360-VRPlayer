@@ -34,7 +34,7 @@
                             </RotateTransform3D>
                             <RotateTransform3D>
                                 <RotateTransform3D.Rotation>
-                                    <QuaternionRotation3D Quaternion="{Binding Path=State.Deshaker.Rotation}"/>
+                                    <QuaternionRotation3D Quaternion="{Binding Path=State.StabilizerPlugin.Content.Rotation}"/>
                                 </RotateTransform3D.Rotation>
                             </RotateTransform3D>
                             <TranslateTransform3D OffsetX="{Binding Path=State.ProjectionPlugin.Content.CameraLeftPosition.X}"
@@ -59,9 +59,9 @@
                                     OffsetZ="{Binding Path=State.TrackerPlugin.Content.Position.Z}">
                         </TranslateTransform3D>
                         <TranslateTransform3D
-                                    OffsetX="{Binding Path=State.Deshaker.Translation.X}"
-                                    OffsetY="{Binding Path=State.Deshaker.Translation.Y}"
-                                    OffsetZ="{Binding Path=State.Deshaker.Translation.Z}">
+                                    OffsetX="{Binding Path=State.StabilizerPlugin.Content.Translation.X}"
+                                    OffsetY="{Binding Path=State.StabilizerPlugin.Content.Translation.Y}"
+                                    OffsetZ="{Binding Path=State.StabilizerPlugin.Content.Translation.Z}">
                         </TranslateTransform3D>
                     </Transform3DGroup>
                 </ModelVisual3D.Transform>
@@ -80,7 +80,7 @@
                             </RotateTransform3D>
                             <RotateTransform3D>
                                 <RotateTransform3D.Rotation>
-                                    <QuaternionRotation3D Quaternion="{Binding Path=State.Deshaker.Rotation}"/>
+                                    <QuaternionRotation3D Quaternion="{Binding Path=State.StabilizerPlugin.Content.Rotation}"/>
                                 </RotateTransform3D.Rotation>
                             </RotateTransform3D>
                             <TranslateTransform3D OffsetX="{Binding Path=State.ProjectionPlugin.Content.CameraRightPosition.X}"
@@ -105,9 +105,9 @@
                                     OffsetZ="{Binding Path=State.TrackerPlugin.Content.Position.Z}">
                         </TranslateTransform3D>
                         <TranslateTransform3D
-                                    OffsetX="{Binding Path=State.Deshaker.Translation.X}"
-                                    OffsetY="{Binding Path=State.Deshaker.Translation.Y}"
-                                    OffsetZ="{Binding Path=State.Deshaker.Translation.Z}">
+                                    OffsetX="{Binding Path=State.StabilizerPlugin.Content.Translation.X}"
+                                    OffsetY="{Binding Path=State.StabilizerPlugin.Content.Translation.Y}"
+                                    OffsetZ="{Binding Path=State.StabilizerPlugin.Content.Translation.Z}">
                         </TranslateTransform3D>
                     </Transform3DGroup>
                 </ModelVisual3D.Transform>

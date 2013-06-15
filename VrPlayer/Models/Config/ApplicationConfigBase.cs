@@ -134,6 +134,17 @@ namespace VrPlayer.Models.Config
                 _defaultTracker = value;
                 OnPropertyChanged("DefaultTracker");
             }
+        }
+
+        private string _defaultStabilizer;
+        public string DefaultStabilizer
+        {
+            get { return _defaultStabilizer; }
+            set
+            {
+                _defaultStabilizer = value;
+                OnPropertyChanged("DefaultStabilizer");
+            }
         }     
     }
 }

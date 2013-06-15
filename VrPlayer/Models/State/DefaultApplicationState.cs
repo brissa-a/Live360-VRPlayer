@@ -4,10 +4,10 @@ using System.Linq;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
+using VrPlayer.Contracts.Stabilizers;
 using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
 using VrPlayer.Models.Plugins;
-using VrPlayer.Models.Stabilization;
 using WPFMediaKit.DirectShow.Controls;
 
 using VrPlayer.Helpers.Mvvm;
@@ -114,17 +114,17 @@ namespace VrPlayer.Models.State
             }
         }
 
-        private Deshaker _deshaker;
-        public Deshaker Deshaker
+        private IPlugin<IStabilizer> _stabilizerPlugin;
+        public IPlugin<IStabilizer> StabilizerPlugin
         {
             get
             {
-                return _deshaker;
+                return _stabilizerPlugin;
             }
             set
             {
-                _deshaker = value;
-                OnPropertyChanged("Deshaker");
+                _stabilizerPlugin = value;
+                OnPropertyChanged("StabilizerPlugin");
             }
         }
 
@@ -153,8 +153,10 @@ namespace VrPlayer.Models.State
                 .DefaultIfEmpty(pluginManager.Trackers.FirstOrDefault())
                 .First();
 
-            //Set deshaker
-            _deshaker = new Deshaker();
+            _stabilizerPlugin = pluginManager.Stabilizers
+                .Where(s => s.GetType().FullName.Contains(config.DefaultStabilizer))
+                .DefaultIfEmpty(pluginManager.Stabilizers.FirstOrDefault())
+                .First();
 
             //Set media player
             _mediaPlayer = config.PositionalAudio ? new MediaGraphElement() : new MediaUriElement();
@@ -184,7 +186,6 @@ namespace VrPlayer.Models.State
                     _mediaPlayer.Source = new Uri(samples.GetFiles().First().FullName, UriKind.RelativeOrAbsolute);
                 }
             }
-
             _mediaPlayer.Play();
         }
     }
