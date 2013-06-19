@@ -92,6 +92,17 @@ namespace VrPlayer.Models.Config
             }
         }
 
+        private string _defaultMedia;
+        public string DefaultMedia
+        {
+            get { return _defaultMedia; }
+            set
+            {
+                _defaultMedia = value;
+                OnPropertyChanged("DefaultMedia");
+            }
+        }
+
         private string _defaultEffect;
         public string DefaultEffect
         {

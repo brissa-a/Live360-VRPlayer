@@ -8,6 +8,7 @@ using System.Reflection;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
+using VrPlayer.Contracts.Medias;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Contracts.Stabilizers;
 using VrPlayer.Contracts.Trackers;
@@ -16,6 +17,17 @@ namespace VrPlayer.Models.Plugins
 {
     public class DynamicPluginManager : IPluginManager
     {
+        [ImportMany]
+        private IEnumerable<IPlugin<IMedia>> _medias;
+        public IEnumerable<IPlugin<IMedia>> Medias
+        {
+            get
+            {
+                return _medias.Where(media => media.Content == null)
+                    .Concat(_medias.Where(media => media.Content != null));
+            }
+        }
+
         [ImportMany]
         private IEnumerable<IPlugin<EffectBase>> _effects;
         public IEnumerable<IPlugin<EffectBase>> Effects
@@ -76,7 +88,7 @@ namespace VrPlayer.Models.Plugins
             var catalog = new AggregateCatalog();
             var path = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
 
-            string[] pluginFolders = { "Effects", "Distortions", "Trackers", "Projections", "Stabilizers" };
+            string[] pluginFolders = { "Medias", "Effects", "Distortions", "Trackers", "Projections", "Stabilizers" };
             foreach (var dir in from folder in pluginFolders 
                 select new DirectoryInfo(Path.Combine(path, folder)) into info 
                 where info.Exists from dir in info.GetDirectories() select dir)

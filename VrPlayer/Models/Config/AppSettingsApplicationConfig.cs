@@ -16,6 +16,7 @@ namespace VrPlayer.Models.Config
             PositionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
             EvrRendering = bool.Parse(ConfigurationManager.AppSettings["EvrRendering"]);
 
+            DefaultMedia = ConfigurationManager.AppSettings["DefaultMedia"];
             DefaultEffect = ConfigurationManager.AppSettings["DefaultEffect"];
             DefaultDistortion = ConfigurationManager.AppSettings["DefaultDistortion"];
             DefaultProjection = ConfigurationManager.AppSettings["DefaultProjection"];

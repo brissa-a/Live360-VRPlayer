@@ -4,6 +4,7 @@ using System.Linq;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
+using VrPlayer.Contracts.Medias;
 using VrPlayer.Contracts.Stabilizers;
 using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
@@ -21,40 +22,17 @@ namespace VrPlayer.Models.State
     {
         #region Fields
 
-        private readonly MediaUriElement _mediaPlayer;
-        public MediaUriElement MediaPlayer
+        private IPlugin<IMedia> _mediaPlugin;
+        public IPlugin<IMedia> MediaPlugin
         {
             get
             {
-                return _mediaPlayer;
-            }
-        }
-
-        private StereoMode _stereoInput;
-        public StereoMode StereoInput
-        {
-            get
-            {
-                return _stereoInput;
+                return _mediaPlugin;
             }
             set
             {
-                _stereoInput = value;
-                OnPropertyChanged("StereoInput");
-            }
-        }
-
-        private LayoutMode _stereoOutput;
-        public LayoutMode StereoOutput
-        {
-            get
-            {
-                return _stereoOutput;
-            }
-            set
-            {
-                _stereoOutput = value;
-                OnPropertyChanged("StereoOutput");
+                _mediaPlugin = value;
+                OnPropertyChanged("MediaPlugin");
             }
         }
 
@@ -128,16 +106,49 @@ namespace VrPlayer.Models.State
             }
         }
 
+        private StereoMode _stereoInput;
+        public StereoMode StereoInput
+        {
+            get
+            {
+                return _stereoInput;
+            }
+            set
+            {
+                _stereoInput = value;
+                OnPropertyChanged("StereoInput");
+            }
+        }
+
+        private LayoutMode _stereoOutput;
+        public LayoutMode StereoOutput
+        {
+            get
+            {
+                return _stereoOutput;
+            }
+            set
+            {
+                _stereoOutput = value;
+                OnPropertyChanged("StereoOutput");
+            }
+        }
+
         #endregion
 
         public DefaultApplicationState(IApplicationConfig config, IPluginManager pluginManager)
         {
             //Set plugins
+            _mediaPlugin = pluginManager.Medias
+                .Where(m => m.GetType().FullName.Contains(config.DefaultMedia))
+                .DefaultIfEmpty(pluginManager.Medias.FirstOrDefault())
+                .First();
+
             _effectPlugin = pluginManager.Effects
                 .Where(e => e.GetType().FullName.Contains(config.DefaultEffect))
                 .DefaultIfEmpty(pluginManager.Effects.FirstOrDefault())
                 .First();
-            
+
             _distortionPlugin = pluginManager.Distortions
                 .Where(d => d.GetType().FullName.Contains(config.DefaultDistortion))
                 .DefaultIfEmpty(pluginManager.Distortions.FirstOrDefault())
@@ -159,6 +170,7 @@ namespace VrPlayer.Models.State
                 .First();
 
             //Set media player
+            /*
             _mediaPlayer = config.PositionalAudio ? new MediaGraphElement() : new MediaUriElement();
 
             if (config.EvrRendering)
@@ -187,6 +199,7 @@ namespace VrPlayer.Models.State
                 }
             }
             _mediaPlayer.Play();
+            */
         }
     }
 }

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{463D0CFD-915F-41ED-9807-D509EBE1124C}</ProjectGuid>
+    <ProjectGuid>176b6b73-b824-4595-b9ba-6b810e867285</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VrPlayer.Contracts</RootNamespace>
-    <AssemblyName>VrPlayer.Contracts</AssemblyName>
+    <RootNamespace>ClassLibrary1</RootNamespace>
+    <AssemblyName>ClassLibrary1</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -31,36 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Distortions\DistortionBase.cs" />
-    <Compile Include="Effects\EffectBase.cs" />
-    <Compile Include="IPlugin.cs" />
-    <Compile Include="Medias\IMedia.cs" />
-    <Compile Include="PluginBase.cs" />
-    <Compile Include="Projections\IProjection.cs" />
-    <Compile Include="Projections\StereoMode.cs" />
-    <Compile Include="Projections\ProjectionBase.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stabilizers\IStabilizer.cs" />
-    <Compile Include="Stabilizers\StabilizerBase.cs" />
-    <Compile Include="Trackers\ITracker.cs" />
-    <Compile Include="Trackers\TrackerBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VrPlayer.Helpers\VrPlayer.Helpers.csproj">
-      <Project>{D4A54A70-3BB5-4BE5-BEDB-3A41B6C43033}</Project>
-      <Name>VrPlayer.Helpers</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
