@@ -59,28 +59,6 @@ namespace VrPlayer.Models.Config
             }
         }
 
-        private bool _positionalAudio;
-        public bool PositionalAudio
-        {
-            get { return _positionalAudio; }
-            set
-            {
-                _positionalAudio = value;
-                OnPropertyChanged("PositionalAudio");
-            }
-        }
-
-        private bool _evrRendering;
-        public bool EvrRendering
-        {
-            get { return _evrRendering; }
-            set
-            {
-                _evrRendering = value;
-                OnPropertyChanged("EvrRendering");
-            }
-        }
-
         private bool _metaDataReadOnLoad;
         public bool MetaDataReadOnLoad
         {

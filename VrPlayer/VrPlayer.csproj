@@ -106,11 +106,6 @@
     <Compile Include="Views\Dialogs\UrlInputDialog.xaml.cs">
       <DependentUpon>UrlInputDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Media\AudioEngineBase.cs" />
-    <Compile Include="Models\Media\MediaGraphPlayer.cs" />
-    <Compile Include="Models\Media\MediaGraphElement.cs" />
-    <Compile Include="Models\Media\X3DAudioEngine.cs" />
-    <Compile Include="Models\Media\IAudioEngine.cs" />
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
     <Compile Include="Models\Plugins\IPluginManager.cs" />
     <Compile Include="Models\State\DefaultApplicationState.cs" />
@@ -253,6 +248,8 @@
     <Resource Include="Medias\banner.jpg" />
     <Resource Include="Medias\Nuvola\16x16\wizard.png" />
     <Resource Include="Medias\Nuvola\48x48\wizard.png" />
+    <Resource Include="Medias\Nuvola\16x16\camera.png" />
+    <Resource Include="Medias\Nuvola\16x16\cdrom_unmount.png" />
     <Content Include="Samples\1-Grid.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

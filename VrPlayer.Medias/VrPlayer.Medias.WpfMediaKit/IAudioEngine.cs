@@ -3,7 +3,7 @@ using System.Windows.Media.Media3D;
 
 using WPFMediaKit.DirectShow.Interop;
 
-namespace VrPlayer.Models.Media
+namespace VrPlayer.Medias.WpfMediaKit
 {
     public interface IAudioEngine: IDisposable
     {

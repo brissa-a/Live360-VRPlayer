@@ -13,9 +13,6 @@ namespace VrPlayer.Models.Config
             SamplesFolder = ConfigurationManager.AppSettings["SamplesFolder"];
             MetaDataReadOnLoad = bool.Parse(ConfigurationManager.AppSettings["MetaDataReadOnLoad"]);
             
-            PositionalAudio = bool.Parse(ConfigurationManager.AppSettings["PositionalAudio"]);
-            EvrRendering = bool.Parse(ConfigurationManager.AppSettings["EvrRendering"]);
-
             DefaultMedia = ConfigurationManager.AppSettings["DefaultMedia"];
             DefaultEffect = ConfigurationManager.AppSettings["DefaultEffect"];
             DefaultDistortion = ConfigurationManager.AppSettings["DefaultDistortion"];

@@ -10,7 +10,7 @@ using WPFMediaKit.DirectShow.Interop;
 
 using VrPlayer.Helpers;
 
-namespace VrPlayer.Models.Media
+namespace VrPlayer.Medias.WpfMediaKit
 {
     public class X3DAudioEngine : AudioEngineBase
     {

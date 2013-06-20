@@ -15,7 +15,6 @@
                 <ContentControl Effect="{Binding Path=State.EffectPlugin.Content}" Content="{Binding Path=State.MediaPlugin.Content.Media}" IsHitTestVisible="False" />
             </VisualBrush.Visual>
         </VisualBrush>
-
         <GeometryModel3D x:Key="Geometry" Geometry="{Binding Path=State.ProjectionPlugin.Content.Geometry}">
             <GeometryModel3D.BackMaterial>
                 <DiffuseMaterial Brush="{DynamicResource Media}"></DiffuseMaterial>

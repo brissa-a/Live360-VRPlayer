@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using WPFMediaKit.DirectShow.MediaPlayers;
 using WPFMediaKit.DirectShow.Interop;
 
-namespace VrPlayer.Models.Media
+namespace VrPlayer.Medias.WpfMediaKit
 {
     public class MediaGraphPlayer : MediaUriPlayer, ISampleGrabberCB
     {

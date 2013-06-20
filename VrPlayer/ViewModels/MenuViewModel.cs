@@ -184,6 +184,7 @@ namespace VrPlayer.ViewModels
 
 		private void Load(object o)
 		{
+            /*
 			var filePath = (string)o;
             
             if (_config.MetaDataReadOnLoad)
@@ -233,6 +234,8 @@ namespace VrPlayer.ViewModels
                 Logger.Instance.Warn(message, exc);
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        
+             */
         }
 
         private void BrowseSamples(object o)

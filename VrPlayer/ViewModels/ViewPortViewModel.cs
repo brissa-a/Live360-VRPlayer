@@ -1,10 +1,7 @@
-﻿using System;
-using System.Windows.Input;
-using System.Windows.Threading;
+﻿using System.Windows.Input;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.State;
-using VrPlayer.Models.Media;
 
 namespace VrPlayer.ViewModels
 {

@@ -32,14 +32,24 @@
     </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
-            <MenuItem Header="_Open..." Command="{Binding OpenFileCommand}">
+            <MenuItem Header="_Open File..." Command="{Binding Path=State.MediaPlugin.Content.OpenFileCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/fileopen.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open _URL..." Command="{Binding OpenUrlCommand}">
+            <MenuItem Header="Open _Disc..." Command="{Binding Path=State.MediaPlugin.Content.OpenDiscCommand}">
+                <MenuItem.Icon>
+                    <Image Source="/Medias/Nuvola/16x16/cdrom_unmount.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Open _Stream..." Command="{Binding Path=State.MediaPlugin.Content.OpenStreamCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/browser.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Open _Capture device..." Command="{Binding Path=State.MediaPlugin.Content.OpenDeviceCommand}">
+                <MenuItem.Icon>
+                    <Image Source="/Medias/Nuvola/16x16/camera.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />

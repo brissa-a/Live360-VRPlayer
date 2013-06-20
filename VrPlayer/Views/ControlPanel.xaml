@@ -24,29 +24,29 @@
         </StatusBar.ItemsPanel>
         <StatusBarItem>
             <WrapPanel>
-				<Button Height="25" Width="25" Command="{Binding PlayCommand}">
+                <Button Height="25" Width="25" Command="{Binding Path=State.MediaPlugin.Content.PlayCommand}">
                     <Image Source="/Medias/Nuvola/48x48/player_play.png"></Image>
 				</Button>
-				<Button Height="25" Width="25" Command="{Binding PauseCommand}">
+                <Button Height="25" Width="25" Command="{Binding Path=State.MediaPlugin.Content.PauseCommand}">
                     <Image Source="/Medias/Nuvola/48x48/player_pause.png"></Image>
 				</Button>
-				<Button Height="25" Width="25" Command="{Binding StopCommand}">
+                <Button Height="25" Width="25" Command="{Binding Path=State.MediaPlugin.Content.StopCommand}">
                     <Image Source="/Medias/Nuvola/48x48/player_stop.png"></Image>
 				</Button>
             </WrapPanel>
         </StatusBarItem>
         <StatusBarItem Grid.Column="1" HorizontalContentAlignment="Stretch">
-            <ProgressBar Height="25" Value="{Binding Path=Progress}" Minimum="0" Maximum="100" MouseDown="ProgressBar_MouseDown" MouseMove="ProgressBar_MouseMove" />
+            <ProgressBar Height="25" Value="{Binding Path=State.MediaPlugin.Content.Progress, Mode=OneWay}" Minimum="0" Maximum="100" MouseDown="ProgressBar_MouseDown" />
         </StatusBarItem>
         <StatusBarItem Grid.Column="2">
             <StackPanel Orientation="Horizontal">
-                <Label Content="{Binding Path=State.MediaPlayer.MediaPosition, Converter={StaticResource TimeFormat}}"></Label>
+                <Label Content="{Binding Path=State.MediaPlugin.Content.Position, Converter={StaticResource TimeFormat}}"></Label>
                 <Label Content="/" IsEnabled="False"></Label>
-                <Label Content="{Binding Path=State.MediaPlayer.MediaDuration, Converter={StaticResource TimeFormat}}" IsEnabled="False"></Label>
+                <Label Content="{Binding Path=State.MediaPlugin.Content.Duration, Converter={StaticResource TimeFormat}}" IsEnabled="False"></Label>
             </StackPanel>
-            </StatusBarItem>
+        </StatusBarItem>
         <StatusBarItem Grid.Column="3">
-            <ToggleButton Height="25" Width="25" Command="{Binding LoopCommand}" CommandParameter="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}">
+            <ToggleButton Height="25" Width="25"  Command="{Binding Path=State.MediaPlugin.Content.LoopCommand}" CommandParameter="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}">
                 <Image Source="/Medias/Nuvola/48x48/noatunloopsong.png"></Image>
             </ToggleButton>
         </StatusBarItem>

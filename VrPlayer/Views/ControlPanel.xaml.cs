@@ -16,11 +16,11 @@ namespace VrPlayer.Views
             InitializeComponent();
             try
             {
-                _viewModel = ((App)Application.Current).ViewModelFactory.CreateMediaViewModel();
+                _viewModel = ((App) Application.Current).ViewModelFactory.CreateMediaViewModel();
                 DataContext = _viewModel;
             }
-            catch(Exception exc)
-            { 
+            catch (Exception exc)
+            {
             }
         }
 
@@ -31,28 +31,22 @@ namespace VrPlayer.Views
             ExecuteSeekCommand(sender, e);
         }
 
-        private void ProgressBar_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                //Todo: This is causing lag...
-                //ExecuteSeekCommand(sender, e);
-            }
-        }
-
         #endregion
 
         #region Helpers
 
         private void ExecuteSeekCommand(object sender, MouseEventArgs e)
         {
-            if (_viewModel.SeekCommand.CanExecute(null))
-            {
-                var seekControl = (ProgressBar)sender;
-                var position = e.GetPosition(seekControl).X;
-                var percent = position / seekControl.ActualWidth;
-                _viewModel.SeekCommand.Execute(percent);
-            }
+            if (_viewModel.State.MediaPlugin == null || _viewModel.State.MediaPlugin.Content == null)
+                return;
+
+            if (!_viewModel.State.MediaPlugin.Content.SeekCommand.CanExecute(null)) 
+                return;
+            
+            var seekControl = (ProgressBar)sender;
+            var position = e.GetPosition(seekControl).X;
+            var percent = position / seekControl.ActualWidth;
+            _viewModel.State.MediaPlugin.Content.SeekCommand.Execute(percent);
         }
 
         #endregion

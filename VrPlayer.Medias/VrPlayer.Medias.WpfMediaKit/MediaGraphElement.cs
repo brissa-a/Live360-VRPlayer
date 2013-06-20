@@ -1,7 +1,7 @@
 ﻿using WPFMediaKit.DirectShow.Controls;
 using WPFMediaKit.DirectShow.MediaPlayers;
 
-namespace VrPlayer.Models.Media
+namespace VrPlayer.Medias.WpfMediaKit
 {
     public class MediaGraphElement: MediaUriElement
     {

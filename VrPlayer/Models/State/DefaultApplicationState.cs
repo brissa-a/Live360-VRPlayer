@@ -1,20 +1,14 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Medias;
 using VrPlayer.Contracts.Stabilizers;
 using VrPlayer.Contracts.Trackers;
-using VrPlayer.Helpers;
 using VrPlayer.Models.Plugins;
-using WPFMediaKit.DirectShow.Controls;
-
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Contracts.Projections;
-using VrPlayer.Models.Media;
 
 namespace VrPlayer.Models.State
 {
@@ -168,38 +162,6 @@ namespace VrPlayer.Models.State
                 .Where(s => s.GetType().FullName.Contains(config.DefaultStabilizer))
                 .DefaultIfEmpty(pluginManager.Stabilizers.FirstOrDefault())
                 .First();
-
-            //Set media player
-            /*
-            _mediaPlayer = config.PositionalAudio ? new MediaGraphElement() : new MediaUriElement();
-
-            if (config.EvrRendering)
-            {
-                _mediaPlayer.VideoRenderer = WPFMediaKit.DirectShow.MediaPlayers.VideoRendererType.EnhancedVideoRenderer;
-            }
-
-            _mediaPlayer.BeginInit();
-            _mediaPlayer.EndInit();
-
-            var parameters = Environment.GetCommandLineArgs();
-
-            if (parameters.Length > 1)
-            {
-                Logger.Instance.Info(string.Format("Loading '{0}'...", parameters[1]));
-                var uri = new Uri(parameters[1]);
-                var uriWithoutScheme = uri.Host + uri.PathAndQuery;
-                _mediaPlayer.Source = new Uri(uriWithoutScheme, UriKind.RelativeOrAbsolute);
-            }
-            else
-            {
-                var samples = new DirectoryInfo(config.SamplesFolder);
-                if (samples.GetFiles().Any())
-                {
-                    _mediaPlayer.Source = new Uri(samples.GetFiles().First().FullName, UriKind.RelativeOrAbsolute);
-                }
-            }
-            _mediaPlayer.Play();
-            */
         }
     }
 }

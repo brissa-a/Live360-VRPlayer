@@ -9,8 +9,8 @@ namespace VrPlayer.Helpers.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var duration = (long)value;
-            return TimeSpan.FromTicks(duration).ToString(@"hh\:mm\:ss");
+            var duration = (TimeSpan)value;
+            return duration.ToString(@"hh\:mm\:ss");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

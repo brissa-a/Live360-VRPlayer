@@ -2,7 +2,7 @@
 
 using WPFMediaKit.DirectShow.Interop;
 
-namespace VrPlayer.Models.Media
+namespace VrPlayer.Medias.WpfMediaKit
 {
     public abstract class AudioEngineBase: IAudioEngine
     {

@@ -44,9 +44,6 @@ namespace VrPlayer.ViewModels
                     Calibrate();
                     break;
                 case Key.MediaPlayPause:
-                case Key.Space:
-                    TogglePlayPause();
-                    break;
                 case Key.LeftCtrl:
                     SettingsWindow.ShowSingle();
                     break;
@@ -59,18 +56,6 @@ namespace VrPlayer.ViewModels
         {
             if (_state.TrackerPlugin != null && _state.TrackerPlugin.Content != null)
                 _state.TrackerPlugin.Content.Calibrate();
-        }
-
-        private void TogglePlayPause()
-        {
-            if (_state.MediaPlayer.IsPlaying)
-            {
-                _state.MediaPlayer.Pause();
-            }
-            else
-            {
-                _state.MediaPlayer.Play();
-            }
         }
 	}
 }

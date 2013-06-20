@@ -9,9 +9,6 @@
         string SamplesFolder { get; set; }
         bool MetaDataReadOnLoad { get; set; }
 
-        bool PositionalAudio { get; set; }
-        bool EvrRendering { get; set; }
-
         string DefaultMedia { get; set; }
         string DefaultEffect { get; set; }
         string DefaultDistortion { get; set; }
