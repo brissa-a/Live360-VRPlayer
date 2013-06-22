@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -32,12 +32,14 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="VlcDotNetMedia.cs" />
+    <Compile Include="VlcDotNetPanel.xaml.cs">
+      <DependentUpon>VlcDotNetPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VlcDotNetPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,15 +69,23 @@
     <ProjectReference Include="..\..\VrPlayer.Contracts\VrPlayer.Contracts.csproj">
       <Project>{463D0CFD-915F-41ED-9807-D509EBE1124C}</Project>
       <Name>VrPlayer.Contracts</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\VrPlayer.Helpers\VrPlayer.Helpers.csproj">
       <Project>{D4A54A70-3BB5-4BE5-BEDB-3A41B6C43033}</Project>
       <Name>VrPlayer.Helpers</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="VlcDotNetPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

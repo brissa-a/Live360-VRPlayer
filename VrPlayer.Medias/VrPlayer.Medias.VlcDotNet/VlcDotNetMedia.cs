@@ -1,7 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Vlc.DotNet.Core;
 using Vlc.DotNet.Core.Interops.Signatures.LibVlc.MediaListPlayer;
@@ -15,37 +16,60 @@ namespace VrPlayer.Medias.VlcDotNet
 {
     public class VlcDotNetMedia: MediaBase
     {
-        private readonly VlcControl _player;
-        private readonly Image _media; 
+        private VlcControl _player;
+        private Image _media; 
         
         public override FrameworkElement Media
         {
             get { return _media; }
         }
 
-        public VlcDotNetMedia()
+        public static readonly DependencyProperty DebugModeProperty =
+            DependencyProperty.Register("DebugMode", typeof(bool),
+            typeof(VlcDotNetMedia), new FrameworkPropertyMetadata(false));
+        public bool DebugMode
         {
-            _media = new Image();
+            get { return (bool)GetValue(DebugModeProperty); }
+            set { SetValue(DebugModeProperty, value); }
+        }
 
+        public static readonly DependencyProperty LibVlcDllsPathProperty =
+            DependencyProperty.Register("LibVlcDllsPath", typeof(string),
+            typeof(VlcDotNetMedia), new FrameworkPropertyMetadata(""));
+        public string LibVlcDllsPath
+        {
+            get { return (string)GetValue(LibVlcDllsPathProperty); }
+            set { SetValue(LibVlcDllsPathProperty, value); }
+        }
+
+        public static readonly DependencyProperty LibVlcPluginsPathProperty =
+            DependencyProperty.Register("LibVlcPluginsPath", typeof(string),
+            typeof(VlcDotNetMedia), new FrameworkPropertyMetadata(""));
+        public string LibVlcPluginsPath
+        {
+            get { return (string)GetValue(LibVlcPluginsPathProperty); }
+            set { SetValue(LibVlcPluginsPathProperty, value); }
+        }
+
+        private void InitVlcContext()
+        {
             VlcContext.CloseAll();
 
             //Set libvlc.dll and libvlccore.dll directory path
-            VlcContext.LibVlcDllsPath = @"C:\Program Files (x86)\VideoLAN\VLC";  //CommonStrings.LIBVLC_DLLS_PATH_DEFAULT_VALUE_X86;
+            VlcContext.LibVlcDllsPath = LibVlcDllsPath;
             //Set the vlc plugins directory path
-            VlcContext.LibVlcPluginsPath = @"C:\Program Files (x86)\VideoLAN\VLC\plugins"; //CommonStrings.PLUGINS_PATH_DEFAULT_VALUE_X86;
+            VlcContext.LibVlcPluginsPath = LibVlcPluginsPath;
 
             //Set the startup options
             VlcContext.StartupOptions.IgnoreConfig = true;
-            VlcContext.StartupOptions.LogOptions.LogInFile = true;
-            VlcContext.StartupOptions.LogOptions.ShowLoggerConsole = true;
-            VlcContext.StartupOptions.LogOptions.Verbosity = VlcLogVerbosities.Debug;
+            VlcContext.StartupOptions.LogOptions.LogInFile = DebugMode;
+            VlcContext.StartupOptions.LogOptions.ShowLoggerConsole = DebugMode;
+            VlcContext.StartupOptions.LogOptions.Verbosity = DebugMode ? VlcLogVerbosities.Debug : VlcLogVerbosities.None;
             VlcContext.Initialize();
+        }
 
-            //Media player
-            _player = new VlcControl();
-            _player.LengthChanged += PlayerOnLengthChanged;
-            _player.PositionChanged += PlayerOnPositionChanged;
-
+        public VlcDotNetMedia()
+        {   
             //Commands
             OpenFileCommand = new RelayCommand(OpenFile);
             OpenDiscCommand = new RelayCommand(OpenDisc);
@@ -56,6 +80,37 @@ namespace VrPlayer.Medias.VlcDotNet
             StopCommand = new RelayCommand(Stop, CanStop);
             SeekCommand = new RelayCommand(Seek, CanSeek);
             LoopCommand = new RelayCommand(Loop);
+
+            
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        public override void Load()
+        {
+            InitVlcContext();
+            _media = new Image(); 
+            _player = new VlcControl();
+            _player.LengthChanged += PlayerOnLengthChanged;
+            _player.PositionChanged += PlayerOnPositionChanged;
+            OnPropertyChanged("Media");
+        }
+
+        public override void Unload()
+        {
+            if (_player != null)
+                _player.Stop();
+            _player = null;
+            _media = null;
+            VlcContext.CloseAll();
+            OnPropertyChanged("Media");
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName == "LibVlcDllsPath" ||
+                propertyChangedEventArgs.PropertyName == "LibVlcPluginsPath" ||
+                propertyChangedEventArgs.PropertyName == "DebugMode")
+                Load();
         }
 
         private void PlayerOnLengthChanged(VlcControl sender, VlcEventArgs<long> vlcEventArgs)
@@ -67,7 +122,6 @@ namespace VrPlayer.Medias.VlcDotNet
         {
             _media.Source = _player.VideoSource;
             Position = _player.Time;
-            OnPropertyChanged("Progress");
         }
 
         #region Commands
@@ -79,18 +133,27 @@ namespace VrPlayer.Medias.VlcDotNet
             if (!openFileDialog.ShowDialog().Value) return;
             _player.Media = new PathMedia(openFileDialog.FileName);
             _player.Play();
+            OnPropertyChanged("Media");
         }
 
         private void OpenDisc(object o)
         {
+            _player.Media = new LocationMedia("cdda:///D:");
+            _player.Play();
+            OnPropertyChanged("Media");
         }
 
         private void OpenStream(object o)
         {
+            var input = Interaction.InputBox("Enter the stream URL", "Open Stream", "http://", 0, 0);
+            _player.Media = new LocationMedia(input);
+            _player.Play();
+            OnPropertyChanged("Media");
         }
 
         private void OpenDevice(object o)
         {
+            OnPropertyChanged("Media");
         }
 
         private void Play(object o)
@@ -147,7 +210,5 @@ namespace VrPlayer.Medias.VlcDotNet
         }
 
         #endregion
-
-        //Todo: Dispose with VlcContext.CloseAll();
     }
 }

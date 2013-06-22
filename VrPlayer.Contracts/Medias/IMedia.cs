@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace VrPlayer.Contracts.Medias
 {
-    public interface IMedia
+    public interface IMedia : ILoadable
     {
         FrameworkElement Media { get; }
         

@@ -44,6 +44,7 @@ namespace VrPlayer.Contracts.Medias
             {
                 _position = value;
                 OnPropertyChanged("Position");
+                OnPropertyChanged("Progress");
             }
         }
 
@@ -76,5 +77,8 @@ namespace VrPlayer.Contracts.Medias
                 return (Position.TotalMilliseconds / Duration.TotalMilliseconds) * 100;
             }
         }
+
+        public abstract void Load();
+        public abstract void Unload();
     }
 }

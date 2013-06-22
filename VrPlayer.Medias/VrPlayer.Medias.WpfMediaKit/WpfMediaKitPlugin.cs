@@ -15,12 +15,24 @@ namespace VrPlayer.Medias.WpfMediaKit
         {
             Name = "WPF Media Kit";
             var media = new WpfMediaKitMedia
-                {
-                    PositionalAudio = bool.Parse(Config.AppSettings.Settings["PositionalAudio"].Value),
-                    EvrRendering = bool.Parse(Config.AppSettings.Settings["EvrRendering"].Value)
-                };
+            {
+                PositionalAudio = bool.Parse(Config.AppSettings.Settings["PositionalAudio"].Value),
+                EvrRendering = bool.Parse(Config.AppSettings.Settings["EvrRendering"].Value)
+            };
             Content = media;
-            Panel = null;
+            Panel = new WpfMediaKitPanel(media);
+        }
+
+        public override void Load()
+        {
+            if (Content != null)
+                Content.Load();
+        }
+
+        public override void Unload()
+        {
+            if (Content != null)
+                Content.Unload();
         }
     }
 }

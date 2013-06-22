@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_10E8837063B44E72B3FB526889B9249A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_16773219F1DE477B9FAB619134E6D294"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -59,6 +65,24 @@
         {
         "MsmKey" = "8:_1B1C26D8130C4AA48D1AF7ED35F94F41"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1C8F297813CB820678AC1523C9FB1386"
+        "OwnerKey" = "8:_DBA1287AFD6D4F9685CEBD13008B1065"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1C8F297813CB820678AC1523C9FB1386"
+        "OwnerKey" = "8:_73957D404A4471E9BB23BEA3F36A5F10"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1C8F297813CB820678AC1523C9FB1386"
+        "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -99,6 +123,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_374B2383AC1BA59E2C59ACD52EF51330"
+        "OwnerKey" = "8:_55ADA5886FE4437E96627DD2BA03A6D8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_374B2383AC1BA59E2C59ACD52EF51330"
+        "OwnerKey" = "8:_E402B37DC57CA7FB3A72848CDD9F9D46"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_374B2383AC1BA59E2C59ACD52EF51330"
+        "OwnerKey" = "8:_10E8837063B44E72B3FB526889B9249A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3780E3E2D02249C7AFE3D932B0099C01"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -111,14 +153,44 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_452E653A32B9427B85AD5E2C80C62C0E"
+        "MsmKey" = "8:_3C34FA1AE0CBA890BCF6C8E6A3C84FC0"
+        "OwnerKey" = "8:_B7B1FB3D1C2F4B53BB6032D707AA5F9F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C34FA1AE0CBA890BCF6C8E6A3C84FC0"
+        "OwnerKey" = "8:_E402B37DC57CA7FB3A72848CDD9F9D46"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C34FA1AE0CBA890BCF6C8E6A3C84FC0"
+        "OwnerKey" = "8:_10E8837063B44E72B3FB526889B9249A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C34FA1AE0CBA890BCF6C8E6A3C84FC0"
+        "OwnerKey" = "8:_55ADA5886FE4437E96627DD2BA03A6D8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C34FA1AE0CBA890BCF6C8E6A3C84FC0"
+        "OwnerKey" = "8:_374B2383AC1BA59E2C59ACD52EF51330"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_431CC18F01BD4130BCB0ADF87E208A62"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_475E79A804857F4E744D68360269E0F3"
-        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmKey" = "8:_452E653A32B9427B85AD5E2C80C62C0E"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -135,6 +207,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4DB1A6F470A249D29F9078B843705EF7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4E807807093E49D4A35457448E0A7BEF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5021BE9F4F46BE38F9E8A49A7BADC6C1"
         "OwnerKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
         "MsmSig" = "8:_UNDEFINED"
@@ -147,8 +231,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_51A4C40D761E7C0D3B18DBEA886359FF"
-        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmKey" = "8:_55ADA5886FE4437E96627DD2BA03A6D8"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -161,6 +245,12 @@
         {
         "MsmKey" = "8:_5AE25C988E9718D52911688E0E8ECAD1"
         "OwnerKey" = "8:_1032DA158041430CBD51F554E34D50AB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5C700557CFDD430BA2CDCED207A50E05"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -178,6 +268,12 @@
         "Entry"
         {
         "MsmKey" = "8:_606A2DC267914F589AF9831FFE8BD6B9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_61D8DD86A0EB4D3EB814E4F63B30962B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -231,6 +327,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_73957D404A4471E9BB23BEA3F36A5F10"
+        "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7731C6CE19E940718372D71D29B17F8F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -239,18 +341,6 @@
         {
         "MsmKey" = "8:_79462F52D08B4310A87DB1D0C8D614B1"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_89263EB33878264F9D2ECC4248C4CB71"
-        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_89263EB33878264F9D2ECC4248C4CB71"
-        "OwnerKey" = "8:_C39FCD8B034380E08EA5ABF43EBDE24D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -387,6 +477,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B7B1FB3D1C2F4B53BB6032D707AA5F9F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BCFCEC753A054D95AF7F30FBD302A1BF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -411,8 +507,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C39FCD8B034380E08EA5ABF43EBDE24D"
-        "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmKey" = "8:_C57095DC438245899261F90FE877D010"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C7896F8B1DE542ECADEDC98CBB0F20EF"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -441,6 +543,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CC6F1E6947764B5EA8578AC475959552"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D4316D608BFD46C78ACB90BFB3C1394C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -459,8 +567,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E060614AD26337DFF0DAB825D174E95E"
-        "OwnerKey" = "8:_475E79A804857F4E744D68360269E0F3"
+        "MsmKey" = "8:_DBA1287AFD6D4F9685CEBD13008B1065"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DCFD288D6A144FE788C7B34D2FEFEDA4"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -471,8 +585,32 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E402B37DC57CA7FB3A72848CDD9F9D46"
+        "OwnerKey" = "8:_10E8837063B44E72B3FB526889B9249A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
         "OwnerKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
+        "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
+        "OwnerKey" = "8:_10E8837063B44E72B3FB526889B9249A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
+        "OwnerKey" = "8:_4E807807093E49D4A35457448E0A7BEF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -609,6 +747,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_EE90BAFB9FA9456F87043C7588122ED5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EFBBDD94075844B59F502C6BA8FBA441"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -616,6 +760,12 @@
         "Entry"
         {
         "MsmKey" = "8:_EFD27671D1BB45FB8AA472C12A57DEF5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F0092E3339854C3D8ACCBBECECEA6190"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -645,6 +795,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F5CA2681EC924EB29A94725F38483C59"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -653,6 +809,36 @@
         {
         "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_10E8837063B44E72B3FB526889B9249A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_5C700557CFDD430BA2CDCED207A50E05"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_F0092E3339854C3D8ACCBBECECEA6190"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_4E807807093E49D4A35457448E0A7BEF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -801,6 +987,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F709A534A35B90CB18823883C651DDB9"
+        "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FDE661C5C79E4BD2A9C22AE9BDA1D73D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -815,6 +1007,108 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EE90BAFB9FA9456F87043C7588122ED5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F709A534A35B90CB18823883C651DDB9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_73957D404A4471E9BB23BEA3F36A5F10"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DBA1287AFD6D4F9685CEBD13008B1065"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1C8F297813CB820678AC1523C9FB1386"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4DB1A6F470A249D29F9078B843705EF7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_10E8837063B44E72B3FB526889B9249A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E402B37DC57CA7FB3A72848CDD9F9D46"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_55ADA5886FE4437E96627DD2BA03A6D8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_374B2383AC1BA59E2C59ACD52EF51330"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DCFD288D6A144FE788C7B34D2FEFEDA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B7B1FB3D1C2F4B53BB6032D707AA5F9F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3C34FA1AE0CBA890BCF6C8E6A3C84FC0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5C700557CFDD430BA2CDCED207A50E05"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F0092E3339854C3D8ACCBBECECEA6190"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4E807807093E49D4A35457448E0A7BEF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1012,31 +1306,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C39FCD8B034380E08EA5ABF43EBDE24D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_89263EB33878264F9D2ECC4248C4CB71"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_475E79A804857F4E744D68360269E0F3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E060614AD26337DFF0DAB825D174E95E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_51A4C40D761E7C0D3B18DBEA886359FF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1283,6 +1553,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_10E8837063B44E72B3FB526889B9249A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Medias.VlcDotNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_10E8837063B44E72B3FB526889B9249A"
+                    {
+                    "Name" = "8:VrPlayer.Medias.VlcDotNet.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.VlcDotNet\\VrPlayer.Medias.VlcDotNet.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_19515E82FA8F4B228F8A2A67C1A38167"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_16773219F1DE477B9FAB619134E6D294"
             {
             "AssemblyRegister" = "3:1"
@@ -1352,6 +1653,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1C8F297813CB820678AC1523C9FB1386"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SharpDX, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_1C8F297813CB820678AC1523C9FB1386"
+                    {
+                    "Name" = "8:SharpDX.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SharpDX.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_27C4049BF5894A44AE70669E1C61462C"
@@ -1496,6 +1828,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_374B2383AC1BA59E2C59ACD52EF51330"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Vlc.DotNet.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_374B2383AC1BA59E2C59ACD52EF51330"
+                    {
+                    "Name" = "8:Vlc.DotNet.Core.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Vlc.DotNet.Core.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_19515E82FA8F4B228F8A2A67C1A38167"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3780E3E2D02249C7AFE3D932B0099C01"
             {
             "AssemblyRegister" = "3:1"
@@ -1547,6 +1910,57 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3C34FA1AE0CBA890BCF6C8E6A3C84FC0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Vlc.DotNet.Core.Interops, Version=1.2.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3C34FA1AE0CBA890BCF6C8E6A3C84FC0"
+                    {
+                    "Name" = "8:Vlc.DotNet.Core.Interops.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Vlc.DotNet.Core.Interops.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_19515E82FA8F4B228F8A2A67C1A38167"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_431CC18F01BD4130BCB0ADF87E208A62"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.WpfMediaKit\\SharpDX.XAudio2.xml"
+            "TargetName" = "8:SharpDX.XAudio2.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_452E653A32B9427B85AD5E2C80C62C0E"
             {
             "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.RazerHydraTracker\\sixense_x64.dll"
@@ -1565,37 +1979,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_475E79A804857F4E744D68360269E0F3"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Xceed.Wpf.DataGrid, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_475E79A804857F4E744D68360269E0F3"
-                    {
-                    "Name" = "8:Xceed.Wpf.DataGrid.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Xceed.Wpf.DataGrid.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4876683226766F2B0A1572AE482607A9"
@@ -1660,6 +2043,68 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4DB1A6F470A249D29F9078B843705EF7"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SharpDX, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_4DB1A6F470A249D29F9078B843705EF7"
+                    {
+                    "Name" = "8:SharpDX.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.WpfMediaKit\\SharpDX.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4E807807093E49D4A35457448E0A7BEF"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Stabilizers.Deshaker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_4E807807093E49D4A35457448E0A7BEF"
+                    {
+                    "Name" = "8:VrPlayer.Stabilizers.Deshaker.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Stabilizers\\VrPlayer.Stabilizers.Deshaker\\VrPlayer.Stabilizers.Deshaker.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_BAA2911CEDB647229B715D624DEBCC2A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5021BE9F4F46BE38F9E8A49A7BADC6C1"
             {
             "AssemblyRegister" = "3:1"
@@ -1691,23 +2136,23 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_51A4C40D761E7C0D3B18DBEA886359FF"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_55ADA5886FE4437E96627DD2BA03A6D8"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WPFMediaKit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Vlc.DotNet.Wpf, Version=1.2.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_51A4C40D761E7C0D3B18DBEA886359FF"
+                    "_55ADA5886FE4437E96627DD2BA03A6D8"
                     {
-                    "Name" = "8:WPFMediaKit.dll"
+                    "Name" = "8:Vlc.DotNet.Wpf.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:WPFMediaKit.dll"
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.VlcDotNet\\Vlc.DotNet.Wpf.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Folder" = "8:_19515E82FA8F4B228F8A2A67C1A38167"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1719,7 +2164,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_55E8860CB7314D34813702CF8EF4E6C1"
@@ -1773,6 +2218,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5C700557CFDD430BA2CDCED207A50E05"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Medias.NoMedia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5C700557CFDD430BA2CDCED207A50E05"
+                    {
+                    "Name" = "8:VrPlayer.Medias.NoMedia.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.NoMedia\\VrPlayer.Medias.NoMedia.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D038EC631BB040EC8966FBFADEE7862F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5D57616DA37849A3AEA9184E8F3A61BA"
             {
             "SourcePath" = "8:..\\VrPlayer\\Medias\\banner.jpg"
@@ -1819,6 +2295,26 @@
             "TargetName" = "8:VrPlayer.Trackers.MouseTracker.dll.config"
             "Tag" = "8:"
             "Folder" = "8:_8F7403C99C314150A99F7E4BB52FFC3B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_61D8DD86A0EB4D3EB814E4F63B30962B"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.WpfMediaKit\\VrPlayer.Medias.WpfMediaKit.dll.config"
+            "TargetName" = "8:VrPlayer.Medias.WpfMediaKit.dll.config"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2004,6 +2500,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_73957D404A4471E9BB23BEA3F36A5F10"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SharpDX.XAudio2, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_73957D404A4471E9BB23BEA3F36A5F10"
+                    {
+                    "Name" = "8:SharpDX.XAudio2.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SharpDX.XAudio2.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7731C6CE19E940718372D71D29B17F8F"
             {
             "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.PsMoveTracker\\hidapi.dll"
@@ -2042,37 +2569,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_89263EB33878264F9D2ECC4248C4CB71"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpDX, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_89263EB33878264F9D2ECC4248C4CB71"
-                    {
-                    "Name" = "8:SharpDX.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SharpDX.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8BBD3EC675F546F79A9096FB7928374C"
@@ -2614,6 +3110,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B7B1FB3D1C2F4B53BB6032D707AA5F9F"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Vlc.DotNet.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B7B1FB3D1C2F4B53BB6032D707AA5F9F"
+                    {
+                    "Name" = "8:Vlc.DotNet.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.VlcDotNet\\Vlc.DotNet.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_19515E82FA8F4B228F8A2A67C1A38167"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BCFCEC753A054D95AF7F30FBD302A1BF"
             {
             "AssemblyRegister" = "3:1"
@@ -2738,23 +3265,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C39FCD8B034380E08EA5ABF43EBDE24D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C57095DC438245899261F90FE877D010"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpDX.XAudio2, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C39FCD8B034380E08EA5ABF43EBDE24D"
-                    {
-                    "Name" = "8:SharpDX.XAudio2.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SharpDX.XAudio2.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.VlcDotNet\\VrPlayer.Medias.VlcDotNet.dll.config"
+            "TargetName" = "8:VrPlayer.Medias.VlcDotNet.dll.config"
             "Tag" = "8:"
-            "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Folder" = "8:_19515E82FA8F4B228F8A2A67C1A38167"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2766,7 +3282,27 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C7896F8B1DE542ECADEDC98CBB0F20EF"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Stabilizers\\VrPlayer.Stabilizers.Deshaker\\VrPlayer.Stabilizers.Deshaker.dll.config"
+            "TargetName" = "8:VrPlayer.Stabilizers.Deshaker.dll.config"
+            "Tag" = "8:"
+            "Folder" = "8:_BAA2911CEDB647229B715D624DEBCC2A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB08A24DB5AD4E72965AFC3FBF498C3A"
@@ -2795,6 +3331,26 @@
             "TargetName" = "8:Vrpn-license.txt"
             "Tag" = "8:"
             "Folder" = "8:_4647DE7DB7DA4812B309E62E9E0E1188"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC6F1E6947764B5EA8578AC475959552"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.WpfMediaKit\\SharpDX.xml"
+            "TargetName" = "8:SharpDX.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2891,6 +3447,68 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DBA1287AFD6D4F9685CEBD13008B1065"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SharpDX.XAudio2, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_DBA1287AFD6D4F9685CEBD13008B1065"
+                    {
+                    "Name" = "8:SharpDX.XAudio2.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.WpfMediaKit\\SharpDX.XAudio2.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DCFD288D6A144FE788C7B34D2FEFEDA4"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Vlc.DotNet.Core.Interops, Version=1.2.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_DCFD288D6A144FE788C7B34D2FEFEDA4"
+                    {
+                    "Name" = "8:Vlc.DotNet.Core.Interops.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.VlcDotNet\\Vlc.DotNet.Core.Interops.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_19515E82FA8F4B228F8A2A67C1A38167"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E060614AD26337DFF0DAB825D174E95E"
             {
             "AssemblyRegister" = "3:1"
@@ -2908,6 +3526,37 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E402B37DC57CA7FB3A72848CDD9F9D46"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Vlc.DotNet.Wpf, Version=1.2.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_E402B37DC57CA7FB3A72848CDD9F9D46"
+                    {
+                    "Name" = "8:Vlc.DotNet.Wpf.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Vlc.DotNet.Wpf.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_19515E82FA8F4B228F8A2A67C1A38167"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2993,6 +3642,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EE90BAFB9FA9456F87043C7588122ED5"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WPFMediaKit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_EE90BAFB9FA9456F87043C7588122ED5"
+                    {
+                    "Name" = "8:WPFMediaKit.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.WpfMediaKit\\WPFMediaKit.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EFBBDD94075844B59F502C6BA8FBA441"
             {
             "AssemblyRegister" = "3:1"
@@ -3030,6 +3710,37 @@
             "TargetName" = "8:VrPlayer-license.txt"
             "Tag" = "8:"
             "Folder" = "8:_549B09F2CE4040D39BE44EFBC5B47A92"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F0092E3339854C3D8ACCBBECECEA6190"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Stabilizers.NoStabilizer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F0092E3339854C3D8ACCBBECECEA6190"
+                    {
+                    "Name" = "8:VrPlayer.Stabilizers.NoStabilizer.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Stabilizers\\VrPlayer.Stabilizers.NoStabilizer\\VrPlayer.Stabilizers.NoStabilizer.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_06BF49DEAC7E43A791622EF059E87853"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3157,6 +3868,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F41A75C4627D45E4A03FCEB18C61519C"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Medias.WpfMediaKit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F41A75C4627D45E4A03FCEB18C61519C"
+                    {
+                    "Name" = "8:VrPlayer.Medias.WpfMediaKit.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.WpfMediaKit\\VrPlayer.Medias.WpfMediaKit.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F5CA2681EC924EB29A94725F38483C59"
             {
             "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Effects\\VrPlayer.Effects.UnwrapFishEye\\VrPlayer.Effects.UnwrapFishEye.dll.config"
@@ -3194,6 +3936,37 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F709A534A35B90CB18823883C651DDB9"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WPFMediaKit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F709A534A35B90CB18823883C651DDB9"
+                    {
+                    "Name" = "8:WPFMediaKit.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WPFMediaKit.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3374,6 +4147,50 @@
                             }
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_300249A37E7A4427B6B84BAB32C9AB76"
+                    {
+                    "Name" = "8:Medias"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_056E508D38354C4D85D1F8B97B3953D7"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_19515E82FA8F4B228F8A2A67C1A38167"
+                            {
+                            "Name" = "8:VrPlayer.Medias.VlcDotNet"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_3B7AB3F373BA4854B1BD6D318E484ECC"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_82D6BB79598449528B6B1DF93A9EF62B"
+                            {
+                            "Name" = "8:VrPlayer.Medias.WpfMediaKit"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_94466AA585AD408FBF2F6F9D1010569F"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_D038EC631BB040EC8966FBFADEE7862F"
+                            {
+                            "Name" = "8:VrPlayer.Medias.NoMedia"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_7CFD815D174C47B7B3954A21839083AB"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_3706EFD1AC5A4712847D6A1EA1C57023"
                     {
                     "Name" = "8:Trackers"
@@ -3539,6 +4356,39 @@
                             }
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_A3EA682F90614BDFB8F189CAAE689308"
+                    {
+                    "Name" = "8:Stabilizers"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_0BFAFB3200BB415B8179FAD73E83FC00"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_06BF49DEAC7E43A791622EF059E87853"
+                            {
+                            "Name" = "8:VrPlayer.Stabilizers.NoStabilizer"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_58D35BA994524168B0466218BE91E567"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_BAA2911CEDB647229B715D624DEBCC2A"
+                            {
+                            "Name" = "8:VrPlayer.Stabilizers.Deshaker"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_79CE85ADD2804B179455FB3DE7653559"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_F6D15C77530A4E93A15B908A33C9FDD9"
                     {
                     "Name" = "8:Effects"
@@ -3635,7 +4485,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{7B84C3BE-5CD3-45DB-A1EB-9376995D7A9A}"
+        "PackageCode" = "8:{10FE1F66-04BD-4EEB-8661-2A7ED122583C}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

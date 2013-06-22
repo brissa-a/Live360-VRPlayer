@@ -23,14 +23,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SharpDX">
@@ -61,6 +63,9 @@
     <Compile Include="IAudioEngine.cs" />
     <Compile Include="MediaGraphElement.cs" />
     <Compile Include="MediaGraphPlayer.cs" />
+    <Compile Include="WpfMediaKitPanelPanel.xaml.cs">
+      <DependentUpon>WpfMediaKitPanelPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfMediaKitMedia.cs" />
     <Compile Include="WpfMediaKitPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,11 +80,18 @@
     <ProjectReference Include="..\..\VrPlayer.Helpers\VrPlayer.Helpers.csproj">
       <Project>{D4A54A70-3BB5-4BE5-BEDB-3A41B6C43033}</Project>
       <Name>VrPlayer.Helpers</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="WpfMediaKitPanelPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Distortions\DistortionBase.cs" />
     <Compile Include="Effects\EffectBase.cs" />
+    <Compile Include="ILoadable.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="Medias\MediaBase.cs" />
     <Compile Include="Medias\IMedia.cs" />

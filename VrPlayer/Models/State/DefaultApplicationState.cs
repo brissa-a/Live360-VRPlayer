@@ -25,7 +25,10 @@ namespace VrPlayer.Models.State
             }
             set
             {
+                if (_mediaPlugin != null) 
+                    _mediaPlugin.Unload();
                 _mediaPlugin = value;
+                _mediaPlugin.Load();
                 OnPropertyChanged("MediaPlugin");
             }
         }

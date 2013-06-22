@@ -2,7 +2,7 @@
 
 namespace VrPlayer.Contracts
 {
-    public interface IPlugin<T>
+    public interface IPlugin<T> : ILoadable
     {
         string Name { get; set; }
         T Content { get; set; }
