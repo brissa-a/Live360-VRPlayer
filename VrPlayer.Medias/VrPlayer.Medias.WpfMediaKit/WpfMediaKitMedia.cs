@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.VisualBasic;
@@ -55,22 +57,22 @@ namespace VrPlayer.Medias.WpfMediaKit
 
         public override void Load()
         {
+            Reset();
             _timer = new DispatcherTimer(DispatcherPriority.Send);
-            _timer.Interval = new TimeSpan(0, 0, 0, 1);
+            _timer.Interval = new TimeSpan(0, 0, 0, 1, 125);
             _timer.Tick += timer_Tick;
             _timer.Start();
-            OnPropertyChanged("Media");
         }
 
         public override void Unload()
         {
+            Reset();
             if (_timer != null)
                 _timer.Stop();
             _timer = null;
             if (_player != null)
                 _player.Stop();
             _player = null;
-            OnPropertyChanged("Media");
         }
 
         private MediaUriElement CreateMediaUriElement()
@@ -109,108 +111,125 @@ namespace VrPlayer.Medias.WpfMediaKit
                 var player = CreateMediaUriElement();
                 player.Source = new Uri(openFileDialog.FileName, UriKind.Absolute);
                 player.Play();
+                IsPlaying = true;
                 _player = player;
-                OnPropertyChanged("Media");
             }
             catch (Exception exc)
             {
-                var message = String.Format("Unable to load '{0}'.", openFileDialog.FileName);
+                var message = String.Format("Unable to load file '{0}'.", openFileDialog.FileName);
                 Logger.Instance.Warn(message, exc);
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            OnPropertyChanged("Media");
         }
 
         private void OpenDisc(object o)
         {
-            var player = new DvdPlayerElement();
-            player.BeginInit();
-            player.PlayOnInsert = true;
-            player.DvdDirectory = new Uri(@"d:\VIDEO_TS").AbsolutePath;
-            player.EndInit();
-            _player = player;
+            try
+            {
+                var player = new DvdPlayerElement();
+                player.BeginInit();
+                player.PlayOnInsert = true;
+                player.DvdDirectory = new Uri(string.Format(@"{0}\VIDEO_TS", o)).AbsolutePath;
+                player.EndInit();
+                _player.Play();
+                IsPlaying = true;
+                _player = player;
+            }
+            catch (Exception exc)
+            {
+                var message = String.Format("Unable to read disc '{0}'.", o);
+                Logger.Instance.Warn(message, exc);
+                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             OnPropertyChanged("Media");
         }
 
         private void OpenStream(object o)
         {
-            var input = Interaction.InputBox("Enter the stream URL", "Open Stream", "http://", 0, 0);
-            var player = CreateMediaUriElement();
-            player.Source = new Uri(input, UriKind.Absolute);
-            player.Play();
-            _player = player;
+            var input = Interaction.InputBox(
+                "Enter the stream URL" + Environment.NewLine + 
+                Environment.NewLine +
+                "Examples:" + Environment.NewLine +
+                "http://www.example.com/stream.avi" + Environment.NewLine,
+                "Open Stream", 
+                "http://");
+            if (string.IsNullOrEmpty(input))
+                return;
+            try
+            {
+                var player = CreateMediaUriElement();
+                player.Source = new Uri(input, UriKind.Absolute);
+                player.Play();
+                IsPlaying = true;
+                _player = player;
+            }
+            catch (Exception exc)
+            {
+                var message = String.Format("Unable to load stream at '{0}'.", input);
+                Logger.Instance.Warn(message, exc);
+                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             OnPropertyChanged("Media");
         }
 
         private void OpenDevice(object o)
         {
-            var player = new VideoCaptureElement();
-            player.BeginInit();
-            player.Width = 320;
-            player.DesiredPixelWidth = 320;
-            player.Height = 240;
-            player.DesiredPixelHeight = 240;
-            player.VideoCaptureDevice = MultimediaUtil.VideoInputDevices[0];
-            player.VideoCaptureSource = MultimediaUtil.VideoInputDevices[0].Name;
-            player.FPS = 30;
-            player.EndInit();
-            player.Play();
-            _player = player;
+            var deviceIndex = (int) o;
+            try
+            {
+                var player = new VideoCaptureElement();
+                player.BeginInit();
+                player.VideoCaptureDevice = MultimediaUtil.VideoInputDevices[deviceIndex];
+                player.VideoCaptureSource = MultimediaUtil.VideoInputDevices[deviceIndex].Name;
+                //player.Width = 320;
+                //player.DesiredPixelWidth = 320;
+                //player.Height = 240;
+                //player.DesiredPixelHeight = 240;
+                //player.FPS = 30;
+                player.EndInit();
+
+                player.Play();
+                IsPlaying = true;
+                _player = player;
+            }
+            catch (Exception exc)
+            {
+                const string message = "Unable to load selected device.";
+                Logger.Instance.Warn(message, exc);
+                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             OnPropertyChanged("Media");
         }
 
         private void Play(object o)
         {
-            if (!CanPlay(o)) return;
             _player.Play();
             IsPlaying = true;
         }
 
-        private bool CanPlay(object o)
-        {
-            return HasDuration && !IsPlaying;
-        }
-
         private void Pause(object o)
         {
-            if (!CanPause(o)) return;
             _player.Pause();
             IsPlaying = false;
         }
 
-        private bool CanPause(object o)
-        {
-            return HasDuration && IsPlaying;
-        }
-
         private void Stop(object o)
         {
-            if (!CanStop(o)) return;
             _player.Stop();
-            if (_player is MediaSeekingElement)
-                ((MediaSeekingElement)_player).MediaPosition = 0;
             IsPlaying = false;
-        }
-
-        private bool CanStop(object o)
-        {
-            if (_player is MediaSeekingElement)
-                return ((MediaSeekingElement)_player).MediaPosition > 0;
-            return false;
+        
+            if (!(_player is MediaSeekingElement)) return;
+            var player = ((MediaSeekingElement)_player);
+            player.MediaPosition = 0;
+            Position = TimeSpan.Zero;
         }
 
         private void Seek(object o)
         {
-            if (!CanSeek(o)) return;
             if (!(_player is MediaSeekingElement)) return;
             var player = ((MediaSeekingElement) _player);
             player.MediaPosition = (long)(player.MediaDuration * Convert.ToDouble(o));
-        }
-
-        private bool CanSeek(object o)
-        {
-            if (_player is MediaSeekingElement)
-                return ((MediaSeekingElement)_player).MediaDuration > 0;
-            return false;
         }
 
         private void Loop(object o)

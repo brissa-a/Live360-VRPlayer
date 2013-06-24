@@ -7,9 +7,10 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+        <converters:InvertBooleanToVisibilityConverter x:Key="InvertBooleanToVisibility"/>
         <converters:TimeFormatConverter x:Key="TimeFormat"/>
     </UserControl.Resources>
-    <StatusBar Visibility="{Binding Path=HasDuration, Converter={StaticResource BooleanToVisibility}}">
+    <StatusBar Visibility="{Binding Path=State.MediaPlugin.Content.HasDuration, Converter={StaticResource BooleanToVisibility}}">
         <StatusBar.ItemsPanel>
             <ItemsPanelTemplate>
                 <Grid>
@@ -24,10 +25,12 @@
         </StatusBar.ItemsPanel>
         <StatusBarItem>
             <WrapPanel>
-                <Button Height="25" Width="25" Command="{Binding Path=State.MediaPlugin.Content.PlayCommand}">
+                <Button Height="25" Width="25" Command="{Binding Path=State.MediaPlugin.Content.PlayCommand}"
+                        Visibility="{Binding Path=State.MediaPlugin.Content.IsPlaying, Converter={StaticResource InvertBooleanToVisibility}}">
                     <Image Source="/Medias/Nuvola/48x48/player_play.png"></Image>
 				</Button>
-                <Button Height="25" Width="25" Command="{Binding Path=State.MediaPlugin.Content.PauseCommand}">
+                <Button Height="25" Width="25" Command="{Binding Path=State.MediaPlugin.Content.PauseCommand}"
+                        Visibility="{Binding Path=State.MediaPlugin.Content.IsPlaying, Converter={StaticResource BooleanToVisibility}}">
                     <Image Source="/Medias/Nuvola/48x48/player_pause.png"></Image>
 				</Button>
                 <Button Height="25" Width="25" Command="{Binding Path=State.MediaPlugin.Content.StopCommand}">

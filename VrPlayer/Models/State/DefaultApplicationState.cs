@@ -136,32 +136,32 @@ namespace VrPlayer.Models.State
         public DefaultApplicationState(IApplicationConfig config, IPluginManager pluginManager)
         {
             //Set plugins
-            _mediaPlugin = pluginManager.Medias
+            MediaPlugin = pluginManager.Medias
                 .Where(m => m.GetType().FullName.Contains(config.DefaultMedia))
                 .DefaultIfEmpty(pluginManager.Medias.FirstOrDefault())
                 .First();
 
-            _effectPlugin = pluginManager.Effects
+            EffectPlugin = pluginManager.Effects
                 .Where(e => e.GetType().FullName.Contains(config.DefaultEffect))
                 .DefaultIfEmpty(pluginManager.Effects.FirstOrDefault())
                 .First();
 
-            _distortionPlugin = pluginManager.Distortions
+            DistortionPlugin = pluginManager.Distortions
                 .Where(d => d.GetType().FullName.Contains(config.DefaultDistortion))
                 .DefaultIfEmpty(pluginManager.Distortions.FirstOrDefault())
                 .First();
             
-            _projectionPlugin = pluginManager.Projections
+            ProjectionPlugin = pluginManager.Projections
                 .Where(p => p.GetType().FullName.Contains(config.DefaultProjection))
                 .DefaultIfEmpty(pluginManager.Projections.FirstOrDefault())
                 .First();
             
-            _trackerPlugin = pluginManager.Trackers
+            TrackerPlugin = pluginManager.Trackers
                 .Where(t => t.GetType().FullName.Contains(config.DefaultTracker))
                 .DefaultIfEmpty(pluginManager.Trackers.FirstOrDefault())
                 .First();
 
-            _stabilizerPlugin = pluginManager.Stabilizers
+            StabilizerPlugin = pluginManager.Stabilizers
                 .Where(s => s.GetType().FullName.Contains(config.DefaultStabilizer))
                 .DefaultIfEmpty(pluginManager.Stabilizers.FirstOrDefault())
                 .First();

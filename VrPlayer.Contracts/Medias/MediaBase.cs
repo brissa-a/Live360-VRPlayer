@@ -30,6 +30,7 @@ namespace VrPlayer.Contracts.Medias
             {
                 _isPlaying = value;
                 OnPropertyChanged("IsPlaying");
+                OnPropertyChanged("Media");
             }
         }
 
@@ -45,6 +46,7 @@ namespace VrPlayer.Contracts.Medias
                 _position = value;
                 OnPropertyChanged("Position");
                 OnPropertyChanged("Progress");
+                OnPropertyChanged("Media");
             }
         }
 
@@ -59,6 +61,8 @@ namespace VrPlayer.Contracts.Medias
             {
                 _duration = value;
                 OnPropertyChanged("Duration");
+                OnPropertyChanged("HasDuration");
+                OnPropertyChanged("Media");
             }
         }
 
@@ -76,6 +80,33 @@ namespace VrPlayer.Contracts.Medias
             {
                 return (Position.TotalMilliseconds / Duration.TotalMilliseconds) * 100;
             }
+        }
+
+        protected bool CanPlay(object o)
+        {
+            return HasDuration && !IsPlaying;
+        }
+
+        protected bool CanPause(object o)
+        {
+            return IsPlaying;
+        }
+
+        protected bool CanStop(object o)
+        {
+            return true;
+        }
+
+        protected bool CanSeek(object o)
+        {
+            return HasDuration;
+        }
+
+        protected void Reset()
+        {
+            IsPlaying = false;
+            Position = TimeSpan.Zero;
+            Duration = TimeSpan.Zero; 
         }
 
         public abstract void Load();

@@ -15,7 +15,7 @@
                 </ComboBox.SelectedItem>
             </ComboBox>
         </StackPanel>
-        <Border MinHeight="280" VerticalAlignment="Stretch" BorderBrush="Silver" BorderThickness="1">
+        <Border MinHeight="350" VerticalAlignment="Stretch" BorderBrush="Silver" BorderThickness="1">
             <ContentControl>
                 <ContentControl.Content>
                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.State.TrackerPlugin.Panel" />

@@ -55,6 +55,7 @@
     <Compile Include="Converters\InvertBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\QuaternionToCoordConverter.cs" />
     <Compile Include="Converters\ThicknessMultiConverter.cs" />
+    <Compile Include="DiscHelper.cs" />
     <Compile Include="FileFilterHelper.cs" />
     <Compile Include="FullScreenWindow.cs" />
     <Compile Include="Logger.cs" />

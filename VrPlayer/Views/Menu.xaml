@@ -37,17 +37,17 @@
                     <Image Source="/Medias/Nuvola/16x16/fileopen.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open _Disc..." Command="{Binding Path=State.MediaPlugin.Content.OpenDiscCommand}">
-                <MenuItem.Icon>
-                    <Image Source="/Medias/Nuvola/16x16/cd.png" />
-                </MenuItem.Icon>
-            </MenuItem>
             <MenuItem Header="Open _Stream..." Command="{Binding Path=State.MediaPlugin.Content.OpenStreamCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/browser.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open _Capture device..." Command="{Binding Path=State.MediaPlugin.Content.OpenDeviceCommand}">
+            <MenuItem Header="Open _Disc..." Command="{Binding Path=State.MediaPlugin.Content.OpenDiscCommand}" IsEnabled="False">
+                <MenuItem.Icon>
+                    <Image Source="/Medias/Nuvola/16x16/cd.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Open _Capture device..." Command="{Binding Path=State.MediaPlugin.Content.OpenDeviceCommand}" IsEnabled="False">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/kcmpci.png" />
                 </MenuItem.Icon>
