@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Windows.Threading;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
@@ -165,6 +167,31 @@ namespace VrPlayer.Models.State
                 .Where(s => s.GetType().FullName.Contains(config.DefaultStabilizer))
                 .DefaultIfEmpty(pluginManager.Stabilizers.FirstOrDefault())
                 .First();
+
+            //Todo: Use binding instead of a timer
+            var timer = new DispatcherTimer(DispatcherPriority.Send);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
+            timer.Tick += TimerOnTick;
+            timer.Start();
+        }
+
+        private void TimerOnTick(object sender, EventArgs eventArgs)
+        {
+            if (MediaPlugin == null || MediaPlugin.Content == null)
+                return;
+            
+            if (StabilizerPlugin != null && StabilizerPlugin.Content != null && 
+                StabilizerPlugin.Content.GetFramesCount() > 0)
+            {
+                var frame = (int) Math.Round(StabilizerPlugin.Content.GetFramesCount()*MediaPlugin.Content.Progress/100);
+                StabilizerPlugin.Content.UpdateCurrentFrame(frame);
+            }
+
+            if (TrackerPlugin != null && TrackerPlugin.Content != null)
+            {
+                MediaPlugin.Content.AudioPosition = TrackerPlugin.Content.Position;// +StabilizerPlugin.Content.Translation;
+                MediaPlugin.Content.AudioRotation = TrackerPlugin.Content.Rotation;// *StabilizerPlugin.Content.Rotation;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Media3D;
 using VrPlayer.Helpers.Mvvm;
 
 namespace VrPlayer.Contracts.Medias
@@ -111,5 +112,8 @@ namespace VrPlayer.Contracts.Medias
 
         public abstract void Load();
         public abstract void Unload();
+
+        public Vector3D AudioPosition { get; set; }
+        public Quaternion AudioRotation { get; set; }
     }
 }

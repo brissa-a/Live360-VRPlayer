@@ -37,33 +37,10 @@ namespace VrPlayer.ViewModels
             //Commands
             _toggleNavigationCommand = new RelayCommand(ToggleNavigation);
             
-            /*
-            var timer = new DispatcherTimer(DispatcherPriority.Input);
-            timer.Interval = new TimeSpan(0, 0, 0, 1);
-            timer.Tick += timer_Tick;
-            timer.Start();
-            */
             State.PropertyChanged += State_PropertyChanged;
             State.StereoOutput = State.StereoOutput;//Force refresh
         }
-        /*
-        void timer_Tick(object sender, EventArgs e)
-        {
-            if (_state.TrackerPlugin == null || _state.TrackerPlugin.Content == null)
-                return;
 
-            //Todo: Extract.. This is not view model responsability
-            if (_state.MediaPlayer is MediaGraphElement)
-            {
-                var audioEngine = ((MediaGraphElement)_state.MediaPlayer).MediaGraphPlayer.AudioEngine;
-                if (audioEngine != null)
-                {
-                    audioEngine.Position = _state.TrackerPlugin.Content.Position;
-                    audioEngine.Rotation = _state.TrackerPlugin.Content.Rotation;
-                }
-            }
-        }
-        */
         #region Logic
 
         private void ToggleNavigation(object o)

@@ -84,7 +84,7 @@ namespace VrPlayer.Stabilizers.Deshaker
             var data = DeshakerData.FirstOrDefault(d => d.FrameNumber == frame);
             if (data == null) return;
 
-            Translation = new Vector3D(-data.PanX * TranslationFactor, -data.PanY * TranslationFactor, -data.Zoom * ZoomFactor);
+            Translation = new Vector3D(-data.PanX * TranslationFactor, -data.PanY * TranslationFactor, -data.Zoom * ZoomFactor) / 10000;
             Rotation = QuaternionHelper.EulerAnglesInDegToQuaternion(0, 0, data.Rotation * RotationFactor);
         }
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.VisualBasic;
@@ -59,7 +57,7 @@ namespace VrPlayer.Medias.WpfMediaKit
         {
             Reset();
             _timer = new DispatcherTimer(DispatcherPriority.Send);
-            _timer.Interval = new TimeSpan(0, 0, 0, 1, 125);
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 125);
             _timer.Tick += timer_Tick;
             _timer.Start();
         }
@@ -95,8 +93,23 @@ namespace VrPlayer.Medias.WpfMediaKit
         void timer_Tick(object sender, EventArgs e)
         {
             if (_player == null) return;
-            if (_player is MediaSeekingElement)
-                Position = TimeSpan.FromTicks(((MediaSeekingElement) _player).MediaPosition);
+            UpdateMediaPosition();
+            UpdatePositionalAudio();
+        }
+
+        private void UpdateMediaPosition()
+        {
+            if (!(_player is MediaSeekingElement)) return;
+            Position = TimeSpan.FromTicks(((MediaSeekingElement)_player).MediaPosition);
+        }
+
+        private void UpdatePositionalAudio()
+        {
+            if (!(_player is MediaGraphElement)) return;
+            var audioEngine = ((MediaGraphElement)_player).MediaGraphPlayer.AudioEngine;
+            if (audioEngine == null) return;
+            audioEngine.Position = AudioPosition;
+            audioEngine.Rotation = AudioRotation;
         }
 
         #region Commands

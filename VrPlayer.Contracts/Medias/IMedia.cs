@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Media3D;
 
 namespace VrPlayer.Contracts.Medias
 {
@@ -24,5 +25,9 @@ namespace VrPlayer.Contracts.Medias
         bool IsPlaying { get; set; }
         bool HasDuration { get; }//Todo:Remove and use duration only
         double Progress { get; }//Todo: Remove and use position on duration
+
+        //Todo: Extract to audio plugin
+        Vector3D AudioPosition { get; set; }
+        Quaternion AudioRotation { get; set; }
     }
 }
