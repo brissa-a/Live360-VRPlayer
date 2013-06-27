@@ -51,23 +51,22 @@ namespace VrPlayer.Medias.WpfMediaKit
             StopCommand = new RelayCommand(Stop, CanStop);
             SeekCommand = new RelayCommand(Seek, CanSeek);
             LoopCommand = new RelayCommand(Loop);
+
+            _timer = new DispatcherTimer(DispatcherPriority.Send);
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 125);
+            _timer.Tick += timer_Tick;
         }
 
         public override void Load()
         {
             Reset();
-            _timer = new DispatcherTimer(DispatcherPriority.Send);
-            _timer.Interval = new TimeSpan(0, 0, 0, 0, 125);
-            _timer.Tick += timer_Tick;
             _timer.Start();
         }
 
         public override void Unload()
         {
             Reset();
-            if (_timer != null)
-                _timer.Stop();
-            _timer = null;
+            _timer.Stop();
             if (_player != null)
                 _player.Stop();
             _player = null;

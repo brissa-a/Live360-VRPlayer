@@ -2,7 +2,7 @@
 
 namespace VrPlayer.Contracts.Projections
 {
-    public interface IProjection
+    public interface IProjection: ILoadable
     {
         MeshGeometry3D Geometry { get; }
         Vector3D CameraLeftPosition { get; }

@@ -598,12 +598,6 @@
         "Entry"
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
-        "OwnerKey" = "8:_88FC27DBD5D44B2FA6DDF4543CCEDF29"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
         "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -671,6 +665,12 @@
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
         "OwnerKey" = "8:_9046C0A9E08C40CA99D9CF7E62023D7A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
+        "OwnerKey" = "8:_88FC27DBD5D44B2FA6DDF4543CCEDF29"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -826,12 +826,6 @@
         "Entry"
         {
         "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
-        "OwnerKey" = "8:_88FC27DBD5D44B2FA6DDF4543CCEDF29"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -940,6 +934,12 @@
         "Entry"
         {
         "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_88FC27DBD5D44B2FA6DDF4543CCEDF29"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "OwnerKey" = "8:_6BF8135C92A748B6AD7A4FD49B0C159D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1019,12 +1019,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_88FC27DBD5D44B2FA6DDF4543CCEDF29"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1193,6 +1187,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BEE91ED8ADBD4FE7BA84512862FC26E2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_88FC27DBD5D44B2FA6DDF4543CCEDF29"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4517,7 +4517,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{25150D78-A2A1-4729-956C-9B0CE7081B27}"
+        "PackageCode" = "8:{E1222266-D33B-4C5E-913F-54C477F1D248}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

@@ -30,11 +30,7 @@ namespace VrPlayer.Trackers.TrackIrTracker
 
         public TrackIrTracker()
         {
-            IsEnabled = false;
             _timer = new DispatcherTimer(DispatcherPriority.Send);
-            _timer.Interval = new TimeSpan(0, 0, 0, 1);
-            _timer.Tick += init_timer_Tick;
-            _timer.Start();
         }
 
         void init_timer_Tick(object sender, EventArgs e)
@@ -93,15 +89,38 @@ namespace VrPlayer.Trackers.TrackIrTracker
 
         public override void Calibrate()
         {
-            var result = TIR_ReCenter();
-            ThrowErrorOnResult(result, "Error while re-centering Track IR");
-            base.Calibrate();
+            try
+            {
+                var result = TIR_ReCenter();
+                ThrowErrorOnResult(result, "Error while re-centering Track IR");
+                base.Calibrate();
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(exc.Message, exc);
+            }
         }
 
-        public override void Dispose()
+        public override void Load()
         {
-            var result = TIR_Exit();
-            ThrowErrorOnResult(result, "Error while shuting down Track IR");
+            IsEnabled = false;
+            _timer.Interval = new TimeSpan(0, 0, 0, 1);
+            _timer.Tick += init_timer_Tick;
+            _timer.Start();
+        }
+
+        public override void Unload()
+        {
+            _timer.Stop();
+            try
+            {
+                var result = TIR_Exit();
+                ThrowErrorOnResult(result, "Error while shuting down Track IR");
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(exc.Message, exc);
+            }
         }
 
         private static void ThrowErrorOnResult(int result, string message)

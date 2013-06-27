@@ -14,41 +14,51 @@ namespace VrPlayer.Trackers.PsMoveTracker
     {
         public PsMoveTracker()
         {
+        }
+
+        public override void Load()
+        {
             try
             {
                 IsEnabled = true;
-                PositionScaleFactor = 0.01;
-                Init();
+                MoveWrapper.init();
+                var moveCount = MoveWrapper.getMovesCount();
+                if (moveCount <= 0)
+                {
+                    IsEnabled = false;
+                    return;
+                }
+
+                MoveWrapper.setRumble(0, 255);
+                Thread.Sleep(40);
+                MoveWrapper.setRumble(0, 0);
+
+                MoveWrapper.subscribeMoveUpdate(
+                    MoveUpdateCallback,
+                    MoveKeyDownCallback,
+                    MoveKeyUpCallback,
+                    NavUpdateCallback,
+                    NavKeyDownCallback,
+                    NavKeyUpCallback
+                    );
             }
             catch (Exception exc)
             {
                 Logger.Instance.Error(exc.Message, exc);
                 IsEnabled = false;
-            }  
+            }
         }
 
-        private void Init()
+        public override void Unload()
         {
-            MoveWrapper.init();
-            var moveCount = MoveWrapper.getMovesCount();
-            if (moveCount <= 0)
+            try
             {
-                IsEnabled = false; 
-                return;
+                MoveWrapper.unsubscribeMove();
             }
-                
-            MoveWrapper.setRumble(0, 255);
-            Thread.Sleep(40);
-            MoveWrapper.setRumble(0, 0);
-
-            MoveWrapper.subscribeMoveUpdate(
-                MoveUpdateCallback,
-                MoveKeyDownCallback,
-                MoveKeyUpCallback,
-                NavUpdateCallback,
-                NavKeyDownCallback,
-                NavKeyUpCallback
-                );
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(exc.Message, exc);
+            }
         }
 
         void MoveUpdateCallback(int id, MoveWrapper.Vector3 pos, MoveWrapper.Quaternion rot, int trigger)
@@ -82,18 +92,6 @@ namespace VrPlayer.Trackers.PsMoveTracker
 
     	void NavKeyDownCallback(int id, int keyCode)
         {
-        }
-
-        public override void Dispose()
-        {
-            try
-            {
-                MoveWrapper.unsubscribeMove();
-            }
-            catch(Exception exc)
-            {
-                Logger.Instance.Error(exc.Message, exc);
-            }
         }
     }
 }

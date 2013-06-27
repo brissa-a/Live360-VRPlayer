@@ -16,6 +16,7 @@ namespace VrPlayer.Trackers.RazerHydraTracker
         private const int SIXENSE_BUTTON_START = 1;
 
         private readonly RazerHydraWrapper _hydra = new RazerHydraWrapper();
+        private DispatcherTimer _timer;
 
         public static readonly DependencyProperty FilterEnabledProperty =
             DependencyProperty.Register("FilterEnabledFilterEnabled", typeof(bool),
@@ -28,10 +29,16 @@ namespace VrPlayer.Trackers.RazerHydraTracker
 
         public RazerHydraTracker()
         {
+            _timer = new DispatcherTimer(DispatcherPriority.Input);
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
+            _timer.Tick += timer_Tick;
+        }
+
+        public override sealed void Load()
+        {
             try
             {
                 IsEnabled = true;
-                PositionScaleFactor = 0.002;
 
                 var result = _hydra.Init();
                 ThrowErrorOnResult(result, "Error while initializing the Razer Hydra");
@@ -39,17 +46,27 @@ namespace VrPlayer.Trackers.RazerHydraTracker
                 var filter = FilterEnabled ? 1 : 0;
                 result = _hydra.SetFilterEnabled(filter);
                 ThrowErrorOnResult(result, "Error while settings the Razer Hydra filter");
-
-                var timer = new DispatcherTimer(DispatcherPriority.Input);
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
-                timer.Tick += timer_Tick;
-                timer.Start();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Logger.Instance.Error(exc.Message, exc);
                 IsEnabled = false;
-            }  
+            }
+            _timer.Start();
+        }
+
+        public override sealed void Unload()
+        {
+            _timer.Stop();
+            try
+            {
+                var result = _hydra.Exit();
+                ThrowErrorOnResult(result, "Error shutting down the Razer Hydra");
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(exc.Message, exc);
+            }
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -76,19 +93,6 @@ namespace VrPlayer.Trackers.RazerHydraTracker
                 }
 
                 UpdatePositionAndRotation();
-            }
-            catch(Exception exc)
-            {
-                Logger.Instance.Error(exc.Message, exc);
-            }
-        }
-
-        public override void Dispose()
-        {
-            try
-            {
-                var result = _hydra.Exit();
-                ThrowErrorOnResult(result, "Error shutting down the Razer Hydra");
             }
             catch(Exception exc)
             {

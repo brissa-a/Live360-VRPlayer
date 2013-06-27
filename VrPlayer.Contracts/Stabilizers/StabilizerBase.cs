@@ -34,6 +34,9 @@ namespace VrPlayer.Contracts.Stabilizers
             }
         }
 
+        public void Load() { }
+        public void Unload() { }
+
         public abstract int GetFramesCount();
         public abstract void UpdateCurrentFrame(int frame);
     }

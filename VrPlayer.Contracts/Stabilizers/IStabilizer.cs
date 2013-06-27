@@ -2,7 +2,7 @@
 
 namespace VrPlayer.Contracts.Stabilizers
 {
-    public interface IStabilizer
+    public interface IStabilizer: ILoadable
     {
         Vector3D Translation { get; set; }
         Quaternion Rotation { get; set; }

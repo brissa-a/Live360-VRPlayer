@@ -70,6 +70,9 @@ namespace VrPlayer.Contracts.Projections
             get { return _cameraRightPosition; }
         }
 
+        public void Load() { }
+        public void Unload() { }
+
         public abstract Point3DCollection Positions { get; }
         public abstract Int32Collection TriangleIndices { get; }
         public abstract PointCollection MonoTextureCoordinates { get; }

@@ -103,9 +103,13 @@ namespace VrPlayer.Trackers.MouseTracker
             }
         }
 
-        public override void Dispose()
+        public override void Load()
         {
-            //Todo: Remove events from main window
+            
+        }
+
+        public override void Unload()
+        {
         }
     }
 }

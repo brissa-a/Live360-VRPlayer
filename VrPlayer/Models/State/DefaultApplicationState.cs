@@ -44,7 +44,10 @@ namespace VrPlayer.Models.State
             }
             set
             {
+                if (_effectPlugin != null)
+                    _effectPlugin.Unload();
                 _effectPlugin = value;
+                _effectPlugin.Load();
                 OnPropertyChanged("EffectPlugin");
             }
         }
@@ -58,7 +61,10 @@ namespace VrPlayer.Models.State
             }
             set
             {
+                if (_projectionPlugin != null)
+                    _projectionPlugin.Unload();
                 _projectionPlugin = value;
+                _projectionPlugin.Load();
                 OnPropertyChanged("ProjectionPlugin");
             }
         }
@@ -72,7 +78,11 @@ namespace VrPlayer.Models.State
             }
             set
             {
+                if (_trackerPlugin != null)
+                    _trackerPlugin.Unload();
                 _trackerPlugin = value;
+                if(_trackerPlugin != null)
+                    _trackerPlugin.Load();
                 OnPropertyChanged("TrackerPlugin");
             }
         }
@@ -86,7 +96,10 @@ namespace VrPlayer.Models.State
             }
             set
             {
+                if (_distortionPlugin != null)
+                    _distortionPlugin.Unload();
                 _distortionPlugin = value;
+                _distortionPlugin.Load();
                 OnPropertyChanged("DistortionPlugin");
             }
         }
@@ -100,7 +113,10 @@ namespace VrPlayer.Models.State
             }
             set
             {
+                if (_stabilizerPlugin != null)
+                    _stabilizerPlugin.Unload();
                 _stabilizerPlugin = value;
+                _stabilizerPlugin.Load();
                 OnPropertyChanged("StabilizerPlugin");
             }
         }

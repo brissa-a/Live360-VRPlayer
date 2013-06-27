@@ -12,8 +12,9 @@ namespace VrPlayer.Trackers.VrpnTracker
     [Export(typeof(ITracker))]
     public class VrpnTracker : TrackerBase, ITracker
     {
+        private readonly DispatcherTimer _timer;
         private TrackerRemote _tracker;
-        private readonly ButtonRemote _button;
+        private ButtonRemote _button;
 
         private string _trackerAddress;
         public string TrackerAddress
@@ -48,29 +49,9 @@ namespace VrPlayer.Trackers.VrpnTracker
             _buttonAddress = buttonAddress;
             _trackerAddress = trackerAddress;
 
-            try
-            {
-                IsEnabled = true;
-                PositionScaleFactor = 0.001;
-
-                _tracker = new TrackerRemote(_trackerAddress);
-                _tracker.PositionChanged += PositionChanged;
-                _tracker.MuteWarnings = true;
-
-                _button = new ButtonRemote(_buttonAddress);
-                _button.ButtonChanged += ButtonChanged;
-                _button.MuteWarnings = true;
-                
-                var timer = new DispatcherTimer(DispatcherPriority.Send);
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
-                timer.Tick += timer_Tick;
-                timer.Start();
-            }
-            catch (Exception exc)
-            {
-                Logger.Instance.Error(exc.Message, exc);
-                IsEnabled = false;
-            }
+            _timer = new DispatcherTimer(DispatcherPriority.Send);
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 15);
+            _timer.Tick += timer_Tick;
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -119,9 +100,34 @@ namespace VrPlayer.Trackers.VrpnTracker
                 Calibrate();
         }
 
-        public override void Dispose()
+        public override void Load()
         {
-            _tracker = null;
+            try
+            {
+                IsEnabled = true;
+                PositionScaleFactor = 0.001;
+
+                _tracker = new TrackerRemote(_trackerAddress);
+                _tracker.PositionChanged += PositionChanged;
+                _tracker.MuteWarnings = true;
+
+                _button = new ButtonRemote(_buttonAddress);
+                _button.ButtonChanged += ButtonChanged;
+                _button.MuteWarnings = true;
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(exc.Message, exc);
+                IsEnabled = false;
+            }
+            _timer.Start();
+        }
+
+        public override void Unload()
+        {
+            _timer.Stop();
+            _tracker.Dispose();
+            _button.Dispose();
         }
     }
 }

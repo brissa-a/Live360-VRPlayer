@@ -234,7 +234,7 @@
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="{x:Type MenuItem}">
                         <Setter Property="Header" Value="{Binding Path=Name}" />
-                        <Setter Property="IsEnabled" Value="{Binding Path=Content.IsEnabled}" />
+                        <!--Setter Property="IsEnabled" Value="{Binding Path=Content.IsEnabled}" /-->
                         <Setter Property="IsChecked">
                             <Setter.Value>
                                 <MultiBinding Converter="{StaticResource CompareAllParameters}">

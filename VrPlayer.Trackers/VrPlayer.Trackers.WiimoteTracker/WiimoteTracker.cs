@@ -16,8 +16,12 @@ namespace VrPlayer.Trackers.WiimoteTracker
 
         public WiimoteTracker()
         {
+        }
+
+        public override void Load()
+        {
             IsEnabled = true;
-                
+
             try
             {
                 _wiimote = new Wiimote();
@@ -32,19 +36,33 @@ namespace VrPlayer.Trackers.WiimoteTracker
 
                 RawPosition = new Vector3D();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Logger.Instance.Error(exc.Message, exc);
                 try
                 {
                     _wiimote.SetLEDs(false, false, false, false);
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
                     Logger.Instance.Error(exception.Message, exception);
                 }
                 IsEnabled = false;
             }
+        }
+
+        public override void Unload()
+        {
+            try
+            {
+                _wiimote.SetLEDs(false, false, false, false);
+                _wiimote.Disconnect();
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(exc.Message, exc);
+            }
+            _wiimote = null;
         }
 
         void wiimote_WiimoteChanged(object sender, WiimoteChangedEventArgs e)
@@ -60,20 +78,6 @@ namespace VrPlayer.Trackers.WiimoteTracker
             }
 
             Dispatcher.Invoke((Action)(UpdatePositionAndRotation));
-        }
-
-        public override void Dispose()
-        {
-            try
-            {
-                _wiimote.SetLEDs(false, false, false, false);
-                _wiimote.Disconnect();
-            }
-            catch(Exception exc)
-            {
-                Logger.Instance.Error(exc.Message, exc);
-            }
-            _wiimote = null;
         }
     }
 }

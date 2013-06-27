@@ -23,17 +23,5 @@ namespace VrPlayer.Medias.VlcDotNet
             Content = media;
             Panel = new VlcDotNetPanel(media);
         }
-
-        public override void Load()
-        {
-            if (Content != null)
-                Content.Load();
-        }
-
-        public override void Unload()
-        {
-            if (Content != null)
-                Content.Unload();
-        }
     }
 }

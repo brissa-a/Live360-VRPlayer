@@ -12,15 +12,17 @@ namespace VrPlayer.Trackers.KinectTracker
     [Export(typeof(ITracker))]
     public class KinectTracker : TrackerBase, ITracker
     {
-        private readonly KinectSensor _kinect;
+        private KinectSensor _kinect;
 
         public KinectTracker()
+        {
+        }
+
+        public override void Load()
         {
             try
             {
                 IsEnabled = true;
-                PositionScaleFactor = 1.5;
-
                 _kinect = KinectSensor.KinectSensors[0];
 
                 var parameters = new TransformSmoothParameters
@@ -45,6 +47,18 @@ namespace VrPlayer.Trackers.KinectTracker
             }
         }
 
+        public override void Unload()
+        {
+            if (_kinect == null) return;
+            if (!_kinect.IsRunning) return;
+            _kinect.Stop();
+            if (_kinect.AudioSource != null)
+            {
+                _kinect.AudioSource.Stop();
+            }
+            _kinect = null;
+        }
+
         void _kinect_AllFramesReady(object sender, AllFramesReadyEventArgs e)
         {
             var skeleton = GetFirstSkeleton(e);
@@ -62,21 +76,6 @@ namespace VrPlayer.Trackers.KinectTracker
             }
 
             Dispatcher.Invoke((Action)(UpdatePositionAndRotation));
-        }
-
-        public override void Dispose()
-        {
-            if (_kinect == null) return;
-            if (!_kinect.IsRunning) return;
-            
-            //stop sensor 
-            _kinect.Stop();
-
-            //stop audio if not null
-            if (_kinect.AudioSource != null)
-            {
-                _kinect.AudioSource.Stop();
-            }
         }
 
         private Skeleton GetFirstSkeleton(AllFramesReadyEventArgs e)

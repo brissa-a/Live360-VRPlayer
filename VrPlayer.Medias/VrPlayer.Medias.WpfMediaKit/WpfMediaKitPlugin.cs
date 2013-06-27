@@ -22,17 +22,5 @@ namespace VrPlayer.Medias.WpfMediaKit
             Content = media;
             Panel = new WpfMediaKitPanel(media);
         }
-
-        public override void Load()
-        {
-            if (Content != null)
-                Content.Load();
-        }
-
-        public override void Unload()
-        {
-            if (Content != null)
-                Content.Unload();
-        }
     }
 }

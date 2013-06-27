@@ -2,7 +2,9 @@
 
 namespace VrPlayer.Contracts.Distortions
 {
-    public class DistortionBase: ShaderEffect
+    public class DistortionBase: ShaderEffect, ILoadable
     {
+        public void Load() { }
+        public void Unload() { }
     }
 }

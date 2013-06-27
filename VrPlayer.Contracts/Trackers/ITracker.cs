@@ -3,7 +3,7 @@ using System.Windows.Media.Media3D;
 
 namespace VrPlayer.Contracts.Trackers
 {
-    public interface ITracker: IDisposable
+    public interface ITracker: ILoadable
     {
         bool IsActive { get; set; }
         bool IsEnabled { get; set; }

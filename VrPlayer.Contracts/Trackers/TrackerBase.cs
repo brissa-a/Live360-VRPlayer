@@ -160,6 +160,13 @@ namespace VrPlayer.Contracts.Trackers
             BasePosition = new Vector3D();
         }
 
-        public abstract void Dispose();
+        public abstract void Load();
+        public abstract void Unload();
+
+        public void Poke()
+        {
+            Load();
+            Unload();
+        }
     }
 }

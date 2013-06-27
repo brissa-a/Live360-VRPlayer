@@ -2,12 +2,22 @@
 
 namespace VrPlayer.Contracts
 {
-    public abstract class PluginBase<T>: IPlugin<T>
+    public abstract class PluginBase<T>: IPlugin<T> where T: ILoadable
     {
         public string Name { get; set; }
         public T Content { get; set; }
         public FrameworkElement Panel { get; set; }
-        public virtual void Load() { } //Todo: Use virtual to force implementation
-        public virtual void Unload() { } //Todo: Use virtual to force implementation
+
+        public void Load()
+        {
+            if (Content != null)
+                Content.Load();
+        }
+
+        public void Unload()
+        {
+            if (Content != null)
+                Content.Unload();
+        }
     }
 }
