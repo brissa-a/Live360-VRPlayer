@@ -13,6 +13,7 @@ namespace VrPlayer.Contracts.Medias
         ICommand OpenDiscCommand { get; }
         ICommand OpenStreamCommand { get; }
         ICommand OpenDeviceCommand { get; }
+        ICommand OpenProcessCommand { get; }
 
         ICommand PlayCommand { get; }
         ICommand PauseCommand { get; }

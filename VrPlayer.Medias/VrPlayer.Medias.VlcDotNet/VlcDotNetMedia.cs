@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.VisualBasic;
-using Microsoft.Win32;
 using Vlc.DotNet.Core;
 using Vlc.DotNet.Core.Interops.Signatures.LibVlc.MediaListPlayer;
 using Vlc.DotNet.Core.Medias;
@@ -74,7 +73,8 @@ namespace VrPlayer.Medias.VlcDotNet
             OpenFileCommand = new RelayCommand(OpenFile);
             OpenDiscCommand = new RelayCommand(OpenDisc);
             OpenStreamCommand = new RelayCommand(OpenStream);
-            OpenDeviceCommand = new RelayCommand(OpenDevice);
+            OpenDeviceCommand = new RelayCommand(o => { }, o => false);
+            OpenProcessCommand = new RelayCommand(o => { }, o => false); 
             PlayCommand = new RelayCommand(Play, CanPlay);
             PauseCommand = new RelayCommand(Pause, CanPause);
             StopCommand = new RelayCommand(Stop, CanStop);
@@ -126,18 +126,17 @@ namespace VrPlayer.Medias.VlcDotNet
 
         private void OpenFile(object o)
         {
-            var openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = FileFilterHelper.GetFilter();
-            if (!openFileDialog.ShowDialog().Value) return;
+            var path = o.ToString();
+            if (string.IsNullOrEmpty(path)) return;
             try
             {
-                _player.Media = new PathMedia(openFileDialog.FileName);
+                _player.Media = new PathMedia(o.ToString());
                 _player.Play();
                 IsPlaying = true;
             }
             catch (Exception exc)
             {
-                var message = String.Format("Unable to load file '{0}'.", openFileDialog.FileName);
+                var message = String.Format("Unable to load file '{0}'.", path);
                 Logger.Instance.Warn(message, exc);
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -146,9 +145,11 @@ namespace VrPlayer.Medias.VlcDotNet
 
         private void OpenDisc(object o)
         {
+            if (o == null) return;
+            var drive = (DriveInfo)o;
             try
             {
-                _player.Media = new LocationMedia(string.Format("cdda:///{0}", o));
+                _player.Media = new LocationMedia(string.Format("cdda:///{0}", drive.Name));
                 _player.Play();
                 IsPlaying = true;
             }
@@ -163,37 +164,21 @@ namespace VrPlayer.Medias.VlcDotNet
 
         private void OpenStream(object o)
         {
-            var input = Interaction.InputBox(
-            "Enter the stream URL" + Environment.NewLine + 
-            Environment.NewLine +
-            "Examples:" + Environment.NewLine +
-            "http://www.example.com/stream.avi" + Environment.NewLine +
-            "rtp://@:1234" + Environment.NewLine +
-            "mms://mms.examples.com/stream.asx" + Environment.NewLine +
-            "rtsp://server.example.org:8080/test.sdp" + Environment.NewLine +
-            "http://www.youtube.com/watch?v=gg64x"+ Environment.NewLine, 
-            "Open Stream", 
-            "http://");
-            if (string.IsNullOrEmpty(input))
-                return;
+            var url = o.ToString();
+            if (string.IsNullOrEmpty(url)) return;
             try
             {
-                _player.Media = new LocationMedia(input);
+                _player.Media = new LocationMedia(url);
                 _player.Play();
                 IsPlaying = true;
             }
             catch (Exception exc)
             {
-                var message = String.Format("Unable to load stream at '{0}'.", input);
+                var message = String.Format("Unable to load stream at '{0}'.", url);
                 Logger.Instance.Warn(message, exc);
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             OnPropertyChanged("Media");
-        }
-
-        private void OpenDevice(object o)
-        {
-            throw new NotImplementedException();
         }
 
         private void Play(object o)

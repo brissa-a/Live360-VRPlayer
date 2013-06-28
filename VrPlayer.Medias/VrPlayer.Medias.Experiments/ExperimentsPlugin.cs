@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel.Composition;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Medias;
-using VrPlayer.Helpers;
 
 namespace VrPlayer.Medias.Experiments
 {

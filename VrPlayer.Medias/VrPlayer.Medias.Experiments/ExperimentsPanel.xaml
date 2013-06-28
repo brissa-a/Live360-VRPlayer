@@ -5,24 +5,5 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d">
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="16">
-            <TextBlock Text="External Application" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" MinWidth="200" />
-                    <ColumnDefinition Width="32" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Content="Process:"></Label>
-                <ComboBox Grid.Column="1" Grid.Row="0" DropDownOpened="ComboBox_OnDropDownOpened"
-                    ItemsSource="{Binding Path=Processes}"
-                    SelectedValue="{Binding Path=Process}"
-                    DisplayMemberPath="MainWindowTitle"
-                    SelectedValuePath="."/>
-            </Grid>
-        </StackPanel>
     </Grid>
 </UserControl>

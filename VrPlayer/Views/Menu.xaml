@@ -32,24 +32,29 @@
     </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
-            <MenuItem Header="_Open File..." Command="{Binding Path=State.MediaPlugin.Content.OpenFileCommand}">
+            <MenuItem Header="_Open File..." Command="{Binding Path=OpenFileCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/fileopen.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open _Stream..." Command="{Binding Path=State.MediaPlugin.Content.OpenStreamCommand}">
+            <MenuItem Header="Open _Stream..." Command="{Binding Path=OpenStreamCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/browser.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open _Disc..." Command="{Binding Path=State.MediaPlugin.Content.OpenDiscCommand}" IsEnabled="False">
+            <MenuItem Header="Open _Disc..." Command="{Binding Path=OpenDiscCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/cd.png" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Open _Capture device..." Command="{Binding Path=State.MediaPlugin.Content.OpenDeviceCommand}" IsEnabled="False">
+            <MenuItem Header="Open _Capture device..." Command="{Binding Path=OpenDeviceCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/kcmpci.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Open _Process..." Command="{Binding Path=OpenProcessCommand}">
+                <MenuItem.Icon>
+                    <Image Source="/Medias/Nuvola/16x16/window_list.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />

@@ -85,6 +85,12 @@
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="Models\Plugins\DynamicPluginManager.cs" />
     <Compile Include="Models\State\LayoutMode.cs" />
+    <Compile Include="Views\Dialogs\DiscInputDialog.xaml.cs">
+      <DependentUpon>DiscInputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\ProcessInputDialog.xaml.cs">
+      <DependentUpon>ProcessInputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\MediaSettings.xaml.cs">
       <DependentUpon>MediaSettings.xaml</DependentUpon>
     </Compile>
@@ -94,8 +100,8 @@
     <Compile Include="Models\Metadata\MetadataResult.cs" />
     <Compile Include="Models\Settings\SettingsManager.cs" />
     <Compile Include="Models\Metadata\MetadataParser.cs" />
-    <Compile Include="Views\Dialogs\UrlInputDialog.xaml.cs">
-      <DependentUpon>UrlInputDialog.xaml</DependentUpon>
+    <Compile Include="Views\Dialogs\StreamInputDialog.xaml.cs">
+      <DependentUpon>StreamInputDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Config\AppSettingsApplicationConfig.cs" />
     <Compile Include="Models\Plugins\IPluginManager.cs" />
@@ -137,6 +143,14 @@
     <Compile Include="Views\ViewPorts\MainViewPort.xaml.cs">
       <DependentUpon>MainViewPort.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Dialogs\DiscInputDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\ProcessInputDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Settings\MediaSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,7 +159,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Dialogs\UrlInputDialog.xaml">
+    <Page Include="Views\Dialogs\StreamInputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,6 +260,7 @@
     <Resource Include="Medias\Nuvola\16x16\cd.png" />
     <Resource Include="Medias\Nuvola\16x16\kcmpci.png" />
     <Resource Include="Medias\Nuvola\48x48\multimedia.png" />
+    <Resource Include="Medias\Nuvola\16x16\window_list.png" />
     <Content Include="Samples\1-Grid.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

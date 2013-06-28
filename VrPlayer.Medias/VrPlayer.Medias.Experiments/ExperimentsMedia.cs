@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using VrPlayer.Contracts.Medias;
+using VrPlayer.Helpers.Mvvm;
 using Brush = System.Windows.Media.Brush;
 using Image = System.Windows.Controls.Image;
 
@@ -37,15 +37,6 @@ namespace VrPlayer.Medias.Experiments
             set { SetValue(ProcessProperty, value); }
         }
 
-        public IEnumerable<Process> Processes
-        {
-            get
-            {
-                var processlist = Process.GetProcesses();
-                return processlist.Where(process => !String.IsNullOrEmpty(process.MainWindowTitle)).ToList();
-            }
-        }
-
         public static Brush CreateBrushFromBitmap(Bitmap bmp)
         {
             return new ImageBrush(Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()));
@@ -53,6 +44,14 @@ namespace VrPlayer.Medias.Experiments
 
         public ExperimentsMedia()
         {
+            //Commands
+
+            OpenFileCommand = new RelayCommand(o => { }, o => false);
+            OpenDiscCommand = new RelayCommand(o => { }, o => false);
+            OpenStreamCommand = new RelayCommand(o => { }, o => false);
+            OpenDeviceCommand = new RelayCommand(o => { }, o => false);
+            OpenProcessCommand = new RelayCommand(OpenProcess);
+
             _media = new Image();
             _timer = new DispatcherTimer(DispatcherPriority.Send);
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 125);
@@ -62,25 +61,32 @@ namespace VrPlayer.Medias.Experiments
         private void TimerOnTick(object sender, EventArgs eventArgs)
         {
             if (Process == null || Process.MainWindowHandle == IntPtr.Zero) return;
-
             try
             {
                 _media.Source = WindowsGrabber.PrintWindow(Process.MainWindowHandle).ToImageSource();
             }
             catch (Exception exc)
             {
+                _timer.Stop();
             }
             OnPropertyChanged("Media");
         }
 
         public override void Load()
         {
-            _timer.Start();
         }
 
         public override void Unload()
         {
             _timer.Stop();
+        }
+
+        private void OpenProcess(object o)
+        {
+            if (o == null) return;
+            Process = (Process)o;
+            _timer.Start();
+            OnPropertyChanged("Media");
         }
     }
 

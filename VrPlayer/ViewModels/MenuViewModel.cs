@@ -13,10 +13,10 @@ using VrPlayer.Contracts.Projections;
 using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
-using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Config;
+using VrPlayer.Views.Dialogs;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -51,22 +51,34 @@ namespace VrPlayer.ViewModels
 
 	    #region Commands
 
-        private readonly ICommand _loadCommand;
-        public ICommand LoadCommand
-        {
-            get { return _loadCommand; }
-        }
-        
         private readonly ICommand _openFileCommand;
         public ICommand OpenFileCommand
         {
             get { return _openFileCommand; }
         }
 
-        private readonly ICommand _openUrlCommand;
-        public ICommand OpenUrlCommand
+        private readonly ICommand _openStreamCommand;
+        public ICommand OpenStreamCommand
         {
-            get { return _openUrlCommand; }
+            get { return _openStreamCommand; }
+        }
+
+        private readonly ICommand _openDiscCommand;
+        public ICommand OpenDiscCommand
+        {
+            get { return _openDiscCommand; }
+        }
+
+        private readonly ICommand _openDeviceCommand;
+        public ICommand OpenDeviceCommand
+        {
+            get { return _openDeviceCommand; }
+        }
+
+        private readonly ICommand _openProcessCommand;
+        public ICommand OpenProcessCommand
+        {
+            get { return _openProcessCommand; }
         }        
         
         private readonly ICommand _browseSamplesCommand;
@@ -144,9 +156,11 @@ namespace VrPlayer.ViewModels
             _config = config;
 
             //Commands
-            _loadCommand = new DelegateCommand(Load);
-            _openFileCommand = new DelegateCommand(OpenFile);
-            _openUrlCommand = new DelegateCommand(OpenUrl);
+            _openFileCommand = new DelegateCommand(OpenFile, CanOpenFile);
+            _openStreamCommand = new DelegateCommand(OpenStream, CanOpenStream);
+            _openDiscCommand = new DelegateCommand(OpenDisc, CanOpenDisc);
+            _openDeviceCommand = new DelegateCommand(OpenDevice, CanOpenDevice);
+            _openProcessCommand = new DelegateCommand(OpenProcess, CanOpenProcess);
             _browseSamplesCommand = new DelegateCommand(BrowseSamples);
             _exitCommand = new DelegateCommand(Exit);
             _changeFormatCommand = new DelegateCommand(SetStereoInput);
@@ -164,22 +178,78 @@ namespace VrPlayer.ViewModels
 
         private void OpenFile(object o)
         {
-            //Todo: Extract dialog to UI layer
+            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = FileFilterHelper.GetFilter();
             if (openFileDialog.ShowDialog().Value)
             {
-                Load(openFileDialog.FileName);
+                _state.MediaPlugin.Content.OpenFileCommand.Execute(openFileDialog.FileName);
             }
         }
 
-        private void OpenUrl(object o)
+	    private bool CanOpenFile(object o)
+	    {
+	        if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
+	        return _state.MediaPlugin.Content.OpenFileCommand.CanExecute(o);
+	    }
+
+	    private void OpenStream(object o)
         {
-            var dialog = new UrlInputDialog();
+            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
+            var dialog = new StreamInputDialog();
             if (dialog.ShowDialog() == true)
             {
-                Load(dialog.ResponseText);
+                _state.MediaPlugin.Content.OpenStreamCommand.Execute(dialog.Url);
             }
+        }
+
+        private bool CanOpenStream(object o)
+        {
+            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
+            return _state.MediaPlugin.Content.OpenStreamCommand.CanExecute(o);
+        }
+
+        private void OpenDevice(object o)
+        {
+            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
+        }
+
+        private bool CanOpenDevice(object o)
+        {
+            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
+            return _state.MediaPlugin.Content.OpenDeviceCommand.CanExecute(o);
+        }
+
+        private void OpenDisc(object o)
+        {
+            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
+            var dialog = new DiscInputDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                _state.MediaPlugin.Content.OpenDiscCommand.Execute(dialog.Drive);
+            }
+        }
+
+        private bool CanOpenDisc(object o)
+        {
+            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
+            return _state.MediaPlugin.Content.OpenDiscCommand.CanExecute(o);
+        }
+
+        private void OpenProcess(object o)
+        {
+            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
+            var dialog = new ProcessInputDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                _state.MediaPlugin.Content.OpenProcessCommand.Execute(dialog.Process);
+            }
+        }
+
+        private bool CanOpenProcess(object o)
+        {
+            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
+            return _state.MediaPlugin.Content.OpenProcessCommand.CanExecute(o);
         }
 
 		private void Load(object o)

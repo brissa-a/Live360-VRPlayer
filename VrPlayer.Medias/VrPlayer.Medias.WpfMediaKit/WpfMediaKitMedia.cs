@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.VisualBasic;
@@ -46,6 +47,7 @@ namespace VrPlayer.Medias.WpfMediaKit
             OpenDiscCommand = new RelayCommand(OpenDisc);
             OpenStreamCommand = new RelayCommand(OpenStream);
             OpenDeviceCommand = new RelayCommand(OpenDevice);
+            OpenProcessCommand = new RelayCommand(o => { }, o => false);
             PlayCommand = new RelayCommand(Play, CanPlay);
             PauseCommand = new RelayCommand(Pause, CanPause);
             StopCommand = new RelayCommand(Stop, CanStop);
@@ -115,20 +117,19 @@ namespace VrPlayer.Medias.WpfMediaKit
 
         private void OpenFile(object o)
         {
-            var openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = FileFilterHelper.GetFilter();
-            if (!openFileDialog.ShowDialog().Value) return;
+            var path = o.ToString();
+            if (string.IsNullOrEmpty(path)) return;
             try
             {
                 var player = CreateMediaUriElement();
-                player.Source = new Uri(openFileDialog.FileName, UriKind.Absolute);
+                player.Source = new Uri(path, UriKind.Absolute);
                 player.Play();
                 IsPlaying = true;
                 _player = player;
             }
             catch (Exception exc)
             {
-                var message = String.Format("Unable to load file '{0}'.", openFileDialog.FileName);
+                var message = String.Format("Unable to load file '{0}'.", path);
                 Logger.Instance.Warn(message, exc);
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -137,12 +138,14 @@ namespace VrPlayer.Medias.WpfMediaKit
 
         private void OpenDisc(object o)
         {
+            if (o == null) return;
+            var drive = (DriveInfo)o;
             try
             {
                 var player = new DvdPlayerElement();
                 player.BeginInit();
                 player.PlayOnInsert = true;
-                player.DvdDirectory = new Uri(string.Format(@"{0}\VIDEO_TS", o)).AbsolutePath;
+                player.DvdDirectory = new Uri(string.Format(@"{0}\VIDEO_TS", drive.Name)).AbsolutePath;
                 player.EndInit();
                 _player.Play();
                 IsPlaying = true;
@@ -150,7 +153,7 @@ namespace VrPlayer.Medias.WpfMediaKit
             }
             catch (Exception exc)
             {
-                var message = String.Format("Unable to read disc '{0}'.", o);
+                var message = String.Format("Unable to read disc '{0}'.", drive);
                 Logger.Instance.Warn(message, exc);
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -159,26 +162,19 @@ namespace VrPlayer.Medias.WpfMediaKit
 
         private void OpenStream(object o)
         {
-            var input = Interaction.InputBox(
-                "Enter the stream URL" + Environment.NewLine + 
-                Environment.NewLine +
-                "Examples:" + Environment.NewLine +
-                "http://www.example.com/stream.avi" + Environment.NewLine,
-                "Open Stream", 
-                "http://");
-            if (string.IsNullOrEmpty(input))
-                return;
+            var url = o.ToString();
+            if (string.IsNullOrEmpty(url)) return;
             try
             {
                 var player = CreateMediaUriElement();
-                player.Source = new Uri(input, UriKind.Absolute);
+                player.Source = new Uri(url, UriKind.Absolute);
                 player.Play();
                 IsPlaying = true;
                 _player = player;
             }
             catch (Exception exc)
             {
-                var message = String.Format("Unable to load stream at '{0}'.", input);
+                var message = String.Format("Unable to load stream at '{0}'.", url);
                 Logger.Instance.Warn(message, exc);
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

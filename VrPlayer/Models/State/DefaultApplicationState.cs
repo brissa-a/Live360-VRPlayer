@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Input;
 using System.Windows.Threading;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
