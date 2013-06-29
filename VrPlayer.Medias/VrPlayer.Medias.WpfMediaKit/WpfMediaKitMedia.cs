@@ -2,8 +2,6 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Threading;
-using Microsoft.VisualBasic;
-using Microsoft.Win32;
 using VrPlayer.Contracts.Medias;
 using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;

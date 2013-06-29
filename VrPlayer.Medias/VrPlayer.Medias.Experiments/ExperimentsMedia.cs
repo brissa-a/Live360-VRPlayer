@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -63,7 +61,7 @@ namespace VrPlayer.Medias.Experiments
             if (Process == null || Process.MainWindowHandle == IntPtr.Zero) return;
             try
             {
-                _media.Source = WindowsGrabber.PrintWindow(Process.MainWindowHandle).ToImageSource();
+                _media.Source = WindowsCapture.CaptureWindow(Process.MainWindowHandle).ToImageSource();
             }
             catch (Exception exc)
             {
@@ -106,11 +104,5 @@ namespace VrPlayer.Medias.Experiments
                 NativeMethods.DeleteObject(hbitmap);
             }
         }
-    }
-
-    public static class NativeMethods
-    {
-        [DllImport("gdi32")]
-        public static extern int DeleteObject(IntPtr hObject);
     }
 }
