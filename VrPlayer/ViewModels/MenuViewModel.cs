@@ -17,6 +17,7 @@ using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Config;
 using VrPlayer.Views.Dialogs;
+using VrPlayer.Views.Settings;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -98,7 +99,13 @@ namespace VrPlayer.ViewModels
         {
             get { return _settingsCommand; }
         }
-        
+
+        private readonly ICommand _pluginsCommand;
+        public ICommand PluginsCommand
+        {
+            get { return _pluginsCommand; }
+        }
+
         private readonly ICommand _launchWebBrowserCommand;
         public ICommand LaunchWebBrowserCommand
         {
@@ -170,6 +177,7 @@ namespace VrPlayer.ViewModels
             _changeDistortionCommand = new DelegateCommand(SetDistortion);
             _changeTrackerCommand = new DelegateCommand(SetTracker);
             _settingsCommand = new DelegateCommand(ShowSettings);
+            _pluginsCommand = new DelegateCommand(ShowPlugins);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
             _aboutCommand = new DelegateCommand(ShowAbout);
         }
@@ -367,6 +375,11 @@ namespace VrPlayer.ViewModels
         private void ShowSettings(object o)
         {
             SettingsWindow.ShowSingle();
+        }
+
+        private void ShowPlugins(object o)
+        {
+            PluginsWindow.ShowSingle();
         }
 
         private void ShowAbout(object o)

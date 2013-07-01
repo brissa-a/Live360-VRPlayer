@@ -4,9 +4,9 @@ using System.Windows;
 
 namespace VrPlayer.Views.Settings
 {
-    public partial class SettingsWindow : Window
+    public partial class PluginsWindow : Window
     {
-        public SettingsWindow()
+        public PluginsWindow()
         {
             InitializeComponent();
             try
@@ -20,14 +20,14 @@ namespace VrPlayer.Views.Settings
 
         public static void ShowSingle()
         {
-            var window = Application.Current.Windows.Cast<Window>().SingleOrDefault(w => w.GetType() == typeof(SettingsWindow));
+            var window = Application.Current.Windows.Cast<Window>().SingleOrDefault(w => w.GetType() == typeof(PluginsWindow));
             if (window != null)
             {
                 window.Activate();
             }
             else
             {
-                window = new SettingsWindow();
+                window = new PluginsWindow();
                 window.Show();
             }
         }

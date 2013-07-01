@@ -4,6 +4,7 @@ using System.Windows.Input;
 
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.State;
+using VrPlayer.Views.Settings;
 
 namespace VrPlayer.ViewModels
 {
