@@ -18,14 +18,17 @@ namespace VrPlayer.Contracts.Medias
         ICommand PlayCommand { get; }
         ICommand PauseCommand { get; }
         ICommand StopCommand { get; }
+        ICommand PreviousCommand { get; }
+        ICommand NextCommand { get; }
         ICommand SeekCommand { get; }
         ICommand LoopCommand { get; }
 
         TimeSpan Position { get; set; }
         TimeSpan Duration { get; set; }
         bool IsPlaying { get; set; }
-        bool HasDuration { get; }//Todo:Remove and use duration only
-        double Progress { get; }//Todo: Remove and use position on duration
+        bool HasDuration { get; }
+        bool HasChapters { get; }
+        double Progress { get; }
 
         //Todo: Extract to audio plugin
         Vector3D AudioPosition { get; set; }

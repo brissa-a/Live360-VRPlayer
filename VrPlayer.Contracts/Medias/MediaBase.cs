@@ -18,6 +18,8 @@ namespace VrPlayer.Contracts.Medias
         public ICommand PlayCommand { get; protected set; }
         public ICommand PauseCommand { get; protected set; }
         public ICommand StopCommand { get; protected set; }
+        public ICommand PreviousCommand { get; protected set; }
+        public ICommand NextCommand { get; protected set; }
         public ICommand SeekCommand { get; protected set; }
         public ICommand LoopCommand { get; protected set; }
         
@@ -73,6 +75,17 @@ namespace VrPlayer.Contracts.Medias
             get
             {
                 return Duration.TotalMilliseconds > 0;
+            }
+        }
+
+        private bool _hasChapters;
+        public bool HasChapters
+        {
+            get { return _hasChapters; }
+            set
+            {
+                _hasChapters = value;
+                OnPropertyChanged("HasChapters");
             }
         }
 

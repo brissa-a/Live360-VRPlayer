@@ -49,6 +49,8 @@ namespace VrPlayer.Medias.WpfMediaKit
             PlayCommand = new RelayCommand(Play, CanPlay);
             PauseCommand = new RelayCommand(Pause, CanPause);
             StopCommand = new RelayCommand(Stop, CanStop);
+            PreviousCommand = new RelayCommand(PreviousChapter);
+            NextCommand = new RelayCommand(NextChapter);
             SeekCommand = new RelayCommand(Seek, CanSeek);
             LoopCommand = new RelayCommand(Loop);
 
@@ -124,6 +126,7 @@ namespace VrPlayer.Medias.WpfMediaKit
                 player.Play();
                 IsPlaying = true;
                 _player = player;
+                HasChapters = false;
             }
             catch (Exception exc)
             {
@@ -143,11 +146,11 @@ namespace VrPlayer.Medias.WpfMediaKit
                 var player = new DvdPlayerElement();
                 player.BeginInit();
                 player.PlayOnInsert = true;
-                player.DvdDirectory = new Uri(string.Format(@"{0}\VIDEO_TS", drive.Name)).AbsolutePath;
+                player.DvdDirectory = new Uri(string.Format(@"{0}VIDEO_TS", drive.Name)).AbsolutePath;
                 player.EndInit();
-                _player.Play();
                 IsPlaying = true;
                 _player = player;
+                HasChapters = true;
             }
             catch (Exception exc)
             {
@@ -169,6 +172,7 @@ namespace VrPlayer.Medias.WpfMediaKit
                 player.Play();
                 IsPlaying = true;
                 _player = player;
+                HasChapters = false;
             }
             catch (Exception exc)
             {
@@ -198,6 +202,7 @@ namespace VrPlayer.Medias.WpfMediaKit
                 player.Play();
                 IsPlaying = true;
                 _player = player;
+                HasChapters = false;
             }
             catch (Exception exc)
             {
@@ -228,6 +233,22 @@ namespace VrPlayer.Medias.WpfMediaKit
             if (!(_player is MediaSeekingElement)) return;
             var player = ((MediaSeekingElement)_player);
             player.MediaPosition = 0;
+            Position = TimeSpan.Zero;
+        }
+
+        private void PreviousChapter(object o)
+        {
+            if (!(_player is DvdPlayerElement)) return;
+            var player = ((DvdPlayerElement)_player);
+            player.PlayPreviousChapter();
+            Position = TimeSpan.Zero;
+        }
+
+        private void NextChapter(object o)
+        {
+            if (!(_player is DvdPlayerElement)) return;
+            var player = ((DvdPlayerElement)_player);
+            player.PlayNextChapter();
             Position = TimeSpan.Zero;
         }
 

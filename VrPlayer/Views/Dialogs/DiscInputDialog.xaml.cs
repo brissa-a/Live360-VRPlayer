@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -42,7 +39,7 @@ namespace VrPlayer.Views.Dialogs
             get
             {
                 var drives = DriveInfo.GetDrives();
-                return drives.Where(drive => drive.DriveType == DriveType.Removable).ToList();
+                return drives.Where(drive => drive.DriveType == DriveType.CDRom).ToList();
             }
         }
     }

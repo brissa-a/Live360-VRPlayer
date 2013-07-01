@@ -5,10 +5,7 @@
     <StackPanel Margin="5">
         <StackPanel Orientation="Horizontal" Margin="5">
             <Label Content="Process:" />
-            <ComboBox x:Name="ResponseComboBox" Width="500" 
-                    ItemsSource="{Binding Path=Processes}"
-                    DisplayMemberPath="MainWindowTitle"
-                    SelectedValuePath="."/>
+            <ComboBox x:Name="ResponseComboBox" Width="500" ItemsSource="{Binding Path=Processes}" DisplayMemberPath="MainWindowTitle" SelectedValuePath="." SelectedIndex="0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="OK" Click="OnOkButtonClick" Width="50" Height="25" Margin="5" />

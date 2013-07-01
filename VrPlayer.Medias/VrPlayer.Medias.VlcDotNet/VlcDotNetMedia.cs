@@ -78,6 +78,8 @@ namespace VrPlayer.Medias.VlcDotNet
             PlayCommand = new RelayCommand(Play, CanPlay);
             PauseCommand = new RelayCommand(Pause, CanPause);
             StopCommand = new RelayCommand(Stop, CanStop);
+            PreviousCommand = new RelayCommand(PreviousChapter);
+            NextCommand = new RelayCommand(NextChapter);
             SeekCommand = new RelayCommand(Seek, CanSeek);
             LoopCommand = new RelayCommand(Loop);
             
@@ -133,6 +135,7 @@ namespace VrPlayer.Medias.VlcDotNet
                 _player.Media = new PathMedia(o.ToString());
                 _player.Play();
                 IsPlaying = true;
+                HasChapters = false;
             }
             catch (Exception exc)
             {
@@ -149,9 +152,10 @@ namespace VrPlayer.Medias.VlcDotNet
             var drive = (DriveInfo)o;
             try
             {
-                _player.Media = new LocationMedia(string.Format("cdda:///{0}", drive.Name));
+                _player.Media = new LocationMedia(string.Format("dvd:///{0}", drive.Name.Replace("\\","/")));
                 _player.Play();
                 IsPlaying = true;
+                HasChapters = true;
             }
             catch (Exception exc)
             {
@@ -171,6 +175,7 @@ namespace VrPlayer.Medias.VlcDotNet
                 _player.Media = new LocationMedia(url);
                 _player.Play();
                 IsPlaying = true;
+                HasChapters = false;
             }
             catch (Exception exc)
             {
@@ -199,6 +204,18 @@ namespace VrPlayer.Medias.VlcDotNet
             Position = TimeSpan.Zero;
             _player.Stop();
             IsPlaying = false;
+        }
+
+        private void PreviousChapter(object o)
+        {
+            _player.Previous();
+            Position = TimeSpan.Zero;
+        }
+
+        private void NextChapter(object o)
+        {
+            _player.Next();
+            Position = TimeSpan.Zero;
         }
 
         private void Seek(object o)

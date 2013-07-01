@@ -91,6 +91,9 @@
     <Compile Include="Views\Dialogs\ProcessInputDialog.xaml.cs">
       <DependentUpon>ProcessInputDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\ShortcutsSettings.xaml.cs">
+      <DependentUpon>ShortcutsSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\PluginsWindow.xaml.cs">
       <DependentUpon>PluginsWindow.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Dialogs\ProcessInputDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\ShortcutsSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -269,6 +276,9 @@
     <Resource Include="Medias\Nuvola\48x48\multimedia.png" />
     <Resource Include="Medias\Nuvola\16x16\window_list.png" />
     <Resource Include="Medias\Nuvola\16x16\connect_creating.png" />
+    <Resource Include="Medias\Nuvola\48x48\finish.png" />
+    <Resource Include="Medias\Nuvola\48x48\start.png" />
+    <Resource Include="Medias\Nuvola\48x48\input_devices_settings.png" />
     <Content Include="Samples\1-Grid.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
