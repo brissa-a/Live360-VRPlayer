@@ -13,7 +13,7 @@ namespace VrPlayer.Medias.WpfMediaKit
         
         public WpfMediaKitPlugin()
         {
-            Name = "WPF Media Kit";
+            Name = "Direct Show";
             var media = new WpfMediaKitMedia
             {
                 PositionalAudio = bool.Parse(Config.AppSettings.Settings["PositionalAudio"].Value),

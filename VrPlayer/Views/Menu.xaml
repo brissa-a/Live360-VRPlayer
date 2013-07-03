@@ -10,6 +10,7 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <converters:CompareAllParametersConverter x:Key="CompareAllParameters"/>
+        <converters:CanExecuteToVisibilityConverter x:Key="CanExecuteToVisibility"/>
         <converters:PathToFileInfosConverter x:Key="PathToFileInfos"/>
         <converters:NotZeroConverter x:Key="NotZero"/>
         <converters:TranslationConverter x:Key="Translation"/>
@@ -32,32 +33,103 @@
     </UserControl.Resources>
     <Menu>
         <MenuItem Header="_File">
-            <MenuItem Header="_Open File..." Command="{Binding Path=OpenFileCommand}">
+            <!--Open File-->
+            <MenuItem Header="_Open File" ItemsSource="{Binding Path=PluginManager.Medias}" IsEnabled="{Binding Path=CanOpenFile}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/fileopen.png" />
                 </MenuItem.Icon>
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Visibility" Value="{Binding Path=Content.OpenFileCommand, Converter={StaticResource CanExecuteToVisibility}}"/>
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                        <Setter Property="HeaderStringFormat" Value="with {0}..." />
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.OpenFileCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
-            <MenuItem Header="Open _Stream..." Command="{Binding Path=OpenStreamCommand}">
+            <!--Open Stream-->
+            <MenuItem Header="Open _Stream" ItemsSource="{Binding Path=PluginManager.Medias}" IsEnabled="{Binding Path=CanOpenStream}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/browser.png" />
                 </MenuItem.Icon>
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Visibility" Value="{Binding Path=Content.OpenStreamCommand, Converter={StaticResource CanExecuteToVisibility}}"/>
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                        <Setter Property="HeaderStringFormat" Value="with {0}..." />
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.OpenStreamCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
-            <MenuItem Header="Open _Disc..." Command="{Binding Path=OpenDiscCommand}">
+            <!--Open Disc-->
+            <MenuItem Header="Open _Disc" ItemsSource="{Binding Path=PluginManager.Medias}" IsEnabled="{Binding Path=CanOpenDisc}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/cd.png" />
                 </MenuItem.Icon>
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Visibility" Value="{Binding Path=Content.OpenDiscCommand, Converter={StaticResource CanExecuteToVisibility}}"/>
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                        <Setter Property="HeaderStringFormat" Value="with {0}..." />
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.OpenDiscCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
-            <MenuItem Header="Open _Capture device..." Command="{Binding Path=OpenDeviceCommand}">
+            <!--Open Device-->
+            <MenuItem Header="Open _Capture device" ItemsSource="{Binding Path=PluginManager.Medias}" IsEnabled="{Binding Path=CanOpenDevice}" Visibility="Collapsed">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/kcmpci.png" />
                 </MenuItem.Icon>
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Visibility" Value="{Binding Path=Content.OpenDeviceCommand, Converter={StaticResource CanExecuteToVisibility}}"/>
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                        <Setter Property="HeaderStringFormat" Value="with {0}..." />
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.OpenDeviceCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
-            <MenuItem Header="Open _Process..." Command="{Binding Path=OpenProcessCommand}">
+            <!--Open Process-->
+            <MenuItem Header="Open _Process" ItemsSource="{Binding Path=PluginManager.Medias}" IsEnabled="{Binding Path=CanOpenProcess}">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/window_list.png" />
                 </MenuItem.Icon>
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Visibility" Value="{Binding Path=Content.OpenProcessCommand, Converter={StaticResource CanExecuteToVisibility}}"/>
+                        <Setter Property="Header" Value="{Binding Path=Name}" /> 
+                        <Setter Property="HeaderStringFormat" Value="with {0}..." />
+                        <Setter Property="Command">
+                            <Setter.Value>
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.OpenProcessCommand" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CommandParameter" Value="{Binding Path=.}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
             <Separator />
+            <!--Samples-->
             <MenuItem Header="_Samples" ItemsSource="{Binding Path=Config.SamplesFolder, Converter={StaticResource PathToFileInfos}}">
 				<MenuItem.Icon>
 					<Image Source="/Medias/Nuvola/16x16/edu_science.png" />
@@ -67,7 +139,7 @@
                         <Setter Property="Header" Value="{Binding Path=Name}" />
                         <Setter Property="Command">
                             <Setter.Value>
-                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.LoadCommand" />
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Path="DataContext.OpenCommand" />
                             </Setter.Value>
                         </Setter>
                         <Setter Property="CommandParameter" Value="{Binding Path=FullName}" />

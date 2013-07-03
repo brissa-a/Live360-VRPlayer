@@ -9,7 +9,7 @@ namespace VrPlayer.Medias.Experiments
     {
         public ExperimentsPlugin()
         {
-            Name = "Experiments";
+            Name = "Win32";
             var media = new ExperimentsMedia();
             Content = media;
             Panel = new ExperimentsPanel(media);

@@ -60,10 +60,16 @@ namespace VrPlayer.Medias.VlcDotNet
             VlcContext.LibVlcPluginsPath = LibVlcPluginsPath;
 
             //Set the startup options
+            VlcContext.StartupOptions.AddOption("--no-video-title");
+            //VlcContext.StartupOptions.AddOption("--ffmpeg-hw");
+            VlcContext.StartupOptions.AddOption("--ffmpeg-fast");
+
+            //Set debug options
             VlcContext.StartupOptions.IgnoreConfig = true;
             VlcContext.StartupOptions.LogOptions.LogInFile = DebugMode;
             VlcContext.StartupOptions.LogOptions.ShowLoggerConsole = DebugMode;
             VlcContext.StartupOptions.LogOptions.Verbosity = DebugMode ? VlcLogVerbosities.Debug : VlcLogVerbosities.None;
+            
             VlcContext.Initialize();
         }
 
@@ -150,6 +156,7 @@ namespace VrPlayer.Medias.VlcDotNet
         {
             if (o == null) return;
             var drive = (DriveInfo)o;
+            //Todo: detect disc type (cd, dvd, bluray...) See: http://stackoverflow.com/questions/11420365/detecting-if-disc-is-in-dvd-drive
             try
             {
                 _player.Media = new LocationMedia(string.Format("dvd:///{0}", drive.Name.Replace("\\","/")));

@@ -9,10 +9,12 @@ using System.Windows;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Contracts.Effects;
+using VrPlayer.Contracts.Medias;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
+using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Config;
@@ -50,7 +52,52 @@ namespace VrPlayer.ViewModels
             get { return Screen.AllScreens.Count() >= 2; }
 	    }
 
+	    public bool CanOpenFile
+	    {
+	        get
+	        {
+	            return _pluginManager.Medias.Any(media => media.Content.OpenFileCommand.CanExecute(null));
+	        }
+	    }
+        
+        public bool CanOpenStream
+        {
+            get
+            {
+                return _pluginManager.Medias.Any(media => media.Content.OpenStreamCommand.CanExecute(null));
+            }
+        }
+
+        public bool CanOpenDisc
+        {
+            get
+            {
+                return _pluginManager.Medias.Any(media => media.Content.OpenDiscCommand.CanExecute(null));
+            }
+        }
+
+        public bool CanOpenDevice
+        {
+            get
+            {
+                return _pluginManager.Medias.Any(media => media.Content.OpenDeviceCommand.CanExecute(null));
+            }
+        }
+
+        public bool CanOpenProcess
+        {
+            get
+            {
+                return _pluginManager.Medias.Any(media => media.Content.OpenProcessCommand.CanExecute(null));
+            }
+        }
 	    #region Commands
+
+        private readonly ICommand _openCommand;
+        public ICommand OpenCommand
+        {
+            get { return _openCommand; }
+        }
 
         private readonly ICommand _openFileCommand;
         public ICommand OpenFileCommand
@@ -163,11 +210,12 @@ namespace VrPlayer.ViewModels
             _config = config;
 
             //Commands
-            _openFileCommand = new DelegateCommand(OpenFile, CanOpenFile);
-            _openStreamCommand = new DelegateCommand(OpenStream, CanOpenStream);
-            _openDiscCommand = new DelegateCommand(OpenDisc, CanOpenDisc);
-            _openDeviceCommand = new DelegateCommand(OpenDevice, CanOpenDevice);
-            _openProcessCommand = new DelegateCommand(OpenProcess, CanOpenProcess);
+            _openCommand = new DelegateCommand(Open);
+            _openFileCommand = new DelegateCommand(OpenFile);
+            _openStreamCommand = new DelegateCommand(OpenStream);
+            _openDiscCommand = new DelegateCommand(OpenDisc);
+            _openDeviceCommand = new DelegateCommand(OpenDevice);
+            _openProcessCommand = new DelegateCommand(OpenProcess);
             _browseSamplesCommand = new DelegateCommand(BrowseSamples);
             _exitCommand = new DelegateCommand(Exit);
             _changeFormatCommand = new DelegateCommand(SetStereoInput);
@@ -186,23 +234,22 @@ namespace VrPlayer.ViewModels
 
         private void OpenFile(object o)
         {
+            var mediaPlugin = (IPlugin<IMedia>)o;
+            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = FileFilterHelper.GetFilter();
             if (openFileDialog.ShowDialog().Value)
             {
+                ReadMetadata(openFileDialog.FileName);
                 _state.MediaPlugin.Content.OpenFileCommand.Execute(openFileDialog.FileName);
             }
         }
 
-	    private bool CanOpenFile(object o)
-	    {
-	        if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
-	        return _state.MediaPlugin.Content.OpenFileCommand.CanExecute(o);
-	    }
-
 	    private void OpenStream(object o)
         {
+            var mediaPlugin = (IPlugin<IMedia>)o;
+            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             var dialog = new StreamInputDialog();
             if (dialog.ShowDialog() == true)
@@ -211,25 +258,18 @@ namespace VrPlayer.ViewModels
             }
         }
 
-        private bool CanOpenStream(object o)
-        {
-            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
-            return _state.MediaPlugin.Content.OpenStreamCommand.CanExecute(o);
-        }
-
         private void OpenDevice(object o)
         {
+            var mediaPlugin = (IPlugin<IMedia>)o;
+            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
-        }
-
-        private bool CanOpenDevice(object o)
-        {
-            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
-            return _state.MediaPlugin.Content.OpenDeviceCommand.CanExecute(o);
+            //Todo: Call device selection dialog
         }
 
         private void OpenDisc(object o)
         {
+            var mediaPlugin = (IPlugin<IMedia>)o;
+            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             var dialog = new DiscInputDialog();
             if (dialog.ShowDialog() == true)
@@ -238,14 +278,10 @@ namespace VrPlayer.ViewModels
             }
         }
 
-        private bool CanOpenDisc(object o)
-        {
-            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
-            return _state.MediaPlugin.Content.OpenDiscCommand.CanExecute(o);
-        }
-
         private void OpenProcess(object o)
         {
+            var mediaPlugin = (IPlugin<IMedia>)o;
+            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             var dialog = new ProcessInputDialog();
             if (dialog.ShowDialog() == true)
@@ -253,58 +289,17 @@ namespace VrPlayer.ViewModels
                 _state.MediaPlugin.Content.OpenProcessCommand.Execute(dialog.Process);
             }
         }
-
-        private bool CanOpenProcess(object o)
-        {
-            if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return false;
-            return _state.MediaPlugin.Content.OpenProcessCommand.CanExecute(o);
-        }
-
-		private void Load(object o)
+        
+	    private void Open(object o)
 		{
-            /*
 			var filePath = (string)o;
-            
-            if (_config.MetaDataReadOnLoad)
-            {
-                try
-                {
-                    //Todo: Extract metadata parsing
-                    var parser = new MetadataParser(filePath);
-                    var metadata = parser.Parse();
-
-                    if (!string.IsNullOrEmpty(metadata.ProjectionType))
-                    {
-                        _state.ProjectionPlugin = _pluginManager.Projections.FirstOrDefault(
-                            plugin => plugin.Content.GetType().Namespace == metadata.ProjectionType);
-                    }
-
-                    if (!string.IsNullOrEmpty(metadata.FormatType))
-                    {
-                        _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), metadata.FormatType);
-                        //Todo: Stereo input should not be assigned to Projection manually
-                        if (_state.ProjectionPlugin != null)
-                            _state.ProjectionPlugin.Content.StereoMode = _state.StereoInput;
-                    }
-
-                    if (!string.IsNullOrEmpty(metadata.Effects))
-                    {
-                        _state.EffectPlugin = _pluginManager.Effects
-                            .Where(plugin => plugin.Content != null)
-                            .FirstOrDefault(plugin => plugin.Content.GetType().Namespace == metadata.Effects);
-                    }
-                }
-                catch (Exception exc)
-                {
-                    var message = String.Format("Unable to parse meta data from file '{0}'.", filePath);
-                    Logger.Instance.Warn(message, exc);
-                    MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }    
-            }
+	        ReadMetadata(filePath);
+	        LoadDefaultMedia();
             
             try
             {
-                _state.MediaPlayer.Source = new Uri(filePath, UriKind.Absolute);
+                if (_state.MediaPlugin != null && _state.MediaPlugin.Content.OpenFileCommand.CanExecute(filePath)) 
+                    _state.MediaPlugin.Content.OpenFileCommand.Execute(filePath);
             }
             catch (Exception exc)
             {
@@ -312,8 +307,6 @@ namespace VrPlayer.ViewModels
                 Logger.Instance.Warn(message, exc);
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        
-             */
         }
 
         private void BrowseSamples(object o)
@@ -393,6 +386,63 @@ namespace VrPlayer.ViewModels
                 "About", 
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
+        }
+
+        #endregion
+
+        #region Helpers
+
+        private void ReadMetadata(string filePath)
+        {
+            if (!_config.MetaDataReadOnLoad) return;
+
+            try
+            {
+                var parser = new MetadataParser(filePath);
+                var metadata = parser.Parse();
+
+                if (!string.IsNullOrEmpty(metadata.ProjectionType))
+                {
+                    _state.ProjectionPlugin = _pluginManager.Projections.FirstOrDefault(
+                        plugin => plugin.Content.GetType().Namespace == metadata.ProjectionType);
+                }
+
+                if (!string.IsNullOrEmpty(metadata.FormatType))
+                {
+                    _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), metadata.FormatType);
+                    //Todo: Stereo input should not be assigned to Projection manually
+                    if (_state.ProjectionPlugin != null)
+                        _state.ProjectionPlugin.Content.StereoMode = _state.StereoInput;
+                }
+
+                if (!string.IsNullOrEmpty(metadata.Effects))
+                {
+                    _state.EffectPlugin = _pluginManager.Effects
+                                                        .Where(plugin => plugin.Content != null)
+                                                        .FirstOrDefault(plugin => plugin.Content.GetType().Namespace == metadata.Effects);
+                }
+            }
+            catch (Exception exc)
+            {
+                var message = String.Format("Unable to parse meta data from file '{0}'.", filePath);
+                Logger.Instance.Warn(message, exc);
+                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void LoadDefaultMedia()
+        {
+            try
+            {
+                _state.MediaPlugin = _pluginManager.Medias
+                            .Where(plugin => plugin.Content != null)
+                            .FirstOrDefault(plugin => plugin.Content.GetType().Namespace == _config.DefaultMedia);
+            }
+            catch (Exception exc)
+            {
+                var message = String.Format("Unable to load default media engine '{0}'.", _config.DefaultMedia);
+                Logger.Instance.Warn(message, exc);
+            }
         }
 
         #endregion

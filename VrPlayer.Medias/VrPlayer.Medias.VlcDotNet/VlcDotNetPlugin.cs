@@ -13,7 +13,7 @@ namespace VrPlayer.Medias.VlcDotNet
   
         public VlcDotNetPlugin()
         {
-            Name = "Vlc.net";
+            Name = "VLC";
             var media = new VlcDotNetMedia()
             {
                 DebugMode = bool.Parse(Config.AppSettings.Settings["DebugMode"].Value),

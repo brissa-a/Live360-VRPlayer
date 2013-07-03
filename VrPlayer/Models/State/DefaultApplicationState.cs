@@ -1,6 +1,6 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
-using System.Windows.Input;
 using System.Windows.Threading;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
@@ -8,6 +8,7 @@ using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Medias;
 using VrPlayer.Contracts.Stabilizers;
 using VrPlayer.Contracts.Trackers;
+using VrPlayer.Helpers;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
@@ -185,11 +186,37 @@ namespace VrPlayer.Models.State
                 .DefaultIfEmpty(pluginManager.Stabilizers.FirstOrDefault())
                 .First();
 
+            LoadDefaultMedia(config.SamplesFolder);
+
             //Todo: Use binding instead of a timer
-            var timer = new DispatcherTimer(DispatcherPriority.Send);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
+            var timer = new DispatcherTimer(DispatcherPriority.Render);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.Tick += TimerOnTick;
             timer.Start();
+        }
+
+        //Todo: Create media handler checking best possible open action
+        private void LoadDefaultMedia(string defaultMediaFolder)
+        {
+            var parameters = Environment.GetCommandLineArgs();
+
+            if (parameters.Length > 1)
+            {
+                Logger.Instance.Info(string.Format("Loading '{0}'...", parameters[1]));
+                if (!MediaPlugin.Content.OpenStreamCommand.CanExecute(null)) return;
+                var uri = new Uri(parameters[1]);
+                var uriWithoutScheme = uri.Host + uri.PathAndQuery;
+                MediaPlugin.Content.OpenStreamCommand.Execute(new Uri(uriWithoutScheme, UriKind.RelativeOrAbsolute));
+            }
+            else
+            {
+                if (!MediaPlugin.Content.OpenFileCommand.CanExecute(null)) return;
+                var samples = new DirectoryInfo(defaultMediaFolder);
+                if (samples.GetFiles().Any())
+                {
+                    MediaPlugin.Content.OpenFileCommand.Execute(samples.GetFiles().First().FullName);
+                }
+            }
         }
 
         private void TimerOnTick(object sender, EventArgs eventArgs)

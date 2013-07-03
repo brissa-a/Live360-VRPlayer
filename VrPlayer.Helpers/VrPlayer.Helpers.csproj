@@ -48,6 +48,7 @@
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Converters\CompareAllParametersConverter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\CanExecuteToVisibilityConverter.cs" />
     <Compile Include="Converters\NotZeroConverter.cs" />
     <Compile Include="Converters\TimeFormatConverter.cs" />
     <Compile Include="Converters\TranslationConverter.cs" />

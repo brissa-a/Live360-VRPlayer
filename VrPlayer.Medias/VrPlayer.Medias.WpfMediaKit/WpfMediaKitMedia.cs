@@ -42,9 +42,9 @@ namespace VrPlayer.Medias.WpfMediaKit
         {
             //Commands
             OpenFileCommand = new RelayCommand(OpenFile);
-            OpenDiscCommand = new RelayCommand(OpenDisc);
+            OpenDiscCommand = new RelayCommand(OpenDisc, o => false);
             OpenStreamCommand = new RelayCommand(OpenStream);
-            OpenDeviceCommand = new RelayCommand(OpenDevice);
+            OpenDeviceCommand = new RelayCommand(OpenDevice, o => false);
             OpenProcessCommand = new RelayCommand(o => { }, o => false);
             PlayCommand = new RelayCommand(Play, CanPlay);
             PauseCommand = new RelayCommand(Pause, CanPause);
