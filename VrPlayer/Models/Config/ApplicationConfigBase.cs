@@ -1,9 +1,18 @@
-﻿using VrPlayer.Helpers.Mvvm;
+﻿using System.Windows.Input;
+using VrPlayer.Helpers.Mvvm;
 
 namespace VrPlayer.Models.Config
 {
     public abstract class ApplicationConfigBase : ViewModelBase, IApplicationConfig
     {
+        protected ApplicationConfigBase()
+        {
+            MoveLeft = Key.Left;
+            MoveRight = Key.Right;
+            MoveForward = Key.Up;
+            MoveBackward = Key.Down;
+        }
+
         private string _defaultMediaFile;
         public string DefaultMediaFile
         {
@@ -134,6 +143,11 @@ namespace VrPlayer.Models.Config
                 _defaultStabilizer = value;
                 OnPropertyChanged("DefaultStabilizer");
             }
-        }     
+        }
+
+        public Key MoveLeft { get; set; }
+        public Key MoveRight { get; set; }
+        public Key MoveForward { get; set; }
+        public Key MoveBackward { get; set; }
     }
 }

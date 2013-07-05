@@ -1,4 +1,6 @@
-﻿namespace VrPlayer.Models.Config
+﻿using System.Windows.Input;
+
+namespace VrPlayer.Models.Config
 {
     public interface IApplicationConfig
     {
@@ -15,5 +17,11 @@
         string DefaultProjection { get; set; }
         string DefaultTracker { get; set; }
         string DefaultStabilizer { get; set; }
+
+        //Todo: extract
+        Key MoveLeft { get; set; }
+        Key MoveRight { get; set; }
+        Key MoveForward { get; set; }
+        Key MoveBackward { get; set; }
     }
 }
