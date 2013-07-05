@@ -20,7 +20,8 @@ namespace VrPlayer.Projections.Cylinder
                 {
                     Scale = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Scale"].Value),
                     Slices = int.Parse(Config.AppSettings.Settings["Slices"].Value),
-                    Stacks = int.Parse(Config.AppSettings.Settings["Stacks"].Value)
+                    Stacks = int.Parse(Config.AppSettings.Settings["Stacks"].Value),
+                    Angle = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Angle"].Value)
                 };
             Content = projection;
             Panel = new CylinderPanel(projection);

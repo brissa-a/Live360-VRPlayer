@@ -10,8 +10,9 @@ namespace VrPlayer.Projections.Sphere
     public class SphereProjection : ProjectionBase, IProjection
     {
 
-        Point3D _center;
-        double _radius = 1D;
+        private Point3D _center;
+        private double _radius = 1D;
+        private const double Distance = 1000;
 
         public static readonly DependencyProperty SlicesProperty =
              DependencyProperty.Register("Slices", typeof(int),
@@ -55,7 +56,7 @@ namespace VrPlayer.Projections.Sphere
         {
             get
             {
-                return new Vector3D(_radius, 0, 0);
+                return new Vector3D(Distance + _radius, 0, 0);
             }
         }
 
@@ -63,7 +64,7 @@ namespace VrPlayer.Projections.Sphere
         {
             get
             {
-                return new Vector3D(-_radius, 0, 0);
+                return new Vector3D(-Distance - _radius, 0, 0);
             }
         }
 
@@ -86,7 +87,7 @@ namespace VrPlayer.Projections.Sphere
                         double x = scale * Math.Sin(theta) + Radius;
                         double z = scale * Math.Cos(theta);
 
-                        var normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x + Distance, y, z);
                         positions.Add(normal + Center);
                     }
                 }
@@ -104,7 +105,7 @@ namespace VrPlayer.Projections.Sphere
                         double x = scale * Math.Sin(theta) - Radius;
                         double z = scale * Math.Cos(theta);
 
-                        var normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x - Distance, y, z);
                         positions.Add(normal + Center);
                     }
                 }

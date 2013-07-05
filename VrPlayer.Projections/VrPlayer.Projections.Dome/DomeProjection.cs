@@ -10,8 +10,9 @@ namespace VrPlayer.Projections.Dome
     [Export(typeof(IProjection))]
     public class DomeProjection : ProjectionBase, IProjection
     {
-        Point3D _center;
-        double _radius = 1;
+        private Point3D _center;
+        private double _radius = 1;
+        private const double Distance = 1000;
 
         public static readonly DependencyProperty SlicesProperty =
             DependencyProperty.Register("Slices", typeof(int),
@@ -57,7 +58,7 @@ namespace VrPlayer.Projections.Dome
         {
             get
             {
-                return new Vector3D(_radius, 0, 0);
+                return new Vector3D(Distance + _radius, 0, 0);
             }
         }
 
@@ -65,7 +66,7 @@ namespace VrPlayer.Projections.Dome
         {
             get
             {
-                return new Vector3D(-_radius, 0, 0);
+                return new Vector3D(-Distance - _radius, 0, 0);
             }
         }
 
@@ -88,7 +89,7 @@ namespace VrPlayer.Projections.Dome
                         double x = scale * Math.Sin(theta) + Radius;
                         double z = scale * Math.Cos(theta);
 
-                        var normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x + Distance, y, z);
                         positions.Add(normal + Center);
                     }
                 }
@@ -106,7 +107,7 @@ namespace VrPlayer.Projections.Dome
                         double x = scale * Math.Sin(theta) - Radius;
                         double z = scale * Math.Cos(theta);
 
-                        var normal = new Vector3D(x, y, z);
+                        var normal = new Vector3D(x - Distance, y, z);
                         positions.Add(normal + Center);
                     }
                 }

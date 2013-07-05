@@ -10,8 +10,9 @@ namespace VrPlayer.Projections.Cylinder
     [Export(typeof(IProjection))]
     public class CylinderProjection : ProjectionBase, IProjection
     {
-        Point3D _center;
-        double _radius = 1;
+        private Point3D _center;
+        private double _radius = 1;
+        private const double Distance = 1000;
 
         public static readonly DependencyProperty ScaleProperty =
              DependencyProperty.Register("Scale", typeof(double),
@@ -40,6 +41,15 @@ namespace VrPlayer.Projections.Cylinder
             set { SetValue(StacksProperty, value); }
         }
 
+        public static readonly DependencyProperty AngleProperty =
+            DependencyProperty.Register("Angle", typeof(double),
+            typeof(CylinderProjection), new FrameworkPropertyMetadata(360D));
+        public double Angle
+        {
+            get { return (double)GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
+        }
+
         public Point3D Center
         {
             get { return _center; }
@@ -64,7 +74,7 @@ namespace VrPlayer.Projections.Cylinder
         {
             get
             {
-                return new Vector3D(_radius, 0, 0);
+                return new Vector3D(Distance + _radius, 0, 0);
             }
         }
 
@@ -72,7 +82,7 @@ namespace VrPlayer.Projections.Cylinder
         {
             get
             {
-                return new Vector3D(-_radius, 0, 0);
+                return new Vector3D(-Distance - _radius, 0, 0);
             }
         }
 
@@ -81,6 +91,7 @@ namespace VrPlayer.Projections.Cylinder
             get
             {
                 var positions = new Point3DCollection();
+                var angleRatio = 360/Angle;
 
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
@@ -90,11 +101,12 @@ namespace VrPlayer.Projections.Cylinder
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
+                        //Todo: Optimize
+                        double theta = (slice * 2 * Math.PI / Slices / angleRatio) - DegToRad(Angle / 2) + Math.PI;
                         double x = ratio * Math.Sin(theta) + Radius;
                         double z = ratio * Math.Cos(theta);
 
-                        var normal = new Vector3D(x, y*Scale, z);
+                        var normal = new Vector3D(x + Distance, y*Scale, z);
                         positions.Add(normal + Center);
                     }
                 }
@@ -107,11 +119,12 @@ namespace VrPlayer.Projections.Cylinder
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
+                        //Todo: Optimize
+                        double theta = (slice * 2 * Math.PI / Slices / angleRatio) - DegToRad(Angle / 2) + Math.PI;
                         double x = ratio * Math.Sin(theta) - Radius;
                         double z = ratio * Math.Cos(theta);
 
-                        var normal = new Vector3D(x, y*Scale, z);
+                        var normal = new Vector3D(x - Distance, y*Scale, z);
                         positions.Add(normal + Center);
                     }
                 }
@@ -259,6 +272,11 @@ namespace VrPlayer.Projections.Cylinder
 
                 return textureCoordinates;
             }
+        }
+
+        private double DegToRad(double angle)
+        {
+            return Math.PI*angle/180.0;
         }
     }
 }
