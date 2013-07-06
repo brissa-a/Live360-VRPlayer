@@ -11,9 +11,9 @@ using VrPlayer.Helpers.Mvvm;
 using Brush = System.Windows.Media.Brush;
 using Image = System.Windows.Controls.Image;
 
-namespace VrPlayer.Medias.Experiments
+namespace VrPlayer.Medias.Gdi
 {
-    public class ExperimentsMedia : MediaBase
+    public class GdiMedia : MediaBase
     {
         private readonly Image _media;
         private readonly DispatcherTimer _timer;
@@ -28,7 +28,7 @@ namespace VrPlayer.Medias.Experiments
 
         public static readonly DependencyProperty ProcessProperty =
             DependencyProperty.Register("Process", typeof(Process),
-            typeof(ExperimentsMedia), new FrameworkPropertyMetadata(null));
+            typeof(GdiMedia), new FrameworkPropertyMetadata(null));
         public Process Process
         {
             get { return (Process)GetValue(ProcessProperty); }
@@ -40,7 +40,7 @@ namespace VrPlayer.Medias.Experiments
             return new ImageBrush(Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()));
         }
 
-        public ExperimentsMedia()
+        public GdiMedia()
         {
             //Commands
 

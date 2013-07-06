@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
-namespace VrPlayer.Medias.Experiments
+namespace VrPlayer.Medias.Gdi
 {
     public class WindowsCapture
     {

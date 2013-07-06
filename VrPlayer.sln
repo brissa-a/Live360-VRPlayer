@@ -110,7 +110,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Medias.VlcDotNet",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Stabilizers.Csv", "VrPlayer.Stabilizers\VrPlayer.Stabilizers.Csv\VrPlayer.Stabilizers.Csv.csproj", "{4B95FD7A-F991-4331-AA5F-7AD1D76604DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Medias.Experiments", "VrPlayer.Medias\VrPlayer.Medias.Experiments\VrPlayer.Medias.Experiments.csproj", "{F6AAE40A-529D-4E1C-9D0B-A20B921CCB93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Medias.Gdi", "VrPlayer.Medias\VrPlayer.Medias.Gdi\VrPlayer.Medias.Gdi.csproj", "{F6AAE40A-529D-4E1C-9D0B-A20B921CCB93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

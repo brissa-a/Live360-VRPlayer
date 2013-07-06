@@ -5,7 +5,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace VrPlayer.Medias.Experiments
+namespace VrPlayer.Medias.Gdi
 {
     [System.Security.SuppressUnmanagedCodeSecurity()]
     internal sealed class NativeMethods

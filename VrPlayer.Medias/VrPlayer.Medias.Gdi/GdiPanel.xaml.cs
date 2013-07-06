@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace VrPlayer.Medias.Experiments
+namespace VrPlayer.Medias.Gdi
 {
-    public partial class ExperimentsPanel : UserControl
+    public partial class GdiPanel : UserControl
     {
-        public ExperimentsPanel(ExperimentsMedia media)
+        public GdiPanel(GdiMedia media)
         {
             InitializeComponent();
             try

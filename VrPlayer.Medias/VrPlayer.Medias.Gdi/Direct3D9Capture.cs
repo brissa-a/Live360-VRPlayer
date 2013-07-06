@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using SharpDX.Direct3D9;
 
-namespace VrPlayer.Medias.Experiments
+namespace VrPlayer.Medias.Gdi
 {
     public static class Direct3D9Capture
     {
