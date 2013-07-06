@@ -7,10 +7,25 @@ namespace VrPlayer.Models.Config
     {
         protected ApplicationConfigBase()
         {
-            MoveLeft = Key.Left;
-            MoveRight = Key.Right;
-            MoveForward = Key.Up;
-            MoveBackward = Key.Down;
+            KeyPlayPause = Key.Space;
+            KeyStop = Key.S;
+            KeyPrevious = Key.A;
+            KeyNext = Key.D;
+            KeyLoop = Key.F;
+            KeyMoveLeft = Key.Left;
+            KeyMoveRight = Key.Right;
+            KeyMoveForward = Key.Up;
+            KeyMoveBackward = Key.Down;
+            KeyMoveUp = Key.PageUp;
+            KeyMoveDown = Key.PageDown;
+            KeyTrackerCalibrate = Key.F1;
+            KeyTrackerReset = Key.F2;
+            KeyFieldOfViewMinus = Key.O;
+            KeyFieldOfViewPlus = Key.P;
+            KeyHorizontalOffsetMinus = Key.K;
+            KeyHorizontalOffsetPlus = Key.L;
+            KeyVerticalOffsetMinus = Key.N;
+            KeyVerticalOffsetPlus = Key.M;
         }
 
         private string _defaultMediaFile;
@@ -145,9 +160,24 @@ namespace VrPlayer.Models.Config
             }
         }
 
-        public Key MoveLeft { get; set; }
-        public Key MoveRight { get; set; }
-        public Key MoveForward { get; set; }
-        public Key MoveBackward { get; set; }
+        public Key KeyPlayPause { get; set; }
+        public Key KeyStop { get; set; }
+        public Key KeyNext { get; set; }
+        public Key KeyPrevious { get; set; }
+        public Key KeyLoop { get; set; }
+        public Key KeyMoveLeft { get; set; }
+        public Key KeyMoveRight { get; set; }
+        public Key KeyMoveForward { get; set; }
+        public Key KeyMoveBackward { get; set; }
+        public Key KeyMoveUp { get; set; }
+        public Key KeyMoveDown { get; set; }
+        public Key KeyTrackerCalibrate { get; set; }
+        public Key KeyTrackerReset { get; set; }
+        public Key KeyFieldOfViewMinus { get; set; }
+        public Key KeyFieldOfViewPlus { get; set; }
+        public Key KeyHorizontalOffsetMinus { get; set; }
+        public Key KeyHorizontalOffsetPlus { get; set; }
+        public Key KeyVerticalOffsetMinus { get; set; }
+        public Key KeyVerticalOffsetPlus { get; set; }
     }
 }

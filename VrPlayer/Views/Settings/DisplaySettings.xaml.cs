@@ -2,9 +2,9 @@
 
 namespace VrPlayer.Views.Settings
 {
-    public partial class GeneralSettings : UserControl
+    public partial class DisplaySettings : UserControl
     {
-        public GeneralSettings()
+        public DisplaySettings()
         {
             InitializeComponent();
         }
