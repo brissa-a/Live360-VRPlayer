@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Media3D;
 using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
 
@@ -37,44 +36,9 @@ namespace VrPlayer.Trackers.MouseTracker
 
         void Current_Activated(object sender, EventArgs e)
         {
-            if (_viewport == null)
-            {
-                _viewport = Application.Current.MainWindow;
-                _viewport.MouseMove += mouseZone_MouseMove;
-                _viewport.KeyDown += _viewport_KeyDown;
-            }
-        }
-
-        void _viewport_KeyDown(object sender, KeyEventArgs e)
-        {
-            const double moveFactor = 0.01;
-            var moveVector = new Vector3D();
-            switch (e.Key)
-            { 
-                case Key.Left:
-                    moveVector = new Vector3D(-moveFactor,0,0);
-                    break;
-                case Key.Right:
-                    moveVector = new Vector3D(moveFactor, 0, 0);
-                    break;
-                case Key.Up:
-                    moveVector = new Vector3D(0, 0, -moveFactor);
-                    break;
-                case Key.Down:
-                    moveVector = new Vector3D(0, 0, moveFactor);
-                    break;
-                case Key.PageUp:
-                    moveVector = new Vector3D(0, -moveFactor, 0);
-                    break;
-                case Key.PageDown:
-                    moveVector = new Vector3D(0, moveFactor, 0);
-                    break;
-            }
-            var m = Matrix3D.Identity;
-            m.Rotate(Rotation);
-            m.Translate(moveVector);
-            m.Rotate(Rotation);
-            Position = Position + new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
+            if (_viewport != null) return;
+            _viewport = Application.Current.MainWindow;
+            _viewport.MouseMove += mouseZone_MouseMove;
         }
 
         void mouseZone_MouseMove(object sender, MouseEventArgs e)

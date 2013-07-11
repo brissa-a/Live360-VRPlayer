@@ -20,7 +20,8 @@ namespace VrPlayer.Projections.Sphere
             var projection = new SphereProjection
                 {
                     Slices = int.Parse(Config.AppSettings.Settings["Slices"].Value),
-                    Stacks = int.Parse(Config.AppSettings.Settings["Stacks"].Value)
+                    Stacks = int.Parse(Config.AppSettings.Settings["Stacks"].Value),
+                    Angle = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Angle"].Value)
                 };
             Content = projection;
             Panel = new SpherePanel(projection);

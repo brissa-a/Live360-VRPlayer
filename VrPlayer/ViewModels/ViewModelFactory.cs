@@ -19,7 +19,7 @@ namespace VrPlayer.ViewModels
 
         public MainWindowViewModel CreateMainWindowViewModel()
         {
-            return new MainWindowViewModel(_state);
+            return new MainWindowViewModel(_state, _config);
         }
 
         public ViewPortViewModel CreateViewPortViewModel()

@@ -32,6 +32,15 @@ namespace VrPlayer.Projections.Sphere
             set { SetValue(StacksProperty, value); }
         }
 
+        public static readonly DependencyProperty AngleProperty =
+            DependencyProperty.Register("Angle", typeof(double),
+            typeof(SphereProjection), new FrameworkPropertyMetadata(360D));
+        public double Angle
+        {
+            get { return (double)GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
+        }
+
         public Point3D Center
         {
             get { return _center; }
@@ -73,6 +82,7 @@ namespace VrPlayer.Projections.Sphere
             get
             {
                 var positions = new Point3DCollection();
+                var angleRatio = 360 / Angle;
 
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
@@ -83,7 +93,7 @@ namespace VrPlayer.Projections.Sphere
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
+                        double theta = (slice * 2 * Math.PI / Slices / angleRatio) - DegToRad(Angle / 2) + Math.PI;
                         double x = scale * Math.Sin(theta) + Radius;
                         double z = scale * Math.Cos(theta);
 
@@ -101,7 +111,7 @@ namespace VrPlayer.Projections.Sphere
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
+                        double theta = (slice * 2 * Math.PI / Slices / angleRatio) - DegToRad(Angle / 2) + Math.PI; 
                         double x = scale * Math.Sin(theta) - Radius;
                         double z = scale * Math.Cos(theta);
 
@@ -267,6 +277,11 @@ namespace VrPlayer.Projections.Sphere
 
                 return textureCoordinates;
             }
+        }
+
+        private double DegToRad(double angle)
+        {
+            return Math.PI * angle / 180.0;
         }
     }
 }

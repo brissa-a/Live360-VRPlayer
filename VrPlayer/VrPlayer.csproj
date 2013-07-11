@@ -84,6 +84,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="Models\Plugins\DynamicPluginManager.cs" />
+    <Compile Include="Models\Settings\ShortcutsManager.cs" />
     <Compile Include="Models\State\LayoutMode.cs" />
     <Compile Include="Views\Dialogs\KeyInputDialog.xaml.cs">
       <DependentUpon>KeyInputDialog.xaml</DependentUpon>

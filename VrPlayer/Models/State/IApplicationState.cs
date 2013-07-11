@@ -6,6 +6,7 @@ using VrPlayer.Contracts.Medias;
 using VrPlayer.Contracts.Stabilizers;
 using VrPlayer.Contracts.Trackers;
 using VrPlayer.Contracts.Projections;
+using VrPlayer.Models.Settings;
 
 namespace VrPlayer.Models.State
 {
@@ -19,5 +20,6 @@ namespace VrPlayer.Models.State
         IPlugin<IStabilizer> StabilizerPlugin { get; set; }
         StereoMode StereoInput { get; set; }
         LayoutMode StereoOutput { get; set; }
+        ShortcutsManager Shortcuts { get; set; }
     }
 }

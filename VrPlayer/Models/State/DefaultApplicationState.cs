@@ -13,6 +13,7 @@ using VrPlayer.Models.Plugins;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Contracts.Projections;
+using VrPlayer.Models.Settings;
 
 namespace VrPlayer.Models.State
 {
@@ -151,6 +152,21 @@ namespace VrPlayer.Models.State
             }
         }
 
+
+        private ShortcutsManager _shortcuts;
+        public ShortcutsManager Shortcuts
+        {
+            get
+            {
+                return _shortcuts;
+            }
+            set
+            {
+                _shortcuts = value;
+                OnPropertyChanged("Shortcuts");
+            }
+        }
+
         #endregion
 
         public DefaultApplicationState(IApplicationConfig config, IPluginManager pluginManager)
@@ -185,6 +201,8 @@ namespace VrPlayer.Models.State
                 .Where(s => s.GetType().FullName.Contains(config.DefaultStabilizer))
                 .DefaultIfEmpty(pluginManager.Stabilizers.FirstOrDefault())
                 .First();
+
+            Shortcuts = new ShortcutsManager();
 
             LoadDefaultMedia(config.SamplesFolder);
 

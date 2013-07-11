@@ -160,24 +160,217 @@ namespace VrPlayer.Models.Config
             }
         }
 
-        public Key KeyPlayPause { get; set; }
-        public Key KeyStop { get; set; }
-        public Key KeyNext { get; set; }
-        public Key KeyPrevious { get; set; }
-        public Key KeyLoop { get; set; }
-        public Key KeyMoveLeft { get; set; }
-        public Key KeyMoveRight { get; set; }
-        public Key KeyMoveForward { get; set; }
-        public Key KeyMoveBackward { get; set; }
-        public Key KeyMoveUp { get; set; }
-        public Key KeyMoveDown { get; set; }
-        public Key KeyTrackerCalibrate { get; set; }
-        public Key KeyTrackerReset { get; set; }
-        public Key KeyFieldOfViewMinus { get; set; }
-        public Key KeyFieldOfViewPlus { get; set; }
-        public Key KeyHorizontalOffsetMinus { get; set; }
-        public Key KeyHorizontalOffsetPlus { get; set; }
-        public Key KeyVerticalOffsetMinus { get; set; }
-        public Key KeyVerticalOffsetPlus { get; set; }
+        #region Keys
+
+        private Key _keyPlayPause;
+        public Key KeyPlayPause
+        {
+            get { return _keyPlayPause; }
+            set
+            {
+                _keyPlayPause = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyStop;
+        public Key KeyStop
+        {
+            get { return _keyStop; }
+            set
+            {
+                _keyStop = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyNext;
+        public Key KeyNext
+        {
+            get { return _keyNext; }
+            set
+            {
+                _keyNext = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyPrevious;
+        public Key KeyPrevious
+        {
+            get { return _keyPrevious; }
+            set
+            {
+                _keyPrevious = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyLoop;
+        public Key KeyLoop
+        {
+            get { return _keyLoop; }
+            set
+            {
+                _keyLoop = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyMoveLeft;
+        public Key KeyMoveLeft
+        {
+            get { return _keyMoveLeft; }
+            set
+            {
+                _keyMoveLeft = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyMoveRight;
+        public Key KeyMoveRight
+        {
+            get { return _keyMoveRight; }
+            set
+            {
+                _keyMoveRight = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyMoveForward;
+         public Key KeyMoveForward
+        {
+            get { return _keyMoveForward; }
+            set
+            {
+                _keyMoveForward = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+         private Key _keyMoveBackward;
+         public Key KeyMoveBackward
+        {
+            get { return _keyMoveBackward; }
+            set
+            {
+                _keyMoveBackward = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyMoveUp;
+        public Key KeyMoveUp
+        {
+            get { return _keyMoveUp; }
+            set
+            {
+                _keyMoveUp = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyMoveDown;
+        public Key KeyMoveDown
+        {
+            get { return _keyMoveDown; }
+            set
+            {
+                _keyMoveDown = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyTrackerCalibrate;
+        public Key KeyTrackerCalibrate
+        {
+            get { return _keyTrackerCalibrate; }
+            set
+            {
+                _keyTrackerCalibrate = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyTrackerReset;
+        public Key KeyTrackerReset
+        {
+            get { return _keyTrackerReset; }
+            set
+            {
+                _keyTrackerReset = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyFieldOfViewMinus;
+        public Key KeyFieldOfViewMinus
+        {
+            get { return _keyFieldOfViewMinus; }
+            set
+            {
+                _keyFieldOfViewMinus = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyFieldOfViewPlus;
+        public Key KeyFieldOfViewPlus
+        {
+            get { return _keyFieldOfViewPlus; }
+            set
+            {
+                _keyFieldOfViewPlus = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyHorizontalOffsetMinus;
+        public Key KeyHorizontalOffsetMinus
+        {
+            get { return _keyHorizontalOffsetMinus; }
+            set
+            {
+                _keyHorizontalOffsetMinus = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyHorizontalOffsetPlus;
+        public Key KeyHorizontalOffsetPlus
+        {
+            get { return _keyHorizontalOffsetPlus; }
+            set
+            {
+                _keyHorizontalOffsetPlus = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyVerticalOffsetMinus;
+        public Key KeyVerticalOffsetMinus
+        {
+            get { return _keyVerticalOffsetMinus; }
+            set
+            {
+                _keyVerticalOffsetMinus = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        private Key _keyVerticalOffsetPlus;
+        public Key KeyVerticalOffsetPlus
+        {
+            get { return _keyVerticalOffsetPlus; }
+            set
+            {
+                _keyVerticalOffsetPlus = value;
+                OnPropertyChanged("Keys");
+            }
+        }
+
+        #endregion
     }
 }

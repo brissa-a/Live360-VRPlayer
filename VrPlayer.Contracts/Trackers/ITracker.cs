@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using System.Windows.Media.Media3D;
 
 namespace VrPlayer.Contracts.Trackers
@@ -15,5 +16,14 @@ namespace VrPlayer.Contracts.Trackers
         Vector3D PositionOffset { get; set; }
         double PositionScaleFactor { get; set; }
         void Calibrate();
+
+        ICommand MoveForwardCommand { get; }
+        ICommand MoveBackwardCommand { get; }
+        ICommand MoveLeftCommand { get; }
+        ICommand MoveRightCommand { get; }
+        ICommand MoveUpCommand { get; }
+        ICommand MoveDownCommand { get; }
+        ICommand CalibrateCommand { get; }
+        ICommand ResetCommand { get; }
     }
 }

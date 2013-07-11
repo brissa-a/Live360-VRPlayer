@@ -1,8 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel;
+using System.Windows.Input;
 
 namespace VrPlayer.Models.Config
 {
-    public interface IApplicationConfig
+    public interface IApplicationConfig : INotifyPropertyChanged
     {
         string DefaultMediaFile { get; set; }
         int CameraFieldOfView { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media.Media3D;
 
 using VrPlayer.Helpers.Mvvm;
@@ -7,6 +8,8 @@ namespace VrPlayer.Contracts.Trackers
 {
     public abstract class TrackerBase: ViewModelBase
     {
+        private const double MoveFactor = 0.01;
+
         protected Vector3D RawPosition;
         protected Quaternion RawRotation;
 
@@ -167,6 +170,61 @@ namespace VrPlayer.Contracts.Trackers
         {
             Load();
             Unload();
+        }
+
+        public ICommand MoveForwardCommand
+        {
+            get { return new DelegateCommand(o => Move(new Vector3D(0, 0, -MoveFactor))); }
+        }
+
+        public ICommand MoveBackwardCommand
+        {
+            get { return new DelegateCommand(o => Move(new Vector3D(0, 0, MoveFactor))); }
+        }
+
+        public ICommand MoveLeftCommand
+        {
+            get { return new DelegateCommand(o => Move(new Vector3D(-MoveFactor, 0, 0))); }
+        }
+
+        public ICommand MoveRightCommand
+        {
+            get { return new DelegateCommand(o => Move(new Vector3D(MoveFactor, 0, 0))); }
+        }
+
+        public ICommand MoveUpCommand
+        {
+            get { return new DelegateCommand(o => Move(new Vector3D(0, -MoveFactor, 0))); }
+        }
+
+        public ICommand MoveDownCommand
+        {
+            get { return new DelegateCommand(o => Move(new Vector3D(0, MoveFactor, 0))); }
+        }
+
+        public ICommand CalibrateCommand
+        {
+            get { return new DelegateCommand(o => Calibrate()); }
+        }
+
+        public ICommand ResetCommand
+        {
+            get{ return new DelegateCommand(o => Reset()); }
+        }
+
+        private void Move(Vector3D moveVector)
+        {
+            var m = Matrix3D.Identity;
+            m.Rotate(Rotation);
+            m.Translate(moveVector);
+            m.Rotate(Rotation);
+            Position = Position + new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
+        }
+
+        private void Reset()
+        {
+            Position = new Vector3D();
+            Rotation = new Quaternion();
         }
     }
 }
