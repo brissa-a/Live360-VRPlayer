@@ -93,6 +93,16 @@ namespace VrPlayer.ViewModels
                         Viewport2Row = 0;
                         Viewport2RowSpan = 2;
                         break;
+                    case LayoutMode.CrossEyed:
+                        Viewport1Col = 1;
+                        Viewport1ColSpan = 1;
+                        Viewport1Row = 0;
+                        Viewport1RowSpan = 2;
+                        Viewport2Col = 0;
+                        Viewport2ColSpan = 1;
+                        Viewport2Row = 0;
+                        Viewport2RowSpan = 2;
+                        break;
                 }
             }
         }

@@ -6,6 +6,7 @@
         MonoRight,
         OverUnder,
         SideBySide,
+        CrossEyed,
         DualScreen
     }
 }

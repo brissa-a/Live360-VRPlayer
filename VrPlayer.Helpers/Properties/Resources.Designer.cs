@@ -61,6 +61,15 @@ namespace VrPlayer.Helpers.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cross-Eyed.
+        /// </summary>
+        internal static string CrossEyed {
+            get {
+                return ResourceManager.GetString("CrossEyed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dual Screen.
         /// </summary>
         internal static string DualScreen {
