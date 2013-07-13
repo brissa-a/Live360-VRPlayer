@@ -32,5 +32,10 @@ namespace VrPlayer.Models.Settings
             if (_shortcuts[key] != null)
                 _shortcuts[key].Execute(null);
         }
+
+        public bool Contains(Key key)
+        {
+            return _shortcuts.Keys.Contains(key);
+        }
     }
 }
