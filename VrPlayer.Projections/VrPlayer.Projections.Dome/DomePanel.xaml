@@ -9,6 +9,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -21,6 +23,12 @@
             <Label Grid.Column="0" Grid.Row="1" Content="Stacks:"></Label>
             <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Stacks}" Minimum="8" Maximum="256"></Slider>
             <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Stacks}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="2" Content="Horizontal coverage:"></Label>
+            <Slider Grid.Column="1" Grid.Row="2" Value="{Binding Path=HorizontalCoverage}" Minimum="0" Maximum="1"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding Path=HorizontalCoverage}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="3" Content="Vertical coverage:"></Label>
+            <Slider Grid.Column="1" Grid.Row="3" Value="{Binding Path=VerticalCoverage}" Minimum="0" Maximum="1"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding Path=VerticalCoverage}"></TextBox>
         </Grid>
     </StackPanel>
 </UserControl>

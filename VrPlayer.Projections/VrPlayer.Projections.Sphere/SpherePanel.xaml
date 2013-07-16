@@ -10,6 +10,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -22,9 +24,15 @@
             <Label Grid.Column="0" Grid.Row="1" Content="Stacks:"></Label>
             <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Stacks}" Minimum="8" Maximum="256"></Slider>
             <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Stacks}"></TextBox>
-            <Label Grid.Column="0" Grid.Row="2" Content="Angle:"></Label>
-            <Slider Grid.Column="1" Grid.Row="2" Value="{Binding Path=Angle}" Minimum="0" Maximum="360"></Slider>
-            <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding Path=Angle}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="2" Content="Width:"></Label>
+            <Slider Grid.Column="1" Grid.Row="2" Value="{Binding Path=Width}" Minimum="0" Maximum="2"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding Path=Width}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="3" Content="Height:"></Label>
+            <Slider Grid.Column="1" Grid.Row="3" Value="{Binding Path=Height}" Minimum="0" Maximum="2"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding Path=Height}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="4" Content="Depth:"></Label>
+            <Slider Grid.Column="1" Grid.Row="4" Value="{Binding Path=Depth}" Minimum="0" Maximum="2"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="4" Text="{Binding Path=Depth}"></TextBox>
         </Grid>
     </StackPanel>
 </UserControl>

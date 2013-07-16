@@ -17,7 +17,6 @@ namespace VrPlayer.Projections.Dome
         public static readonly DependencyProperty SlicesProperty =
             DependencyProperty.Register("Slices", typeof(int),
             typeof(DomeProjection), new FrameworkPropertyMetadata(16));
-
         public int Slices
         {
             get { return (int)GetValue(SlicesProperty); }
@@ -27,11 +26,28 @@ namespace VrPlayer.Projections.Dome
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
              typeof(DomeProjection), new FrameworkPropertyMetadata(16));
-
         public int Stacks
         {
             get { return (int)GetValue(StacksProperty); }
             set { SetValue(StacksProperty, value); }
+        }
+
+        public static readonly DependencyProperty HorizontalCoverageProperty =
+            DependencyProperty.Register("HorizontalCoverage", typeof(double),
+            typeof(DomeProjection), new FrameworkPropertyMetadata(0.5D));
+        public double HorizontalCoverage
+        {
+            get { return (double)GetValue(HorizontalCoverageProperty); }
+            set { SetValue(HorizontalCoverageProperty, value); }
+        }
+
+        public static readonly DependencyProperty VerticalCoverageProperty =
+            DependencyProperty.Register("VerticalCoverage", typeof(double),
+            typeof(DomeProjection), new FrameworkPropertyMetadata(1D));
+        public double VerticalCoverage
+        {
+            get { return (double)GetValue(VerticalCoverageProperty); }
+            set { SetValue(VerticalCoverageProperty, value); }
         }
 
         public Point3D Center
@@ -79,13 +95,13 @@ namespace VrPlayer.Projections.Dome
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
+                    double phi = (Math.PI / 2 - stack * Math.PI / Stacks) * VerticalCoverage;
                     double y = Radius * Math.Sin(phi);
                     double scale = -Radius * Math.Cos(phi);
 
-                    for (int slice = Slices / 4; slice <= 3 * Slices / 4; slice++)
+                    for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
+                        double theta = (slice * 2 * Math.PI / Slices * HorizontalCoverage) - DegToRad(180 * HorizontalCoverage) + Math.PI;
                         double x = scale * Math.Sin(theta) + Radius;
                         double z = scale * Math.Cos(theta);
 
@@ -97,13 +113,13 @@ namespace VrPlayer.Projections.Dome
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = Math.PI / 2 - stack * Math.PI / Stacks;
+                    double phi = (Math.PI / 2 - stack * Math.PI / Stacks) * VerticalCoverage ;
                     double y = Radius * Math.Sin(phi);
                     double scale = -Radius * Math.Cos(phi);
 
-                    for (int slice = Slices / 4; slice <= 3 * Slices / 4; slice++)
+                    for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = slice * 2 * Math.PI / Slices;
+                        double theta = (slice * 2 * Math.PI / Slices * HorizontalCoverage) - DegToRad(180 * HorizontalCoverage) + Math.PI;
                         double x = scale * Math.Sin(theta) - Radius;
                         double z = scale * Math.Cos(theta);
 
@@ -116,6 +132,8 @@ namespace VrPlayer.Projections.Dome
             }
         }
 
+
+
         public override Int32Collection TriangleIndices
         {
             get
@@ -123,50 +141,36 @@ namespace VrPlayer.Projections.Dome
                 var triangleIndices = new Int32Collection();
 
                 //LEFT
-                for (int stack = 0; stack <= Stacks; stack++)
+                for (int stack = 0; stack < Stacks; stack++)
                 {
-                    int top = (stack + 0) * ((Slices / 2) + 1);
-                    int bot = (stack + 1) * ((Slices / 2) + 1);
+                    int top = (stack + 0) * (Slices + 1);
+                    int bot = (stack + 1) * (Slices + 1);
 
-                    for (int slice = 0; slice <= (Slices / 2) - 1; slice++)
+                    for (int slice = 0; slice < Slices; slice++)
                     {
-                        if (stack != 0)
-                        {
-                            triangleIndices.Add(top + slice);
-                            triangleIndices.Add(bot + slice);
-                            triangleIndices.Add(top + slice + 1);
-                        }
-
-                        if (stack != Stacks - 1)
-                        {
-                            triangleIndices.Add(top + slice + 1);
-                            triangleIndices.Add(bot + slice);
-                            triangleIndices.Add(bot + slice + 1);
-                        }
+                        triangleIndices.Add(top + slice);
+                        triangleIndices.Add(bot + slice);
+                        triangleIndices.Add(top + slice + 1);
+                        triangleIndices.Add(top + slice + 1);
+                        triangleIndices.Add(bot + slice);
+                        triangleIndices.Add(bot + slice + 1);
                     }
                 }
 
                 // RIGHT
-                for (int stack = Stacks; stack <= (Stacks * 2); stack++)
+                for (int stack = Stacks + 1; stack <= (Stacks * 2); stack++)
                 {
-                    int top = (stack + 0) * ((Slices / 2) + 1);
-                    int bot = (stack + 1) * ((Slices / 2) + 1);
+                    int top = (stack + 0) * (Slices + 1);
+                    int bot = (stack + 1) * (Slices + 1);
 
-                    for (int slice = 0; slice <= (Slices / 2) - 1; slice++)
+                    for (int slice = 0; slice < Slices; slice++)
                     {
-                        if (stack != 0)
-                        {
-                            triangleIndices.Add(top + slice);
-                            triangleIndices.Add(bot + slice);
-                            triangleIndices.Add(top + slice + 1);
-                        }
-
-                        if (stack != Stacks - 1)
-                        {
-                            triangleIndices.Add(top + slice + 1);
-                            triangleIndices.Add(bot + slice);
-                            triangleIndices.Add(bot + slice + 1);
-                        }
+                        triangleIndices.Add(top + slice);
+                        triangleIndices.Add(bot + slice);
+                        triangleIndices.Add(top + slice + 1);
+                        triangleIndices.Add(top + slice + 1);
+                        triangleIndices.Add(bot + slice);
+                        triangleIndices.Add(bot + slice + 1);
                     }
                 }
 
@@ -183,22 +187,22 @@ namespace VrPlayer.Projections.Dome
                 //Left
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = Slices / 2; slice >= 0; slice--)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
-                        textureCoordinates.Add(new Point(
-                            ((double)slice) / (Slices / 2),
-                            (double)stack / Stacks));
+                        textureCoordinates.Add(
+                                    new Point((double)slice / Slices,
+                                              (double)stack / Stacks));
                     }
                 }
 
                 //Right
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = Slices / 2; slice >= 0; slice--)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
-                        textureCoordinates.Add(new Point(
-                            (double)slice / (Slices / 2),
-                            (double)stack / Stacks));
+                        textureCoordinates.Add(
+                                    new Point((double)slice / Slices,
+                                              (double)stack / Stacks));
                     }
                 }
 
@@ -215,21 +219,22 @@ namespace VrPlayer.Projections.Dome
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = Slices / 2; slice >= 0; slice--)
+
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
-                        textureCoordinates.Add(new Point(
-                            (double)slice / Slices / 2,
-                            (double)stack / Stacks / 2));
+                        textureCoordinates.Add(
+                                    new Point((double)slice / Slices,
+                                              (double)stack / Stacks / 2));
                     }
                 }
 
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = Slices / 2; slice >= 0; slice--)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(new Point(
-                            (double)slice / Slices / 2,
+                            (double)slice / Slices,
                             0.5 + (double)stack / Stacks / 2));
                     }
                 }
@@ -247,10 +252,10 @@ namespace VrPlayer.Projections.Dome
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = Slices / 2; slice >= 0; slice--)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(new Point(
-                            (double)slice / (Slices / 2) / 2,
+                            (double)slice / Slices / 2,
                             (double)stack / Stacks));
                     }
                 }
@@ -258,16 +263,21 @@ namespace VrPlayer.Projections.Dome
                 //RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    for (int slice = Slices / 2; slice >= 0; slice--)
+                    for (int slice = Slices; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(new Point(
-                            0.5 + (double)slice / (Slices / 2) / 2,
+                            0.5 + (double)slice / Slices / 2,
                             (double)stack / Stacks));
                     }
                 }
 
                 return textureCoordinates;
             }
+        }
+
+        private double DegToRad(double angle)
+        {
+            return Math.PI * angle / 180.0;
         }
     }
 }

@@ -32,13 +32,32 @@ namespace VrPlayer.Projections.Sphere
             set { SetValue(StacksProperty, value); }
         }
 
-        public static readonly DependencyProperty AngleProperty =
-            DependencyProperty.Register("Angle", typeof(double),
-            typeof(SphereProjection), new FrameworkPropertyMetadata(360D));
-        public double Angle
+        public static readonly DependencyProperty WidthProperty =
+            DependencyProperty.Register("Width", typeof(double),
+            typeof(SphereProjection), new FrameworkPropertyMetadata(0D));
+        public double Width
         {
-            get { return (double)GetValue(AngleProperty); }
-            set { SetValue(AngleProperty, value); }
+            get { return (double)GetValue(WidthProperty); }
+            set { SetValue(WidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty HeightProperty =
+            DependencyProperty.Register("Height", typeof(double),
+            typeof(SphereProjection), new FrameworkPropertyMetadata(0D));
+        public double Height
+        {
+            get { return (double)GetValue(HeightProperty); }
+            set { SetValue(HeightProperty, value); }
+        }
+
+
+        public static readonly DependencyProperty DepthProperty =
+            DependencyProperty.Register("Depth", typeof(double),
+            typeof(SphereProjection), new FrameworkPropertyMetadata(0D));
+        public double Depth
+        {
+            get { return (double)GetValue(DepthProperty); }
+            set { SetValue(DepthProperty, value); }
         }
 
         public Point3D Center
@@ -82,20 +101,19 @@ namespace VrPlayer.Projections.Sphere
             get
             {
                 var positions = new Point3DCollection();
-                var angleRatio = 360 / Angle;
-
+                
                 //LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
+                    double y = Radius * Math.Sin(phi) * Height;
                     double scale = -Radius * Math.Cos(phi);
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = (slice * 2 * Math.PI / Slices / angleRatio) - DegToRad(Angle / 2) + Math.PI;
-                        double x = scale * Math.Sin(theta) + Radius;
-                        double z = scale * Math.Cos(theta);
+                        double theta = slice * 2 * Math.PI / Slices;
+                        double x = scale * Math.Sin(theta) * Width + Radius;
+                        double z = scale * Math.Cos(theta) * Depth;
 
                         var normal = new Vector3D(x + Distance, y, z);
                         positions.Add(normal + Center);
@@ -106,14 +124,14 @@ namespace VrPlayer.Projections.Sphere
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     double phi = Math.PI / 2 - stack * Math.PI / Stacks;
-                    double y = Radius * Math.Sin(phi);
+                    double y = Radius * Math.Sin(phi) * Height;
                     double scale = -Radius * Math.Cos(phi);
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
-                        double theta = (slice * 2 * Math.PI / Slices / angleRatio) - DegToRad(Angle / 2) + Math.PI; 
-                        double x = scale * Math.Sin(theta) - Radius;
-                        double z = scale * Math.Cos(theta);
+                        double theta = slice * 2 * Math.PI / Slices;
+                        double x = scale * Math.Sin(theta) * Width - Radius;
+                        double z = scale * Math.Cos(theta) * Depth;
 
                         var normal = new Vector3D(x - Distance, y, z);
                         positions.Add(normal + Center);
@@ -277,11 +295,6 @@ namespace VrPlayer.Projections.Sphere
 
                 return textureCoordinates;
             }
-        }
-
-        private double DegToRad(double angle)
-        {
-            return Math.PI * angle / 180.0;
         }
     }
 }
