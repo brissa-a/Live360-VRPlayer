@@ -16,7 +16,7 @@ namespace VrPlayer.Views.Settings
         private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
         {
             var tabControl = ((TabControl)sender);
-            tabControl.SelectedItem = tabControl.Items.Cast<IPlugin<IMedia>>().First(plugin => plugin.Panel != null);
+            tabControl.SelectedItem = tabControl.Items.Cast<IPlugin<IMedia>>().FirstOrDefault(plugin => plugin.Panel != null);
         }
     }
 }

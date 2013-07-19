@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace VrPlayer.Views
+namespace VrPlayer.Views.Settings
 {
     public partial class ProjectionsSettings : UserControl
     {
