@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Threading;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
@@ -19,114 +20,133 @@ namespace VrPlayer.Models.State
 {
     public class DefaultApplicationState : ViewModelBase, IApplicationState
     {
-        #region Fields
+        #region Properties
 
-        private IPlugin<IMedia> _mediaPlugin;
+        public static readonly DependencyProperty MediaPluginProperty =
+            DependencyProperty.Register("MediaPlugin", typeof(IPlugin<IMedia>), typeof(DefaultApplicationState),
+            new FrameworkPropertyMetadata(OnMediaPluginChanged));
         public IPlugin<IMedia> MediaPlugin
         {
-            get
-            {
-                return _mediaPlugin;
-            }
-            set
-            {
-                if (_mediaPlugin != null) 
-                    _mediaPlugin.Unload();
-                _mediaPlugin = value;
-                if (_mediaPlugin != null) 
-                    _mediaPlugin.Load();
-                OnPropertyChanged("MediaPlugin");
-            }
+            get { return (IPlugin<IMedia>)GetValue(MediaPluginProperty); }
+            set { SetValue(MediaPluginProperty, value); }
         }
 
-        private IPlugin<EffectBase> _effectPlugin;
+        private static void OnMediaPluginChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (IPlugin<IMedia>)args.OldValue;
+            if (oldValue != null)
+                oldValue.Unload();
+
+            var newValue = (IPlugin<IMedia>)args.NewValue;
+            if (newValue != null)
+                newValue.Load();
+        }
+        
+        public static readonly DependencyProperty EffectPluginProperty =
+            DependencyProperty.Register("EffectPlugin", typeof(IPlugin<EffectBase>), typeof(DefaultApplicationState),
+            new FrameworkPropertyMetadata(OnEffectPluginChanged));
         public IPlugin<EffectBase> EffectPlugin
         {
-            get
-            {
-                return _effectPlugin;
-            }
-            set
-            {
-                if (_effectPlugin != null)
-                    _effectPlugin.Unload();
-                _effectPlugin = value;
-                if (_effectPlugin != null)
-                    _effectPlugin.Load();
-                OnPropertyChanged("EffectPlugin");
-            }
+            get { return (IPlugin<EffectBase>)GetValue(EffectPluginProperty); }
+            set { SetValue(EffectPluginProperty, value); }
         }
 
-        private IPlugin<IProjection> _projectionPlugin;
+        private static void OnEffectPluginChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (IPlugin<EffectBase>)args.OldValue;
+            if (oldValue != null)
+                oldValue.Unload();
+
+            var newValue = (IPlugin<EffectBase>)args.NewValue;
+            if (newValue != null)
+                newValue.Load();
+        }
+
+        public static readonly DependencyProperty ProjectionPluginProperty =
+            DependencyProperty.Register("ProjectionPlugin", typeof(IPlugin<IProjection>), typeof(DefaultApplicationState),
+            new FrameworkPropertyMetadata(OnProjectionPluginChanged));
         public IPlugin<IProjection> ProjectionPlugin
         {
-            get
+            get { return (IPlugin<IProjection>)GetValue(ProjectionPluginProperty); }
+            set { SetValue(ProjectionPluginProperty, value); }
+        }
+
+        private static void OnProjectionPluginChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var state = (DefaultApplicationState) obj;
+
+            var oldValue = (IPlugin<IProjection>)args.OldValue;
+            if (oldValue != null)
             {
-                return _projectionPlugin;
+                oldValue.Unload();
             }
-            set
+
+            var newValue = (IPlugin<IProjection>)args.NewValue;
+            if (newValue != null)
             {
-                if (_projectionPlugin != null)
-                    _projectionPlugin.Unload();
-                _projectionPlugin = value;
-                if (_projectionPlugin != null)
-                    _projectionPlugin.Load();
-                OnPropertyChanged("ProjectionPlugin");
+                newValue.Load();
+                newValue.Content.StereoMode = state.StereoInput;
             }
         }
 
-        private IPlugin<ITracker> _trackerPlugin;
+        public static readonly DependencyProperty TrackerPluginProperty =
+            DependencyProperty.Register("TrackerPlugin", typeof(IPlugin<ITracker>), typeof(DefaultApplicationState),
+            new FrameworkPropertyMetadata(OnTrackerPluginChanged));
         public IPlugin<ITracker> TrackerPlugin
         {
-            get
-            {
-                return _trackerPlugin;
-            }
-            set
-            {
-                if (_trackerPlugin != null)
-                    _trackerPlugin.Unload();
-                _trackerPlugin = value;
-                if(_trackerPlugin != null)
-                    _trackerPlugin.Load();
-                OnPropertyChanged("TrackerPlugin");
-            }
+            get { return (IPlugin<ITracker>)GetValue(TrackerPluginProperty); }
+            set { SetValue(TrackerPluginProperty, value); }
         }
 
-        private IPlugin<DistortionBase> _distortionPlugin;
+        private static void OnTrackerPluginChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (IPlugin<ITracker>)args.OldValue;
+            if (oldValue != null)
+                oldValue.Unload();
+
+            var newValue = (IPlugin<ITracker>)args.NewValue;
+            if (newValue != null)
+                newValue.Load();
+        }
+
+        public static readonly DependencyProperty DistortionPluginProperty =
+            DependencyProperty.Register("DistortionPlugin", typeof(IPlugin<DistortionBase>), typeof(DefaultApplicationState),
+            new FrameworkPropertyMetadata(OnDistortionPluginChanged));
         public IPlugin<DistortionBase> DistortionPlugin
         {
-            get
-            {
-                return _distortionPlugin;
-            }
-            set
-            {
-                if (_distortionPlugin != null)
-                    _distortionPlugin.Unload();
-                _distortionPlugin = value;
-                if (_distortionPlugin != null)
-                    _distortionPlugin.Load();
-                OnPropertyChanged("DistortionPlugin");
-            }
+            get { return (IPlugin<DistortionBase>)GetValue(DistortionPluginProperty); }
+            set { SetValue(DistortionPluginProperty, value); }
         }
 
-        private IPlugin<IStabilizer> _stabilizerPlugin;
+        private static void OnDistortionPluginChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (IPlugin<DistortionBase>)args.OldValue;
+            if (oldValue != null)
+                oldValue.Unload();
+
+            var newValue = (IPlugin<DistortionBase>)args.NewValue;
+            if (newValue != null)
+                newValue.Load();
+        }
+
+        public static readonly DependencyProperty StabilizerPluginProperty =
+            DependencyProperty.Register("StabilizerPlugin", typeof(IPlugin<IStabilizer>), typeof(DefaultApplicationState),
+            new FrameworkPropertyMetadata(OnStabilizerPluginChanged));
         public IPlugin<IStabilizer> StabilizerPlugin
         {
-            get
-            {
-                return _stabilizerPlugin;
-            }
-            set
-            {
-                if (_stabilizerPlugin != null)
-                    _stabilizerPlugin.Unload();
-                _stabilizerPlugin = value;
-                if (_stabilizerPlugin != null)
-                    _stabilizerPlugin.Load();
-                OnPropertyChanged("StabilizerPlugin");
-            }
+            get { return (IPlugin<IStabilizer>)GetValue(StabilizerPluginProperty); }
+            set { SetValue(StabilizerPluginProperty, value); }
+        }
+
+        private static void OnStabilizerPluginChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var oldValue = (IPlugin<IStabilizer>)args.OldValue;
+            if (oldValue != null)
+                oldValue.Unload();
+
+            var newValue = (IPlugin<IStabilizer>)args.NewValue;
+            if (newValue != null)
+                newValue.Load();
         }
 
         private StereoMode _stereoInput;
@@ -156,7 +176,6 @@ namespace VrPlayer.Models.State
                 OnPropertyChanged("StereoOutput");
             }
         }
-
 
         private ShortcutsManager _shortcuts;
         public ShortcutsManager Shortcuts

@@ -14,19 +14,19 @@ namespace VrPlayer.Helpers
         /// Serializes an object to Xml as a string.
         /// </summary>
         /// <typeparam name="T">Datatype T.</typeparam>
-        /// <param name="ToSerialize">Object of type T to be serialized.</param>
+        /// <param name="toSerialize">Object of type T to be serialized.</param>
         /// <returns>Xml string of serialized type T object.</returns>
-        public static string SerializeToXmlString<T>(T ToSerialize)
+        public static string SerializeToXmlString<T>(T toSerialize)
         {
-            string xmlstream = String.Empty;
+            string xmlstream;
 
-            using (MemoryStream memstream = new MemoryStream())
+            using (var memstream = new MemoryStream())
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-                XmlTextWriter xmlWriter = new XmlTextWriter(memstream, Encoding.UTF8);
+                var xmlSerializer = new XmlSerializer(typeof(T));
+                var xmlWriter = new XmlTextWriter(memstream, Encoding.UTF8);
 
-                xmlSerializer.Serialize(xmlWriter, ToSerialize);
-                xmlstream = UTF8ByteArrayToString(((MemoryStream)xmlWriter.BaseStream).ToArray());
+                xmlSerializer.Serialize(xmlWriter, toSerialize);
+                xmlstream = Utf8ByteArrayToString(((MemoryStream)xmlWriter.BaseStream).ToArray());
             }
 
             return xmlstream;
@@ -36,16 +36,16 @@ namespace VrPlayer.Helpers
         /// Deserializes Xml string of type T.
         /// </summary>
         /// <typeparam name="T">Datatype T.</typeparam>
-        /// <param name="XmlString">Input Xml string from which to read.</param>
+        /// <param name="xmlString">Input Xml string from which to read.</param>
         /// <returns>Returns rehydrated object of type T.</returns>
-        public static T DeserializeXmlString<T>(string XmlString)
+        public static T DeserializeXmlString<T>(string xmlString)
         {
-            T tempObject = default(T);
+            T tempObject;
 
-            using (MemoryStream memoryStream = new MemoryStream(StringToUTF8ByteArray(XmlString)))
+            using (var memoryStream = new MemoryStream(StringToUtf8ByteArray(xmlString)))
             {
-                XmlSerializer xs = new XmlSerializer(typeof(T));
-                XmlTextWriter xmlTextWriter = new XmlTextWriter(memoryStream, Encoding.UTF8);
+                var xs = new XmlSerializer(typeof(T));
+                new XmlTextWriter(memoryStream, Encoding.UTF8);
 
                 tempObject = (T)xs.Deserialize(memoryStream);
             }
@@ -54,11 +54,11 @@ namespace VrPlayer.Helpers
         }
 
         // Convert Array to String
-        public static String UTF8ByteArrayToString(Byte[] ArrBytes)
-        { return new UTF8Encoding().GetString(ArrBytes); }
+        public static String Utf8ByteArrayToString(Byte[] arrBytes)
+        { return new UTF8Encoding().GetString(arrBytes); }
         
         // Convert String to Array
-        public static Byte[] StringToUTF8ByteArray(String XmlString)
-        { return new UTF8Encoding().GetBytes(XmlString); }
+        public static Byte[] StringToUtf8ByteArray(String xmlString)
+        { return new UTF8Encoding().GetBytes(xmlString); }
     }
 }

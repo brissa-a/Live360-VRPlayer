@@ -350,9 +350,7 @@ namespace VrPlayer.ViewModels
 
         private void SetProjection(object o)
         {
-            var projectionPlugin = (IPlugin<IProjection>)o;
-            projectionPlugin.Content.StereoMode = _state.StereoInput;
-            _state.ProjectionPlugin = projectionPlugin;
+            _state.ProjectionPlugin = (IPlugin<IProjection>)o;
         }
 
         private void SetTracker(object o)
