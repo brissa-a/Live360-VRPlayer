@@ -38,6 +38,8 @@ namespace VrPlayer.ViewModels
 
             _state.PropertyChanged += ChangeShortcutsMapping;
             _config.PropertyChanged += ChangeShortcutsMapping;
+            
+            ChangeShortcutsMapping(null, new PropertyChangedEventArgs("Keys"));
 
             //Commands
             _keyBoardCommand = new RelayCommand(ExecuteShortcut);
