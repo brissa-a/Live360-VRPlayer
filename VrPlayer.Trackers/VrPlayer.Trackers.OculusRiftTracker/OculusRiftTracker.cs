@@ -28,12 +28,12 @@ namespace VrPlayer.Trackers.OculusRiftTracker
         {
             try
             {
-                if (IsEnabled)
-                    return;
-                
-                IsEnabled = true;
-                var result = OVR_Init();
-                ThrowErrorOnResult(result, "Error while initializing the Oculus Rift");
+                if (!IsEnabled)
+                {
+                    IsEnabled = true;
+                    var result = OVR_Init();
+                    ThrowErrorOnResult(result, "Error while initializing the Oculus Rift");
+                }
             }
             catch (Exception exc)
             {
