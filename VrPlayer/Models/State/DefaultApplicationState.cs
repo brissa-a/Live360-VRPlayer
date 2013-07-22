@@ -252,6 +252,9 @@ namespace VrPlayer.Models.State
         //Todo: Create media handler checking best possible open action
         private void LoadDefaultMedia(string defaultMediaFolder)
         {
+            if (MediaPlugin == null || MediaPlugin.Content == null)
+                return;
+
             var parameters = Environment.GetCommandLineArgs();
 
             if (parameters.Length > 1)

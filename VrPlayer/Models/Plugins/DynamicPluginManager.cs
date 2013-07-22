@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
@@ -23,6 +24,8 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
+                if (_medias == null)
+                    return new BindingList<IPlugin<IMedia>>();
                 return _medias.Where(media => media.Content == null)
                     .Concat(_medias.Where(media => media.Content != null));
             }
@@ -34,6 +37,8 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
+                if (_effects == null)
+                    return new BindingList<IPlugin<EffectBase>>();
                 return _effects.Where(effect => effect.Content == null)
                     .Concat(_effects.Where(effect => effect.Content != null));
             }
@@ -45,6 +50,8 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
+                if (_distortions == null)
+                    return new BindingList<IPlugin<DistortionBase>>();
                 return _distortions.Where(distortion => distortion.Content == null)
                     .Concat(_distortions.Where(distortion => distortion.Content != null));
             }
@@ -56,6 +63,8 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
+                if (_projections == null)
+                    return new BindingList<IPlugin<IProjection>>();
                 return _projections.Where(projection => projection.Content == null)
                     .Concat(_projections.Where(projection => projection.Content != null));
             }
@@ -67,6 +76,8 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
+                if (_trackers == null)
+                    return new BindingList<IPlugin<ITracker>>();
                 return _trackers.Where(trackers => trackers.Content == null)
                     .Concat(_trackers.Where(trackers => trackers.Content != null));
             }
@@ -78,6 +89,9 @@ namespace VrPlayer.Models.Plugins
         {
             get
             {
+
+                if (_stabilizers == null)
+                    return new BindingList<IPlugin<IStabilizer>>();
                 return _stabilizers.Where(stabilizers => stabilizers.Content == null)
                     .Concat(_stabilizers.Where(stabilizers => stabilizers.Content != null));
             }
@@ -96,7 +110,7 @@ namespace VrPlayer.Models.Plugins
                 catalog.Catalogs.Add(new DirectoryCatalog(dir.FullName));
             }
             var container = new CompositionContainer(catalog);
-            container.ComposeParts(this);
+            //container.ComposeParts(this);
         }
 
         public void Dispose()
