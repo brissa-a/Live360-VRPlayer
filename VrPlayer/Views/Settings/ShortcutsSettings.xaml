@@ -18,7 +18,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="125" />
@@ -35,8 +34,6 @@
                 <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Config.KeyPrevious, Converter={StaticResource ObjectToString}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" PreviewMouseDown="UIElement_OnPreviewMouseDown"></TextBox>
                 <Label Grid.Column="3" Grid.Row="1" Content="Next:"></Label>
                 <TextBox Grid.Column="4" Grid.Row="1" Text="{Binding Path=Config.KeyNext, Converter={StaticResource ObjectToString}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" PreviewMouseDown="UIElement_OnPreviewMouseDown"></TextBox>
-                <Label Grid.Column="0" Grid.Row="2" Content="Loop:"></Label>
-                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Config.KeyLoop, Converter={StaticResource ObjectToString}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" PreviewMouseDown="UIElement_OnPreviewMouseDown"></TextBox>
             </Grid>
             <!--Navigation-->
             <TextBlock Text="Navigation" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>

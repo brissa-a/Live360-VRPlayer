@@ -149,27 +149,19 @@ namespace VrPlayer.Contracts.Trackers
             BasePosition = -(RawPosition * PositionScaleFactor) + _positionOffset;
         }
 
-        public void CalibratePosition()
+        private void Move(Vector3D moveVector)
         {
-            BaseRotation = new Quaternion();
-            BasePosition = -(RawPosition * PositionScaleFactor) + _positionOffset;
+            var m = Matrix3D.Identity;
+            m.Rotate(Rotation);
+            m.Translate(moveVector);
+            m.Rotate(Rotation);
+            BasePosition = BasePosition + new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
         }
 
-        public void CalibrateRotation()
+        private void Reset()
         {
-            var conjugate = new Quaternion(RawRotation.X, RawRotation.Y, RawRotation.Z, RawRotation.W) * RotationOffset;
-            conjugate.Conjugate();
-            BaseRotation = conjugate;
             BasePosition = new Vector3D();
-        }
-
-        public abstract void Load();
-        public abstract void Unload();
-
-        public void Poke()
-        {
-            Load();
-            Unload();
+            BaseRotation = new Quaternion();
         }
 
         public ICommand MoveForwardCommand
@@ -212,19 +204,7 @@ namespace VrPlayer.Contracts.Trackers
             get{ return new DelegateCommand(o => Reset()); }
         }
 
-        private void Move(Vector3D moveVector)
-        {
-            var m = Matrix3D.Identity;
-            m.Rotate(Rotation);
-            m.Translate(moveVector);
-            m.Rotate(Rotation);
-            Position = Position + new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
-        }
-
-        private void Reset()
-        {
-            Position = new Vector3D();
-            Rotation = new Quaternion();
-        }
+        public abstract void Load();
+        public abstract void Unload();
     }
 }

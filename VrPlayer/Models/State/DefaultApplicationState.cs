@@ -40,6 +40,8 @@ namespace VrPlayer.Models.State
             var newValue = (IPlugin<IMedia>)args.NewValue;
             if (newValue != null)
                 newValue.Load();
+
+            ((DefaultApplicationState)obj).OnPropertyChanged("MediaPlugin");
         }
         
         public static readonly DependencyProperty EffectPluginProperty =
@@ -60,6 +62,8 @@ namespace VrPlayer.Models.State
             var newValue = (IPlugin<EffectBase>)args.NewValue;
             if (newValue != null)
                 newValue.Load();
+
+            ((DefaultApplicationState)obj).OnPropertyChanged("EffectPlugin");
         }
 
         public static readonly DependencyProperty ProjectionPluginProperty =
@@ -87,6 +91,8 @@ namespace VrPlayer.Models.State
                 newValue.Load();
                 newValue.Content.StereoMode = state.StereoInput;
             }
+
+            ((DefaultApplicationState)obj).OnPropertyChanged("ProjectionPlugin");
         }
 
         public static readonly DependencyProperty TrackerPluginProperty =
@@ -107,6 +113,8 @@ namespace VrPlayer.Models.State
             var newValue = (IPlugin<ITracker>)args.NewValue;
             if (newValue != null)
                 newValue.Load();
+
+            ((DefaultApplicationState)obj).OnPropertyChanged("TrackerPlugin");
         }
 
         public static readonly DependencyProperty DistortionPluginProperty =
@@ -127,6 +135,8 @@ namespace VrPlayer.Models.State
             var newValue = (IPlugin<DistortionBase>)args.NewValue;
             if (newValue != null)
                 newValue.Load();
+
+            ((DefaultApplicationState)obj).OnPropertyChanged("DistortionPlugin");
         }
 
         public static readonly DependencyProperty StabilizerPluginProperty =
@@ -147,6 +157,8 @@ namespace VrPlayer.Models.State
             var newValue = (IPlugin<IStabilizer>)args.NewValue;
             if (newValue != null)
                 newValue.Load();
+
+            ((DefaultApplicationState)obj).OnPropertyChanged("StabilizerPlugin");
         }
 
         private StereoMode _stereoInput;

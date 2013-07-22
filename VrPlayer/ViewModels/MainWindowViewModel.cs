@@ -67,17 +67,16 @@ namespace VrPlayer.ViewModels
                 _state.Shortcuts.Register(_config.KeyMoveRight, _state.TrackerPlugin.Content.MoveRightCommand);
                 _state.Shortcuts.Register(_config.KeyMoveUp, _state.TrackerPlugin.Content.MoveUpCommand);
                 _state.Shortcuts.Register(_config.KeyMoveDown, _state.TrackerPlugin.Content.MoveDownCommand);
-                _state.Shortcuts.Register(_config.KeyTrackerCalibrate, _state.TrackerPlugin.Content.CalibrateCommand);
-                //_state.Shortcuts.Register(_config.KeyTrackerCalibrate, _state.TrackerPlugin.Content.ResetCommand);
+                _state.Shortcuts.Register(_config.KeyTrackerCalibrate, new DelegateCommand(Calibrate));
+                _state.Shortcuts.Register(_config.KeyTrackerReset, _state.TrackerPlugin.Content.ResetCommand);
             }
 
             if (_state.MediaPlugin != null && _state.MediaPlugin.Content != null)
             {
-                _state.Shortcuts.Register(_config.KeyPlayPause, _state.MediaPlugin.Content.PlayCommand);
+                _state.Shortcuts.Register(_config.KeyPlayPause, new DelegateCommand(MediaPlayPause));
                 _state.Shortcuts.Register(_config.KeyStop, _state.MediaPlugin.Content.StopCommand);
                 _state.Shortcuts.Register(_config.KeyPrevious, _state.MediaPlugin.Content.PreviousCommand);
                 _state.Shortcuts.Register(_config.KeyNext, _state.MediaPlugin.Content.NextCommand);
-                _state.Shortcuts.Register(_config.KeyLoop, _state.MediaPlugin.Content.LoopCommand);
             }
         }
 
@@ -121,19 +120,19 @@ namespace VrPlayer.ViewModels
             _config.ViewportsVerticalOffset++;
         }
 
-        private void TrackerCalibrate(object o)
-        {
-            if (_state.TrackerPlugin != null && _state.TrackerPlugin.Content != null)
-                _state.TrackerPlugin.Content.Calibrate();
-        }
-
-        private void MediaPlayPause(object o)
+        private void MediaPlayPause(object obj)
         {
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             if (!_state.MediaPlugin.Content.IsPlaying)
                 _state.MediaPlugin.Content.PlayCommand.Execute(null);
             else
                 _state.MediaPlugin.Content.PauseCommand.Execute(null);
+        }
+        
+        private void Calibrate(object obj)
+        {
+            if (_state.TrackerPlugin != null && _state.TrackerPlugin.Content != null)
+                _state.TrackerPlugin.Content.Calibrate();
         }
 
         #endregion

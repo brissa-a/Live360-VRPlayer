@@ -12,11 +12,11 @@ namespace VrPlayer.Trackers.RazerHydraTracker
     [Export(typeof(ITracker))]
     public class RazerHydraTracker: TrackerBase, ITracker
     {
-        private const int HYDRA_ID = 0;
-        private const int SIXENSE_BUTTON_START = 1;
+        private const int HydraId = 0;
+        private const int SixenseButtonStart = 1;
 
         private readonly RazerHydraWrapper _hydra = new RazerHydraWrapper();
-        private DispatcherTimer _timer;
+        private readonly DispatcherTimer _timer;
 
         public static readonly DependencyProperty FilterEnabledProperty =
             DependencyProperty.Register("FilterEnabledFilterEnabled", typeof(bool),
@@ -73,7 +73,7 @@ namespace VrPlayer.Trackers.RazerHydraTracker
         {
             try
             {
-                var result = _hydra.GetNewestData(HYDRA_ID);
+                var result = _hydra.GetNewestData(HydraId);
                 ThrowErrorOnResult(result, "Error while getting data from the Razer Hydra");
 
                 RawPosition = new Vector3D(
@@ -87,7 +87,7 @@ namespace VrPlayer.Trackers.RazerHydraTracker
                     _hydra.Data.rot_quat.z,
                     -_hydra.Data.rot_quat.w);
 
-                if (_hydra.Data.buttons == SIXENSE_BUTTON_START)
+                if (_hydra.Data.buttons == SixenseButtonStart)
                 {
                     Calibrate();
                 }
