@@ -110,7 +110,7 @@ namespace VrPlayer.Models.Plugins
                 catalog.Catalogs.Add(new DirectoryCatalog(dir.FullName));
             }
             var container = new CompositionContainer(catalog);
-            //container.ComposeParts(this);
+            container.ComposeParts(this);
         }
 
         public void Dispose()
