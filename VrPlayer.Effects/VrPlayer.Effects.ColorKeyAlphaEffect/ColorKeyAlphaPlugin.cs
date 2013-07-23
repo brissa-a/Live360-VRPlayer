@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Configuration;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Effects;
@@ -9,18 +10,19 @@ namespace VrPlayer.Effects.ColorKeyAlpha
     [Export(typeof(IPlugin<EffectBase>))]
     public class ColorKeyAlphaPlugin : PluginBase<EffectBase>
     {
-        private static readonly Configuration Config = ConfigHelper.LoadConfig();
-
         public ColorKeyAlphaPlugin()
         {
-            Name = "ColorKey Alpha";
-            var effect = new ColorKeyAlphaEffect()
+            try
             {
-                ColorKey = ConfigHelper.ParseColor(Config.AppSettings.Settings["AlphaColor"].Value),
-                Tolerance = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Tolerance"].Value)
-            };
-            Content = effect;
-            Panel = new ColorKeyAlphaPanel(effect);
+                Name = "ColorKey Alpha";
+                var effect = new ColorKeyAlphaEffect();
+                Content = effect;
+                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(string.Format("Error while loading '{0}'", GetType().FullName), exc);
+            }
         }
     }
 }

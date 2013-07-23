@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Stabilizers;
+using VrPlayer.Helpers;
 
 namespace VrPlayer.Stabilizers.Csv
 {
@@ -9,10 +11,17 @@ namespace VrPlayer.Stabilizers.Csv
     {
         public CsvPlugin()
         {
-            Name = "CSV";
-            var stabilizer = new CsvStabilizer();
-            Content = stabilizer;
-            Panel = new CsvPanel(stabilizer);
+            try
+            {
+                Name = "CSV";
+                var stabilizer = new CsvStabilizer();
+                Content = stabilizer;
+                Panel = new CsvPanel(stabilizer);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(string.Format("Error while loading '{0}'", GetType().FullName), exc);
+            }
         }
     }
 }

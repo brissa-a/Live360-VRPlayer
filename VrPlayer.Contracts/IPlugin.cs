@@ -7,5 +7,6 @@ namespace VrPlayer.Contracts
         string Name { get; set; }
         T Content { get; set; }
         FrameworkElement Panel { get; set; }
+        PluginConfig Config { get; set; }
     }
 }

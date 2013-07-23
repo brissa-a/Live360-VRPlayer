@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.Composition;
-using System.Configuration;
+﻿using System;
+using System.ComponentModel.Composition;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Medias;
 using VrPlayer.Helpers;
@@ -9,19 +9,20 @@ namespace VrPlayer.Medias.VlcDotNet
     [Export(typeof(IPlugin<IMedia>))]
     public class VlcDotNetPlugin : PluginBase<IMedia>
     {
-        private static readonly Configuration Config = ConfigHelper.LoadConfig();
-  
         public VlcDotNetPlugin()
         {
-            Name = "VLC";
-            var media = new VlcDotNetMedia()
+            try
             {
-                DebugMode = bool.Parse(Config.AppSettings.Settings["DebugMode"].Value),
-                LibVlcDllsPath = Config.AppSettings.Settings["LibVlcDllsPath"].Value,
-                LibVlcPluginsPath = Config.AppSettings.Settings["LibVlcPluginsPath"].Value
-            };
-            Content = media;
-            Panel = new VlcDotNetPanel(media);
+                Name = "VLC";
+                var media = new VlcDotNetMedia();
+                Content = media;
+                Panel = new VlcDotNetPanel(media);
+                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(string.Format("Error while loading '{0}'", GetType().FullName), exc);
+            }
         }
     }
 }

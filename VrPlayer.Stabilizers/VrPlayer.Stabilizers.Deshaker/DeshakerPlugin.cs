@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.Composition;
-using System.Configuration;
+﻿using System;
+using System.ComponentModel.Composition;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Stabilizers;
 using VrPlayer.Helpers;
@@ -9,19 +9,20 @@ namespace VrPlayer.Stabilizers.Deshaker
     [Export(typeof(IPlugin<IStabilizer>))]
     public class DeshakerPlugin : PluginBase<IStabilizer>
     {
-        private static readonly Configuration Config = ConfigHelper.LoadConfig();
-
         public DeshakerPlugin()
         {
-            Name = "Deshaker";
-            var stabilizer = new DeshakerStabilizer
+            try
             {
-                TranslationFactor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["TranslationFactor"].Value),
-                RotationFactor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["RotationFactor"].Value),
-                ZoomFactor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["ZoomFactor"].Value)
-            };
-            Content = stabilizer;
-            Panel = new DeshakerPanel(stabilizer);
+                Name = "Deshaker";
+                var stabilizer = new DeshakerStabilizer();
+                Content = stabilizer;
+                Panel = new DeshakerPanel(stabilizer);
+                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(string.Format("Error while loading '{0}'", GetType().FullName), exc);
+            }
         }
     }
 }

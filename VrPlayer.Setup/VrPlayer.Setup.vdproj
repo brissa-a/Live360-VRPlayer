@@ -610,13 +610,13 @@
         "Entry"
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
-        "OwnerKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
-        "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
+        "OwnerKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1084,6 +1084,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1379,12 +1385,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_07515D6557064832A5FD9ECC0BC250B9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4756,7 +4756,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{124D72ED-4263-4695-AC0B-E074E1D25196}"
+        "PackageCode" = "8:{A267C3E8-CA1B-44E9-A613-E7778B314D4E}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

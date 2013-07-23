@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Reflection;
 using System.Windows.Media;
@@ -42,5 +44,7 @@ namespace VrPlayer.Helpers
             var roll = ParseDouble(coords[2]);
             return new Vector3D(pitch, yaw, roll);
         }
+
+        
     }
 }

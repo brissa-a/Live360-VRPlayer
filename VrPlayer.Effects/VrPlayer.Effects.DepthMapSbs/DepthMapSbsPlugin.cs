@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.Composition;
-using System.Configuration;
+﻿using System;
+using System.ComponentModel.Composition;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Helpers;
@@ -9,17 +9,20 @@ namespace VrPlayer.Effects.DepthMapSbs
     [Export(typeof(IPlugin<EffectBase>))]
     public class DepthMapSbsPlugin : PluginBase<EffectBase>
     {
-        private static readonly Configuration Config = ConfigHelper.LoadConfig();
-
         public DepthMapSbsPlugin()
         {
-            Name = "Depthmap Side by side";
-            var effect = new DepthMapSbsEffect()
+            try
             {
-                MaxOffset = ConfigHelper.ParseDouble(Config.AppSettings.Settings["MaxOffset"].Value)
-            };
-            Content = effect;
-            Panel = new DepthMapSbsPanel(effect);
+                Name = "Depthmap Side by side";
+                var effect = new DepthMapSbsEffect();
+                Content = effect;
+                Panel = new DepthMapSbsPanel(effect);
+                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(string.Format("Error while loading '{0}'", GetType().FullName), exc);
+            }
         }
     }
 }

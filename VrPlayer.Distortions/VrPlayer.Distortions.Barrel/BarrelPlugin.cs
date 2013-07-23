@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.Composition;
-using System.Configuration;
+﻿using System;
+using System.ComponentModel.Composition;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Distortions;
 using VrPlayer.Helpers;
@@ -9,17 +9,20 @@ namespace VrPlayer.Distortions.Barrel
     [Export(typeof(IPlugin<DistortionBase>))]
     public class BarrelPlugin : PluginBase<DistortionBase>
     {
-        private static readonly Configuration Config = ConfigHelper.LoadConfig();
-
         public BarrelPlugin()
         {
-            Name = "Barrel";
-            var effect = new BarrelEffect
+            try
             {
-                Factor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Factor"].Value)
-            };
-            Content = effect;
-            Panel = new BarrelPanel(effect);
+                Name = "Barrel";
+                var effect = new BarrelEffect();
+                Content = effect;
+                Panel = new BarrelPanel(effect);
+                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(string.Format("Error while loading '{0}'", GetType().FullName), exc);
+            }
         }
     }
 }

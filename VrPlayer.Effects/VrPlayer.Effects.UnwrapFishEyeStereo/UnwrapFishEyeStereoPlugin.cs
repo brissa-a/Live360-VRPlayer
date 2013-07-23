@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Effects;
+using VrPlayer.Helpers;
 
 namespace VrPlayer.Effects.UnwrapFishEyeStereo
 {
@@ -9,10 +11,17 @@ namespace VrPlayer.Effects.UnwrapFishEyeStereo
     {
         public UnwrapFishEyeStereoPlugin()
         {
-            Name = "Unwrap Fisheye Stereo";
-            var effect = new UnwrapFishEyeStereoEffect();
-            Content = effect;
-            Panel = null;
+            try
+            {
+                Name = "Unwrap Fisheye Stereo";
+                var effect = new UnwrapFishEyeStereoEffect();
+                Content = effect;
+                Panel = null;
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(string.Format("Error while loading '{0}'", GetType().FullName), exc);
+            }
         }
     }
 }

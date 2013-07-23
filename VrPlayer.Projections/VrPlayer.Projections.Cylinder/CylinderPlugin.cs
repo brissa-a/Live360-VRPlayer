@@ -1,7 +1,5 @@
-﻿using System.ComponentModel.Composition;
-using System.Configuration;
-using System.Reflection;
-using System.Resources;
+﻿using System;
+using System.ComponentModel.Composition;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Helpers;
@@ -11,20 +9,20 @@ namespace VrPlayer.Projections.Cylinder
     [Export(typeof(IPlugin<IProjection>))]
     public class CylinderPlugin : PluginBase<IProjection>
     {
-        private static readonly Configuration Config = ConfigHelper.LoadConfig();
-        
         public CylinderPlugin()
         {
-            Name = "Cylinder";
-            var projection = new CylinderProjection
-                {
-                    Scale = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Scale"].Value),
-                    Slices = int.Parse(Config.AppSettings.Settings["Slices"].Value),
-                    Stacks = int.Parse(Config.AppSettings.Settings["Stacks"].Value),
-                    Angle = ConfigHelper.ParseDouble(Config.AppSettings.Settings["Angle"].Value)
-                };
-            Content = projection;
-            Panel = new CylinderPanel(projection);
+            try
+            {
+                Name = "Cylinder";
+                var projection = new CylinderProjection();
+                Content = projection;
+                Panel = new CylinderPanel(projection);
+                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(string.Format("Error while loading '{0}'", GetType().FullName), exc);
+            }
         }
     }
 }
