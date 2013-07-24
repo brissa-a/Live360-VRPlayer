@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows;
-using VrPlayer.Helpers;
+using VrPlayer.Helpers.Mvvm;
 
 namespace VrPlayer.Contracts
 {
-    public abstract class PluginBase<T>: IPlugin<T> where T: ILoadable
+    public abstract class PluginBase<T>: ViewModelBase, IPlugin<T> where T: ILoadable
     {
         public string Name { get; set; }
         public T Content { get; set; }
@@ -22,23 +22,13 @@ namespace VrPlayer.Contracts
             }
         }
 
-        //Todo: Extract to util
         public void UpdateConfig()
         {
             foreach (var val in _config.Data)
             {
                 var prop = Content.GetType().GetProperty(val.Key, BindingFlags.Public | BindingFlags.Instance);
                 if (prop == null || !prop.CanWrite) continue;
-
-                object obj = val.Value;
-
-                if (prop.PropertyType == typeof(int))
-                    obj = int.Parse(val.Value);
-                else if (prop.PropertyType == typeof(double))
-                    obj = ConfigHelper.ParseDouble(val.Value);
-                else if (prop.PropertyType == typeof(bool))
-                    obj = bool.Parse(val.Value);
-
+                var obj = Convert.ChangeType(val.Value, prop.PropertyType);
                 prop.SetValue(Content, obj, null);
             }
         }

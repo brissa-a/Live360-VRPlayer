@@ -6,11 +6,12 @@ namespace VrPlayer.Contracts
 {
     public class PluginConfig
     {
-        public Dictionary<string, string> Data { get; set; }
+        public Type Type { get; set; }
+        public List<DataItem> Data; 
 
         public PluginConfig() 
         {
-            Data = new Dictionary<string, string>();
+            Data = new List<DataItem>();
         }
 
         public static PluginConfig FromSettings(KeyValueConfigurationCollection settings)
@@ -18,24 +19,25 @@ namespace VrPlayer.Contracts
             var config = new PluginConfig();
             foreach (var key in settings.AllKeys)
             {
-                config.Data.Add(key, settings[key].Value);
+                config.Data.Add(new DataItem(key, settings[key].Value));
             }
             return config;
         }
+    }
 
-        public override string ToString()
+    public class DataItem
+    {
+        public string Key;
+        public string Value;
+
+        public DataItem()
         {
-            var result = "";
-            
-            if (Data == null)
-                return result;
+        }
 
-            foreach (var val in Data)
-            {
-                result += val.Key + "=" + val.Value + Environment.NewLine;
-            }
-
-            return result;
+        public DataItem(string key, string value)
+        {
+            Key = key;
+            Value = value;
         }
     }
 }

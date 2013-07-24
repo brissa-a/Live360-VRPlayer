@@ -23,14 +23,14 @@ namespace VrPlayer.Models.Settings
         public void Save()
         {
             //Tracker
-            if (_state.TrackerPlugin != null && _state.TrackerPlugin.Content != null)
-                _settings["Tracker"] = _state.TrackerPlugin.Content.GetType().FullName;
+            if (_state.TrackerPlugin != null && _state.TrackerPlugin.Config != null)
+                _settings["Tracker"] = SerializationHelper.SerializeToXmlString(_state.TrackerPlugin.Config);
             else
                 _settings["Tracker"] = null;
 
             //Distortion
-            if (_state.DistortionPlugin != null && _state.DistortionPlugin.Content != null)
-                _settings["Distortion"] = _state.DistortionPlugin.Content.GetType().FullName;
+            if (_state.DistortionPlugin != null && _state.DistortionPlugin.Config != null)
+                _settings["Distortion"] = SerializationHelper.SerializeToXmlString(_state.DistortionPlugin.Config);
             else
                 _settings["Distortion"] = null;
 
@@ -42,6 +42,7 @@ namespace VrPlayer.Models.Settings
 
         public void Load()
         {
+            /*
             //Tracker
             _state.TrackerPlugin = _pluginManager.Trackers
                 .Where(plugin => plugin.Content != null)
@@ -51,7 +52,7 @@ namespace VrPlayer.Models.Settings
             _state.DistortionPlugin = _pluginManager.Distortions
                 .Where(plugin => plugin.Content != null)
                 .FirstOrDefault(plugin => plugin.Content.GetType().FullName == _settings["Distortion"].ToString());
-
+            */
             //Layout
             _state.StereoOutput = (LayoutMode)Enum.Parse(typeof(LayoutMode), _settings["Layout"].ToString());        
         }
