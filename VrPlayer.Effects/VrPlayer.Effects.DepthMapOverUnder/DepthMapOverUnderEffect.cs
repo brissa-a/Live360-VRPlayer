@@ -1,6 +1,5 @@
 using System;
-using System.ComponentModel.Composition;
-using System.Reflection;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
@@ -8,7 +7,7 @@ using VrPlayer.Contracts.Effects;
 
 namespace VrPlayer.Effects.DepthMapOverUnder
 {
-    [Export(typeof(EffectBase))]
+    [DataContract]
     public class DepthMapOverUnderEffect : EffectBase
     {
         public static readonly DependencyProperty InputProperty =
@@ -21,6 +20,7 @@ namespace VrPlayer.Effects.DepthMapOverUnder
         
         public static readonly DependencyProperty MaxOffsetProperty =
             DependencyProperty.Register("MaxOffset", typeof(double), typeof(DepthMapOverUnderEffect), new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
+        [DataMember]
         public double MaxOffset
         {
             get { return ((double)(GetValue(MaxOffsetProperty))); }

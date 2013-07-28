@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using Vlc.DotNet.Core;
@@ -13,6 +14,7 @@ using MediaBase = VrPlayer.Contracts.Medias.MediaBase;
 
 namespace VrPlayer.Medias.VlcDotNet
 {
+    [DataContract]
     public class VlcDotNetMedia: MediaBase
     {
         private VlcControl _player;
@@ -26,6 +28,7 @@ namespace VrPlayer.Medias.VlcDotNet
         public static readonly DependencyProperty DebugModeProperty =
             DependencyProperty.Register("DebugMode", typeof(bool),
             typeof(VlcDotNetMedia), new FrameworkPropertyMetadata(false));
+        [DataMember]
         public bool DebugMode
         {
             get { return (bool)GetValue(DebugModeProperty); }
@@ -35,6 +38,7 @@ namespace VrPlayer.Medias.VlcDotNet
         public static readonly DependencyProperty LibVlcDllsPathProperty =
             DependencyProperty.Register("LibVlcDllsPath", typeof(string),
             typeof(VlcDotNetMedia), new FrameworkPropertyMetadata(""));
+        [DataMember]
         public string LibVlcDllsPath
         {
             get { return (string)GetValue(LibVlcDllsPathProperty); }
@@ -44,6 +48,7 @@ namespace VrPlayer.Medias.VlcDotNet
         public static readonly DependencyProperty LibVlcPluginsPathProperty =
             DependencyProperty.Register("LibVlcPluginsPath", typeof(string),
             typeof(VlcDotNetMedia), new FrameworkPropertyMetadata(""));
+        [DataMember]
         public string LibVlcPluginsPath
         {
             get { return (string)GetValue(LibVlcPluginsPathProperty); }

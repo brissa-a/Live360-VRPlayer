@@ -1,5 +1,6 @@
 ﻿﻿using System;
 ﻿using System.ComponentModel.Composition;
+﻿using System.Runtime.Serialization;
 ﻿using System.Windows;
 ﻿using System.Windows.Threading;
 using System.Windows.Media.Media3D;
@@ -9,7 +10,7 @@ using VrPlayer.Contracts.Trackers;
 
 namespace VrPlayer.Trackers.RazerHydraTracker
 {
-    [Export(typeof(ITracker))]
+    [DataContract]
     public class RazerHydraTracker: TrackerBase, ITracker
     {
         private const int HydraId = 0;
@@ -21,6 +22,7 @@ namespace VrPlayer.Trackers.RazerHydraTracker
         public static readonly DependencyProperty FilterEnabledProperty =
             DependencyProperty.Register("FilterEnabledFilterEnabled", typeof(bool),
             typeof(RazerHydraTracker), new FrameworkPropertyMetadata(false));
+        [DataMember]
         public bool FilterEnabled
         {
             get { return (bool)GetValue(FilterEnabledProperty); }

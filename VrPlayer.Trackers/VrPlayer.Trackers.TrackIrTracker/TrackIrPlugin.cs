@@ -17,7 +17,7 @@ namespace VrPlayer.Trackers.TrackIrTracker
                 var tracker = new TrackIrTracker();
                 Content = tracker;
                 Panel = new TrackIrPanel(tracker);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

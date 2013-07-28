@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -13,6 +14,7 @@ using Image = System.Windows.Controls.Image;
 
 namespace VrPlayer.Medias.Gdi
 {
+    [DataContract]
     public class GdiMedia : MediaBase
     {
         private readonly Image _media;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media.Media3D;
 using VrPlayer.Contracts.Stabilizers;
@@ -10,6 +11,7 @@ using VrPlayer.Helpers;
 
 namespace VrPlayer.Stabilizers.Deshaker
 {
+    [DataContract]
     public class DeshakerStabilizer : StabilizerBase
     {
         public IEnumerable<DeshakerFrame> DeshakerData { get; set; }
@@ -28,6 +30,7 @@ namespace VrPlayer.Stabilizers.Deshaker
         public static readonly DependencyProperty TranslationFactorProperty =
             DependencyProperty.Register("TranslationFactor", typeof(double),
             typeof(DeshakerStabilizer), new FrameworkPropertyMetadata(0.01));
+        [DataMember]
         public double TranslationFactor
         {
             get { return (double)GetValue(TranslationFactorProperty); }
@@ -37,6 +40,7 @@ namespace VrPlayer.Stabilizers.Deshaker
         public static readonly DependencyProperty RotationFactorProperty =
             DependencyProperty.Register("RotationFactor", typeof(double),
             typeof(DeshakerStabilizer), new FrameworkPropertyMetadata(1D));
+        [DataMember]
         public double RotationFactor
         {
             get { return (double)GetValue(RotationFactorProperty); }
@@ -46,6 +50,7 @@ namespace VrPlayer.Stabilizers.Deshaker
         public static readonly DependencyProperty ZoomFactorProperty =
             DependencyProperty.Register("ZoomFactor", typeof(double),
             typeof(DeshakerStabilizer), new FrameworkPropertyMetadata(0.01));
+        [DataMember]
         public double ZoomFactor
         {
             get { return (double)GetValue(ZoomFactorProperty); }

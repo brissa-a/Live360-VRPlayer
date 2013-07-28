@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
-
+using VrPlayer.Helpers;
 using VrPlayer.ViewModels;
 
 namespace VrPlayer.Views
@@ -21,6 +21,7 @@ namespace VrPlayer.Views
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error("Error while initilizing ControlPanel view.", exc);
             }
         }
 

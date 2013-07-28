@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Media3D;
+using VrPlayer.Helpers;
 using VrPlayer.Models.State;
 using VrPlayer.ViewModels;
 using Application = System.Windows.Application;
@@ -30,6 +31,7 @@ namespace VrPlayer.Views.ViewPorts
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error("Error while initilizing MainViewPort view.", exc);
             }
         }
 

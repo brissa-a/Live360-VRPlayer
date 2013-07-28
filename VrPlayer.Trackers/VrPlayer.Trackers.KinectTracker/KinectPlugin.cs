@@ -17,7 +17,7 @@ namespace VrPlayer.Trackers.KinectTracker
                 var tracker = new KinectTracker();
                 Content = tracker;
                 Panel = new KinectPanel(tracker);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

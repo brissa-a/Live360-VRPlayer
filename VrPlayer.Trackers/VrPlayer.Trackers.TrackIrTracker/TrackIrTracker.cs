@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using System.Windows.Threading;
 using System.Windows.Media.Media3D;
 using VrPlayer.Contracts.Trackers;
@@ -8,6 +9,7 @@ using VrPlayer.Helpers;
 
 namespace VrPlayer.Trackers.TrackIrTracker
 {
+    [DataContract]
     unsafe public class TrackIrTracker : TrackerBase, ITracker
     {
         [DllImport(@"TrackIrWrapper.dll")]

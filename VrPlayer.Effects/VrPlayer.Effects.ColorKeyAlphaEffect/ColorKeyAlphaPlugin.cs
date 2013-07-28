@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.Composition;
-using System.Configuration;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Helpers;
@@ -17,7 +16,7 @@ namespace VrPlayer.Effects.ColorKeyAlpha
                 Name = "ColorKey Alpha";
                 var effect = new ColorKeyAlphaEffect();
                 Content = effect;
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

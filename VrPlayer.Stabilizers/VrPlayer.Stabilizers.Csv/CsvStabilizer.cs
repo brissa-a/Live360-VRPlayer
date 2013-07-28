@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using VrPlayer.Contracts.Stabilizers;
 using VrPlayer.Helpers;
 
 namespace VrPlayer.Stabilizers.Csv
 {
+    [DataContract]
     public class CsvStabilizer : StabilizerBase
     {
         public IEnumerable<CsvFrame> CsvData { get; set; }

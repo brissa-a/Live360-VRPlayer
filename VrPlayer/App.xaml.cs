@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Navigation;
+using VrPlayer.Helpers;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.Settings;
@@ -18,23 +20,38 @@ namespace VrPlayer
 
         private App()
         {
-            IApplicationConfig config = new AppSettingsApplicationConfig();
-            _pluginManager = new DynamicPluginManager();
-            IApplicationState state = new DefaultApplicationState(config, _pluginManager);
-            ViewModelFactory = new ViewModelFactory(config, _pluginManager, state);
+            try
+            {
+                IApplicationConfig config = new AppSettingsApplicationConfig();
+                _pluginManager = new DynamicPluginManager();
+                IApplicationState state = new DefaultApplicationState(config, _pluginManager);
+                ViewModelFactory = new ViewModelFactory(config, _pluginManager, state);
 
-            _settingsManager = new SettingsManager(Settings.Default, state, _pluginManager);
-            _settingsManager.Load();
+                _settingsManager = new SettingsManager(Settings.Default, state, _pluginManager, config);
+                _settingsManager.Load();
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while initializing application.", exc);
+            }
         }
     
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            _settingsManager.Save();
-            _pluginManager.Dispose();
-            foreach (NavigationWindow win in Current.Windows)
+            try
             {
-                win.Close();
+                _settingsManager.Save();
+                _pluginManager.Dispose();
+                foreach (NavigationWindow win in Current.Windows)
+                {
+                    win.Close();
+                }
             }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while closing application.", exc);
+            }
+            
         }
     }
 }

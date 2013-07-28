@@ -17,7 +17,7 @@ namespace VrPlayer.Trackers.PsMoveTracker
                 var tracker = new PsMoveTracker();
                 Content = tracker;
                 Panel = new PsMovePanel(tracker);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

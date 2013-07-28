@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Threading;
 using VrPlayer.Contracts.Medias;
@@ -10,6 +11,7 @@ using WPFMediaKit.DirectShow.MediaPlayers;
 
 namespace VrPlayer.Medias.WpfMediaKit
 {
+    [DataContract]
     public class WpfMediaKitMedia : MediaBase
     {
         private MediaElementBase _player;
@@ -23,6 +25,7 @@ namespace VrPlayer.Medias.WpfMediaKit
         public static readonly DependencyProperty PositionalAudioProperty =
             DependencyProperty.Register("PositionalAudio", typeof(bool),
             typeof(WpfMediaKitMedia), new FrameworkPropertyMetadata(false));
+        [DataMember]
         public bool PositionalAudio
         {
             get { return (bool)GetValue(PositionalAudioProperty); }
@@ -32,6 +35,7 @@ namespace VrPlayer.Medias.WpfMediaKit
         public static readonly DependencyProperty EvrRenderingProperty =
             DependencyProperty.Register("EvrRendering", typeof(bool),
             typeof(WpfMediaKitMedia), new FrameworkPropertyMetadata(false));
+        [DataMember]
         public bool EvrRendering
         {
             get { return (bool)GetValue(EvrRenderingProperty); }

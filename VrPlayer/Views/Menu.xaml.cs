@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using VrPlayer.Helpers;
 
 namespace VrPlayer.Views
 {
@@ -15,6 +16,7 @@ namespace VrPlayer.Views
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error("Error while initilizing Menu view.", exc);
             }
         }
     }

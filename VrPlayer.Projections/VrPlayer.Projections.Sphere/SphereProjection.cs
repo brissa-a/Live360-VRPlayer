@@ -1,5 +1,6 @@
 ﻿//Source: Based on SphereMeshGenerator by Charles Petzold
 using System;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -7,6 +8,7 @@ using VrPlayer.Contracts.Projections;
 
 namespace VrPlayer.Projections.Sphere
 {
+    [DataContract]
     public class SphereProjection : ProjectionBase, IProjection
     {
 
@@ -17,6 +19,7 @@ namespace VrPlayer.Projections.Sphere
         public static readonly DependencyProperty SlicesProperty =
              DependencyProperty.Register("Slices", typeof(int),
              typeof(SphereProjection), new FrameworkPropertyMetadata(32));
+        [DataMember]
         public int Slices
         {
             get { return (int)GetValue(SlicesProperty); }
@@ -26,6 +29,7 @@ namespace VrPlayer.Projections.Sphere
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
              typeof(SphereProjection), new FrameworkPropertyMetadata(16));
+        [DataMember]
         public int Stacks
         {
             get { return (int)GetValue(StacksProperty); }
@@ -35,6 +39,7 @@ namespace VrPlayer.Projections.Sphere
         public static readonly DependencyProperty WidthProperty =
             DependencyProperty.Register("Width", typeof(double),
             typeof(SphereProjection), new FrameworkPropertyMetadata(0D));
+        [DataMember]
         public double Width
         {
             get { return (double)GetValue(WidthProperty); }
@@ -44,6 +49,7 @@ namespace VrPlayer.Projections.Sphere
         public static readonly DependencyProperty HeightProperty =
             DependencyProperty.Register("Height", typeof(double),
             typeof(SphereProjection), new FrameworkPropertyMetadata(0D));
+        [DataMember]
         public double Height
         {
             get { return (double)GetValue(HeightProperty); }
@@ -54,6 +60,7 @@ namespace VrPlayer.Projections.Sphere
         public static readonly DependencyProperty DepthProperty =
             DependencyProperty.Register("Depth", typeof(double),
             typeof(SphereProjection), new FrameworkPropertyMetadata(0D));
+        [DataMember]
         public double Depth
         {
             get { return (double)GetValue(DepthProperty); }

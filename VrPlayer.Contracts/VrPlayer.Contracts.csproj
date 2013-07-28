@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -49,6 +50,7 @@
     <Compile Include="Medias\IMedia.cs" />
     <Compile Include="PluginBase.cs" />
     <Compile Include="PluginConfig.cs" />
+    <Compile Include="ConfigsList.cs" />
     <Compile Include="Projections\IProjection.cs" />
     <Compile Include="Projections\StereoMode.cs" />
     <Compile Include="Projections\ProjectionBase.cs" />

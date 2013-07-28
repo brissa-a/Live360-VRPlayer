@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Input;
 using VrPlayer.Contracts.Trackers;
@@ -6,6 +7,7 @@ using VrPlayer.Helpers;
 
 namespace VrPlayer.Trackers.MouseTracker
 {
+    [DataContract]
     public class MouseTracker : TrackerBase, ITracker
     {
         private FrameworkElement _viewport;
@@ -17,7 +19,7 @@ namespace VrPlayer.Trackers.MouseTracker
         public static readonly DependencyProperty SensitivityProperty =
             DependencyProperty.Register("Sensitivity", typeof(double),
             typeof(MouseTracker), new FrameworkPropertyMetadata(1D));
-
+        [DataMember]
         public double Sensitivity
         {
             get { return (double)GetValue(SensitivityProperty); }

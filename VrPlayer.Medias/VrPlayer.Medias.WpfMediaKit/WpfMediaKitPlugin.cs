@@ -17,7 +17,7 @@ namespace VrPlayer.Medias.WpfMediaKit
                 var media = new WpfMediaKitMedia();
                 Content = media;
                 Panel = new WpfMediaKitPanel(media);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

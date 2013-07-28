@@ -17,7 +17,7 @@ namespace VrPlayer.Stabilizers.Deshaker
                 var stabilizer = new DeshakerStabilizer();
                 Content = stabilizer;
                 Panel = new DeshakerPanel(stabilizer);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

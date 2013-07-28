@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.Composition;
-using System.Linq;
+﻿using System.Linq;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -7,7 +7,7 @@ using VrPlayer.Contracts.Projections;
 
 namespace VrPlayer.Projections.Cube
 {
-    [Export(typeof(IProjection))]
+    [DataContract]
     public class CubeProjection : ProjectionBase, IProjection
     {
         private const double _distance = 2;

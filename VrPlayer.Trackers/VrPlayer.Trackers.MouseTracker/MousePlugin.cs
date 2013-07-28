@@ -17,7 +17,7 @@ namespace VrPlayer.Trackers.MouseTracker
                 var tracker = new MouseTracker();
                 Content = tracker;
                 Panel = new MousePanel(tracker);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

@@ -17,7 +17,7 @@ namespace VrPlayer.Effects.DepthMapSbs
                 var effect = new DepthMapSbsEffect();
                 Content = effect;
                 Panel = new DepthMapSbsPanel(effect);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

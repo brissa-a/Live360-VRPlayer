@@ -17,7 +17,7 @@ namespace VrPlayer.Medias.VlcDotNet
                 var media = new VlcDotNetMedia();
                 Content = media;
                 Panel = new VlcDotNetPanel(media);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

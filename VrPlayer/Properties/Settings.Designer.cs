@@ -25,49 +25,229 @@ namespace VrPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("VrPlayer.Models.Trackers.MouseTracker")]
-        public string Tracker {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Medias {
             get {
-                return ((string)(this["Tracker"]));
+                return ((string)(this["Medias"]));
             }
             set {
-                this["Tracker"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("VrPlayer.Models.Distortions.BarrelEffect")]
-        public string Distortion {
-            get {
-                return ((string)(this["Distortion"]));
-            }
-            set {
-                this["Distortion"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SideBySide")]
-        public string Layout {
-            get {
-                return ((string)(this["Layout"]));
-            }
-            set {
-                this["Layout"] = value;
+                this["Medias"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Shortcuts {
+        public string Projections {
             get {
-                return ((string)(this["Shortcuts"]));
+                return ((string)(this["Projections"]));
             }
             set {
-                this["Shortcuts"] = value;
+                this["Projections"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Effects {
+            get {
+                return ((string)(this["Effects"]));
+            }
+            set {
+                this["Effects"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Distortions {
+            get {
+                return ((string)(this["Distortions"]));
+            }
+            set {
+                this["Distortions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Trackers {
+            get {
+                return ((string)(this["Trackers"]));
+            }
+            set {
+                this["Trackers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Stabilizers {
+            get {
+                return ((string)(this["Stabilizers"]));
+            }
+            set {
+                this["Stabilizers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CurrentMedia {
+            get {
+                return ((string)(this["CurrentMedia"]));
+            }
+            set {
+                this["CurrentMedia"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CurrentProjection {
+            get {
+                return ((string)(this["CurrentProjection"]));
+            }
+            set {
+                this["CurrentProjection"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CurrentEffect {
+            get {
+                return ((string)(this["CurrentEffect"]));
+            }
+            set {
+                this["CurrentEffect"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CurrentDistortion {
+            get {
+                return ((string)(this["CurrentDistortion"]));
+            }
+            set {
+                this["CurrentDistortion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CurrentTracker {
+            get {
+                return ((string)(this["CurrentTracker"]));
+            }
+            set {
+                this["CurrentTracker"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CurrentStabilizer {
+            get {
+                return ((string)(this["CurrentStabilizer"]));
+            }
+            set {
+                this["CurrentStabilizer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LayoutMode {
+            get {
+                return ((string)(this["LayoutMode"]));
+            }
+            set {
+                this["LayoutMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StereoMode {
+            get {
+                return ((string)(this["StereoMode"]));
+            }
+            set {
+                this["StereoMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FieldOfView {
+            get {
+                return ((string)(this["FieldOfView"]));
+            }
+            set {
+                this["FieldOfView"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string VerticalOffset {
+            get {
+                return ((string)(this["VerticalOffset"]));
+            }
+            set {
+                this["VerticalOffset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HorizontalOffset {
+            get {
+                return ((string)(this["HorizontalOffset"]));
+            }
+            set {
+                this["HorizontalOffset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MetaData {
+            get {
+                return ((string)(this["MetaData"]));
+            }
+            set {
+                this["MetaData"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Samples {
+            get {
+                return ((string)(this["Samples"]));
+            }
+            set {
+                this["Samples"] = value;
             }
         }
     }

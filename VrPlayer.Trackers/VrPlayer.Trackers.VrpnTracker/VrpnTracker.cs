@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
 using VrPlayer.Helpers;
@@ -9,7 +9,7 @@ using VrPlayer.Contracts.Trackers;
 
 namespace VrPlayer.Trackers.VrpnTracker
 {
-    [Export(typeof(ITracker))]
+    [DataContract]
     public class VrpnTracker : TrackerBase, ITracker
     {
         private readonly DispatcherTimer _timer;
@@ -17,6 +17,7 @@ namespace VrPlayer.Trackers.VrpnTracker
         private ButtonRemote _button;
 
         private string _trackerAddress;
+        [DataMember]
         public string TrackerAddress
         {
             get
@@ -31,6 +32,7 @@ namespace VrPlayer.Trackers.VrpnTracker
         }
 
         private string _buttonAddress;
+        [DataMember]
         public string ButtonAddress
         {
             get

@@ -17,7 +17,7 @@ namespace VrPlayer.Projections.File
                 var projection = new FileProjection();
                 Content = projection;
                 Panel = new FilePanel(projection);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

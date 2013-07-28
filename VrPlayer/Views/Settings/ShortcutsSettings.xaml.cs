@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using VrPlayer.Helpers;
 using VrPlayer.ViewModels;
 using VrPlayer.Views.Dialogs;
 
@@ -22,6 +23,7 @@ namespace VrPlayer.Views.Settings
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error("Error while initilizing ShortcutsSettings view.", exc);
             }
         }
 

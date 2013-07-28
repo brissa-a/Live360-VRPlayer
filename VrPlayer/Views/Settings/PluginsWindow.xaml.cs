@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using VrPlayer.Helpers;
 
 namespace VrPlayer.Views.Settings
 {
@@ -15,6 +16,7 @@ namespace VrPlayer.Views.Settings
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error("Error while initilizing Plugins window.", exc);
             }
         }
 

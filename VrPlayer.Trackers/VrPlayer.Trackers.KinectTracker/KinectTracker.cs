@@ -1,6 +1,6 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Windows.Media.Media3D;
 using Microsoft.Kinect;
 
@@ -9,7 +9,7 @@ using VrPlayer.Helpers;
 
 namespace VrPlayer.Trackers.KinectTracker
 {
-    [Export(typeof(ITracker))]
+    [DataContract]
     public class KinectTracker : TrackerBase, ITracker
     {
         private KinectSensor _kinect;

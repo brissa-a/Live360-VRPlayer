@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -6,7 +7,7 @@ using VrPlayer.Contracts.Projections;
 
 namespace VrPlayer.Projections.Plane
 {
-    [Export(typeof(IProjection))]
+    [DataContract]
     public class PlaneProjection : ProjectionBase, IProjection
     {
         private const double _distance = 1000;
@@ -16,6 +17,7 @@ namespace VrPlayer.Projections.Plane
         public static readonly DependencyProperty RatioProperty =
             DependencyProperty.Register("Ratio", typeof(double),
             typeof(PlaneProjection), new FrameworkPropertyMetadata(1D));
+        [DataMember]
         public double Ratio
         {
             get { return (double)GetValue(RatioProperty); }

@@ -1,5 +1,5 @@
 using System;
-using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
@@ -8,7 +8,7 @@ using VrPlayer.Contracts.Distortions;
 
 namespace VrPlayer.Distortions.Pincushion
 {
-    [Export(typeof(DistortionBase))]
+    [DataContract]
     public class PincushionEffect : DistortionBase
     {
         public static readonly DependencyProperty InputProperty =
@@ -20,7 +20,8 @@ namespace VrPlayer.Distortions.Pincushion
         }
         
         public static readonly DependencyProperty FactorProperty =
-            DependencyProperty.Register("Factor", typeof(double), typeof(PincushionEffect), new UIPropertyMetadata(5D, PixelShaderConstantCallback(0)));
+            DependencyProperty.Register("Factor", typeof(double), typeof(PincushionEffect), new UIPropertyMetadata(5D, PixelShaderConstantCallback(0)));       
+        [DataMember]
         public double Factor
         {
             get { return ((double)(GetValue(FactorProperty))); }

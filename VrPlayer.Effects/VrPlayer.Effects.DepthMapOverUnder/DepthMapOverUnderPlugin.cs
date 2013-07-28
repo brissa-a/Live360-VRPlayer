@@ -16,7 +16,7 @@ namespace VrPlayer.Effects.DepthMapOverUnder
                 Name = "Depthmap Over/Under";
                 var effect = new DepthMapOverUnderEffect();
                 Content = effect;
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

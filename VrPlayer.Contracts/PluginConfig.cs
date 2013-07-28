@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 
 namespace VrPlayer.Contracts
 {
     public class PluginConfig
     {
-        public Type Type { get; set; }
+        public string Type { get; set; }
         public List<DataItem> Data; 
 
         public PluginConfig() 

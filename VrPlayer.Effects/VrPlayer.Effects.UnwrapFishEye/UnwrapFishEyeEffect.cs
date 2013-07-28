@@ -1,5 +1,5 @@
 using System;
-using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
@@ -8,7 +8,7 @@ using VrPlayer.Contracts.Effects;
 
 namespace VrPlayer.Effects.UnwrapFishEye
 {
-    [Export(typeof(EffectBase))]
+    [DataContract]
     public class UnwrapFishEyeEffect : EffectBase
     {
         public static readonly DependencyProperty InputProperty =

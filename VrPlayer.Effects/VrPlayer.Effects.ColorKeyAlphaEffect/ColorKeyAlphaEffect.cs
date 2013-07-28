@@ -1,5 +1,5 @@
 using System;
-using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
@@ -7,7 +7,7 @@ using VrPlayer.Contracts.Effects;
 
 namespace VrPlayer.Effects.ColorKeyAlpha
 {
-    [Export(typeof(EffectBase))]
+    [DataContract]
     public class ColorKeyAlphaEffect : EffectBase
     {
         public static readonly DependencyProperty InputProperty =
@@ -20,6 +20,7 @@ namespace VrPlayer.Effects.ColorKeyAlpha
 
         public static readonly DependencyProperty ColorKeyProperty =
             DependencyProperty.Register("ColorKey", typeof(Color), typeof(ColorKeyAlphaEffect), new UIPropertyMetadata(Color.FromArgb(255, 0, 128, 0), PixelShaderConstantCallback(0)));
+        [DataMember]
         public Color ColorKey
         {
             get { return ((Color)(GetValue(ColorKeyProperty))); }
@@ -28,6 +29,7 @@ namespace VrPlayer.Effects.ColorKeyAlpha
 
         public static readonly DependencyProperty ToleranceProperty =
             DependencyProperty.Register("Tolerance", typeof(double), typeof(ColorKeyAlphaEffect), new UIPropertyMetadata(0.3D, PixelShaderConstantCallback(1)));
+        [DataMember]
         public double Tolerance
         {
             get { return ((double)(GetValue(ToleranceProperty))); }

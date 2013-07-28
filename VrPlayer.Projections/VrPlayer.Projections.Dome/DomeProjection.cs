@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -7,7 +7,7 @@ using VrPlayer.Contracts.Projections;
 
 namespace VrPlayer.Projections.Dome
 {
-    [Export(typeof(IProjection))]
+    [DataContract]
     public class DomeProjection : ProjectionBase, IProjection
     {
         private Point3D _center;
@@ -17,6 +17,7 @@ namespace VrPlayer.Projections.Dome
         public static readonly DependencyProperty SlicesProperty =
             DependencyProperty.Register("Slices", typeof(int),
             typeof(DomeProjection), new FrameworkPropertyMetadata(16));
+        [DataMember]
         public int Slices
         {
             get { return (int)GetValue(SlicesProperty); }
@@ -26,6 +27,7 @@ namespace VrPlayer.Projections.Dome
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
              typeof(DomeProjection), new FrameworkPropertyMetadata(16));
+        [DataMember]
         public int Stacks
         {
             get { return (int)GetValue(StacksProperty); }
@@ -35,6 +37,7 @@ namespace VrPlayer.Projections.Dome
         public static readonly DependencyProperty HorizontalCoverageProperty =
             DependencyProperty.Register("HorizontalCoverage", typeof(double),
             typeof(DomeProjection), new FrameworkPropertyMetadata(0.5D));
+        [DataMember]
         public double HorizontalCoverage
         {
             get { return (double)GetValue(HorizontalCoverageProperty); }
@@ -44,6 +47,7 @@ namespace VrPlayer.Projections.Dome
         public static readonly DependencyProperty VerticalCoverageProperty =
             DependencyProperty.Register("VerticalCoverage", typeof(double),
             typeof(DomeProjection), new FrameworkPropertyMetadata(1D));
+        [DataMember]
         public double VerticalCoverage
         {
             get { return (double)GetValue(VerticalCoverageProperty); }

@@ -17,7 +17,7 @@ namespace VrPlayer.Projections.Sphere
                 var projection = new SphereProjection();
                 Content = projection;
                 Panel = new SpherePanel(projection);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

@@ -17,7 +17,7 @@ namespace VrPlayer.Distortions.Barrel
                 var effect = new BarrelEffect();
                 Content = effect;
                 Panel = new BarrelPanel(effect);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

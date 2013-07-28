@@ -20,6 +20,7 @@ namespace VrPlayer
             }
             catch (Exception exc)
             {
+                Logger.Instance.Error("Error while initilizing Main window.", exc);
             }
         }
 

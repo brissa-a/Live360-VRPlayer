@@ -1,15 +1,17 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
 using VrPlayer.Contracts.Projections;
+using VrPlayer.Helpers;
 
 namespace VrPlayer.Projections.File
 {
-    [Export(typeof(IProjection))]
+    [DataContract]
     public class FileProjection : ProjectionBase, IProjection
     {
         private string _filePath;
@@ -37,6 +39,10 @@ namespace VrPlayer.Projections.File
         private MeshGeometry3D ReadGeometryFromFile(string path)
         {
             var geometry = new MeshGeometry3D();
+
+            if (string.IsNullOrEmpty(path))
+                return geometry;
+
             var models = new Model3DGroup();
             
             var fileInfo = new FileInfo(path);
@@ -48,8 +54,9 @@ namespace VrPlayer.Projections.File
                 {
                     models = reader.Read(fileInfo.FullName);
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
+                    Logger.Instance.Error(string.Format("Error while loading obj file '{0}'.", path), exc);
                 }
             }
 
@@ -60,8 +67,9 @@ namespace VrPlayer.Projections.File
                 {
                     models = reader.Read(fileInfo.FullName);
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
+                    Logger.Instance.Error(string.Format("Error while loading 3ds file '{0}'.", path), exc);
                 }
             }
 

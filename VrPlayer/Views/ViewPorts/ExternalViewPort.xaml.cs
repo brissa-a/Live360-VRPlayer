@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Media.Media3D;
 using VrPlayer.Helpers;
 using VrPlayer.ViewModels;
@@ -19,8 +20,9 @@ namespace VrPlayer.Views.ViewPorts
                 _viewModel = ((App) Application.Current).ViewModelFactory.CreateViewPortViewModel();
                 DataContext = _viewModel;
             }
-            catch
+            catch (Exception exc)
             {
+                Logger.Instance.Error("Error while initilizing ExternalViewPort view.", exc);
             }
         }
     }

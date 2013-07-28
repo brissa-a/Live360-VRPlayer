@@ -17,7 +17,7 @@ namespace VrPlayer.Projections.Cylinder
                 var projection = new CylinderProjection();
                 Content = projection;
                 Panel = new CylinderPanel(projection);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

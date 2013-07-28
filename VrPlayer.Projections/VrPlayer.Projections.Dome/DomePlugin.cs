@@ -17,7 +17,7 @@ namespace VrPlayer.Projections.Dome
                 var projection = new DomeProjection();
                 Content = projection;
                 Panel = new DomePanel(projection);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

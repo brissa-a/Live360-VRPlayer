@@ -17,7 +17,7 @@ namespace VrPlayer.Distortions.Pincushion
                 var effect = new PincushionEffect();
                 Content = effect;
                 Panel = new PincushionPanel(effect);
-                Config = PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings);
+                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
             {

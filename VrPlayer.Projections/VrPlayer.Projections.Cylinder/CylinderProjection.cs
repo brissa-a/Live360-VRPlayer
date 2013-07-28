@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -7,7 +7,7 @@ using VrPlayer.Contracts.Projections;
 
 namespace VrPlayer.Projections.Cylinder
 {
-    [Export(typeof(IProjection))]
+    [DataContract]
     public class CylinderProjection : ProjectionBase, IProjection
     {
         private Point3D _center;
@@ -17,6 +17,7 @@ namespace VrPlayer.Projections.Cylinder
         public static readonly DependencyProperty ScaleProperty =
              DependencyProperty.Register("Scale", typeof(double),
              typeof(CylinderProjection), new FrameworkPropertyMetadata(1D));
+        [DataMember]
         public double Scale
         {
             get { return (double)GetValue(ScaleProperty); }
@@ -26,6 +27,7 @@ namespace VrPlayer.Projections.Cylinder
         public static readonly DependencyProperty SlicesProperty =
              DependencyProperty.Register("Slices", typeof(int),
              typeof(CylinderProjection), new FrameworkPropertyMetadata(32));
+        [DataMember]
         public int Slices
         {
             get { return (int)GetValue(SlicesProperty); }
@@ -35,6 +37,7 @@ namespace VrPlayer.Projections.Cylinder
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
              typeof(CylinderProjection), new FrameworkPropertyMetadata(16));
+        [DataMember]
         public int Stacks
         {
             get { return (int)GetValue(StacksProperty); }
@@ -44,6 +47,7 @@ namespace VrPlayer.Projections.Cylinder
         public static readonly DependencyProperty AngleProperty =
             DependencyProperty.Register("Angle", typeof(double),
             typeof(CylinderProjection), new FrameworkPropertyMetadata(360D));
+        [DataMember]
         public double Angle
         {
             get { return (double)GetValue(AngleProperty); }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Runtime.Serialization;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
 
@@ -72,6 +73,7 @@ namespace VrPlayer.Contracts.Trackers
         public static readonly DependencyProperty PositionScaleFactorProperty =
             DependencyProperty.Register("PositionScaleFactor", typeof(double),
             typeof(TrackerBase), new FrameworkPropertyMetadata(1D));
+        [DataMember]
         public double PositionScaleFactor
         {
             get { return (double)GetValue(PositionScaleFactorProperty); }
@@ -123,7 +125,7 @@ namespace VrPlayer.Contracts.Trackers
         public static readonly DependencyProperty RotationOffsetProperty =
             DependencyProperty.Register("RotationOffset", typeof(Quaternion),
             typeof(TrackerBase), new FrameworkPropertyMetadata(new Quaternion()));
-
+        [DataMember]
         public Quaternion RotationOffset
         {
             get { return (Quaternion)GetValue(RotationOffsetProperty); }

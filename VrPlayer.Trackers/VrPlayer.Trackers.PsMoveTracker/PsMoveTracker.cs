@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
 using System.Threading;
 using System.Windows.Media.Media3D;
 using MoveFramework_CS;
@@ -9,7 +9,7 @@ using VrPlayer.Helpers;
 
 namespace VrPlayer.Trackers.PsMoveTracker
 {
-    [Export(typeof(ITracker))]
+    [DataContract]
     public class PsMoveTracker : TrackerBase, ITracker
     {
         public PsMoveTracker()
