@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
+using System.Windows.Input;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Helpers;
@@ -135,6 +136,28 @@ namespace VrPlayer.Models.Settings
                 _settings["FieldOfView"] = _config.CameraFieldOfView.ToString(CultureInfo.InvariantCulture);
                 _settings["HorizontalOffset"] = _config.ViewportsHorizontalOffset.ToString(CultureInfo.InvariantCulture);
                 _settings["VerticalOffset"] = _config.ViewportsVerticalOffset.ToString(CultureInfo.InvariantCulture);
+
+                //Todo: Refactor!
+                _settings["Shortcuts"] =
+                    _config.KeyPlayPause + "," +
+                    _config.KeyStop + "," +
+                    _config.KeyNext + "," +
+                    _config.KeyPrevious + "," +
+                    _config.KeyLoop + "," +
+                    _config.KeyMoveLeft + "," +
+                    _config.KeyMoveRight + "," +
+                    _config.KeyMoveForward + "," +
+                    _config.KeyMoveBackward + "," +
+                    _config.KeyMoveUp + "," +
+                    _config.KeyMoveDown + "," +
+                    _config.KeyTrackerCalibrate + "," +
+                    _config.KeyTrackerReset + "," +
+                    _config.KeyFieldOfViewMinus + "," +
+                    _config.KeyFieldOfViewPlus + "," +
+                    _config.KeyHorizontalOffsetMinus + "," +
+                    _config.KeyHorizontalOffsetPlus + "," +
+                    _config.KeyVerticalOffsetMinus + "," +
+                    _config.KeyVerticalOffsetPlus;
             }
             catch (Exception exc)
             {
@@ -241,6 +264,33 @@ namespace VrPlayer.Models.Settings
                 var stereoMode = _settings["StereoMode"].ToString();
                 if (!string.IsNullOrEmpty(stereoMode))
                     _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), stereoMode);
+
+                //Todo: Refactor!
+                var shortcuts = _settings["Shortcuts"].ToString();
+                if (!string.IsNullOrEmpty(shortcuts))
+                {
+                    var i = 0;
+                    var keys = shortcuts.Split(',');
+                    _config.KeyPlayPause = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyStop = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyNext = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyPrevious = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyLoop = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyMoveLeft = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyMoveRight = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyMoveForward = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyMoveBackward = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyMoveUp = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyMoveDown = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyTrackerCalibrate = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyTrackerReset = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyFieldOfViewMinus = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyFieldOfViewPlus = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyHorizontalOffsetMinus = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyHorizontalOffsetPlus = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyVerticalOffsetMinus = (Key) Enum.Parse(typeof(Key), keys[i++]);
+                    _config.KeyVerticalOffsetPlus = (Key)Enum.Parse(typeof(Key), keys[i++]);
+                }
             }
             catch (Exception exc)
             {

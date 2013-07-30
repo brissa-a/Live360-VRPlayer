@@ -250,5 +250,17 @@ namespace VrPlayer.Properties {
                 this["Samples"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Shortcuts {
+            get {
+                return ((string)(this["Shortcuts"]));
+            }
+            set {
+                this["Shortcuts"] = value;
+            }
+        }
     }
 }
