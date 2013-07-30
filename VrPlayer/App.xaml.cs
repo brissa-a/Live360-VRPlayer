@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Navigation;
 using VrPlayer.Helpers;
@@ -20,6 +22,8 @@ namespace VrPlayer
 
         private App()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
             try
             {
                 IApplicationConfig config = new AppSettingsApplicationConfig();

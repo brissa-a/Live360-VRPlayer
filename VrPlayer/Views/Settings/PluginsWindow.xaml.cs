@@ -33,5 +33,10 @@ namespace VrPlayer.Views.Settings
                 window.Show();
             }
         }
+
+        private void PluginsWindow_OnClosed(object sender, EventArgs e)
+        {
+            Content = null;
+        }
     }
 }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:settings="clr-namespace:VrPlayer.Views.Settings"
         Icon="/Medias/Nuvola/16x16/kservices.png"
-        Title="Settings" Height="450" Width="550" WindowStyle="ToolWindow" Margin="0" Padding="0">
+        Title="Settings" Height="450" Width="550" WindowStyle="ToolWindow" Margin="0" Padding="0" Closed="SettingsWindow_OnClosed">
     <TabControl x:Name="Tabs" TabStripPlacement="Left" Margin="-4">
         <TabItem UseLayoutRounding="False">
             <TabItem.Header>

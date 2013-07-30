@@ -110,6 +110,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Stabilizers.Csv", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VrPlayer.Medias.Gdi", "VrPlayer.Medias\VrPlayer.Medias.Gdi\VrPlayer.Medias.Gdi.csproj", "{F6AAE40A-529D-4E1C-9D0B-A20B921CCB93}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VrPlayer.Setup", "VrPlayer.Setup\VrPlayer.Setup.vdproj", "{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -482,6 +484,18 @@ Global
 		{F6AAE40A-529D-4E1C-9D0B-A20B921CCB93}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F6AAE40A-529D-4E1C-9D0B-A20B921CCB93}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F6AAE40A-529D-4E1C-9D0B-A20B921CCB93}.Release|x86.ActiveCfg = Release|Any CPU
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Debug|Any CPU.ActiveCfg = Debug
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Debug|Any CPU.Build.0 = Debug
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Debug|Mixed Platforms.Build.0 = Debug
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Debug|x86.ActiveCfg = Debug
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Debug|x86.Build.0 = Debug
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Release|Any CPU.ActiveCfg = Release
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Release|Any CPU.Build.0 = Release
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Release|Mixed Platforms.ActiveCfg = Release
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Release|Mixed Platforms.Build.0 = Release
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Release|x86.ActiveCfg = Release
+		{3EDB9F85-6726-4365-9F5B-A1DCD6D87E37}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

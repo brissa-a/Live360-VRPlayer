@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -22,7 +23,7 @@ namespace VrPlayer.Contracts
                 if (prop == null || !prop.CanWrite) continue;
                 try
                 {
-                    var obj = Convert.ChangeType(val.Value, prop.PropertyType);
+                    var obj = Convert.ChangeType(val.Value, prop.PropertyType, CultureInfo.InvariantCulture);
                     prop.SetValue(Content, obj, null);
                 }
                 catch (Exception exc)
