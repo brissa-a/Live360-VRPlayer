@@ -161,17 +161,21 @@ namespace VrPlayer.Models.State
             ((DefaultApplicationState)obj).OnPropertyChanged("StabilizerPlugin");
         }
 
-        private StereoMode _stereoInput;
+        public static readonly DependencyProperty StereoInputProperty =
+            DependencyProperty.Register("StereoInput", typeof(StereoMode), typeof(DefaultApplicationState),
+            new FrameworkPropertyMetadata(OnStereoInputChanged));
         public StereoMode StereoInput
         {
-            get
+            get { return (StereoMode)GetValue(StereoInputProperty); }
+            set { SetValue(StereoInputProperty, value); }
+        }
+
+        private static void OnStereoInputChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var projectionPlugin = ((DefaultApplicationState) obj).ProjectionPlugin;
+            if (projectionPlugin != null && projectionPlugin.Content != null)
             {
-                return _stereoInput;
-            }
-            set
-            {
-                _stereoInput = value;
-                OnPropertyChanged("StereoInput");
+                projectionPlugin.Content.StereoMode = (StereoMode)args.NewValue;
             }
         }
 

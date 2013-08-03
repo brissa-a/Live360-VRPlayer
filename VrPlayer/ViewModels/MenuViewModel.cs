@@ -340,7 +340,6 @@ namespace VrPlayer.ViewModels
         private void SetStereoInput(object o)
         {
             _state.StereoInput = (StereoMode)o;
-            _state.ProjectionPlugin.Content.StereoMode = _state.StereoInput;
         }
 
         private void SetStereoOutput(object o)
@@ -408,9 +407,6 @@ namespace VrPlayer.ViewModels
                 if (!string.IsNullOrEmpty(metadata.FormatType))
                 {
                     _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), metadata.FormatType);
-                    //Todo: Stereo input should not be assigned to Projection manually
-                    if (_state.ProjectionPlugin != null)
-                        _state.ProjectionPlugin.Content.StereoMode = _state.StereoInput;
                 }
 
                 if (!string.IsNullOrEmpty(metadata.Effects))

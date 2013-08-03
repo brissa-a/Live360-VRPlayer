@@ -233,6 +233,14 @@ namespace VrPlayer.Models.Settings
         {
             try
             {
+                var layoutMode = _settings["LayoutMode"].ToString();
+                if (!string.IsNullOrEmpty(layoutMode))
+                    _state.StereoOutput = (LayoutMode)Enum.Parse(typeof(LayoutMode), layoutMode);
+
+                var stereoMode = _settings["StereoMode"].ToString();
+                if (!string.IsNullOrEmpty(stereoMode))
+                    _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), stereoMode);
+
                 var currentMedia = _settings["CurrentMedia"].ToString();
                 if(!string.IsNullOrEmpty(currentMedia))
                     _state.MediaPlugin = _pluginManager.Medias.FirstOrDefault(plugin => plugin.GetType().FullName == currentMedia);
@@ -256,14 +264,6 @@ namespace VrPlayer.Models.Settings
                 var currentStabilizer = _settings["CurrentStabilizer"].ToString();
                 if (!string.IsNullOrEmpty(currentStabilizer))
                     _state.StabilizerPlugin = _pluginManager.Stabilizers.FirstOrDefault(plugin => plugin.GetType().FullName == currentStabilizer);
-
-                var layoutMode = _settings["LayoutMode"].ToString();
-                if (!string.IsNullOrEmpty(layoutMode))
-                    _state.StereoOutput = (LayoutMode)Enum.Parse(typeof(LayoutMode), layoutMode);
-            
-                var stereoMode = _settings["StereoMode"].ToString();
-                if (!string.IsNullOrEmpty(stereoMode))
-                    _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), stereoMode);
 
                 //Todo: Refactor!
                 var shortcuts = _settings["Shortcuts"].ToString();
