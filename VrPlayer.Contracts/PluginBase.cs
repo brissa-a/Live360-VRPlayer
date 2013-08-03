@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
 
@@ -26,14 +28,33 @@ namespace VrPlayer.Contracts
                     var obj = Convert.ChangeType(val.Value, prop.PropertyType, CultureInfo.InvariantCulture);
                     prop.SetValue(Content, obj, null);
                 }
+                catch (InvalidCastException exc)
+                {
+                    //Todo: Extract unsupported type conversion to utils
+                    if (prop.PropertyType == typeof (Color))
+                    {
+                        var obj = ConfigHelper.ParseColor(val.Value);
+                        prop.SetValue(Content, obj, null);
+                    }
+                    else if (prop.PropertyType == typeof (Quaternion))
+                    {
+                        var obj = ConfigHelper.ParseQuaternion(val.Value);
+                        prop.SetValue(Content, obj, null);
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 catch (Exception exc)
                 {
                     Logger.Instance.Error(
-                        string.Format("Error while injecting config for '{0}'. Could not assign value '{1}' of type '{2}' to key '{3}'.", 
-                        this.GetType().FullName,
-                        val.Value,
-                        prop.PropertyType.FullName,
-                        val.Key), 
+                        string.Format(
+                            "Error while injecting config for '{0}'. Could not assign value '{1}' of type '{2}' to key '{3}'.",
+                            this.GetType().FullName,
+                            val.Value,
+                            prop.PropertyType.FullName,
+                            val.Key),
                         exc);
                 }
             }

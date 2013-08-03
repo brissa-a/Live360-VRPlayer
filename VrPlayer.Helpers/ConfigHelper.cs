@@ -45,6 +45,24 @@ namespace VrPlayer.Helpers
             return new Vector3D(pitch, yaw, roll);
         }
 
-        
+
+        public static Quaternion ParseQuaternion(string value)
+        {
+            var q = new Quaternion();
+
+            if(string.IsNullOrEmpty(value))
+                return q;
+
+            var coords = value.Split(',');
+            if (coords.Length == 4)
+            {
+                q.X = ParseDouble(coords[0]);
+                q.Y = ParseDouble(coords[1]);
+                q.Z = ParseDouble(coords[2]);
+                q.W = ParseDouble(coords[3]);
+            }
+
+            return q;
+        }
     }
 }
