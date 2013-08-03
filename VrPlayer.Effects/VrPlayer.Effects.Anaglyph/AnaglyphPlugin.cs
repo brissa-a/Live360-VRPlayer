@@ -5,19 +5,19 @@ using VrPlayer.Contracts;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Helpers;
 
-namespace VrPlayer.Effects.ColorKeyAlpha
+namespace VrPlayer.Effects.Anaglyph
 {
     [Export(typeof(IPlugin<EffectBase>))]
-    public class ColorKeyAlphaPlugin : PluginBase<EffectBase>
+    class AnaglyphPlugin : PluginBase<EffectBase>
     {
-        public ColorKeyAlphaPlugin()
+        public AnaglyphPlugin()
         {
             try
             {
-                Name = "ColorKey Alpha";
-                var effect = new ColorKeyAlphaEffect();
+                Name = "Anaglyph";
+                var effect = new AnaglyphEffect();
                 Content = effect;
-                Panel = new ColorKeyAlphaPanel(effect);
+                Panel = new AnaglyphPanel(effect);
                 InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
