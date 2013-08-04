@@ -55,6 +55,16 @@ namespace VrPlayer.Medias.VlcDotNet
             set { SetValue(LibVlcPluginsPathProperty, value); }
         }
 
+        public static readonly DependencyProperty OptionsProperty =
+            DependencyProperty.Register("Options", typeof(string),
+            typeof(VlcDotNetMedia), new FrameworkPropertyMetadata(""));
+        [DataMember]
+        public string Options
+        {
+            get { return (string)GetValue(OptionsProperty); }
+            set { SetValue(OptionsProperty, value); }
+        }
+
         private void InitVlcContext()
         {
             VlcContext.CloseAll();
@@ -64,11 +74,16 @@ namespace VrPlayer.Medias.VlcDotNet
             //Set the vlc plugins directory path
             VlcContext.LibVlcPluginsPath = LibVlcPluginsPath;
 
-            //Set the startup options
-            VlcContext.StartupOptions.AddOption("--no-video-title");
-            //VlcContext.StartupOptions.AddOption("--ffmpeg-hw");
-            VlcContext.StartupOptions.AddOption("--ffmpeg-fast");
-
+            //Set the startup options (http://wiki.videolan.org/VLC_command-line_help)
+            if (Options != null)
+            {
+                var optionList = Options.Split(' ');
+                foreach (var option in optionList)
+                {
+                    VlcContext.StartupOptions.AddOption(option);
+                }
+            }
+            
             //Set debug options
             VlcContext.StartupOptions.IgnoreConfig = true;
             VlcContext.StartupOptions.LogOptions.LogInFile = DebugMode;
@@ -105,6 +120,7 @@ namespace VrPlayer.Medias.VlcDotNet
             _player = new VlcControl();
             _player.LengthChanged += PlayerOnLengthChanged;
             _player.PositionChanged += PlayerOnPositionChanged;
+            _player.EndReached += PlayerOnEndReached;
         }
 
         public override void Unload()
@@ -133,6 +149,12 @@ namespace VrPlayer.Medias.VlcDotNet
         {
             _media.Source = _player.VideoSource;
             Position = _player.Time;
+        }
+
+        private void PlayerOnEndReached(VlcControl sender, VlcEventArgs<EventArgs> vlcEventArgs)
+        {
+            if(Duration > TimeSpan.Zero)
+                Stop(null);
         }
 
         #region Commands

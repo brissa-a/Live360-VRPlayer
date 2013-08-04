@@ -106,6 +106,8 @@ namespace VrPlayer.Medias.WpfMediaKit
         {
             if (!(_player is MediaSeekingElement)) return;
             Position = TimeSpan.FromTicks(((MediaSeekingElement)_player).MediaPosition);
+            if (Duration != TimeSpan.Zero && Position >= Duration)
+                Stop(null);
         }
 
         private void UpdatePositionalAudio()

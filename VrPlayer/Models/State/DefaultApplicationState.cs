@@ -266,8 +266,7 @@ namespace VrPlayer.Models.State
                 Logger.Instance.Info(string.Format("Loading '{0}'...", parameters[1]));
                 if (!MediaPlugin.Content.OpenStreamCommand.CanExecute(null)) return;
                 var uri = new Uri(parameters[1]);
-                var uriWithoutScheme = uri.Host + uri.PathAndQuery;
-                MediaPlugin.Content.OpenStreamCommand.Execute(new Uri(uriWithoutScheme, UriKind.RelativeOrAbsolute));
+                MediaPlugin.Content.OpenStreamCommand.Execute(uri);
             }
             else
             {
@@ -280,6 +279,7 @@ namespace VrPlayer.Models.State
             }
         }
 
+        //Todo: Use data binding for inter-plugins dependancies.
         private void TimerOnTick(object sender, EventArgs eventArgs)
         {
             if (MediaPlugin == null || MediaPlugin.Content == null)

@@ -23,6 +23,16 @@
             <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=LibVlcDllsPath}" IsReadOnly="True"></TextBox>
             <Button Grid.Column="2" Grid.Row="1" Click="LibVlcPluginsPath_Button_Click">...</Button>
         </Grid>
+        <TextBlock Text="Options" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>
+        <Grid Margin="0,0,0,16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Grid.Row="0" Text="{Binding Path=Options}" IsReadOnly="True" IsEnabled="False"></TextBox>
+        </Grid>
         <TextBlock TextWrapping="Wrap" Text="**Note: VLC media player 1.2 or later must be installed." Foreground="Red" Margin="0,0,0,16" Cursor="Hand" MouseDown="DownloadVlc_OnMouseDown"></TextBlock>
     </StackPanel>
 </UserControl>

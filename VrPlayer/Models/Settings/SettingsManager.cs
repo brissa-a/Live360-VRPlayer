@@ -105,8 +105,8 @@ namespace VrPlayer.Models.Settings
             try
             {
 
-                if (_state.MediaPlugin != null)
-                    _settings["CurrentMedia"] = _state.MediaPlugin.GetType().FullName;
+                //if (_state.MediaPlugin != null)
+                //    _settings["CurrentMedia"] = _state.MediaPlugin.GetType().FullName;
                 if (_state.ProjectionPlugin != null)
                     _settings["CurrentProjection"] = _state.ProjectionPlugin.GetType().FullName;
                 if (_state.EffectPlugin != null)
@@ -241,9 +241,9 @@ namespace VrPlayer.Models.Settings
                 if (!string.IsNullOrEmpty(stereoMode))
                     _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), stereoMode);
 
-                var currentMedia = _settings["CurrentMedia"].ToString();
-                if(!string.IsNullOrEmpty(currentMedia))
-                    _state.MediaPlugin = _pluginManager.Medias.FirstOrDefault(plugin => plugin.GetType().FullName == currentMedia);
+                //var currentMedia = _settings["CurrentMedia"].ToString();
+                //if(!string.IsNullOrEmpty(currentMedia))
+                //    _state.MediaPlugin = _pluginManager.Medias.FirstOrDefault(plugin => plugin.GetType().FullName == currentMedia);
 
                 var currentProjection = _settings["CurrentProjection"].ToString();
                 if (!string.IsNullOrEmpty(currentProjection))
