@@ -2,8 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:settings="clr-namespace:VrPlayer.Views.Settings"
+        xmlns:converters="clr-namespace:VrPlayer.Helpers.Converters;assembly=VrPlayer.Helpers"
         Icon="/Medias/Nuvola/16x16/connect_creating.png"
         Title="Plugins" Height="450" Width="550" WindowStyle="ToolWindow" Margin="0" Padding="0" Closed="PluginsWindow_OnClosed">
+    <Window.Resources>
+        <converters:InvertBooleanToVisibilityConverter x:Key="InvertBooleanToVisibility"/>
+    </Window.Resources>
     <TabControl x:Name="Tabs" TabStripPlacement="Left" Margin="-4">
         <TabItem UseLayoutRounding="False">
             <TabItem.Header>
@@ -50,7 +54,7 @@
             </TabItem.Header>
             <settings:TrackersSettings />
         </TabItem>
-        <TabItem>
+        <TabItem Visibility="{Binding Path=HideStabilizers, Converter={StaticResource InvertBooleanToVisibility}}">
             <TabItem.Header>
                 <StackPanel Orientation="Vertical" Width="64">
                     <Image Height="48" Width="48" Source="/Medias/Nuvola/48x48/wizard.png" />

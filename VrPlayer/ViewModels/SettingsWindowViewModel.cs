@@ -33,6 +33,16 @@ namespace VrPlayer.ViewModels
             get { return _changeSamplePathCommand; }
         }
 
+        //Todo: This should be removed when stabilizers will behave
+        public bool HideStabilizers
+        {
+            get 
+            { 
+                return string.IsNullOrEmpty(_config.DefaultStabilizer) ||
+                _config.DefaultStabilizer == "VrPlayer.Stabilizers.NoStabilizer"; 
+            }
+        }
+
         public SettingsWindowViewModel(IApplicationState state, IApplicationConfig config, IPluginManager pluginManager)
         {
             _state = state;

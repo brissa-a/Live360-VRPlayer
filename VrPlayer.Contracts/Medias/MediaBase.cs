@@ -81,7 +81,11 @@ namespace VrPlayer.Contracts.Medias
         private bool _hasChapters;
         public bool HasChapters
         {
-            get { return _hasChapters; }
+            get
+            {
+                //Todo: Reactivate when dvd chapters will behave
+                return false;// _hasChapters;
+            }
             set
             {
                 _hasChapters = value;
