@@ -39,7 +39,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LayoutMode" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">SideBySide</Value>
     </Setting>
     <Setting Name="StereoMode" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
