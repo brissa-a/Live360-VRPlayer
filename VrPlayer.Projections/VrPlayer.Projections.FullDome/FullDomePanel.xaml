@@ -10,6 +10,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -17,8 +18,14 @@
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="Coverage:"></Label>
-            <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Coverage}" Minimum="0" Maximum="360"></Slider>
+            <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Coverage}" Minimum="0" Maximum="360" SmallChange="1" LargeChange="30"></Slider>
             <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding Path=Coverage}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="1" Content="Tilt:"></Label>
+            <Slider Grid.Column="1" Grid.Row="1" Value="{Binding Path=Tilt}" Minimum="0" Maximum="360" LargeChange="30" SmallChange="1"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Tilt}"></TextBox>
+            <Label Grid.Column="0" Grid.Row="2" Content="Heading:"></Label>
+            <Slider Grid.Column="1" Grid.Row="2" Value="{Binding Path=Heading}" Minimum="0" Maximum="360" TickFrequency="90" TickPlacement="BottomRight" SmallChange="1" LargeChange="30"></Slider>
+            <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding Path=Heading}"></TextBox>
         </Grid>
         <TextBlock Text="Resolution" FontWeight="Bold" Margin="0,0,0,8"></TextBlock>
         <Grid Margin="0,0,0,16">

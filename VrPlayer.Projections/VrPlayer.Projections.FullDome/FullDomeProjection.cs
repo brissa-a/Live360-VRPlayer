@@ -45,6 +45,26 @@ namespace VrPlayer.Projections.FullDome
             set { SetValue(CoverageProperty, value); }
         }
 
+        public static readonly DependencyProperty HeadingProperty =
+            DependencyProperty.Register("Heading", typeof(int),
+            typeof(FullDomeProjection), new FrameworkPropertyMetadata(0));
+        [DataMember]
+        public int Heading
+        {
+            get { return (int)GetValue(HeadingProperty); }
+            set { SetValue(HeadingProperty, value); }
+        }
+
+        public static readonly DependencyProperty TiltProperty =
+            DependencyProperty.Register("Tilt", typeof(int),
+            typeof(FullDomeProjection), new FrameworkPropertyMetadata(30));
+        [DataMember]
+        public int Tilt
+        {
+            get { return (int)GetValue(TiltProperty); }
+            set { SetValue(TiltProperty, value); }
+        }
+
         public Point3D Center
         {
             get { return _center; }
@@ -100,8 +120,12 @@ namespace VrPlayer.Projections.FullDome
                         double x = scale * Math.Sin(theta) + Radius;
                         double z = scale * Math.Cos(theta);
 
-                        var normal = new Vector3D(x + Distance, y, z);
-                        positions.Add(normal + Center);
+                        var normal = new Vector3D(x + Distance, y, z) + Center;
+
+                        var axis = new AxisAngleRotation3D(new Vector3D(1,0,0), Tilt);
+                        var trans = new RotateTransform3D(axis, new Point3D(0,0,0));
+                        var vector = Vector3D.Multiply(new Vector3D(normal.X, normal.Y, normal.Z), trans.Value);
+                        positions.Add(new Point3D(vector.X,vector.Y,vector.Z));
                     }
                 }
 
@@ -118,8 +142,12 @@ namespace VrPlayer.Projections.FullDome
                         double x = scale * Math.Sin(theta) - Radius;
                         double z = scale * Math.Cos(theta);
 
-                        var normal = new Vector3D(x - Distance, y, z);
-                        positions.Add(normal + Center);
+                        var normal = new Vector3D(x - Distance, y, z) + Center;
+                    
+                        var axis = new AxisAngleRotation3D(new Vector3D(1, 0, 0), Tilt);
+                        var trans = new RotateTransform3D(axis, new Point3D(0, 0, 0));
+                        var vector = Vector3D.Multiply(new Vector3D(normal.X, normal.Y, normal.Z), trans.Value);
+                        positions.Add(new Point3D(vector.X, vector.Y, vector.Z));
                     }
                 }
 
@@ -183,8 +211,8 @@ namespace VrPlayer.Projections.FullDome
                     for (int slice = 0; slice <= Slices; slice++)
                     {
                         var p = new Point((double)slice / Slices, (double)stack / Stacks);
-                        var u = 0.5 + (p.Y / 2) * Math.Cos(p.X * 2 * Math.PI);
-                        var v = 0.5 + (p.Y / 2) * Math.Sin(p.X * 2 * Math.PI);
+                        var u = 0.5 + (p.Y / 2) * Math.Cos(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
+                        var v = 0.5 + (p.Y / 2) * Math.Sin(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
                         textureCoordinates.Add(new Point(u, v));
                     }
                 }
@@ -195,8 +223,8 @@ namespace VrPlayer.Projections.FullDome
                     for (int slice = 0; slice <= Slices; slice++)
                     {
                         var p = new Point((double)slice / Slices, (double)stack / Stacks);
-                        var u = 0.5 + (p.Y / 2) * Math.Cos(p.X * 2 * Math.PI);
-                        var v = 0.5 + (p.Y / 2) * Math.Sin(p.X * 2 * Math.PI);
+                        var u = 0.5 + (p.Y / 2) * Math.Cos(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
+                        var v = 0.5 + (p.Y / 2) * Math.Sin(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
                         textureCoordinates.Add(new Point(u, v));
                     }
                 }
@@ -217,8 +245,8 @@ namespace VrPlayer.Projections.FullDome
                     for (int slice = 0; slice <= Slices; slice++)
                     {
                         var p = new Point((double)slice / Slices, (double)stack / Stacks);
-                        var u = 0.5 + (p.Y / 2) * Math.Cos(p.X * 2 * Math.PI);
-                        var v = 0.25 + (p.Y / 4) * Math.Sin(p.X * 2 * Math.PI);
+                        var u = 0.5 + (p.Y / 2) * Math.Cos(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
+                        var v = 0.25 + (p.Y / 4) * Math.Sin(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
                         textureCoordinates.Add(new Point(u, v));
                     }
                 }
@@ -229,8 +257,8 @@ namespace VrPlayer.Projections.FullDome
                     for (int slice = 0; slice <= Slices; slice++)
                     {
                         var p = new Point((double)slice / Slices, (double)stack / Stacks);
-                        var u = 0.5 + (p.Y / 2) * Math.Cos(p.X * 2 * Math.PI);
-                        var v = 0.75 + (p.Y / 4) * Math.Sin(p.X * 2 * Math.PI);
+                        var u = 0.5 + (p.Y / 2) * Math.Cos(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
+                        var v = 0.75 + (p.Y / 4) * Math.Sin(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
                         textureCoordinates.Add(new Point(u, v));
                     }
                 }
@@ -251,8 +279,8 @@ namespace VrPlayer.Projections.FullDome
                     for (int slice = 0; slice <= Slices; slice++)
                     {
                         var p = new Point((double)slice / Slices, (double)stack / Stacks);
-                        var u = 0.25 + (p.Y / 4) * Math.Cos(p.X * 2 * Math.PI);
-                        var v = 0.5 + (p.Y / 2) * Math.Sin(p.X * 2 * Math.PI);
+                        var u = 0.25 + (p.Y / 4) * Math.Cos(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
+                        var v = 0.5 + (p.Y / 2) * Math.Sin(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
                         textureCoordinates.Add(new Point(u, v));
                     }
                 }
@@ -263,8 +291,8 @@ namespace VrPlayer.Projections.FullDome
                     for (int slice = 0; slice <= Slices; slice++)
                     {
                         var p = new Point((double)slice / Slices, (double)stack / Stacks);
-                        var u = 0.75 + (p.Y / 4) * Math.Cos(p.X * 2 * Math.PI);
-                        var v = 0.5 + (p.Y / 2) * Math.Sin(p.X * 2 * Math.PI);
+                        var u = 0.75 + (p.Y / 4) * Math.Cos(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
+                        var v = 0.5 + (p.Y / 2) * Math.Sin(p.X * 2 * Math.PI - Math.PI / 2 + 2 * Math.PI * Heading / 360);
                         textureCoordinates.Add(new Point(u, v));
                     }
                 }
