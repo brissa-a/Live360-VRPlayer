@@ -5,10 +5,10 @@ using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using VrPlayer.Contracts.Projections;
 
-namespace VrPlayer.Projections.Dome
+namespace VrPlayer.Projections.DualDome
 {
     [DataContract]
-    public class DomeProjection : ProjectionBase, IProjection
+    public class DualDomeProjection : ProjectionBase, IProjection
     {
         private Point3D _center;
         private double _radius = 1;
@@ -16,7 +16,7 @@ namespace VrPlayer.Projections.Dome
 
         public static readonly DependencyProperty SlicesProperty =
             DependencyProperty.Register("Slices", typeof(int),
-            typeof(DomeProjection), new FrameworkPropertyMetadata(16));
+            typeof(DualDomeProjection), new FrameworkPropertyMetadata(16));
         [DataMember]
         public int Slices
         {
@@ -26,7 +26,7 @@ namespace VrPlayer.Projections.Dome
 
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
-             typeof(DomeProjection), new FrameworkPropertyMetadata(16));
+             typeof(DualDomeProjection), new FrameworkPropertyMetadata(16));
         [DataMember]
         public int Stacks
         {
@@ -36,7 +36,7 @@ namespace VrPlayer.Projections.Dome
 
         public static readonly DependencyProperty HorizontalCoverageProperty =
             DependencyProperty.Register("HorizontalCoverage", typeof(double),
-            typeof(DomeProjection), new FrameworkPropertyMetadata(0.5D));
+            typeof(DualDomeProjection), new FrameworkPropertyMetadata(0.5D));
         [DataMember]
         public double HorizontalCoverage
         {
@@ -46,7 +46,7 @@ namespace VrPlayer.Projections.Dome
 
         public static readonly DependencyProperty VerticalCoverageProperty =
             DependencyProperty.Register("VerticalCoverage", typeof(double),
-            typeof(DomeProjection), new FrameworkPropertyMetadata(1D));
+            typeof(DualDomeProjection), new FrameworkPropertyMetadata(0.5D));
         [DataMember]
         public double VerticalCoverage
         {
@@ -96,7 +96,7 @@ namespace VrPlayer.Projections.Dome
             {
                 var positions = new Point3DCollection();
 
-                //LEFT
+                //FRONT LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     double phi = (Math.PI / 2 - stack * Math.PI / Stacks) * VerticalCoverage;
@@ -114,16 +114,52 @@ namespace VrPlayer.Projections.Dome
                     }
                 }
 
-                //RIGH
+                //FRONT RIGH
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
-                    double phi = (Math.PI / 2 - stack * Math.PI / Stacks) * VerticalCoverage ;
+                    double phi = (Math.PI / 2 - stack * Math.PI / Stacks) * VerticalCoverage;
                     double y = Radius * Math.Sin(phi);
                     double scale = -Radius * Math.Cos(phi);
 
                     for (int slice = 0; slice <= Slices; slice++)
                     {
                         double theta = (slice * 2 * Math.PI / Slices * HorizontalCoverage) - DegToRad(180 * HorizontalCoverage) + Math.PI;
+                        double x = scale * Math.Sin(theta) - Radius;
+                        double z = scale * Math.Cos(theta);
+
+                        var normal = new Vector3D(x - Distance, y, z);
+                        positions.Add(normal + Center);
+                    }
+                }
+
+                //REAR LEFT
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+                    double phi = (Math.PI / 2 - stack * Math.PI / Stacks) * VerticalCoverage;
+                    double y = Radius * Math.Sin(phi);
+                    double scale = -Radius * Math.Cos(phi);
+
+                    for (int slice = 0; slice <= Slices; slice++)
+                    {
+                        double theta = (slice * 2 * Math.PI / Slices * HorizontalCoverage) - DegToRad(180 * HorizontalCoverage);
+                        double x = scale * Math.Sin(theta) + Radius;
+                        double z = scale * Math.Cos(theta);
+
+                        var normal = new Vector3D(x + Distance, y, z);
+                        positions.Add(normal + Center);
+                    }
+                }
+
+                //REAR RIGH
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+                    double phi = (Math.PI / 2 - stack * Math.PI / Stacks) * VerticalCoverage;
+                    double y = Radius * Math.Sin(phi);
+                    double scale = -Radius * Math.Cos(phi);
+
+                    for (int slice = 0; slice <= Slices; slice++)
+                    {
+                        double theta = (slice * 2 * Math.PI / Slices * HorizontalCoverage) - DegToRad(180 * HorizontalCoverage);
                         double x = scale * Math.Sin(theta) - Radius;
                         double z = scale * Math.Cos(theta);
 
@@ -144,7 +180,7 @@ namespace VrPlayer.Projections.Dome
             {
                 var triangleIndices = new Int32Collection();
 
-                //LEFT
+                //FRONT LEFT
                 for (int stack = 0; stack < Stacks; stack++)
                 {
                     int top = (stack + 0) * (Slices + 1);
@@ -161,8 +197,42 @@ namespace VrPlayer.Projections.Dome
                     }
                 }
 
-                // RIGHT
+                //FRONT RIGHT
                 for (int stack = Stacks + 1; stack <= (Stacks * 2); stack++)
+                {
+                    int top = (stack + 0) * (Slices + 1);
+                    int bot = (stack + 1) * (Slices + 1);
+
+                    for (int slice = 0; slice < Slices; slice++)
+                    {
+                        triangleIndices.Add(top + slice);
+                        triangleIndices.Add(bot + slice);
+                        triangleIndices.Add(top + slice + 1);
+                        triangleIndices.Add(top + slice + 1);
+                        triangleIndices.Add(bot + slice);
+                        triangleIndices.Add(bot + slice + 1);
+                    }
+                }
+
+                //REAR LEFT
+                for (int stack = (Stacks * 2) + 2; stack <= (Stacks * 3) + 1; stack++)
+                {
+                    int top = (stack + 0) * (Slices + 1);
+                    int bot = (stack + 1) * (Slices + 1);
+
+                    for (int slice = 0; slice < Slices; slice++)
+                    {
+                        triangleIndices.Add(top + slice);
+                        triangleIndices.Add(bot + slice);
+                        triangleIndices.Add(top + slice + 1);
+                        triangleIndices.Add(top + slice + 1);
+                        triangleIndices.Add(bot + slice);
+                        triangleIndices.Add(bot + slice + 1);
+                    }
+                }
+
+                //REAR RIGHT
+                for (int stack = (Stacks * 3) + 3; stack <= (Stacks * 4) + 2; stack++)
                 {
                     int top = (stack + 0) * (Slices + 1);
                     int bot = (stack + 1) * (Slices + 1);
@@ -188,39 +258,7 @@ namespace VrPlayer.Projections.Dome
             {
                 var textureCoordinates = new PointCollection();
 
-                //Left
-                for (int stack = 0; stack <= Stacks; stack++)
-                {
-                    for (int slice = Slices; slice >= 0; slice--)
-                    {
-                        textureCoordinates.Add(
-                                    new Point((double)slice / Slices,
-                                              (double)stack / Stacks));
-                    }
-                }
-
-                //Right
-                for (int stack = 0; stack <= Stacks; stack++)
-                {
-                    for (int slice = Slices; slice >= 0; slice--)
-                    {
-                        textureCoordinates.Add(
-                                    new Point((double)slice / Slices,
-                                              (double)stack / Stacks));
-                    }
-                }
-
-                return textureCoordinates;
-            }
-        }
-
-        public override PointCollection OverUnderTextureCoordinates
-        {
-            get
-            {
-                var textureCoordinates = new PointCollection();
-
-                //LEFT
+                //FRONT LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
 
@@ -232,7 +270,30 @@ namespace VrPlayer.Projections.Dome
                     }
                 }
 
-                //RIGHT
+                //FRONT RIGHT
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+
+                    for (int slice = Slices; slice >= 0; slice--)
+                    {
+                        textureCoordinates.Add(
+                                    new Point((double)slice / Slices,
+                                              (double)stack / Stacks / 2));
+                    }
+                }
+
+                //REAR LEFT
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+                    for (int slice = Slices; slice >= 0; slice--)
+                    {
+                        textureCoordinates.Add(new Point(
+                            (double)slice / Slices,
+                            0.5 + (double)stack / Stacks / 2));
+                    }
+                }
+
+                //REAR RIGHT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     for (int slice = Slices; slice >= 0; slice--)
@@ -247,31 +308,110 @@ namespace VrPlayer.Projections.Dome
             }
         }
 
-        public override PointCollection SideBySideTextureCoordinates
+        public override PointCollection OverUnderTextureCoordinates
         {
             get
             {
                 var textureCoordinates = new PointCollection();
 
-                //LEFT
+                //FRONT LEFT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     for (int slice = Slices; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(new Point(
                             (double)slice / Slices / 2,
-                            (double)stack / Stacks));
+                            (double)stack / Stacks / 2));
                     }
                 }
 
-                //RIGHT
+                //REAR LEFT
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+                    for (int slice = Slices; slice >= 0; slice--)
+                    {
+                        textureCoordinates.Add(new Point(
+                            (double)slice / Slices / 2,
+                            0.5 + (double)stack / Stacks / 2));
+                    }
+                }
+
+                //FRONT RIGHT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     for (int slice = Slices; slice >= 0; slice--)
                     {
                         textureCoordinates.Add(new Point(
                             0.5 + (double)slice / Slices / 2,
-                            (double)stack / Stacks));
+                            (double)stack / Stacks / 2));
+                    }
+                }
+
+                //REAR RIGHT
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+                    for (int slice = Slices; slice >= 0; slice--)
+                    {
+                        textureCoordinates.Add(new Point(
+                            0.5 + (double)slice / Slices / 2,
+                            0.5 + (double)stack / Stacks / 2));
+                    }
+                }
+
+                return textureCoordinates;
+            }
+             
+        }
+
+        public override PointCollection SideBySideTextureCoordinates
+        {
+            get
+            {
+               var textureCoordinates = new PointCollection();
+
+                //FRONT LEFT
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+
+                    for (int slice = Slices; slice >= 0; slice--)
+                    {
+                        textureCoordinates.Add(new Point(
+                            (double)slice / Slices / 2,
+                            (double)stack / Stacks / 2));
+                    }
+                }
+
+                //REAR LEFT
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+
+                    for (int slice = Slices; slice >= 0; slice--)
+                    {
+                        textureCoordinates.Add(new Point(
+                            0.5 + (double)slice / Slices / 2,
+                            (double)stack / Stacks / 2));
+                    }
+                }
+
+                //FRONT RIGHT
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+                    for (int slice = Slices; slice >= 0; slice--)
+                    {
+                        textureCoordinates.Add(new Point(
+                            (double)slice / Slices / 2,
+                            0.5 + (double)stack / Stacks / 2));
+                    }
+                }
+
+                //REAR RIGHT
+                for (int stack = 0; stack <= Stacks; stack++)
+                {
+                    for (int slice = Slices; slice >= 0; slice--)
+                    {
+                        textureCoordinates.Add(new Point(
+                            0.5 + (double)slice / Slices / 2,
+                            0.5 + (double)stack / Stacks / 2));
                     }
                 }
 

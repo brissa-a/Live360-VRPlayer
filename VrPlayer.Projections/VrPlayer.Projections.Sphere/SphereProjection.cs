@@ -257,7 +257,7 @@ namespace VrPlayer.Projections.Sphere
                     }
                 }
 
-                //RIGH
+                //RIGHT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     for (int slice = Slices; slice >= 0; slice--)
@@ -289,7 +289,7 @@ namespace VrPlayer.Projections.Sphere
                     }
                 }
 
-                //RIGH
+                //RIGHT
                 for (int stack = 0; stack <= Stacks; stack++)
                 {
                     for (int slice = Slices; slice >= 0; slice--)
