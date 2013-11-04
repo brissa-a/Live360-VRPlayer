@@ -235,13 +235,13 @@ namespace VrPlayer.ViewModels
         private void OpenFile(object o)
         {
             var mediaPlugin = (IPlugin<IMedia>)o;
-            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = FileFilterHelper.GetFilter();
             if (openFileDialog.ShowDialog().Value)
             {
                 ReadMetadata(openFileDialog.FileName);
+                _state.MediaPlugin = mediaPlugin;
                 _state.MediaPlugin.Content.OpenFileCommand.Execute(openFileDialog.FileName);
             }
         }
@@ -249,11 +249,11 @@ namespace VrPlayer.ViewModels
 	    private void OpenStream(object o)
         {
             var mediaPlugin = (IPlugin<IMedia>)o;
-            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             var dialog = new StreamInputDialog();
             if (dialog.ShowDialog() == true)
             {
+                _state.MediaPlugin = mediaPlugin;
                 _state.MediaPlugin.Content.OpenStreamCommand.Execute(dialog.Url);
             }
         }
@@ -261,19 +261,19 @@ namespace VrPlayer.ViewModels
         private void OpenDevice(object o)
         {
             var mediaPlugin = (IPlugin<IMedia>)o;
-            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             //Todo: Call device selection dialog
+            _state.MediaPlugin = mediaPlugin;
         }
 
         private void OpenDisc(object o)
         {
             var mediaPlugin = (IPlugin<IMedia>)o;
-            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             var dialog = new DiscInputDialog();
             if (dialog.ShowDialog() == true)
             {
+                _state.MediaPlugin = mediaPlugin;
                 _state.MediaPlugin.Content.OpenDiscCommand.Execute(dialog.Drive);
             }
         }
@@ -281,11 +281,11 @@ namespace VrPlayer.ViewModels
         private void OpenProcess(object o)
         {
             var mediaPlugin = (IPlugin<IMedia>)o;
-            _state.MediaPlugin = mediaPlugin;
             if (_state.MediaPlugin == null || _state.MediaPlugin.Content == null) return;
             var dialog = new ProcessInputDialog();
             if (dialog.ShowDialog() == true)
             {
+                _state.MediaPlugin = mediaPlugin;
                 _state.MediaPlugin.Content.OpenProcessCommand.Execute(dialog.Process);
             }
         }
