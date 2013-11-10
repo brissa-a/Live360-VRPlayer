@@ -89,7 +89,7 @@ namespace VrPlayer.Medias.VlcDotNet
             VlcContext.StartupOptions.LogOptions.LogInFile = DebugMode;
             VlcContext.StartupOptions.LogOptions.ShowLoggerConsole = DebugMode;
             VlcContext.StartupOptions.LogOptions.Verbosity = DebugMode ? VlcLogVerbosities.Debug : VlcLogVerbosities.None;
-            
+
             VlcContext.Initialize();
         }
 
@@ -115,12 +115,20 @@ namespace VrPlayer.Medias.VlcDotNet
         public override void Load()
         {
             Reset();
-            InitVlcContext();
-            _media = new Image(); 
-            _player = new VlcControl();
-            _player.LengthChanged += PlayerOnLengthChanged;
-            _player.PositionChanged += PlayerOnPositionChanged;
-            _player.EndReached += PlayerOnEndReached;
+            try
+            {
+                InitVlcContext();
+                _media = new Image();
+                _player = new VlcControl();
+                _player.LengthChanged += PlayerOnLengthChanged;
+                _player.PositionChanged += PlayerOnPositionChanged;
+                _player.EndReached += PlayerOnEndReached;
+            }
+            catch (FileNotFoundException fileNotFoundException)
+            {
+                MessageBox.Show(fileNotFoundException.Message, "VLC Media Plugin Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Logger.Instance.Warn("Invalid paths in VlcDotNetMedia plugin configuration.", fileNotFoundException);
+            }
         }
 
         public override void Unload()
