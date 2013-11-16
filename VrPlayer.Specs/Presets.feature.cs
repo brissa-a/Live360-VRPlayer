@@ -33,7 +33,7 @@ namespace VrPlayer.Specs
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Presets", "In order to avoid application configuration each time I load a media file\r\nAs VR " +
-                    "Player user\r\nI want to be save and load preset files", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "Player user\r\nI want to save and load preset files", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

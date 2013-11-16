@@ -1,7 +1,7 @@
 ﻿Feature: Presets
 	In order to avoid application configuration each time I load a media file
 	As VR Player user
-	I want to be save and load preset files
+	I want to save and load preset files
 
 Scenario: Save media preset
 	Given my current projection is spherical

@@ -91,6 +91,7 @@ namespace VrPlayer.ViewModels
                 return _pluginManager.Medias.Any(media => media.Content.OpenProcessCommand.CanExecute(null));
             }
         }
+
 	    #region Commands
 
         private readonly ICommand _openCommand;
@@ -139,6 +140,12 @@ namespace VrPlayer.ViewModels
         public ICommand ExitCommand
         {
             get { return _exitCommand; }
+        }
+
+        private readonly ICommand _saveMediaPresetCommand;
+        public ICommand SaveMediaPresetCommand
+        {
+            get { return _saveMediaPresetCommand; }
         }
 
         private readonly ICommand _settingsCommand;
@@ -224,6 +231,7 @@ namespace VrPlayer.ViewModels
             _changeLayoutCommand = new DelegateCommand(SetStereoOutput);
             _changeDistortionCommand = new DelegateCommand(SetDistortion);
             _changeTrackerCommand = new DelegateCommand(SetTracker);
+            _saveMediaPresetCommand = new DelegateCommand(SaveMediaPreset);
             _settingsCommand = new DelegateCommand(ShowSettings);
             _pluginsCommand = new DelegateCommand(ShowPlugins);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
@@ -360,6 +368,11 @@ namespace VrPlayer.ViewModels
         private void SetDistortion(object o)
         {
             _state.DistortionPlugin = (IPlugin<DistortionBase>)o;
+        }
+
+        private void SaveMediaPreset(object o)
+        {
+            throw new NotImplementedException();
         }
 
         private void ShowSettings(object o)
