@@ -343,7 +343,7 @@
                 </MenuItem.Icon>
             </MenuItem>
         <Separator />
-            <MenuItem Header="_Reset all"></MenuItem>
+            <MenuItem Header="_Reset all" Command="{Binding ResetPresetCommand}"></MenuItem>
         </MenuItem>
         <MenuItem Header="_Tools">
             <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" CommandParameter="0">

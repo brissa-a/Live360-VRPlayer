@@ -1,0 +1,14 @@
+﻿{
+  "Plugins": {
+    "Projections": {
+      "VrPlayer.Projections.Plane.PlaneProjection": {
+        "Ratio": 1.33
+      }
+    }
+  },
+  "Media": {
+    "CurrentProjection": "VrPlayer.Projections.Plane.PlanePlugin",
+	"CurrentEffect": "VrPlayer.Effects.NoEffect.NoEffectPlugin",
+    "StereoMode": "Mono"
+  }
+}

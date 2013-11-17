@@ -161,6 +161,12 @@ namespace VrPlayer.ViewModels
             get { return _loadMediaPresetCommand; }
         }
 
+        private readonly ICommand _resetPresetCommand;
+        public ICommand ResetPresetCommand
+        {
+            get { return _resetPresetCommand; }
+        }
+
         private readonly ICommand _settingsCommand;
         public ICommand SettingsCommand
         {
@@ -247,6 +253,7 @@ namespace VrPlayer.ViewModels
             _changeTrackerCommand = new DelegateCommand(SetTracker);
             _saveMediaPresetCommand = new DelegateCommand(SaveMediaPreset);
             _loadMediaPresetCommand = new DelegateCommand(LoadMediaPreset);
+            _resetPresetCommand = new DelegateCommand(ResetPreset);
             _settingsCommand = new DelegateCommand(ShowSettings);
             _pluginsCommand = new DelegateCommand(ShowPlugins);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
@@ -387,14 +394,40 @@ namespace VrPlayer.ViewModels
 
         private void SaveMediaPreset(object o)
         {
-            var filename = o.ToString();
-            _presetsManager.SaveMediaToFile(filename);
+            try
+            {
+                var filename = o.ToString();
+                _presetsManager.SaveMediaToFile(filename);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while saving preset file.'", exc);
+            }
         }
 
         private void LoadMediaPreset(object o)
         {
-            var filename = o.ToString();
-            _presetsManager.LoadFromFile(filename);
+            try
+            {
+                var filename = o.ToString();
+                _presetsManager.LoadFromFile(filename);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while loading preset file.'", exc);
+            }
+        }
+
+        private void ResetPreset(object o)
+        {
+            try
+            {
+                _presetsManager.LoadFromFile("DefaultPreset.json");
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while resetting preset: Could not load 'DefaultPreset.json'", exc);
+            }            
         }
 
         private void ShowSettings(object o)
