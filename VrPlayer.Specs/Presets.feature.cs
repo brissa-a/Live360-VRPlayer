@@ -81,7 +81,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("I press save from the preset menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.Then("a file is created with the content of \"path\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("a file is created with the content of \"Presets/MediaPreset.json\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -1,1 +1,18 @@
-﻿
+﻿{
+  "Plugins": {
+    "Projections": {
+      "VrPlayer.Projections.Sphere.SphereProjection": {
+        "Slices": 32,
+        "Stacks": 32,
+        "Width": 1.0,
+        "Height": 1.0,
+        "Depth": 1.0
+      }
+    }
+  },
+  "Media": {
+    "CurrentProjection": "VrPlayer.Projections.Sphere.SpherePlugin",
+    "CurrentEffect": "VrPlayer.Effects.NoEffect.NoEffectPlugin",
+    "StereoMode": "Mono"
+  }
+}

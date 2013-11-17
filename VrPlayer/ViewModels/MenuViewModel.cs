@@ -16,6 +16,7 @@ using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
+using VrPlayer.Models.Presets;
 using VrPlayer.Models.State;
 using VrPlayer.Models.Config;
 using VrPlayer.Views.Dialogs;
@@ -44,6 +45,12 @@ namespace VrPlayer.ViewModels
         public IPluginManager PluginManager
         {
             get { return _pluginManager; }
+        }
+
+        private readonly IPresetsManager _presetsManager;
+        public IPresetsManager PresetsManager
+        {
+            get { return _presetsManager; }
         }
 
         //Todo: Create a manager to detect screens activites
@@ -203,18 +210,19 @@ namespace VrPlayer.ViewModels
         }
 
         private readonly ICommand _changeLayoutCommand;
-        public ICommand ChangeLayoutCommand
+	    public ICommand ChangeLayoutCommand
         {
             get { return _changeLayoutCommand; }
         }
 
         #endregion
 
-        public MenuViewModel(IApplicationState state, IPluginManager pluginManager, IApplicationConfig config)
+        public MenuViewModel(IApplicationState state, IPluginManager pluginManager, IApplicationConfig config, IPresetsManager presetManager)
         {
             _pluginManager = pluginManager;
             _state = state;
             _config = config;
+            _presetsManager = presetManager;
 
             //Commands
             _openCommand = new DelegateCommand(Open);
@@ -372,7 +380,8 @@ namespace VrPlayer.ViewModels
 
         private void SaveMediaPreset(object o)
         {
-            throw new NotImplementedException();
+            var filename = o.ToString();
+            _presetsManager.SaveMediaToFile(filename);
         }
 
         private void ShowSettings(object o)

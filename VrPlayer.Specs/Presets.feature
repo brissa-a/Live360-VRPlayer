@@ -8,7 +8,7 @@ Scenario: Save media preset
 	And my current stereo format is side by side 
 	And there are no effects
 	When I press save from the preset menu
-	Then a file is created with the content of "path"
+	Then a file is created with the content of "Presets/MediaPreset.json"
 
 #Scenario: Load media preset
 #Scenario: Save device preset

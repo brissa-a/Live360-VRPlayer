@@ -6,6 +6,7 @@ using System.Windows.Navigation;
 using VrPlayer.Helpers;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Plugins;
+using VrPlayer.Models.Presets;
 using VrPlayer.Models.Settings;
 using VrPlayer.Models.State;
 using VrPlayer.Properties;
@@ -24,16 +25,21 @@ namespace VrPlayer
         {
             try
             {
+                //Set default culture
                 Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-                
+
+                //Init model
                 IApplicationConfig config = new AppSettingsApplicationConfig();
                 _pluginManager = new DynamicPluginManager();
                 IApplicationState state = new DefaultApplicationState(config, _pluginManager);
-                
-                ViewModelFactory = new ViewModelFactory(config, _pluginManager, state);
 
+                //Load settings
                 _settingsManager = new SettingsManager(Settings.Default, state, _pluginManager, config);
                 _settingsManager.Load();
+
+                //Create VM factory
+                IPresetsManager presetsManager = new PresetsManager(config, state, _pluginManager);
+                ViewModelFactory = new ViewModelFactory(config, _pluginManager, state, presetsManager);
             }
             catch (Exception exc)
             {

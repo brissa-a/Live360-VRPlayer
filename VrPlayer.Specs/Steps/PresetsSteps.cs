@@ -1,11 +1,14 @@
 ﻿using System;
+using System.IO;
 using Moq;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.Plugins;
+using VrPlayer.Models.Presets;
 using VrPlayer.Models.State;
 using VrPlayer.Projections.Sphere;
 using VrPlayer.ViewModels;
@@ -16,6 +19,7 @@ namespace VrPlayer.Specs.Steps
     public class PresetsSteps
     {
         private readonly Mock<IApplicationState> _stateMock = new Mock<IApplicationState>();
+        private readonly string _tempPresetFilePath = Path.GetTempPath() + "preset.json";
 
         [Given(@"my current projection is spherical")]
         public void GivenMyCurrentProjectionIsSpherical()
@@ -46,15 +50,19 @@ namespace VrPlayer.Specs.Steps
         {
             var pluginManagerMock = new Mock<IPluginManager>();
             var configMock = new Mock<IApplicationConfig>();
-            var viewModel = new MenuViewModel(_stateMock.Object, pluginManagerMock.Object, configMock.Object);
+            var presetManager = new PresetsManager(configMock.Object, _stateMock.Object, pluginManagerMock.Object);
+            var viewModel = new MenuViewModel(_stateMock.Object, pluginManagerMock.Object, configMock.Object, presetManager);
 
-            viewModel.SaveMediaPresetCommand.Execute(null);
+            viewModel.SaveMediaPresetCommand.Execute(_tempPresetFilePath);
         }
         
         [Then(@"a file is created with the content of ""(.*)""")]
-        public void ThenAFileIsCreatedWithTheContentOf(string p0)
+        public void ThenAFileIsCreatedWithTheContentOf(string filePath)
         {
-            ScenarioContext.Current.Pending();
+            var expectedFileInfo = new FileInfo(filePath);
+            var actualFileInfo = new FileInfo(_tempPresetFilePath);
+
+            FileAssert.AreEqual(expectedFileInfo, actualFileInfo);
         }
     }
 }

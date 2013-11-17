@@ -99,6 +99,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Presets.feature.cs</LastGenOutput>
     </None>
+    <None Include="Presets\MediaPresetMod.json" />
+    <Content Include="Presets\MediaPreset.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VrPlayer.Contracts\VrPlayer.Contracts.csproj">
@@ -118,6 +122,7 @@
       <Name>VrPlayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

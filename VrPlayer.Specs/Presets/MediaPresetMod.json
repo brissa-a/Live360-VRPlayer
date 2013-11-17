@@ -1,0 +1,18 @@
+﻿{
+	"version": "0.5.0.0",
+	"Projection": {
+		type: "VrPlayer.Projections.Sphere.SphereProjection"
+		params: {
+			"Slices": 32,
+			"Stacks": 32,
+			"Width": 1.0,
+			"Height": 1.0,
+			"Depth": 1.0
+			}
+		}
+	}
+	"Effect": {
+		type: "VrPlayer.Effects.NoEffect.NoEffectPlugin"
+	}
+	"StereoMode": "Mono"
+}
