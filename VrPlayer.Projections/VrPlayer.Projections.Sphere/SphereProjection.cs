@@ -38,7 +38,7 @@ namespace VrPlayer.Projections.Sphere
 
         public static readonly DependencyProperty WidthProperty =
             DependencyProperty.Register("Width", typeof(double),
-            typeof(SphereProjection), new FrameworkPropertyMetadata(0D));
+            typeof(SphereProjection), new FrameworkPropertyMetadata(1D));
         [DataMember]
         public double Width
         {
@@ -48,7 +48,7 @@ namespace VrPlayer.Projections.Sphere
 
         public static readonly DependencyProperty HeightProperty =
             DependencyProperty.Register("Height", typeof(double),
-            typeof(SphereProjection), new FrameworkPropertyMetadata(0D));
+            typeof(SphereProjection), new FrameworkPropertyMetadata(1D));
         [DataMember]
         public double Height
         {
@@ -59,7 +59,7 @@ namespace VrPlayer.Projections.Sphere
 
         public static readonly DependencyProperty DepthProperty =
             DependencyProperty.Register("Depth", typeof(double),
-            typeof(SphereProjection), new FrameworkPropertyMetadata(0D));
+            typeof(SphereProjection), new FrameworkPropertyMetadata(1D));
         [DataMember]
         public double Depth
         {

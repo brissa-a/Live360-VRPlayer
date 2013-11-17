@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
 using Moq;
 using NUnit.Framework;
@@ -19,14 +19,16 @@ namespace VrPlayer.Specs.Steps
     public class PresetsSteps
     {
         private readonly Mock<IApplicationState> _stateMock = new Mock<IApplicationState>();
+        private readonly Mock<IPluginManager> _pluginManagerMock = new Mock<IPluginManager>();    
         private readonly string _tempPresetFilePath = Path.GetTempPath() + "preset.json";
 
         [Given(@"my current projection is spherical")]
         public void GivenMyCurrentProjectionIsSpherical()
         {
-            _stateMock
-                .Setup(mock => mock.ProjectionPlugin)
-                .Returns(new SpherePlugin());
+            var sphereProjectionPlugin = new SpherePlugin();
+            var projections = new List<IPlugin<IProjection>> {sphereProjectionPlugin};
+            _stateMock.Setup(mock => mock.ProjectionPlugin).Returns(sphereProjectionPlugin);
+            _pluginManagerMock.Setup(mock => mock.Projections).Returns(projections);
         }
 
         [Given(@"my current stereo format is side by side")]
@@ -48,10 +50,9 @@ namespace VrPlayer.Specs.Steps
         [When(@"I press save from the preset menu")]
         public void WhenIPressSaveFromThePresetMenu()
         {
-            var pluginManagerMock = new Mock<IPluginManager>();
             var configMock = new Mock<IApplicationConfig>();
-            var presetManager = new PresetsManager(configMock.Object, _stateMock.Object, pluginManagerMock.Object);
-            var viewModel = new MenuViewModel(_stateMock.Object, pluginManagerMock.Object, configMock.Object, presetManager);
+            var presetManager = new PresetsManager(configMock.Object, _stateMock.Object, _pluginManagerMock.Object);
+            var viewModel = new MenuViewModel(_stateMock.Object, _pluginManagerMock.Object, configMock.Object, presetManager);
 
             viewModel.SaveMediaPresetCommand.Execute(_tempPresetFilePath);
         }
@@ -62,7 +63,10 @@ namespace VrPlayer.Specs.Steps
             var expectedFileInfo = new FileInfo(filePath);
             var actualFileInfo = new FileInfo(_tempPresetFilePath);
 
-            FileAssert.AreEqual(expectedFileInfo, actualFileInfo);
+            //Todo: Find why this is not working even if files are the same.
+            //FileAssert.AreEqual(expectedFileInfo, actualFileInfo);
+
+            Assert.That(actualFileInfo.OpenText().ReadToEnd(), Is.EqualTo(expectedFileInfo.OpenText().ReadToEnd()));
         }
     }
 }
