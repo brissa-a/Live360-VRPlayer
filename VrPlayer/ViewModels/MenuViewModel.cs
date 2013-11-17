@@ -155,6 +155,12 @@ namespace VrPlayer.ViewModels
             get { return _saveMediaPresetCommand; }
         }
 
+        private readonly ICommand _loadMediaPresetCommand;
+        public ICommand LoadMediaPresetCommand
+        {
+            get { return _loadMediaPresetCommand; }
+        }
+
         private readonly ICommand _settingsCommand;
         public ICommand SettingsCommand
         {
@@ -240,6 +246,7 @@ namespace VrPlayer.ViewModels
             _changeDistortionCommand = new DelegateCommand(SetDistortion);
             _changeTrackerCommand = new DelegateCommand(SetTracker);
             _saveMediaPresetCommand = new DelegateCommand(SaveMediaPreset);
+            _loadMediaPresetCommand = new DelegateCommand(LoadMediaPreset);
             _settingsCommand = new DelegateCommand(ShowSettings);
             _pluginsCommand = new DelegateCommand(ShowPlugins);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
@@ -382,6 +389,12 @@ namespace VrPlayer.ViewModels
         {
             var filename = o.ToString();
             _presetsManager.SaveMediaToFile(filename);
+        }
+
+        private void LoadMediaPreset(object o)
+        {
+            var filename = o.ToString();
+            _presetsManager.LoadFromFile(filename);
         }
 
         private void ShowSettings(object o)

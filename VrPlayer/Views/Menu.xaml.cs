@@ -35,5 +35,15 @@ namespace VrPlayer.Views
                 _viewModel.SaveMediaPresetCommand.Execute(saveFileDialog.FileName);
             }
         }
+
+        private void LoadPresetMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = @"VR Player Presets|*.json";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _viewModel.LoadMediaPresetCommand.Execute(openFileDialog.FileName);
+            }
+        }
     }
 }

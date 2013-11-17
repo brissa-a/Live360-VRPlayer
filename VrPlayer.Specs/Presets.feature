@@ -10,6 +10,11 @@ Scenario: Save media preset
 	When I press save from the preset menu
 	Then a file is created with the content of "Presets/MediaPreset.json"
 
-#Scenario: Load media preset
+Scenario: Load media preset
+	When I load the file "Presets/MediaPreset.json" using the preset menu
+	Then my new projection is spherical
+	And my new stereo format is side by side 
+	And there are no more effects
+
 #Scenario: Save device preset
 #Scenario: Load device preset

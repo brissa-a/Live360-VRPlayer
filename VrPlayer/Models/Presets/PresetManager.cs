@@ -27,15 +27,6 @@ namespace VrPlayer.Models.Presets
             _pluginManager = pluginManager;
         }
 
-        public void SaveMediaToFile(string fileName)
-        {
-            var o = new JObject();
-            o.Add("Plugins", SaveMediaPluginsSettings());
-            o.Add("Media", SaveMediaSettings());
-            File.WriteAllText(fileName, o.ToString());
-        }
-
-
     //    public void Reset()
     //    {
     //        LoadFromFile("Default.vrpl");
@@ -53,7 +44,15 @@ namespace VrPlayer.Models.Presets
     //        _settings["Config"] = o.ToString();
     //        _settings.Save();
     //    }
-        
+
+        public void SaveMediaToFile(string fileName)
+        {
+            var o = new JObject();
+            o.Add("Plugins", SaveMediaPluginsSettings());
+            o.Add("Media", SaveMediaSettings());
+            File.WriteAllText(fileName, o.ToString());
+        }
+
     //    public void SaveDeviceToFile(string fileName)
     //    {
     //        var o = new JObject();
@@ -363,16 +362,16 @@ namespace VrPlayer.Models.Presets
     //        }
     //    }
 
-    //    public void LoadFromFile(string path)
-    //    {
-    //        if (!File.Exists(path))
-    //            return;
+        public void LoadFromFile(string path)
+        {
+            if (!File.Exists(path))
+                return;
 
-    //        using (var reader = File.OpenText(path))
-    //        {
-    //            Load(reader.ReadToEnd());
-    //        }
-    //    }
+            using (var reader = File.OpenText(path))
+            {
+                Load(reader.ReadToEnd());
+            }
+        }
 
     //    public void LoadFromMetadata(string path)
     //    {
@@ -383,155 +382,155 @@ namespace VrPlayer.Models.Presets
     //        Load(json);
     //    }
 
-    //    public void Load(string json)
-    //    {
-    //        if (string.IsNullOrEmpty(json)) return;
-    //        try
-    //        {
-    //            var o = JObject.Parse(json);
-    //            LoadAllPluginsSettings((JObject)o["Plugins"]);
-    //            LoadMediaSettings((JObject)o["Media"]);
-    //            LoadDeviceSettings((JObject)o["Device"]);
-    //            LoadConfigSettings((JObject)o["Config"]);
-    //        }
-    //        catch (Exception exc)
-    //        {
-    //            Logger.Instance.Error("Error while loading json data.", exc);
-    //        }
-    //    }
+        public void Load(string json)
+        {
+            if (string.IsNullOrEmpty(json)) return;
+            try
+            {
+                var o = JObject.Parse(json);
+                LoadAllPluginsSettings((JObject)o["Plugins"]);
+                LoadMediaSettings((JObject)o["Media"]);
+                //LoadDeviceSettings((JObject)o["Device"]);
+                //LoadConfigSettings((JObject)o["Config"]);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while loading json data.", exc);
+            }
+        }
 
-    //    private void LoadAllPluginsSettings(JObject o)
-    //    {
-    //        try
-    //        {
-    //            //Medias
-    //            if (o["Medias"] != null)
-    //            {
-    //                foreach (var token in o["Medias"].Children())
-    //                {
-    //                    if (!(token is JProperty)) continue;
-    //                    var prop = token as JProperty;
-    //                    var media = _pluginManager.Medias.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
-    //                    if (media == null) continue;
-    //                    Inject(media.Content, prop.Value);
-    //                }
-    //            }
+        private void LoadAllPluginsSettings(JObject o)
+        {
+            try
+            {
+                //Medias
+                if (o["Medias"] != null)
+                {
+                    foreach (var token in o["Medias"].Children())
+                    {
+                        if (!(token is JProperty)) continue;
+                        var prop = token as JProperty;
+                        var media = _pluginManager.Medias.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
+                        if (media == null) continue;
+                        Inject(media.Content, prop.Value);
+                    }
+                }
 
-    //            //Projections
-    //            if (o["Projections"] != null)
-    //            {
-    //                foreach (var token in o["Projections"].Children())
-    //                {
-    //                    if (!(token is JProperty)) continue;
-    //                    var prop = token as JProperty;
-    //                    var projection = _pluginManager.Projections.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
-    //                    if (projection == null) continue;
-    //                    Inject(projection.Content, prop.Value);
-    //                }
-    //            }
+                //Projections
+                if (o["Projections"] != null)
+                {
+                    foreach (var token in o["Projections"].Children())
+                    {
+                        if (!(token is JProperty)) continue;
+                        var prop = token as JProperty;
+                        var projection = _pluginManager.Projections.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
+                        if (projection == null) continue;
+                        Inject(projection.Content, prop.Value);
+                    }
+                }
 
-    //            //Effects
-    //            if (o["Effects"] != null)
-    //            {
-    //                foreach (var token in o["Effects"].Children())
-    //                {
-    //                    if (!(token is JProperty)) continue;
-    //                    var prop = token as JProperty;
-    //                    var effect = _pluginManager.Effects.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
-    //                    if (effect == null) continue;
-    //                    Inject(effect.Content, prop.Value);
-    //                }
-    //            }
+                //Effects
+                if (o["Effects"] != null)
+                {
+                    foreach (var token in o["Effects"].Children())
+                    {
+                        if (!(token is JProperty)) continue;
+                        var prop = token as JProperty;
+                        var effect = _pluginManager.Effects.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
+                        if (effect == null) continue;
+                        Inject(effect.Content, prop.Value);
+                    }
+                }
 
-    //            //Distortions
-    //            if (o["Distortions"] != null)
-    //            {
-    //                foreach (var token in o["Distortions"].Children())
-    //                {
-    //                    if (!(token is JProperty)) continue;
-    //                    var prop = token as JProperty;
-    //                    var distortion = _pluginManager.Distortions.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
-    //                    if (distortion == null) continue;
-    //                    Inject(distortion.Content, prop.Value);
-    //                }
-    //            }
+                //Distortions
+                if (o["Distortions"] != null)
+                {
+                    foreach (var token in o["Distortions"].Children())
+                    {
+                        if (!(token is JProperty)) continue;
+                        var prop = token as JProperty;
+                        var distortion = _pluginManager.Distortions.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
+                        if (distortion == null) continue;
+                        Inject(distortion.Content, prop.Value);
+                    }
+                }
 
-    //            //Trackers
-    //            if (o["Trackers"] != null)
-    //            {
-    //                foreach (var token in o["Trackers"].Children())
-    //                {
-    //                    if (!(token is JProperty)) continue;
-    //                    var prop = token as JProperty;
-    //                    var tracker = _pluginManager.Trackers.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
-    //                    if (tracker == null) continue;
-    //                    Inject(tracker.Content, prop.Value);
-    //                }
-    //            }
+                //Trackers
+                if (o["Trackers"] != null)
+                {
+                    foreach (var token in o["Trackers"].Children())
+                    {
+                        if (!(token is JProperty)) continue;
+                        var prop = token as JProperty;
+                        var tracker = _pluginManager.Trackers.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
+                        if (tracker == null) continue;
+                        Inject(tracker.Content, prop.Value);
+                    }
+                }
 
-    //            //Stabilizers
-    //            if (o["Stabilizers"] != null)
-    //            {
-    //                foreach (var token in o["Stabilizers"].Children())
-    //                {
-    //                    if (!(token is JProperty)) continue;
-    //                    var prop = token as JProperty;
-    //                    var stabilizer = _pluginManager.Stabilizers.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
-    //                    if (stabilizer == null) continue;
-    //                    Inject(stabilizer.Content, prop.Value);
-    //                }
-    //            }
-    //        }
-    //        catch (Exception exc)
-    //        {
-    //            Logger.Instance.Error("Error while loading plugins settings.", exc);
-    //        }
-    //    }
+                //Stabilizers
+                if (o["Stabilizers"] != null)
+                {
+                    foreach (var token in o["Stabilizers"].Children())
+                    {
+                        if (!(token is JProperty)) continue;
+                        var prop = token as JProperty;
+                        var stabilizer = _pluginManager.Stabilizers.FirstOrDefault(plugin => plugin.Content != null && plugin.Content.GetType().FullName == prop.Name);
+                        if (stabilizer == null) continue;
+                        Inject(stabilizer.Content, prop.Value);
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while loading plugins settings.", exc);
+            }
+        }
 
-    //    private void LoadMediaSettings(JObject o)
-    //    {
-    //        try
-    //        {
-    //            if (o["StereoMode"] != null)
-    //            {
-    //                var stereoMode = o["StereoMode"].ToString();
-    //                if (!string.IsNullOrEmpty(stereoMode))
-    //                    _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), stereoMode);
-    //            }
+        private void LoadMediaSettings(JObject o)
+        {
+            try
+            {
+                if (o["StereoMode"] != null)
+                {
+                    var stereoMode = o["StereoMode"].ToString();
+                    if (!string.IsNullOrEmpty(stereoMode))
+                        _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), stereoMode);
+                }
 
-    //            if (o["CurrentMedia"] != null)
-    //            {
-    //                var currentMedia = o["CurrentMedia"].ToString();
-    //                if (!string.IsNullOrEmpty(currentMedia))
-    //                    _state.MediaPlugin = _pluginManager.Medias.FirstOrDefault(plugin => plugin.GetType().FullName == currentMedia);
-    //            }
+                if (o["CurrentMedia"] != null)
+                {
+                    var currentMedia = o["CurrentMedia"].ToString();
+                    if (!string.IsNullOrEmpty(currentMedia))
+                        _state.MediaPlugin = _pluginManager.Medias.FirstOrDefault(plugin => plugin.GetType().FullName == currentMedia);
+                }
 
-    //            if (o["CurrentProjection"] != null)
-    //            {
-    //                var currentProjection = o["CurrentProjection"].ToString();
-    //                if (!string.IsNullOrEmpty(currentProjection))
-    //                    _state.ProjectionPlugin = _pluginManager.Projections.FirstOrDefault(plugin => plugin.GetType().FullName == currentProjection);
-    //            }
+                if (o["CurrentProjection"] != null)
+                {
+                    var currentProjection = o["CurrentProjection"].ToString();
+                    if (!string.IsNullOrEmpty(currentProjection))
+                        _state.ProjectionPlugin = _pluginManager.Projections.FirstOrDefault(plugin => plugin.GetType().FullName == currentProjection);
+                }
 
-    //            if (o["CurrentEffect"] != null)
-    //            {
-    //                var currentEffect = o["CurrentEffect"].ToString();
-    //                if (!string.IsNullOrEmpty(currentEffect))
-    //                    _state.EffectPlugin = _pluginManager.Effects.FirstOrDefault(plugin => plugin.GetType().FullName == currentEffect);
-    //            }
+                if (o["CurrentEffect"] != null)
+                {
+                    var currentEffect = o["CurrentEffect"].ToString();
+                    if (!string.IsNullOrEmpty(currentEffect))
+                        _state.EffectPlugin = _pluginManager.Effects.FirstOrDefault(plugin => plugin.GetType().FullName == currentEffect);
+                }
 
-    //            if (o["CurrentStabilizer"] != null)
-    //            {
-    //                var currentStabilizer = o["CurrentStabilizer"].ToString();
-    //                if (!string.IsNullOrEmpty(currentStabilizer))
-    //                    _state.StabilizerPlugin = _pluginManager.Stabilizers.FirstOrDefault(plugin => plugin.GetType().FullName == currentStabilizer);
-    //            }
-    //        }
-    //        catch (Exception exc)
-    //        {
-    //            Logger.Instance.Error("Error while loading media settings.", exc);
-    //        }
-    //    }
+                if (o["CurrentStabilizer"] != null)
+                {
+                    var currentStabilizer = o["CurrentStabilizer"].ToString();
+                    if (!string.IsNullOrEmpty(currentStabilizer))
+                        _state.StabilizerPlugin = _pluginManager.Stabilizers.FirstOrDefault(plugin => plugin.GetType().FullName == currentStabilizer);
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while loading media settings.", exc);
+            }
+        }
 
     //    private void LoadDeviceSettings(JObject o)
     //    {
@@ -658,32 +657,32 @@ namespace VrPlayer.Models.Presets
 
     //    #endregion
 
-    //    #region Helpers
+        #region Helpers
 
-    //    private static void Inject(object target, JToken properties)
-    //    {
-    //        if (target == null || properties == null) return;
+        private static void Inject(object target, JToken properties)
+        {
+            if (target == null || properties == null) return;
 
-    //        foreach (var token in properties.Children())
-    //        {
-    //            var property = token as JProperty;
-    //            if (property == null) continue;
+            foreach (var token in properties.Children())
+            {
+                var property = token as JProperty;
+                if (property == null) continue;
 
-    //            var propertyInfo = target.GetType().GetProperty(property.Name, BindingFlags.Public | BindingFlags.Instance);
-    //            if (propertyInfo == null || !propertyInfo.CanWrite) continue;
+                var propertyInfo = target.GetType().GetProperty(property.Name, BindingFlags.Public | BindingFlags.Instance);
+                if (propertyInfo == null || !propertyInfo.CanWrite) continue;
 
-    //            try
-    //            {
-    //                var value = property.ToObject(propertyInfo.PropertyType);
-    //                propertyInfo.SetValue(target, value, null);
-    //            }
-    //            catch (Exception exc)
-    //            {
-    //            }
-    //        }
-    //    }
+                try
+                {
+                    var value = property.ToObject(propertyInfo.PropertyType);
+                    propertyInfo.SetValue(target, value, null);
+                }
+                catch (Exception exc)
+                {
+                }
+            }
+        }
 
-    //    #endregion
+        #endregion
 
     }
 }

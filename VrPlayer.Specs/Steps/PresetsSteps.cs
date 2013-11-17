@@ -18,7 +18,7 @@ namespace VrPlayer.Specs.Steps
     [Binding]
     public class PresetsSteps
     {
-        private readonly Mock<IApplicationState> _stateMock = new Mock<IApplicationState>();
+        private Mock<IApplicationState> _stateMock = new Mock<IApplicationState>();
         private readonly Mock<IPluginManager> _pluginManagerMock = new Mock<IPluginManager>();    
         private readonly string _tempPresetFilePath = Path.GetTempPath() + "preset.json";
 
@@ -67,6 +67,39 @@ namespace VrPlayer.Specs.Steps
             //FileAssert.AreEqual(expectedFileInfo, actualFileInfo);
 
             Assert.That(actualFileInfo.OpenText().ReadToEnd(), Is.EqualTo(expectedFileInfo.OpenText().ReadToEnd()));
+        }
+
+        [When(@"I load the file ""(.*)"" using the preset menu")]
+        public void WhenILoadTheFileUsingThePresetMenu(string filePath)
+        {
+            var sphereProjectionPlugin = new SpherePlugin();
+            var projections = new List<IPlugin<IProjection>> { sphereProjectionPlugin };
+            _pluginManagerMock.Setup(mock => mock.Projections).Returns(projections);
+            _stateMock = new Mock<IApplicationState>();
+            _stateMock.SetupAllProperties();
+            var configMock = new Mock<IApplicationConfig>();
+            var presetManager = new PresetsManager(configMock.Object, _stateMock.Object, _pluginManagerMock.Object);
+            var viewModel = new MenuViewModel(_stateMock.Object, _pluginManagerMock.Object, configMock.Object, presetManager);
+
+            viewModel.LoadMediaPresetCommand.Execute(filePath);
+        }
+
+        [Then(@"my new projection is spherical")]
+        public void ThenMyNewProjectionIsSpherical()
+        {
+            Assert.That(_stateMock.Object.ProjectionPlugin, Is.TypeOf(typeof(SpherePlugin)));
+        }
+
+        [Then(@"my new stereo format is side by side")]
+        public void ThenMyNewStereoFormatIsSideBySide()
+        {
+            Assert.That(_stateMock.Object.StereoInput, Is.EqualTo(StereoMode.SideBySide));
+        }
+
+        [Then(@"there are no more effects")]
+        public void ThenThereAreNoMoreEffects()
+        {
+            Assert.That(_stateMock.Object.EffectPlugin, Is.Null);
         }
     }
 }
