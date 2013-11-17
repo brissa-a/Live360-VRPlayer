@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using System.Threading;
 using System.Windows.Media.Media3D;
 using WiimoteLib;
@@ -8,6 +9,7 @@ using VrPlayer.Helpers;
 
 namespace VrPlayer.Trackers.WiimoteTracker
 {
+    [DataContract]
     public class WiimoteTracker : TrackerBase, ITracker
     {
         private Wiimote _wiimote;
