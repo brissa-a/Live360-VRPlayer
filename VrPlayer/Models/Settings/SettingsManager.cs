@@ -14,12 +14,12 @@ namespace VrPlayer.Models.Settings
 {
     public class SettingsManager
     {
-        private readonly ApplicationSettingsBase _settings;
         private readonly IApplicationState _state;
         private readonly IPluginManager _pluginManager;
         private readonly IApplicationConfig _config;
-
-        public SettingsManager(ApplicationSettingsBase settings, IApplicationState state, IPluginManager pluginManager, IApplicationConfig config)
+        private readonly ApplicationSettingsBase _settings;
+        
+        public SettingsManager(IApplicationState state, IPluginManager pluginManager, IApplicationConfig config, ApplicationSettingsBase settings)
         {
             _settings = settings;
             _state = state;

@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Windows.Input;
 using Newtonsoft.Json.Linq;
@@ -362,14 +363,34 @@ namespace VrPlayer.Models.Presets
     //        }
     //    }
 
-        public void LoadFromFile(string path)
+        public void LoadFromUri(string path)
         {
-            if (!File.Exists(path))
+            if (string.IsNullOrEmpty(path))
                 return;
 
-            using (var reader = File.OpenText(path))
+            try
             {
-                Load(reader.ReadToEnd());
+                var uri = new Uri(path);
+
+                if (uri.IsFile)
+                {
+                    if (string.IsNullOrEmpty(uri.LocalPath) || !File.Exists(uri.LocalPath))
+                        return;
+
+                    using (var reader = File.OpenText(uri.LocalPath))
+                    {
+                        Load(reader.ReadToEnd());
+                    }
+                }
+                else
+                {
+                    var json = new WebClient().DownloadString(uri.AbsoluteUri);
+                    Load(json);
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while loading preset from URI", exc);
             }
         }
 
@@ -384,7 +405,9 @@ namespace VrPlayer.Models.Presets
 
         public void Load(string json)
         {
-            if (string.IsNullOrEmpty(json)) return;
+            if (string.IsNullOrEmpty(json)) 
+                return;
+
             try
             {
                 var o = JObject.Parse(json);

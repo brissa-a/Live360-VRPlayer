@@ -410,7 +410,7 @@ namespace VrPlayer.ViewModels
             try
             {
                 var filename = o.ToString();
-                _presetsManager.LoadFromFile(filename);
+                _presetsManager.LoadFromUri(filename);
             }
             catch (Exception exc)
             {
@@ -422,7 +422,7 @@ namespace VrPlayer.ViewModels
         {
             try
             {
-                _presetsManager.LoadFromFile("DefaultPreset.json");
+                _presetsManager.LoadFromUri("DefaultPreset.json");
             }
             catch (Exception exc)
             {

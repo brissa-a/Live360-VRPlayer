@@ -87,6 +87,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\IMediaSevice.cs" />
+    <Compile Include="Services\MediaService.cs" />
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="Models\Plugins\DynamicPluginManager.cs" />
     <Compile Include="Models\Presets\IPresetsManager.cs" />

@@ -243,40 +243,12 @@ namespace VrPlayer.Models.State
                 .First();
 
             Shortcuts = new ShortcutsManager();
-
-            LoadDefaultMedia(config.SamplesFolder);
-
+            
             //Todo: Use binding instead of a timer
             var timer = new DispatcherTimer(DispatcherPriority.Render);
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.Tick += TimerOnTick;
             timer.Start();
-        }
-
-        //Todo: Create media handler checking best possible open action
-        private void LoadDefaultMedia(string defaultMediaFolder)
-        {
-            if (MediaPlugin == null || MediaPlugin.Content == null)
-                return;
-
-            var parameters = Environment.GetCommandLineArgs();
-
-            if (parameters.Length > 1)
-            {
-                Logger.Instance.Info(string.Format("Loading '{0}'...", parameters[1]));
-                if (!MediaPlugin.Content.OpenStreamCommand.CanExecute(null)) return;
-                var uri = new Uri(parameters[1]);
-                MediaPlugin.Content.OpenStreamCommand.Execute(uri);
-            }
-            else
-            {
-                if (!MediaPlugin.Content.OpenFileCommand.CanExecute(null)) return;
-                var samples = new DirectoryInfo(defaultMediaFolder);
-                if (samples.GetFiles().Any())
-                {
-                    MediaPlugin.Content.OpenFileCommand.Execute(samples.GetFiles().First().FullName);
-                }
-            }
         }
 
         //Todo: Use data binding for inter-plugins dependancies.

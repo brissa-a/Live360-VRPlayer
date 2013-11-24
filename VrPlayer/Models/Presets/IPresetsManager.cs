@@ -3,7 +3,7 @@
     public interface IPresetsManager
     {
         void SaveMediaToFile(string fileName);
-        void LoadFromFile(string path);
+        void LoadFromUri(string path);
         /*void Reset();
         void SaveAllToSettings();
         void SaveDeviceToFile(string fileName);

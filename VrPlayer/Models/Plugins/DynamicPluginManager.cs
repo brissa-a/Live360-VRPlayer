@@ -97,13 +97,11 @@ namespace VrPlayer.Models.Plugins
             }
         }
 
-        public DynamicPluginManager()
+        public DynamicPluginManager(string path, IEnumerable<string> folders)
         {
             var catalog = new AggregateCatalog();
-            var path = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
-
-            string[] pluginFolders = { "Medias", "Effects", "Distortions", "Trackers", "Projections", "Stabilizers" };
-            foreach (var dir in from folder in pluginFolders 
+            
+            foreach (var dir in from folder in folders 
                 select new DirectoryInfo(Path.Combine(path, folder)) into info 
                 where info.Exists from dir in info.GetDirectories() select dir)
             {
