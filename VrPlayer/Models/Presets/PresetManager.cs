@@ -31,7 +31,22 @@ namespace VrPlayer.Models.Presets
             o.Add("Media", GenerateMediaPresets());
             File.WriteAllText(fileName, o.ToString());
         }
-   
+
+        public void SaveDeviceToFile(string fileName)
+        {
+            var o = new JObject();
+            o.Add("Device", GenerateDevicePresets());
+            File.WriteAllText(fileName, o.ToString());
+        }
+
+        public void SaveAllToFile(string fileName)
+        {
+            var o = new JObject();
+            o.Add("Media", GenerateMediaPresets());
+            o.Add("Device", GenerateDevicePresets());
+            File.WriteAllText(fileName, o.ToString());
+        }
+
         private JObject GenerateMediaPresets()
         {
             var o = new JObject();
@@ -112,7 +127,61 @@ namespace VrPlayer.Models.Presets
             }
             catch (Exception exc)
             {
-                Logger.Instance.Error("Error while saving media settings.", exc);
+                Logger.Instance.Error("Error while saving media preset.", exc);
+            }
+            return o;
+        }
+
+        private JObject GenerateDevicePresets()
+        {
+            var o = new JObject();
+            try
+            {
+                //Distortion
+                if (_state.DistortionPlugin != null)
+                {
+                    var distortionConfigs = new JObject();
+                    if (_pluginManager.Distortions != null)
+                    {
+                        foreach (var plugin in _pluginManager.Distortions
+                            .Where(p => p.Content != null)
+                            .Where(p => p == _state.DistortionPlugin))
+                        {
+                            distortionConfigs.Add("Type", plugin.Content.GetType().FullName);
+                            distortionConfigs.Add("Params", JObject.FromObject(plugin.Content));
+                        }
+                    }
+                    if (distortionConfigs.HasValues)
+                        o.Add("Distortion", distortionConfigs);
+                }
+                //Tracker
+                if (_state.TrackerPlugin != null)
+                {
+                    var trackerConfigs = new JObject();
+                    if (_pluginManager.Trackers != null)
+                    {
+                        foreach (var plugin in _pluginManager.Trackers
+                            .Where(p => p.Content != null)
+                            .Where(p => p == _state.TrackerPlugin))
+                        {
+                            trackerConfigs.Add("Type", plugin.Content.GetType().FullName);
+                            trackerConfigs.Add("Params", JObject.FromObject(plugin.Content));
+                        }
+                    }
+                    if (trackerConfigs.HasValues)
+                        o.Add("Tracker", trackerConfigs);
+                }
+                //Stereo mode
+                o.Add("DisplayMode", new JValue(_state.StereoOutput.ToString()));
+                //Fov
+                o.Add("FieldOfView", new JValue(_config.CameraFieldOfView));
+                //Viewport Offsets
+                o.Add("ViewportsHorizontalOffset", new JValue(_config.ViewportsHorizontalOffset));
+                o.Add("ViewportsVerticalOffset", new JValue(_config.ViewportsVerticalOffset));
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while saving device preset.", exc);
             }
             return o;
         }
@@ -157,6 +226,7 @@ namespace VrPlayer.Models.Presets
             {
                 var o = JObject.Parse(json);
                 LoadMediaSettings((JObject)o["Media"]);
+                LoadDeviceSettings((JObject)o["Device"]);
             }
             catch (Exception exc)
             {
@@ -175,8 +245,6 @@ namespace VrPlayer.Models.Presets
                     if (!string.IsNullOrEmpty(stereoMode))
                         _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), stereoMode);
                 }
-                
-                if (o["Media"] == null) return;
                 
                 //Medias
                 /*
@@ -247,7 +315,74 @@ namespace VrPlayer.Models.Presets
             }
             catch (Exception exc)
             {
-                Logger.Instance.Error("Error while loading media settings.", exc);
+                Logger.Instance.Error("Error while loading media preset.", exc);
+            }
+        }
+
+        private void LoadDeviceSettings(JObject o)
+        {
+            try
+            {
+                //Stereo mode
+                if (o["DisplayMode"] != null)
+                {
+                    var displayMode = o["DisplayMode"].ToString();
+                    if (!string.IsNullOrEmpty(displayMode))
+                        _state.StereoOutput = (LayoutMode)Enum.Parse(typeof(LayoutMode), displayMode);
+                }
+                //Fov
+                if (o["FieldOfView"] != null)
+                {
+                    var fov = o["FieldOfView"].ToObject<int>();
+                    _config.CameraFieldOfView = fov;
+                }
+                //Viewport Offsets
+                if (o["ViewportsHorizontalOffset"] != null)
+                {
+                    var hOffset = o["ViewportsHorizontalOffset"].ToObject<int>();
+                    _config.ViewportsHorizontalOffset = hOffset;
+                }
+                if (o["ViewportsVerticalOffset"] != null)
+                {
+                    var vOffset = o["ViewportsVerticalOffset"].ToObject<int>();
+                    _config.ViewportsVerticalOffset = vOffset;
+                }
+                //Distortion
+                var distortion = (JObject)o["Distortion"];
+                if (distortion["Type"] != null)
+                {
+                    var plugin = _pluginManager.Distortions.FirstOrDefault(p => p.Content != null && p.Content.GetType().FullName == distortion["Type"].ToString());
+                    if (plugin != null)
+                    {
+                        _state.DistortionPlugin = plugin;
+                        var token = distortion["Params"];
+                        if (token is JProperty)
+                        {
+                            var prop = token as JProperty;
+                            Inject(plugin.Content, prop.Value);
+                        }
+                    }
+                }
+                //Tracker
+                var tracker = (JObject)o["Tracker"];
+                if (tracker["Type"] != null)
+                {
+                    var plugin = _pluginManager.Trackers.FirstOrDefault(p => p.Content != null && p.Content.GetType().FullName == tracker["Type"].ToString());
+                    if (plugin != null)
+                    {
+                        _state.TrackerPlugin = plugin;
+                        var token = tracker["Params"];
+                        if (token is JProperty)
+                        {
+                            var prop = token as JProperty;
+                            Inject(plugin.Content, prop.Value);
+                        }
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while loading device preset.", exc);
             }
         }
 

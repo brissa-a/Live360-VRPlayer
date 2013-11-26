@@ -26,13 +26,33 @@ namespace VrPlayer.Views
             }
         }
 
-        private void SavePresetMenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void SaveMediaPresetMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = @"VR Player Presets|*.json";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 _viewModel.SaveMediaPresetCommand.Execute(saveFileDialog.FileName);
+            }
+        }
+
+        private void SaveDevicePresetMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = @"VR Player Presets|*.json";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _viewModel.SaveDevicePresetCommand.Execute(saveFileDialog.FileName);
+            }
+        }
+
+        private void SaveAllPresetMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = @"VR Player Presets|*.json";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _viewModel.SaveAllPresetCommand.Execute(saveFileDialog.FileName);
             }
         }
 

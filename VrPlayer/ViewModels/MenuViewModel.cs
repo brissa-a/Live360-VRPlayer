@@ -155,6 +155,18 @@ namespace VrPlayer.ViewModels
             get { return _saveMediaPresetCommand; }
         }
 
+        private readonly ICommand _saveDevicePresetCommand;
+        public ICommand SaveDevicePresetCommand
+        {
+            get { return _saveDevicePresetCommand; }
+        }
+
+        private readonly ICommand _saveAllPresetCommand;
+        public ICommand SaveAllPresetCommand
+        {
+            get { return _saveAllPresetCommand; }
+        }
+
         private readonly ICommand _loadMediaPresetCommand;
         public ICommand LoadMediaPresetCommand
         {
@@ -252,6 +264,8 @@ namespace VrPlayer.ViewModels
             _changeDistortionCommand = new DelegateCommand(SetDistortion);
             _changeTrackerCommand = new DelegateCommand(SetTracker);
             _saveMediaPresetCommand = new DelegateCommand(SaveMediaPreset);
+            _saveDevicePresetCommand = new DelegateCommand(SaveDevicePreset);
+            _saveAllPresetCommand = new DelegateCommand(SaveAllPreset);
             _loadMediaPresetCommand = new DelegateCommand(LoadMediaPreset);
             _resetPresetCommand = new DelegateCommand(ResetPreset);
             _settingsCommand = new DelegateCommand(ShowSettings);
@@ -398,6 +412,32 @@ namespace VrPlayer.ViewModels
             {
                 var filename = o.ToString();
                 _presetsManager.SaveMediaToFile(filename);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while saving media preset file.'", exc);
+            }
+        }
+
+        private void SaveDevicePreset(object o)
+        {
+            try
+            {
+                var filename = o.ToString();
+                _presetsManager.SaveDeviceToFile(filename);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while saving device preset file.'", exc);
+            }
+        }
+
+        private void SaveAllPreset(object o)
+        {
+            try
+            {
+                var filename = o.ToString();
+                _presetsManager.SaveAllToFile(filename);
             }
             catch (Exception exc)
             {

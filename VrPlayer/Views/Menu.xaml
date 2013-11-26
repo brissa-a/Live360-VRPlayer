@@ -332,10 +332,14 @@
         </MenuItem>
         <!-- Presets -->
         <MenuItem Header="_Presets">
-            <MenuItem Header="Save..." Click="SavePresetMenuItem_OnClick">
+            <MenuItem Header="Save">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/cache.png" />
                 </MenuItem.Icon>
+                <MenuItem Header="Media..." Click="SaveMediaPresetMenuItem_OnClick"></MenuItem>
+                <MenuItem Header="Device..." Click="SaveDevicePresetMenuItem_OnClick"></MenuItem>
+                <Separator />
+                <MenuItem Header="All..." Click="SaveAllPresetMenuItem_OnClick"></MenuItem>
             </MenuItem>
             <MenuItem Header="Load..." Click="LoadPresetMenuItem_OnClick">
                 <MenuItem.Icon>
