@@ -4,13 +4,5 @@
     {
         void SaveMediaToFile(string fileName);
         void LoadFromUri(string path);
-        /*void Reset();
-        void SaveAllToSettings();
-        void SaveDeviceToFile(string fileName);
-        void SaveConfigToFile(string fileName);
-        void SaveAllToFile(string fileName);
-        void LoadFromSettings();
-        void LoadFromMetadata(string path);
-        void Load(string json);*/
     }
 }

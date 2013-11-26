@@ -28,7 +28,7 @@ namespace VrPlayer.Projections.Sphere
 
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
-             typeof(SphereProjection), new FrameworkPropertyMetadata(16));
+             typeof(SphereProjection), new FrameworkPropertyMetadata(32));
         [DataMember]
         public int Stacks
         {

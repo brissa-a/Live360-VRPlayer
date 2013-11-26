@@ -99,7 +99,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Presets.feature.cs</LastGenOutput>
     </None>
-    <None Include="Presets\MediaPresetMod.json" />
     <Content Include="Presets\MediaPreset.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
