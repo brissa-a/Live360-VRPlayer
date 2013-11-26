@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0AF79BA76F3A40E3B68FE6764A4E3253"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -81,7 +87,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_21C617104951D45549157D86ED1750A7"
+        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_27C4049BF5894A44AE70669E1C61462C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_280531DFB78546DBAF94B259F61B0274"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -112,6 +130,12 @@
         "Entry"
         {
         "MsmKey" = "8:_30B5F98F92134068A7A44C55E2C8FC59"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_351C587919504916A961255B27AD29C0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -179,6 +203,12 @@
         {
         "MsmKey" = "8:_3C34FA1AE0CBA890BCF6C8E6A3C84FC0"
         "OwnerKey" = "8:_10E8837063B44E72B3FB526889B9249A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3E06A131A8E344D58EB6D2F8EF3F353D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -298,6 +328,12 @@
         "Entry"
         {
         "MsmKey" = "8:_62A19453E3FE4D309A5697EEB721DB23"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_62DDF3195C2E423E9476C936521EF33F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -658,6 +694,12 @@
         "Entry"
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
+        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
         "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -976,6 +1018,12 @@
         "Entry"
         {
         "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "OwnerKey" = "8:_F41A75C4627D45E4A03FCEB18C61519C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1193,6 +1241,24 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CA88D4DD47B44416B5B25EBDF4DB4AFD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3E06A131A8E344D58EB6D2F8EF3F353D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_21C617104951D45549157D86ED1750A7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1776,6 +1842,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Trackers.YEI3SpaceTracker, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+                    {
+                    "Name" = "8:VrPlayer.Trackers.YEI3SpaceTracker.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.YEI3SpaceTracker\\VrPlayer.Trackers.YEI3SpaceTracker.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_980B58AE6E2A46B3BA52608103E7F19E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0AF79BA76F3A40E3B68FE6764A4E3253"
             {
             "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.Gdi\\SharpDX.xml"
@@ -1929,12 +2026,63 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_21C617104951D45549157D86ED1750A7"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:YEISensorLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_21C617104951D45549157D86ED1750A7"
+                    {
+                    "Name" = "8:YEISensorLib.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:YEISensorLib.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_980B58AE6E2A46B3BA52608103E7F19E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_27C4049BF5894A44AE70669E1C61462C"
             {
             "SourcePath" = "8:..\\VrPlayer\\Medias\\Nuvola\\Nuvola-license.txt"
             "TargetName" = "8:Nuvola-license.txt"
             "Tag" = "8:"
             "Folder" = "8:_549B09F2CE4040D39BE44EFBC5B47A92"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_280531DFB78546DBAF94B259F61B0274"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.YEI3SpaceTracker\\VrPlayer.Trackers.YEI3SpaceTracker.dll.config"
+            "TargetName" = "8:VrPlayer.Trackers.YEI3SpaceTracker.dll.config"
+            "Tag" = "8:"
+            "Folder" = "8:_980B58AE6E2A46B3BA52608103E7F19E"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2057,6 +2205,26 @@
             "TargetName" = "8:VrPlayer.Effects.DepthMapSbs.dll.config"
             "Tag" = "8:"
             "Folder" = "8:_BE7456A94DA24277ABF10ABA20B8EB34"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_351C587919504916A961255B27AD29C0"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.YEI3SpaceTracker\\ThreeSpace_API.dll"
+            "TargetName" = "8:ThreeSpace_API.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_980B58AE6E2A46B3BA52608103E7F19E"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2202,6 +2370,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3E06A131A8E344D58EB6D2F8EF3F353D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:YEISensorLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_3E06A131A8E344D58EB6D2F8EF3F353D"
+                    {
+                    "Name" = "8:YEISensorLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.YEI3SpaceTracker\\YEISensorLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_980B58AE6E2A46B3BA52608103E7F19E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3F432191BEF440D2A11F2328CD55F0EB"
@@ -2669,6 +2868,26 @@
             "TargetName" = "8:EVRPresenter32.dll"
             "Tag" = "8:"
             "Folder" = "8:_8CEC1D3E83204B208053FAF380BE0952"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_62DDF3195C2E423E9476C936521EF33F"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.YEI3SpaceTracker\\ThreeSpace_API.lib"
+            "TargetName" = "8:ThreeSpace_API.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_980B58AE6E2A46B3BA52608103E7F19E"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4881,6 +5100,17 @@
                                 {
                                 }
                             }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_980B58AE6E2A46B3BA52608103E7F19E"
+                            {
+                            "Name" = "8:VrPlayer.Trackers.YEI3SpaceTracker"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_A3AD68D7968048029BE2DB60F1C29FC0"
+                                "Folders"
+                                {
+                                }
+                            }
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_BD2A62D59E4D46A58666479AAD396DC1"
                             {
                             "Name" = "8:VrPlayer.Trackers.PsMoveTracker"
@@ -5111,7 +5341,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{42612398-B484-448D-99A0-C98F651A08E4}"
+        "PackageCode" = "8:{1C175459-15B1-447A-96A1-CDFA4B4CB370}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
