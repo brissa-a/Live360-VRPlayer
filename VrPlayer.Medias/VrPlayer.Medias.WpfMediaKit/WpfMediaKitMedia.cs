@@ -47,7 +47,7 @@ namespace VrPlayer.Medias.WpfMediaKit
             //Commands
             OpenFileCommand = new RelayCommand(OpenFile);
             OpenDiscCommand = new RelayCommand(OpenDisc, o => false);
-            OpenStreamCommand = new RelayCommand(OpenStream);
+            OpenStreamCommand = new RelayCommand(OpenStream, CanOpenStream);
             OpenDeviceCommand = new RelayCommand(OpenDevice, o => false);
             OpenProcessCommand = new RelayCommand(o => { }, o => false);
             PlayCommand = new RelayCommand(Play, CanPlay);
@@ -165,6 +165,16 @@ namespace VrPlayer.Medias.WpfMediaKit
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             OnPropertyChanged("Media");
+        }
+
+        private bool CanOpenStream(object o)
+        {
+            var url = o.ToString();
+            var uri = new Uri(url);
+            var path = String.Format("{0}{1}{2}{3}", uri.Scheme, Uri.SchemeDelimiter, uri.Authority, uri.AbsolutePath);
+            var extension = Path.GetExtension(path);
+
+            return !string.IsNullOrEmpty(extension);
         }
 
         private void OpenStream(object o)

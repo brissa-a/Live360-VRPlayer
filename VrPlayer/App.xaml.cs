@@ -66,12 +66,18 @@ namespace VrPlayer
                 //Load media and preset from command line arguments
                 var args = Environment.GetCommandLineArgs();
                 if (args.Length > 1)
+                {
+                    Logger.Instance.Info(string.Format("Loading media '{0}'...", args[1]));
                     _mediaService.Load(args[1]);
+                }
                 else
                     _mediaService.Load(Path.GetFullPath(DefaultMedia));
 
                 if (args.Length > 2)
-                    _presetsManager.LoadFromUri(args[2]);
+                {
+                    Logger.Instance.Info(string.Format("Loading preset '{0}'...", args[2]));
+                    _presetsManager.LoadFromUri(args[2]);   
+                }
             }
             catch (Exception exc)
             {

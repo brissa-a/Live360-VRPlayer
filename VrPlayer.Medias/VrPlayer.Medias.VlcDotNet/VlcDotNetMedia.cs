@@ -98,7 +98,7 @@ namespace VrPlayer.Medias.VlcDotNet
             //Commands
             OpenFileCommand = new RelayCommand(OpenFile);
             OpenDiscCommand = new RelayCommand(OpenDisc);
-            OpenStreamCommand = new RelayCommand(OpenStream);
+            OpenStreamCommand = new RelayCommand(OpenStream, CanOpenStream);
             OpenDeviceCommand = new RelayCommand(o => { }, o => false);
             OpenProcessCommand = new RelayCommand(o => { }, o => false); 
             PlayCommand = new RelayCommand(Play, CanPlay);
@@ -206,6 +206,11 @@ namespace VrPlayer.Medias.VlcDotNet
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             OnPropertyChanged("Media");
+        }
+
+        private bool CanOpenStream(object o)
+        {
+            return true;
         }
 
         private void OpenStream(object o)

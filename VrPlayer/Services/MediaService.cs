@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using VrPlayer.Contracts;
 using VrPlayer.Contracts.Medias;
 using VrPlayer.Helpers;
 using VrPlayer.Models.Plugins;
@@ -65,23 +66,25 @@ namespace VrPlayer.Services
 
         private void loadStream(Uri uri)
         {
-            IMedia media = null;
-            if (_state.MediaPlugin != null && _state.MediaPlugin.Content != null && _state.MediaPlugin.Content.OpenStreamCommand.CanExecute(null))
+            IPlugin<IMedia> mediaPlugin = null;
+            if (_state.MediaPlugin != null && _state.MediaPlugin.Content != null && _state.MediaPlugin.Content.OpenStreamCommand.CanExecute(uri))
             {
-                media = _state.MediaPlugin.Content;
+                mediaPlugin = _state.MediaPlugin;
             }
             else
             {
-                foreach (var mediaPlugin in _pluginManager.Medias
-                    .Where(mediaPlugin => mediaPlugin != _state.MediaPlugin)
-                    .Where(mediaPlugin => mediaPlugin.Content != null && mediaPlugin.Content.OpenStreamCommand.CanExecute(null)))
+                foreach (var plugin in _pluginManager.Medias
+                    .Where(p => p != _state.MediaPlugin)
+                    .Where(p => p.Content != null && p.Content.OpenStreamCommand.CanExecute(uri)))
                 {
-                    media = mediaPlugin.Content;
+                    mediaPlugin = plugin;
                 }
             }
-
-            if (media != null)
-                media.OpenStreamCommand.Execute(uri);
+            if (mediaPlugin != null)
+            {
+                _state.MediaPlugin = mediaPlugin;
+                mediaPlugin.Content.OpenStreamCommand.Execute(uri);
+            }
         }
     }
 }
