@@ -20,6 +20,7 @@ namespace VrPlayer
     public partial class App : Application
     {
         private const string DefaultMedia = @"Samples\1-Grid.jpg";
+        private const string UriScheme = @"vrplayer:";
 
         private readonly IApplicationConfig _appConfig;
         private readonly SettingsManager _settingsManager;
@@ -65,18 +66,20 @@ namespace VrPlayer
                 
                 //Load media and preset from command line arguments
                 var args = Environment.GetCommandLineArgs();
-                if (args.Length > 1)
+                if (args.Length > 1 && args[1].Length > UriScheme.Length)
                 {
-                    Logger.Instance.Info(string.Format("Loading media '{0}'...", args[1]));
-                    _mediaService.Load(args[1]);
+                    var source = args[1].Remove(0, UriScheme.Length);
+                    Logger.Instance.Info(string.Format("Loading media '{0}'...", source));
+                    _mediaService.Load(source);
                 }
                 else
                     _mediaService.Load(Path.GetFullPath(DefaultMedia));
 
                 if (args.Length > 2)
                 {
-                    Logger.Instance.Info(string.Format("Loading preset '{0}'...", args[2]));
-                    _presetsManager.LoadFromUri(args[2]);   
+                    var preset = args[2];
+                    Logger.Instance.Info(string.Format("Loading preset '{0}'...", preset));
+                    _presetsManager.LoadFromUri(preset);   
                 }
             }
             catch (Exception exc)
