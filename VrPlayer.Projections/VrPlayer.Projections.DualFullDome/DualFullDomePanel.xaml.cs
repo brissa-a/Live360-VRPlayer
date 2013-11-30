@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace VrPlayer.Projections.DualDome
+namespace VrPlayer.Projections.DualFullDome
 {
-    public partial class DualDomePanel : UserControl
+    public partial class DualFullDomePanel : UserControl
     {
-        public DualDomePanel(DualDomeProjection projection)
+        public DualFullDomePanel(DualFullDomeProjection projection)
         {
             InitializeComponent();
             try

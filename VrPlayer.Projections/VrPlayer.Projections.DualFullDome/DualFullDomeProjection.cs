@@ -5,10 +5,10 @@ using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using VrPlayer.Contracts.Projections;
 
-namespace VrPlayer.Projections.DualDome
+namespace VrPlayer.Projections.DualFullDome
 {
     [DataContract]
-    public class DualDomeProjection : ProjectionBase, IProjection
+    public class DualFullDomeProjection : ProjectionBase, IProjection
     {
         private Point3D _center;
         private double _radius = 1;
@@ -16,7 +16,7 @@ namespace VrPlayer.Projections.DualDome
 
         public static readonly DependencyProperty SlicesProperty =
             DependencyProperty.Register("Slices", typeof(int),
-            typeof(DualDomeProjection), new FrameworkPropertyMetadata(16));
+            typeof(DualFullDomeProjection), new FrameworkPropertyMetadata(16));
         [DataMember]
         public int Slices
         {
@@ -26,7 +26,7 @@ namespace VrPlayer.Projections.DualDome
 
         public static readonly DependencyProperty StacksProperty =
              DependencyProperty.Register("Stacks", typeof(int),
-             typeof(DualDomeProjection), new FrameworkPropertyMetadata(16));
+             typeof(DualFullDomeProjection), new FrameworkPropertyMetadata(16));
         [DataMember]
         public int Stacks
         {
@@ -36,7 +36,7 @@ namespace VrPlayer.Projections.DualDome
 
         public static readonly DependencyProperty HorizontalCoverageProperty =
             DependencyProperty.Register("HorizontalCoverage", typeof(double),
-            typeof(DualDomeProjection), new FrameworkPropertyMetadata(0.5D));
+            typeof(DualFullDomeProjection), new FrameworkPropertyMetadata(0.5D));
         [DataMember]
         public double HorizontalCoverage
         {
@@ -46,7 +46,7 @@ namespace VrPlayer.Projections.DualDome
 
         public static readonly DependencyProperty VerticalCoverageProperty =
             DependencyProperty.Register("VerticalCoverage", typeof(double),
-            typeof(DualDomeProjection), new FrameworkPropertyMetadata(1D));
+            typeof(DualFullDomeProjection), new FrameworkPropertyMetadata(1D));
         [DataMember]
         public double VerticalCoverage
         {
@@ -56,7 +56,7 @@ namespace VrPlayer.Projections.DualDome
 
         public static readonly DependencyProperty FishEyeFOVProperty =
             DependencyProperty.Register("FishEyeFOV", typeof(double),
-            typeof(DualDomeProjection), new FrameworkPropertyMetadata(180D));
+            typeof(DualFullDomeProjection), new FrameworkPropertyMetadata(180D));
         [DataMember]
         public double FishEyeFOV
         {
@@ -66,7 +66,7 @@ namespace VrPlayer.Projections.DualDome
 
         public static readonly DependencyProperty HeadingProperty =
             DependencyProperty.Register("Heading", typeof(int),
-            typeof(DualDomeProjection), new FrameworkPropertyMetadata(0));
+            typeof(DualFullDomeProjection), new FrameworkPropertyMetadata(0));
         [DataMember]
         public int Heading
         {
@@ -76,7 +76,7 @@ namespace VrPlayer.Projections.DualDome
 
         public static readonly DependencyProperty TiltProperty =
             DependencyProperty.Register("Tilt", typeof(int),
-            typeof(DualDomeProjection), new FrameworkPropertyMetadata(0));
+            typeof(DualFullDomeProjection), new FrameworkPropertyMetadata(0));
         [DataMember]
         public int Tilt
         {

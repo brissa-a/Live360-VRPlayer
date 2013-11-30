@@ -4,19 +4,19 @@ using VrPlayer.Contracts;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Helpers;
 
-namespace VrPlayer.Projections.DualDome
+namespace VrPlayer.Projections.DualFullDome
 {
     [Export(typeof(IPlugin<IProjection>))]
-    public class DualDomePlugin : PluginBase<IProjection>
+    public class DualFullDomePlugin : PluginBase<IProjection>
     {
-        public DualDomePlugin()
+        public DualFullDomePlugin()
         {
             try
             {
-                Name = "Dual dome";
-                var projection = new DualDomeProjection();
+                Name = "Dual full dome";
+                var projection = new DualFullDomeProjection();
                 Content = projection;
-                Panel = new DualDomePanel(projection);
+                Panel = new DualFullDomePanel(projection);
                 InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
             }
             catch (Exception exc)
