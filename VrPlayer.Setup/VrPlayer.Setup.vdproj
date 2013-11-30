@@ -51,6 +51,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0A55097D93AF4DFCB737BA098081B386"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0AF79BA76F3A40E3B68FE6764A4E3253"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -393,6 +399,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_770D9CAEFF0A4E6DA1AE8521859457D5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7731C6CE19E940718372D71D29B17F8F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -694,7 +706,7 @@
         "Entry"
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
-        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+        "OwnerKey" = "8:_770D9CAEFF0A4E6DA1AE8521859457D5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -881,6 +893,12 @@
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
         "OwnerKey" = "8:_1032DA158041430CBD51F554E34D50AB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
+        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1018,7 +1036,7 @@
         "Entry"
         {
         "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
-        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+        "OwnerKey" = "8:_770D9CAEFF0A4E6DA1AE8521859457D5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1210,6 +1228,12 @@
         "Entry"
         {
         "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "OwnerKey" = "8:_07EE0018FF404D3AB0AA63CDB7C1939D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1246,19 +1270,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3E06A131A8E344D58EB6D2F8EF3F353D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_21C617104951D45549157D86ED1750A7"
+        "OwnerKey" = "8:_770D9CAEFF0A4E6DA1AE8521859457D5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1504,6 +1516,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3E06A131A8E344D58EB6D2F8EF3F353D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3780E3E2D02249C7AFE3D932B0099C01"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1559,6 +1577,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5AE25C988E9718D52911688E0E8ECAD1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0A30EB9D26AE4FDD87B4D234F64BD8A0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_21C617104951D45549157D86ED1750A7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1859,6 +1889,26 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_980B58AE6E2A46B3BA52608103E7F19E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0A55097D93AF4DFCB737BA098081B386"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Projections\\VrPlayer.Projections.DualFullDome\\VrPlayer.Projections.DualFullDome.dll.config"
+            "TargetName" = "8:VrPlayer.Projections.DualFullDome.dll.config"
+            "Tag" = "8:"
+            "Folder" = "8:_E25FE19794FF4FB6990E705B47B6925C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3124,6 +3174,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_770D9CAEFF0A4E6DA1AE8521859457D5"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Projections.DualFullDome, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_770D9CAEFF0A4E6DA1AE8521859457D5"
+                    {
+                    "Name" = "8:VrPlayer.Projections.DualFullDome.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Projections\\VrPlayer.Projections.DualFullDome\\VrPlayer.Projections.DualFullDome.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E25FE19794FF4FB6990E705B47B6925C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7731C6CE19E940718372D71D29B17F8F"
@@ -4946,6 +5027,17 @@
                                 {
                                 }
                             }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_E25FE19794FF4FB6990E705B47B6925C"
+                            {
+                            "Name" = "8:VrPlayer.Projections.DualFullDome"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_E075B023BC7E416C8812A03E05CAC223"
+                                "Folders"
+                                {
+                                }
+                            }
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_E82CDCD0A5B348C392E7F1F64167098E"
                             {
                             "Name" = "8:VrPlayer.Projections.Sphere"
@@ -5341,7 +5433,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{B24467D1-7880-4999-8BD1-C843A14B1306}"
+        "PackageCode" = "8:{26589826-08B8-4A12-997E-C01143FA57FE}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
