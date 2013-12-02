@@ -47,7 +47,7 @@ namespace VrPlayer.Distortions.Barrel
         }
 
         public static readonly DependencyProperty BlueOffsetProperty =
-            DependencyProperty.Register("BlueOffset", typeof(double), typeof(BarrelEffect), new UIPropertyMetadata(0.01D, PixelShaderConstantCallback(3)));
+            DependencyProperty.Register("BlueOffset", typeof(double), typeof(BarrelEffect), new UIPropertyMetadata(0D, PixelShaderConstantCallback(3)));
         [DataMember]
         public double BlueOffset
         {
@@ -56,7 +56,7 @@ namespace VrPlayer.Distortions.Barrel
         }
 
         public static readonly DependencyProperty RedOffsetProperty =
-            DependencyProperty.Register("RedOffset", typeof(double), typeof(BarrelEffect), new UIPropertyMetadata(0.005D, PixelShaderConstantCallback(4)));
+            DependencyProperty.Register("RedOffset", typeof(double), typeof(BarrelEffect), new UIPropertyMetadata(0D, PixelShaderConstantCallback(4)));
         [DataMember]
         public double RedOffset
         {
