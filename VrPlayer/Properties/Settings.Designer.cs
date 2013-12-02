@@ -230,18 +230,6 @@ namespace VrPlayer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string MetaData {
-            get {
-                return ((string)(this["MetaData"]));
-            }
-            set {
-                this["MetaData"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Samples {
             get {
                 return ((string)(this["Samples"]));

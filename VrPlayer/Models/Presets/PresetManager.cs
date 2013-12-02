@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
+using SE.Halligang.CsXmpToolkit;
+using SE.Halligang.CsXmpToolkit.Schemas;
 using VrPlayer.Contracts.Projections;
 using VrPlayer.Helpers;
 using VrPlayer.Models.Config;
@@ -14,6 +16,9 @@ namespace VrPlayer.Models.Presets
 {
     public class PresetsManager : IPresetsManager
     {
+        public const string XmpNamespace = "http://ns.vrplayer.tv/";
+        public const string XmpField = "Preset";
+
         private readonly IApplicationState _state;
         private readonly IPluginManager _pluginManager;
         private readonly IApplicationConfig _config;
@@ -78,8 +83,8 @@ namespace VrPlayer.Models.Presets
                     if (_pluginManager.Projections != null)
                     {
                         foreach (var plugin in _pluginManager.Projections
-                            .Where(p => p.Content != null)
-                            .Where(p => p == _state.ProjectionPlugin))
+                                                             .Where(p => p.Content != null)
+                                                             .Where(p => p == _state.ProjectionPlugin))
                         {
                             projectionConfigs.Add("Type", plugin.Content.GetType().FullName);
                             projectionConfigs.Add("Params", JObject.FromObject(plugin.Content));
@@ -95,8 +100,8 @@ namespace VrPlayer.Models.Presets
                     if (_pluginManager.Effects != null)
                     {
                         foreach (var plugin in _pluginManager.Effects
-                            .Where(p => p.Content != null)
-                            .Where(p => p == _state.EffectPlugin))
+                                                             .Where(p => p.Content != null)
+                                                             .Where(p => p == _state.EffectPlugin))
                         {
                             effectConfigs.Add("Type", plugin.Content.GetType().FullName);
                             effectConfigs.Add("Params", JObject.FromObject(plugin.Content));
@@ -112,8 +117,8 @@ namespace VrPlayer.Models.Presets
                     if (_pluginManager.Stabilizers != null)
                     {
                         foreach (var plugin in _pluginManager.Stabilizers
-                            .Where(p => p.Content != null)
-                            .Where(p => p == _state.StabilizerPlugin))
+                                                             .Where(p => p.Content != null)
+                                                             .Where(p => p == _state.StabilizerPlugin))
                         {
                             stabilizerConfigs.Add("Type", plugin.Content.GetType().FullName);
                             stabilizerConfigs.Add("Params", JObject.FromObject(plugin.Content));
@@ -144,8 +149,8 @@ namespace VrPlayer.Models.Presets
                     if (_pluginManager.Distortions != null)
                     {
                         foreach (var plugin in _pluginManager.Distortions
-                            .Where(p => p.Content != null)
-                            .Where(p => p == _state.DistortionPlugin))
+                                                             .Where(p => p.Content != null)
+                                                             .Where(p => p == _state.DistortionPlugin))
                         {
                             distortionConfigs.Add("Type", plugin.Content.GetType().FullName);
                             distortionConfigs.Add("Params", JObject.FromObject(plugin.Content));
@@ -161,8 +166,8 @@ namespace VrPlayer.Models.Presets
                     if (_pluginManager.Trackers != null)
                     {
                         foreach (var plugin in _pluginManager.Trackers
-                            .Where(p => p.Content != null)
-                            .Where(p => p == _state.TrackerPlugin))
+                                                             .Where(p => p.Content != null)
+                                                             .Where(p => p == _state.TrackerPlugin))
                         {
                             trackerConfigs.Add("Type", plugin.Content.GetType().FullName);
                             trackerConfigs.Add("Params", JObject.FromObject(plugin.Content));
@@ -217,6 +222,28 @@ namespace VrPlayer.Models.Presets
             }
         }
 
+        public void LoadFromMetadata(string fileName)
+        {
+            try
+            {
+
+                using (var xmp = Xmp.FromFile(fileName, XmpFileMode.ReadOnly))
+                {
+                    string propValue;
+                    PropertyFlags flags;
+                    xmp.XmpCore.GetProperty(XmpNamespace, XmpField, out propValue, out flags);
+                    if (!string.IsNullOrEmpty(propValue))
+                    {
+                        Load(propValue);
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while parsing XMP metadata.", exc);
+            }
+        }
+        
         public void Load(string json)
         {
             if (string.IsNullOrEmpty(json)) 

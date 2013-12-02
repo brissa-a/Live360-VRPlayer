@@ -2,8 +2,8 @@
 	<xfi:panels>
 		<xfi:panel
 			name = "vrplayer"
-			label = "$$$/VRPlayer/Panel/Label=VR Player"
-			description = "$$$/VRPlayer/Panel/Description=Loads a custom XMP schema from the 'properties.xml' file and creates a VR Player panel out of the properties."  
+			label = "VR Player"
+			description = "Loads a custom XMP schema from the 'properties.xml' file and creates a VR Player panel out of the properties."  
 			type = "custom"
 			version = "1.0"
 			panelLibrary = "generic"

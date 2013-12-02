@@ -10,7 +10,6 @@ namespace VrPlayer.Models.Config
         int ViewportsHorizontalOffset { get; set; }
         int ViewportsVerticalOffset { get; set; }
         string SamplesFolder { get; set; }
-        bool MetaDataReadOnLoad { get; set; }
 
         string DefaultMedia { get; set; }
         string DefaultEffect { get; set; }

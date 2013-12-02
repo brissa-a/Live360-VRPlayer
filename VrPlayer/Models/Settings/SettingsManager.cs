@@ -132,7 +132,6 @@ namespace VrPlayer.Models.Settings
             try
             {
                 _settings["Samples"] = _config.SamplesFolder;
-                _settings["MetaData"] = _config.MetaDataReadOnLoad.ToString();
                 _settings["FieldOfView"] = _config.CameraFieldOfView.ToString(CultureInfo.InvariantCulture);
                 _settings["HorizontalOffset"] = _config.ViewportsHorizontalOffset.ToString(CultureInfo.InvariantCulture);
                 _settings["VerticalOffset"] = _config.ViewportsVerticalOffset.ToString(CultureInfo.InvariantCulture);
@@ -305,10 +304,6 @@ namespace VrPlayer.Models.Settings
                 var samples = _settings["Samples"].ToString();
                 if (!string.IsNullOrEmpty(samples))
                     _config.SamplesFolder = samples;
-
-                var metaData = _settings["MetaData"].ToString();
-                if (!string.IsNullOrEmpty(metaData))
-                    _config.MetaDataReadOnLoad = bool.Parse(metaData);
 
                 var fieldOfView = _settings["FieldOfView"].ToString();
                 if (!string.IsNullOrEmpty(fieldOfView))

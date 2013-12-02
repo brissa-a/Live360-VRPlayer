@@ -14,7 +14,6 @@ using VrPlayer.Contracts.Projections;
 using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
 using VrPlayer.Helpers.Mvvm;
-using VrPlayer.Models.Metadata;
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.Presets;
 using VrPlayer.Models.State;
@@ -284,7 +283,6 @@ namespace VrPlayer.ViewModels
             openFileDialog.Filter = FileFilterHelper.GetFilter();
             if (openFileDialog.ShowDialog().Value)
             {
-                ReadMetadata(openFileDialog.FileName);
                 _state.MediaPlugin = mediaPlugin;
                 _state.MediaPlugin.Content.OpenFileCommand.Execute(openFileDialog.FileName);
             }
@@ -337,7 +335,6 @@ namespace VrPlayer.ViewModels
 	    private void Open(object o)
 		{
 			var filePath = (string)o;
-	        ReadMetadata(filePath);
 	        LoadDefaultMedia();
             
             try
@@ -496,41 +493,6 @@ namespace VrPlayer.ViewModels
         #endregion
 
         #region Helpers
-
-        private void ReadMetadata(string filePath)
-        {
-            if (!_config.MetaDataReadOnLoad) return;
-
-            try
-            {
-                var parser = new MetadataParser(filePath);
-                var metadata = parser.Parse();
-
-                if (!string.IsNullOrEmpty(metadata.ProjectionType))
-                {
-                    _state.ProjectionPlugin = _pluginManager.Projections.FirstOrDefault(
-                        plugin => plugin.Content.GetType().Namespace == metadata.ProjectionType);
-                }
-
-                if (!string.IsNullOrEmpty(metadata.FormatType))
-                {
-                    _state.StereoInput = (StereoMode)Enum.Parse(typeof(StereoMode), metadata.FormatType);
-                }
-
-                if (!string.IsNullOrEmpty(metadata.Effects))
-                {
-                    _state.EffectPlugin = _pluginManager.Effects
-                                                        .Where(plugin => plugin.Content != null)
-                                                        .FirstOrDefault(plugin => plugin.Content.GetType().Namespace == metadata.Effects);
-                }
-            }
-            catch (Exception exc)
-            {
-                var message = String.Format("Unable to parse meta data from file '{0}'.", filePath);
-                Logger.Instance.Warn(message, exc);
-                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
 
         private void LoadDefaultMedia()
         {

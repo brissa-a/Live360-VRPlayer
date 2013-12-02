@@ -2,33 +2,9 @@
 
 <xmp_definitions xmlns:ui="http://ns.adobe.com/xmp/fileinfo/ui/">
 
-	<xmp_schema prefix="VRPlayer" namespace="http://ns.vrplayer.tv/" label="$$$/VRPlayer/Schema/Label=VR Player Properties (http://www.vrplayer.tv)" description="$$$/VRPlayer/Schema/Description=This panel contains the options available for the 'VR Player Panel'.">
-	
+	<xmp_schema prefix="VRPlayer" namespace="http://ns.vrplayer.tv/" label="VR Player Preset (http://vrplayer.tv)" description="This panel contains VR Player preset in json format.">
 		<ui:separator/>
-	
-		<xmp_property name="FormatType" category="external" label="$$$/VRPlayer/Property/ClosedChoiceInput_FormatType=Format:" type="closedchoice" element_type="text">
-			<xmp_choice raw_value="Mono" label="$$$/VRPlayer/Property/Choice_Mono=Mono"/>
-			<xmp_choice raw_value="OverUnder" label="$$$/VRPlayer/Property/Choice_OverUnder=Over Under"/>
-			<xmp_choice raw_value="SideBySide" label="$$$/VRPlayer/Property/Choice_SideBySide=Side by side"/>
-		</xmp_property>
-		
-		<xmp_property name="ProjectionType" category="external" label="$$$/VRPlayer/Property/ClosedChoiceInput_Projection=Projection:" type="closedchoice" element_type="text">
-			<xmp_choice raw_value="VrPlayer.Projections.Cube" label="$$$/Custom/Property/Choice_Cube=Cube"/>
-			<xmp_choice raw_value="VrPlayer.Projections.Cylinder" label="$$$/Custom/Property/Choice_Cylinder=Cylinder"/>
-			<xmp_choice raw_value="VrPlayer.Projections.Dome" label="$$$/Custom/Property/Choice_Dome=Dome"/>
-			<xmp_choice raw_value="VrPlayer.Projections.Plane" label="$$$/Custom/Property/Choice_Plane=Plane"/>
-			<xmp_choice raw_value="VrPlayer.Projections.Sphere" label="$$$/Custom/Property/Choice_Sphere=Sphere"/>
-		</xmp_property>
-
-		<xmp_property name="Effects" category="external" label="$$$/VRPlayer/Property/ClosedChoiceInput_Effect=Effect:" type="closedchoice" element_type="text">
-			<xmp_choice raw_value="VrPlayer.Effects.NoEffect" label="$$$/Custom/Property/Choice_NoEffect=None"/>
-			<xmp_choice raw_value="VrPlayer.Effects.ColorKeyAlpha" label="$$$/Custom/Property/Choice_ColorKeyAlpha=Color Key Alpha"/>
-			<xmp_choice raw_value="VrPlayer.Effects.DepthMapOverUnder" label="$$$/Custom/Property/Choice_DepthMapOverUnder=Depth Map (Over Under)"/>
-			<xmp_choice raw_value="VrPlayer.Effects.DepthMapSbs" label="$$$/Custom/Property/Choice_DepthMapSbs=Depth Map (Side by side)"/>
-			<xmp_choice raw_value="VrPlayer.Effects.UnwrapFishEye" label="$$$/Custom/Property/Choice_UnwrapFishEye=Unwrap Fisheye"/>
-			<xmp_choice raw_value="VrPlayer.Effects.UnwrapFishEyeStereo" label="$$$/Custom/Property/Choice_UnwrapFishEyeStereo=Unwrap Fisheye (Stereo)"/>
-		</xmp_property>
-		
+		<xmp_property name="Preset" category="external" label="Preset" type="text" />
 	</xmp_schema>
 
 </xmp_definitions>

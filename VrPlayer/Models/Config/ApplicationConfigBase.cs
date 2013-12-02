@@ -83,17 +83,6 @@ namespace VrPlayer.Models.Config
             }
         }
 
-        private bool _metaDataReadOnLoad;
-        public bool MetaDataReadOnLoad
-        {
-            get { return _metaDataReadOnLoad; }
-            set
-            {
-                _metaDataReadOnLoad = value;
-                OnPropertyChanged("MetaDataReadOnLoad");
-            }
-        }
-
         private string _defaultMedia;
         public string DefaultMedia
         {

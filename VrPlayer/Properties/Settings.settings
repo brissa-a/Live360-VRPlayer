@@ -53,9 +53,6 @@
     <Setting Name="HorizontalOffset" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="MetaData" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="Samples" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

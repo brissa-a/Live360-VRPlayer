@@ -119,9 +119,7 @@
     <Compile Include="Views\Settings\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Metadata\MetadataResult.cs" />
     <Compile Include="Models\Settings\SettingsManager.cs" />
-    <Compile Include="Models\Metadata\MetadataParser.cs" />
     <Compile Include="Views\Dialogs\StreamInputDialog.xaml.cs">
       <DependentUpon>StreamInputDialog.xaml</DependentUpon>
     </Compile>

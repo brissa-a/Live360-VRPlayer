@@ -15,7 +15,6 @@ namespace VrPlayer.Models.Config
                 ViewportsHorizontalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsHorizontalOffset"]);
                 ViewportsVerticalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsVerticalOffset"]);
                 SamplesFolder = ConfigurationManager.AppSettings["SamplesFolder"];
-                MetaDataReadOnLoad = bool.Parse(ConfigurationManager.AppSettings["MetaDataReadOnLoad"]);
 
                 DefaultMedia = ConfigurationManager.AppSettings["DefaultMedia"];
                 DefaultEffect = ConfigurationManager.AppSettings["DefaultEffect"];
