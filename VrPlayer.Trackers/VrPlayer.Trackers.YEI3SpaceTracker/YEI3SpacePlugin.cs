@@ -13,7 +13,7 @@ namespace VrPlayer.Trackers.YEI3SpaceTracker
 
         public YEI3SpacePlugin()
         {
-            Name = "YEI3Space";
+            Name = "YEI 3-Space";
             var tracker = new YEI3SpaceTracker()
                 {
                     PositionScaleFactor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["PositionScaleFactor"].Value),
