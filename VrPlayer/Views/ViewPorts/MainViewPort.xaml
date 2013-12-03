@@ -21,7 +21,13 @@
             </GeometryModel3D.BackMaterial>
         </GeometryModel3D>
 
-        <Viewport3D x:Key="view1" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased">
+        <Viewport3D x:Key="view1" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased" ClipToBounds="False">
+            <Viewport3D.Margin>
+                <MultiBinding Converter="{StaticResource ThicknessMulti}" ConverterParameter="1">
+                    <Binding Path="Config.ViewportsHorizontalOffset" />
+                    <Binding Path="Config.ViewportsVerticalOffset" />
+                </MultiBinding>
+            </Viewport3D.Margin>
             <Viewport3D.Camera>
                 <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Content.CameraLeftPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}" >
                     <PerspectiveCamera.Transform>
@@ -67,7 +73,13 @@
             </ModelVisual3D>
         </Viewport3D>
 
-        <Viewport3D x:Key="view2" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased">
+        <Viewport3D x:Key="view2" IsHitTestVisible="False" RenderOptions.EdgeMode="Aliased" ClipToBounds="False">
+            <Viewport3D.Margin>
+                <MultiBinding Converter="{StaticResource ThicknessMulti}" ConverterParameter="-1">
+                    <Binding Path="Config.ViewportsHorizontalOffset" />
+                    <Binding Path="Config.ViewportsVerticalOffset" />
+                </MultiBinding>
+            </Viewport3D.Margin>
             <Viewport3D.Camera>
                 <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}">
                     <PerspectiveCamera.Transform>
@@ -130,14 +142,9 @@
                   Grid.Column="{Binding Path=Viewport1Col}" 
                   Grid.ColumnSpan="{Binding Path=Viewport1ColSpan}"  
                   Grid.Row="{Binding Path=Viewport1Row}" 
-                  Grid.RowSpan="{Binding Path=Viewport1RowSpan}">
-                <Border Effect="{Binding Path=State.DistortionPlugin.Content}" Background="Black">
-                    <Border.Margin>
-                        <MultiBinding Converter="{StaticResource ThicknessMulti}" ConverterParameter="1">
-                            <Binding Path="Config.ViewportsHorizontalOffset" />
-                            <Binding Path="Config.ViewportsVerticalOffset" />
-                        </MultiBinding>
-                    </Border.Margin>
+                  Grid.RowSpan="{Binding Path=Viewport1RowSpan}"
+                  Effect="{Binding Path=State.DistortionPlugin.Content}">
+                <Border Background="Black" ClipToBounds="True">
                     <ContentControl Content="{StaticResource view1}" />
                 </Border>
                 
@@ -147,14 +154,9 @@
                   Grid.Column="{Binding Path=Viewport2Col}" 
                   Grid.ColumnSpan="{Binding Path=Viewport2ColSpan}" 
                   Grid.Row="{Binding Path=Viewport2Row}" 
-                  Grid.RowSpan="{Binding Path=Viewport2RowSpan}">
-                <Border Effect="{Binding Path=State.DistortionPlugin.Content}" Background="Black">
-                    <Border.Margin>
-                        <MultiBinding Converter="{StaticResource ThicknessMulti}" ConverterParameter="-1">
-                            <Binding Path="Config.ViewportsHorizontalOffset" />
-                            <Binding Path="Config.ViewportsVerticalOffset" />
-                        </MultiBinding>
-                    </Border.Margin>
+                  Grid.RowSpan="{Binding Path=Viewport2RowSpan}"
+                  Effect="{Binding Path=State.DistortionPlugin.Content}">
+                <Border Background="Black" ClipToBounds="True">
                     <ContentControl Content="{StaticResource view2}" />
                 </Border>
             </Grid>
