@@ -75,6 +75,10 @@ namespace VrPlayer.Distortions.Barrel
 
             UpdateShaderValue(InputProperty);
             UpdateShaderValue(FactorProperty);
+            UpdateShaderValue(XCenterProperty);
+            UpdateShaderValue(YCenterProperty);
+            UpdateShaderValue(BlueOffsetProperty);
+            UpdateShaderValue(RedOffsetProperty);
          }        
     }
 }
