@@ -459,7 +459,7 @@ namespace VrPlayer.ViewModels
         {
             try
             {
-                _presetsManager.LoadFromUri("DefaultPreset.json");
+                _presetsManager.LoadFromUri(Path.GetFullPath("DefaultPreset.json"));
             }
             catch (Exception exc)
             {

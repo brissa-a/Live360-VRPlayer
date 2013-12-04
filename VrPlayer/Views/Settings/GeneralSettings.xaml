@@ -15,7 +15,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" MinWidth="200" />
-                <ColumnDefinition Width="32" />
+                <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="Neck height:"></Label>
             <Slider Grid.Column="1" Grid.Row="0" Value="{Binding Path=Config.NeckHeight}" Minimum="0" Maximum="0.5"></Slider>

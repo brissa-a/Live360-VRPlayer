@@ -12,7 +12,7 @@ using VrPlayer.Models.State;
 
 namespace VrPlayer.Models.Settings
 {
-    public class SettingsManager
+    public class SettingsManager : ISettingsManager
     {
         private readonly IApplicationState _state;
         private readonly IPluginManager _pluginManager;

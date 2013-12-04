@@ -23,7 +23,7 @@ namespace VrPlayer
         private const string UriScheme = @"vrplayer:";
 
         private readonly IApplicationConfig _appConfig;
-        private readonly SettingsManager _settingsManager;
+        private readonly ISettingsManager _settingsManager;
         private readonly IPluginManager _pluginManager;
         private readonly IApplicationState _appState;
         private readonly IPresetsManager _presetsManager;
