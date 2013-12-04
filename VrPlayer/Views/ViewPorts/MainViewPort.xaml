@@ -32,6 +32,7 @@
                 <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Content.CameraLeftPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}" >
                     <PerspectiveCamera.Transform>
                         <Transform3DGroup>
+                            <TranslateTransform3D OffsetY="{Binding Path=Config.NeckHeight}"></TranslateTransform3D>
                             <RotateTransform3D>
                                 <RotateTransform3D.Rotation>
                                     <QuaternionRotation3D Quaternion="{Binding Path=State.TrackerPlugin.Content.Rotation}"/>
@@ -84,6 +85,7 @@
                 <PerspectiveCamera UpDirection="0,1,0" LookDirection="0,0,1" Position="{Binding Path=State.ProjectionPlugin.Projection.CameraRightPosition}" FieldOfView="{Binding Path=Config.CameraFieldOfView}">
                     <PerspectiveCamera.Transform>
                         <Transform3DGroup>
+                            <TranslateTransform3D OffsetY="{Binding Path=Config.NeckHeight}"></TranslateTransform3D>
                             <RotateTransform3D>
                                 <RotateTransform3D.Rotation>
                                     <QuaternionRotation3D Quaternion="{Binding Path=State.TrackerPlugin.Content.Rotation}"/>

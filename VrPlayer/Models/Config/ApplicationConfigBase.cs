@@ -83,6 +83,17 @@ namespace VrPlayer.Models.Config
             }
         }
 
+        private double _neckHeight;
+        public double NeckHeight
+        {
+            get { return _neckHeight; }
+            set
+            {
+                _neckHeight = value;
+                OnPropertyChanged("NeckHeight");
+            }
+        }
+
         private string _defaultMedia;
         public string DefaultMedia
         {
@@ -361,5 +372,6 @@ namespace VrPlayer.Models.Config
         }
 
         #endregion
+
     }
 }

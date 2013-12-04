@@ -250,5 +250,17 @@ namespace VrPlayer.Properties {
                 this["Shortcuts"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NeckHeight {
+            get {
+                return ((string)(this["NeckHeight"]));
+            }
+            set {
+                this["NeckHeight"] = value;
+            }
+        }
     }
 }
