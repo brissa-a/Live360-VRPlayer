@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Configuration;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Trackers;
@@ -13,14 +14,21 @@ namespace VrPlayer.Trackers.LeapTracker
 
         public LeapPlugin()
         {
-            Name = "Leap";
-            var tracker = new LeapTracker()
+            try
+            {
+                Name = "Leap";
+                var tracker = new LeapTracker()
                 {
                     PositionScaleFactor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["PositionScaleFactor"].Value),
                     RotationFactor = ConfigHelper.ParseDouble(Config.AppSettings.Settings["RotationFactor"].Value)
                 };
-            Content = tracker;
-            Panel = new LeapPanel(tracker);
+                Content = tracker;
+                Panel = new LeapPanel(tracker);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(string.Format("Error while loading '{0}'", GetType().FullName), exc);
+            }
         }
     }
 }

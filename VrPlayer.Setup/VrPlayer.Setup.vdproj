@@ -63,6 +63,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0BFA61DF7F3449D48EFF9042BC32D38F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0F3927A1B3B3424AB17146F1CFE4E3BF"
+        "OwnerKey" = "8:_2A56EB40B13D46228571C2C568CD9B2E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1032DA158041430CBD51F554E34D50AB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -106,6 +118,12 @@
         "Entry"
         {
         "MsmKey" = "8:_280531DFB78546DBAF94B259F61B0274"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2A56EB40B13D46228571C2C568CD9B2E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -327,6 +345,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6214934A131440B29AED684D63C220C6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_621B1C68DB0A49DBA52F8387FA3D00A1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -454,6 +478,12 @@
         "Entry"
         {
         "MsmKey" = "8:_9415DBF4F6754C089F6B8ABC2B52D83E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9BB4A13F5CBD46DC9005EEE1079ADDFC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -609,6 +639,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C45234E02CEE40E18DCDB9F0696B8007"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C57095DC438245899261F90FE877D010"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -616,6 +652,12 @@
         "Entry"
         {
         "MsmKey" = "8:_C7896F8B1DE542ECADEDC98CBB0F20EF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C80EFC298EF64160B2CE45C6160F56BE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -646,6 +688,12 @@
         "Entry"
         {
         "MsmKey" = "8:_CC6F1E6947764B5EA8578AC475959552"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CCE75E8988A545D7AEFA4356F2766344"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -875,6 +923,12 @@
         {
         "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
         "OwnerKey" = "8:_2B8EC10F2BF84C6197AEA04D9E90335C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E66AEF281ED124E0E7F6E7441179AA48"
+        "OwnerKey" = "8:_2A56EB40B13D46228571C2C568CD9B2E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1210,6 +1264,12 @@
         "Entry"
         {
         "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
+        "OwnerKey" = "8:_2A56EB40B13D46228571C2C568CD9B2E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F686C93B4A70AD905E0C61C012F42537"
         "OwnerKey" = "8:_16773219F1DE477B9FAB619134E6D294"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1535,6 +1595,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_2B8EC10F2BF84C6197AEA04D9E90335C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2A56EB40B13D46228571C2C568CD9B2E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0F3927A1B3B3424AB17146F1CFE4E3BF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1943,6 +2015,57 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0BFA61DF7F3449D48EFF9042BC32D38F"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.LeapTracker\\VrPlayer.Trackers.LeapTracker.dll.config"
+            "TargetName" = "8:VrPlayer.Trackers.LeapTracker.dll.config"
+            "Tag" = "8:"
+            "Folder" = "8:_93EB698624E3407ABB360C0C4A93A88C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0F3927A1B3B3424AB17146F1CFE4E3BF"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:LeapCSharp.NET4.0, Version=0.0.0.0, Culture=neutral, PublicKeyToken=6e1b1368e71eba9b, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_0F3927A1B3B3424AB17146F1CFE4E3BF"
+                    {
+                    "Name" = "8:LeapCSharp.NET4.0.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:LeapCSharp.NET4.0.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_93EB698624E3407ABB360C0C4A93A88C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1032DA158041430CBD51F554E34D50AB"
             {
             "AssemblyRegister" = "3:1"
@@ -2133,6 +2256,37 @@
             "TargetName" = "8:VrPlayer.Trackers.YEI3SpaceTracker.dll.config"
             "Tag" = "8:"
             "Folder" = "8:_980B58AE6E2A46B3BA52608103E7F19E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2A56EB40B13D46228571C2C568CD9B2E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VrPlayer.Trackers.LeapTracker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_2A56EB40B13D46228571C2C568CD9B2E"
+                    {
+                    "Name" = "8:VrPlayer.Trackers.LeapTracker.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.LeapTracker\\VrPlayer.Trackers.LeapTracker.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_93EB698624E3407ABB360C0C4A93A88C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2892,6 +3046,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6214934A131440B29AED684D63C220C6"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.LeapTracker\\msvcp100.dll"
+            "TargetName" = "8:msvcp100.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_93EB698624E3407ABB360C0C4A93A88C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_621B1C68DB0A49DBA52F8387FA3D00A1"
             {
             "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.WiimoteTracker\\VrPlayer.Trackers.WiimoteTracker.dll.config"
@@ -3417,6 +3591,26 @@
             "TargetName" = "8:CLEyeMulticam.dll"
             "Tag" = "8:"
             "Folder" = "8:_BD2A62D59E4D46A58666479AAD396DC1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9BB4A13F5CBD46DC9005EEE1079ADDFC"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.LeapTracker\\Leap.dll"
+            "TargetName" = "8:Leap.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_93EB698624E3407ABB360C0C4A93A88C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4085,6 +4279,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C45234E02CEE40E18DCDB9F0696B8007"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.LeapTracker\\Leap.lib"
+            "TargetName" = "8:Leap.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_93EB698624E3407ABB360C0C4A93A88C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C57095DC438245899261F90FE877D010"
             {
             "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Medias\\VrPlayer.Medias.VlcDotNet\\VrPlayer.Medias.VlcDotNet.dll.config"
@@ -4111,6 +4325,26 @@
             "TargetName" = "8:VrPlayer.Stabilizers.Deshaker.dll.config"
             "Tag" = "8:"
             "Folder" = "8:_BAA2911CEDB647229B715D624DEBCC2A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C80EFC298EF64160B2CE45C6160F56BE"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.LeapTracker\\LeapCSharp.dll"
+            "TargetName" = "8:LeapCSharp.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_93EB698624E3407ABB360C0C4A93A88C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4171,6 +4405,26 @@
             "TargetName" = "8:SharpDX.xml"
             "Tag" = "8:"
             "Folder" = "8:_82D6BB79598449528B6B1DF93A9EF62B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CCE75E8988A545D7AEFA4356F2766344"
+            {
+            "SourcePath" = "8:..\\VrPlayer\\bin\\Release\\Trackers\\VrPlayer.Trackers.LeapTracker\\msvcr100.dll"
+            "TargetName" = "8:msvcr100.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_93EB698624E3407ABB360C0C4A93A88C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5181,6 +5435,17 @@
                                 {
                                 }
                             }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_93EB698624E3407ABB360C0C4A93A88C"
+                            {
+                            "Name" = "8:VrPlayer.Trackers.LeapTracker"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_872BDFEDCD34456593B162860BC6F6CF"
+                                "Folders"
+                                {
+                                }
+                            }
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_96582A4B43BF4C8DBAF50676D726B34E"
                             {
                             "Name" = "8:VrPlayer.Trackers.OculusRiftTracker"
@@ -5433,7 +5698,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{91E3E82D-7F99-46EC-9405-C07C35604244}"
+        "PackageCode" = "8:{F045986F-96B9-4A81-9B5F-6DCDB93034D4}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

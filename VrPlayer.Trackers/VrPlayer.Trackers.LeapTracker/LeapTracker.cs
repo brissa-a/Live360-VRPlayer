@@ -1,17 +1,18 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media.Media3D;
 
-using Leap;
 using VrPlayer.Contracts.Trackers;
 using VrPlayer.Helpers;
+
+using Leap;
 using Vector = Leap.Vector;
 
 namespace VrPlayer.Trackers.LeapTracker
 {
-    [Export(typeof(ITracker))]
+    [DataContract]
     public class LeapTracker : TrackerBase, ITracker
     {
         CustomListener _listener;
@@ -28,25 +29,40 @@ namespace VrPlayer.Trackers.LeapTracker
 
         public LeapTracker()
         {
+        }
+
+        public override void Load()
+        {
             try
             {
+                IsEnabled = true;
+                
                 _listener = new CustomListener();
                 _listener.Init += _listener_Init;
                 _listener.Frame += _listener_Frame;
                 _listener.Exit += _listener_Exit;
                 _listener.Connect += _listener_Connect;
                 _listener.Disconnect += _listener_Disconnect;
-
                 _leap = new Controller();
                 _leap.AddListener(_listener);
-
-                IsEnabled = true;
-                PositionScaleFactor = 0.01;
             }
             catch (Exception exc)
             {
                 Logger.Instance.Error(exc.Message, exc);
                 IsEnabled = false;
+            }
+        }
+
+        public override void Unload()
+        {
+            try
+            {
+                _leap.RemoveListener(_listener);
+                _leap.Dispose();
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error(exc.Message, exc);
             }
         }
 
@@ -60,7 +76,7 @@ namespace VrPlayer.Trackers.LeapTracker
 
         void _listener_Disconnect(object sender, EventArgs e)
         {
-            Dispose();
+            Unload();
         }
 
         void _listener_Frame(object sender, ControllerEventArgs e)
@@ -76,11 +92,11 @@ namespace VrPlayer.Trackers.LeapTracker
                     if (finger != null)
                     {
                         Vector vec = finger.Direction;
-                        RawRotation = QuaternionHelper.QuaternionFromEulerAngles(
-                            RotationFactor * RadianToDegree(vec.Pitch),
-                            RotationFactor * RadianToDegree(vec.Yaw),
+                        RawRotation = QuaternionHelper.EulerAnglesInRadToQuaternion(
+                            RotationFactor * vec.Pitch,
+                            RotationFactor * vec.Yaw,
                             0);
-                        RawPosition = PositionScaleFactor * new Vector3D(
+                        RawPosition = new Vector3D(
                             finger.TipPosition.x,
                             -finger.TipPosition.y,
                             finger.TipPosition.z
@@ -89,7 +105,7 @@ namespace VrPlayer.Trackers.LeapTracker
 
                     if (frame.Fingers.Count >= 5)
                     {
-                        CalibratePosition();
+                        Calibrate();
                     }
 
                     UpdatePositionAndRotation();
@@ -100,18 +116,6 @@ namespace VrPlayer.Trackers.LeapTracker
         void _listener_Init(object sender, EventArgs e)
         {
             IsEnabled = true;
-        }
-
-        public override void Dispose()
-        {
-            _leap.RemoveListener(_listener);
-            _listener.Dispose();
-            _leap.Dispose();
-        }
-
-        private double RadianToDegree(double angle)
-        {
-            return 180D * angle / Math.PI;
         }
     }
 
