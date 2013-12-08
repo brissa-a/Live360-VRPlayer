@@ -7,6 +7,7 @@ using VrPlayer.Helpers.Mvvm;
 
 namespace VrPlayer.Contracts.Trackers
 {
+    [DataContract]
     public abstract class TrackerBase: ViewModelBase
     {
         private const double MoveFactor = 0.01;
