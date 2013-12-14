@@ -11,6 +11,7 @@ namespace VrPlayer.Models.Config
         int ViewportsVerticalOffset { get; set; }
         string SamplesFolder { get; set; }
         double NeckHeight { get; set; }
+        bool ReadSideCarPresets { get; set; }
 
         string DefaultMedia { get; set; }
         string DefaultEffect { get; set; }

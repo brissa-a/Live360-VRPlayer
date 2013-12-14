@@ -262,5 +262,17 @@ namespace VrPlayer.Properties {
                 this["NeckHeight"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ReadSideCarPresets {
+            get {
+                return ((string)(this["ReadSideCarPresets"]));
+            }
+            set {
+                this["ReadSideCarPresets"] = value;
+            }
+        }
     }
 }

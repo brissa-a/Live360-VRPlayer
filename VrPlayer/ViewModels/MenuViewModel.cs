@@ -285,6 +285,7 @@ namespace VrPlayer.ViewModels
             {
                 _state.MediaPlugin = mediaPlugin;
                 _state.MediaPlugin.Content.OpenFileCommand.Execute(openFileDialog.FileName);
+                LoadSideCarPreset(openFileDialog.FileName);
             }
         }
 
@@ -339,8 +340,11 @@ namespace VrPlayer.ViewModels
             
             try
             {
-                if (_state.MediaPlugin != null && _state.MediaPlugin.Content.OpenFileCommand.CanExecute(filePath)) 
+                if (_state.MediaPlugin != null && _state.MediaPlugin.Content.OpenFileCommand.CanExecute(filePath))
+                {
                     _state.MediaPlugin.Content.OpenFileCommand.Execute(filePath);
+                    LoadSideCarPreset(filePath);
+                }
             }
             catch (Exception exc)
             {
@@ -507,6 +511,24 @@ namespace VrPlayer.ViewModels
                 var message = String.Format("Unable to load default media engine '{0}'.", _config.DefaultMedia);
                 Logger.Instance.Warn(message, exc);
             }
+        }
+
+        private void LoadSideCarPreset(string mediaFile)
+        {
+            if (!_config.ReadSideCarPresets)
+                return;
+
+            try
+            {
+                var presetFile = mediaFile + ".json";
+                if(File.Exists(presetFile))
+                    LoadMediaPreset(presetFile);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while loading side-car preset file.'", exc);
+            }
+            
         }
 
         #endregion

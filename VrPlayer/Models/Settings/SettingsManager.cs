@@ -136,6 +136,7 @@ namespace VrPlayer.Models.Settings
                 _settings["HorizontalOffset"] = _config.ViewportsHorizontalOffset.ToString(CultureInfo.InvariantCulture);
                 _settings["VerticalOffset"] = _config.ViewportsVerticalOffset.ToString(CultureInfo.InvariantCulture);
                 _settings["NeckHeight"] = _config.NeckHeight.ToString(CultureInfo.InvariantCulture);
+                _settings["ReadSideCarPresets"] = _config.NeckHeight.ToString(CultureInfo.InvariantCulture);
 
                 //Todo: Refactor!
                 _settings["Shortcuts"] =
@@ -321,6 +322,10 @@ namespace VrPlayer.Models.Settings
                 var neckHeight = _settings["NeckHeight"].ToString();
                 if (!string.IsNullOrEmpty(neckHeight))
                     _config.NeckHeight = ConfigHelper.ParseDouble(neckHeight);
+
+                var readSideCarPresets = _settings["ReadSideCarPresets"].ToString();
+                if (!string.IsNullOrEmpty(readSideCarPresets))
+                    _config.ReadSideCarPresets = bool.Parse(readSideCarPresets);
             }
             catch (Exception exc)
             {

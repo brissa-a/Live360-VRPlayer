@@ -94,6 +94,17 @@ namespace VrPlayer.Models.Config
             }
         }
 
+        private bool _readSideCarPresets;
+        public bool ReadSideCarPresets
+        {
+            get { return _readSideCarPresets; }
+            set
+            {
+                _readSideCarPresets = value;
+                OnPropertyChanged("ReadSideCarPresets");
+            }
+        }
+
         private string _defaultMedia;
         public string DefaultMedia
         {

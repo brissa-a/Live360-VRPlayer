@@ -16,6 +16,7 @@ namespace VrPlayer.Models.Config
                 ViewportsVerticalOffset = int.Parse(ConfigurationManager.AppSettings["ViewportsVerticalOffset"]);
                 SamplesFolder = ConfigurationManager.AppSettings["SamplesFolder"];
                 NeckHeight = ConfigHelper.ParseDouble(ConfigurationManager.AppSettings["NeckHeight"]);
+                ReadSideCarPresets = bool.Parse(ConfigurationManager.AppSettings["ReadSideCarPresets"]);
 
                 DefaultMedia = ConfigurationManager.AppSettings["DefaultMedia"];
                 DefaultEffect = ConfigurationManager.AppSettings["DefaultEffect"];
