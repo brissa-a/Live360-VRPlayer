@@ -1,24 +1,22 @@
 ﻿using System;
 using System.ComponentModel.Composition;
-using System.Windows.Controls;
 using VrPlayer.Contracts;
 using VrPlayer.Contracts.Effects;
 using VrPlayer.Helpers;
 
-namespace VrPlayer.Effects.ColorKeyAlpha
+namespace VrPlayer.Effects.Shazzam.OldMovie
 {
     [Export(typeof(IPlugin<EffectBase>))]
-    public class ColorKeyAlphaPlugin : PluginBase<EffectBase>
+    public class OldMoviePlugin : PluginBase<EffectBase>
     {
-        public ColorKeyAlphaPlugin()
+        public OldMoviePlugin()
         {
             try
             {
-                Name = "ColorKey Alpha";
-                var effect = new ColorKeyAlphaEffect();
+                Name = "Shazzam / Old Movie";
+                var effect = new OldMovieEffect();
                 Content = effect;
-                Panel = new ColorKeyAlphaPanel(effect);
-                InjectConfig(PluginConfig.FromSettings(ConfigHelper.LoadConfig().AppSettings.Settings));
+                Panel = null;
             }
             catch (Exception exc)
             {

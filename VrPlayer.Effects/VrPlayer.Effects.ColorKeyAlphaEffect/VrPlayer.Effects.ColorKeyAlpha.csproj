@@ -48,19 +48,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorKeyAlphaPlugin.cs" />
-    <Compile Include="ColorKeyAlphaEffect.cs" />
-    <Compile Include="ColorKeyAlphaPanel.xaml.cs">
-      <DependentUpon>ColorKeyAlphaPanel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ColorKeyAlphaEffect.ps" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
-    <None Include="ColorKeyAlphaEffect.fx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -74,12 +65,6 @@
       <Name>VrPlayer.Helpers</Name>
       <Private>False</Private>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="ColorKeyAlphaPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

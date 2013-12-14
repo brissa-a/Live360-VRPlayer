@@ -5,13 +5,13 @@ using System.Windows.Media;
 using System.Windows.Media.Effects;
 using VrPlayer.Contracts.Effects;
 
-namespace VrPlayer.Effects.ColorKeyAlpha
+namespace VrPlayer.Effects.Shazzam.ColorKeyAlpha
 {
     [DataContract]
     public class ColorKeyAlphaEffect : EffectBase
     {
         public static readonly DependencyProperty InputProperty =
-            RegisterPixelShaderSamplerProperty("Input", typeof(ColorKeyAlphaEffect), 0);
+            RegisterPixelShaderSamplerProperty("inputSampler", typeof(ColorKeyAlphaEffect), 0);
         public Brush Input
         {
             get { return ((Brush)(GetValue(InputProperty))); }
@@ -41,8 +41,8 @@ namespace VrPlayer.Effects.ColorKeyAlpha
             var pixelShader = new PixelShader();
             pixelShader.UriSource = new Uri(string.Format(
                 "pack://application:,,,/{0};component/{1}",
-                "VrPlayer.Effects.ColorKeyAlpha",
-                "ColorKeyAlphaEffect.ps"));
+                "VrPlayer.Effects.Shazzam",
+                "ColorKeyAlpha/ColorKeyAlphaEffect.ps"));
             PixelShader = pixelShader;
 
             UpdateShaderValue(InputProperty);

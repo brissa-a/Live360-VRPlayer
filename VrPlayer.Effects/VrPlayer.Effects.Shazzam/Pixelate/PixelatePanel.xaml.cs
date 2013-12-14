@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace VrPlayer.Effects.ColorKeyAlpha
+namespace VrPlayer.Effects.Shazzam.Pixelate
 {
-    public partial class ColorKeyAlphaPanel : UserControl
+    public partial class PixelatePanel : UserControl
     {
-        public ColorKeyAlphaPanel(ColorKeyAlphaEffect effect)
+        public PixelatePanel(PixelateEffect effect)
         {
             InitializeComponent();
             try
