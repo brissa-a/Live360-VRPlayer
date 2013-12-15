@@ -106,7 +106,10 @@ namespace VrPlayer.Medias.WpfMediaKit
         {
             if (!(_player is MediaSeekingElement)) return;
             Position = TimeSpan.FromTicks(((MediaSeekingElement)_player).MediaPosition);
-            if (Duration != TimeSpan.Zero && Position >= Duration)
+            if (Duration == TimeSpan.Zero || Position < Duration) return;
+            if (_player is MediaUriElement && ((MediaUriElement) _player).Loop)
+                Position = TimeSpan.Zero;
+            else
                 Stop(null);
         }
 
