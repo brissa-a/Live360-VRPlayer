@@ -21,7 +21,7 @@ float4 main(float2 uv : TEXCOORD) : COLOR
   // If radial length was 0.5, we want rescaled to also come out
   // as 0.5, so the edges of the rendered image are at the edges
   // of the warped image.
-	float	rescaled = tan( length( centeredTexcoord ) * factor ) / tan( 0.8 * factor );
+	float	rescaled = tan( length( centeredTexcoord ) * factor ) / tan( 0.5 * factor );
 
 	warped *= 0.5 * rescaled;
 	warped += warpCenter;
