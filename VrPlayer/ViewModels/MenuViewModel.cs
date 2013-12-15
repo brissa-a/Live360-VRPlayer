@@ -476,7 +476,7 @@ namespace VrPlayer.ViewModels
                 string.Format("VRPlayer ({0})", Assembly.GetExecutingAssembly().GetName().Version) +
                 Environment.NewLine +
                 Environment.NewLine +
-                "(c)Stephane Levesque 2012-2013",    
+                "(c)Stephane Levesque 2012-2014",    
                 "About", 
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);

@@ -173,13 +173,22 @@ namespace VrPlayer.Medias.VlcDotNet
 
         #region Commands
 
+        //Info: _player.Medias.Clear() is not working. This is a patch. 
+        private void ClearPlaylist()
+        {
+            foreach (var media in _player.Medias)
+            {
+                _player.Medias.Remove(media);
+            }
+        }
+
         private void OpenFile(object o)
         {
             var path = o.ToString();
             if (string.IsNullOrEmpty(path)) return;
             try
             {
-                _player.Medias.Clear();
+                ClearPlaylist();
                 _player.Media = new PathMedia(o.ToString());
                 _player.Play();
                 IsPlaying = true;
@@ -201,8 +210,8 @@ namespace VrPlayer.Medias.VlcDotNet
             //Todo: detect disc type (cd, dvd, bluray...) See: http://stackoverflow.com/questions/11420365/detecting-if-disc-is-in-dvd-drive
             try
             {
-                _player.Medias.Clear();
-                _player.Media = new LocationMedia(string.Format("dvd:///{0}", drive.Name.Replace("\\","/")));
+                ClearPlaylist();
+                _player.Media = new LocationMedia(string.Format("dvd:///{0}", drive.Name.Replace("\\", "/")));
                 _player.Play();
                 IsPlaying = true;
                 HasChapters = true;
@@ -223,11 +232,11 @@ namespace VrPlayer.Medias.VlcDotNet
 
         private void OpenStream(object o)
         {
-            _player.Medias.Clear();
             var url = o.ToString();
             if (string.IsNullOrEmpty(url)) return;
             try
             {
+                ClearPlaylist();
                 _player.Media = new LocationMedia(url);
                 _player.Play();
                 IsPlaying = true;
