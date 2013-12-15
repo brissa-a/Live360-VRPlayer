@@ -184,12 +184,6 @@ namespace VrPlayer.ViewModels
             get { return _settingsCommand; }
         }
 
-        private readonly ICommand _pluginsCommand;
-        public ICommand PluginsCommand
-        {
-            get { return _pluginsCommand; }
-        }
-
         private readonly ICommand _launchWebBrowserCommand;
         public ICommand LaunchWebBrowserCommand
         {
@@ -268,7 +262,6 @@ namespace VrPlayer.ViewModels
             _loadMediaPresetCommand = new DelegateCommand(LoadMediaPreset);
             _resetPresetCommand = new DelegateCommand(ResetPreset);
             _settingsCommand = new DelegateCommand(ShowSettings);
-            _pluginsCommand = new DelegateCommand(ShowPlugins);
             _launchWebBrowserCommand = new DelegateCommand(LaunchWebBrowser);
             _aboutCommand = new DelegateCommand(ShowAbout);
         }
@@ -474,11 +467,6 @@ namespace VrPlayer.ViewModels
         private void ShowSettings(object o)
         {
             SettingsWindow.ShowSingle();
-        }
-
-        private void ShowPlugins(object o)
-        {
-            PluginsWindow.ShowSingle();
         }
 
         private void ShowAbout(object o)

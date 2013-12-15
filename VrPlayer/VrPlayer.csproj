@@ -111,9 +111,6 @@
     <Compile Include="Views\Settings\ShortcutsSettings.xaml.cs">
       <DependentUpon>ShortcutsSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Settings\PluginsWindow.xaml.cs">
-      <DependentUpon>PluginsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Settings\MediaSettings.xaml.cs">
       <DependentUpon>MediaSettings.xaml</DependentUpon>
     </Compile>
@@ -181,10 +178,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Settings\ShortcutsSettings.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Settings\PluginsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
