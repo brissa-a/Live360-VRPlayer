@@ -330,9 +330,9 @@
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
         </MenuItem>
-        <!-- Presets -->
-        <MenuItem Header="_Presets">
-            <MenuItem Header="Save">
+        <MenuItem Header="_Tools">
+            <!-- Presets -->
+            <MenuItem Header="_Save Preset">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/cache.png" />
                 </MenuItem.Icon>
@@ -341,15 +341,15 @@
                 <Separator />
                 <MenuItem Header="All..." Click="SaveAllPresetMenuItem_OnClick"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Load..." Click="LoadPresetMenuItem_OnClick">
+            <MenuItem Header="_Load Preset">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/kdisknav.png" />
                 </MenuItem.Icon>
+                <MenuItem Header="From file..." Click="LoadPresetMenuItem_OnClick"></MenuItem>
+                <Separator />
+                <MenuItem Header="Reset default" Command="{Binding ResetPresetCommand}"></MenuItem>
             </MenuItem>
-        <Separator />
-            <MenuItem Header="_Reset default" Command="{Binding ResetPresetCommand}"></MenuItem>
-        </MenuItem>
-        <MenuItem Header="_Tools">
+            <Separator />
             <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" CommandParameter="0">
                 <MenuItem.Icon>
                     <Image Source="/Medias/Nuvola/16x16/kservices.png" />
