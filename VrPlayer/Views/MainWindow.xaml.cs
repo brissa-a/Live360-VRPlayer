@@ -37,34 +37,24 @@ namespace VrPlayer
 
         private void Window_OnDrop(object sender, DragEventArgs e)
         {
-            //////////////////////////////////////////////////////////////////////
-            // added 19th dec 2013 CL: 
-            // ability to drag & drop files into the player window
-            //////////////////////////////////////////////////////////////////////
             try
             {
                 //////////////////////////////////////////////////////////////////////
                 // get filename that was dropped onto the window 
                 //////////////////////////////////////////////////////////////////////
-                string filename = (string)((DataObject)e.Data).GetFileDropList()[0];
-
-                //////////////////////////////////////////////////////////////////////
-                // toDo: 
-                // how to check if file dropped is in a format that we accept?
-                //////////////////////////////////////////////////////////////////////
+                var filename = ((DataObject)e.Data).GetFileDropList()[0];
 
                 //////////////////////////////////////////////////////////////////////
                 // play it
                 //////////////////////////////////////////////////////////////////////
-                _viewModel.State.MediaPlugin.Content.OpenFileCommand.Execute(filename);
-
+                _viewModel.MediaService.Load(filename);
             }
-            catch (Exception ex)
+            catch (Exception exc)
             {
                 //////////////////////////////////////////////////////////////////////
                 // didn't work - why?
                 //////////////////////////////////////////////////////////////////////
-                Console.WriteLine("Drag&Drop went wrong: " + ex.Message);
+                Logger.Instance.Error("Error with the Drag&Drop", exc);
             }
         }
 

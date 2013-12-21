@@ -88,7 +88,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Settings\ISettingsManager.cs" />
-    <Compile Include="Services\IMediaSevice.cs" />
+    <Compile Include="Services\IMediaService.cs" />
     <Compile Include="Services\MediaService.cs" />
     <Compile Include="Models\Config\ApplicationConfigBase.cs" />
     <Compile Include="Models\Plugins\DynamicPluginManager.cs" />

@@ -27,7 +27,7 @@ namespace VrPlayer
         private readonly IPluginManager _pluginManager;
         private readonly IApplicationState _appState;
         private readonly IPresetsManager _presetsManager;
-        private readonly IMediaSevice _mediaService;
+        private readonly IMediaService _mediaService;
 
         public ViewModelFactory ViewModelFactory { get; private set; }
 
@@ -46,7 +46,7 @@ namespace VrPlayer
                 _mediaService = new MediaService(_appState, _pluginManager);
                 _presetsManager = new PresetsManager(_appConfig, _appState, _pluginManager);
                 
-                ViewModelFactory = new ViewModelFactory(_appConfig, _pluginManager, _appState, _presetsManager);
+                ViewModelFactory = new ViewModelFactory(_appConfig, _pluginManager, _appState, _presetsManager, _mediaService);
             }
             catch (Exception exc)
             {

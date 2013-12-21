@@ -2,6 +2,7 @@
 using VrPlayer.Models.Plugins;
 using VrPlayer.Models.Presets;
 using VrPlayer.Models.State;
+using VrPlayer.Services;
 
 namespace VrPlayer.ViewModels
 {
@@ -11,18 +12,20 @@ namespace VrPlayer.ViewModels
         private readonly IPluginManager _pluginManager;
         private readonly IApplicationState _state;
         private readonly IPresetsManager _presetsManager;
+        private readonly IMediaService _mediaService;
 
-        public ViewModelFactory(IApplicationConfig config, IPluginManager pluginManager, IApplicationState state, IPresetsManager presetsManager)
+        public ViewModelFactory(IApplicationConfig config, IPluginManager pluginManager, IApplicationState state, IPresetsManager presetsManager, IMediaService mediaService)
         {
             _config = config;
             _pluginManager = pluginManager;
             _state = state;
             _presetsManager = presetsManager;
+            _mediaService = mediaService;
         }
 
         public MainWindowViewModel CreateMainWindowViewModel()
         {
-            return new MainWindowViewModel(_state, _config);
+            return new MainWindowViewModel(_state, _config, _mediaService);
         }
 
         public ViewPortViewModel CreateViewPortViewModel()

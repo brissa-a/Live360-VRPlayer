@@ -4,6 +4,7 @@ using System.Windows.Input;
 using VrPlayer.Helpers.Mvvm;
 using VrPlayer.Models.Config;
 using VrPlayer.Models.State;
+using VrPlayer.Services;
 
 namespace VrPlayer.ViewModels
 {
@@ -20,6 +21,12 @@ namespace VrPlayer.ViewModels
         {
             get { return _config; }
         }
+        
+        private readonly IMediaService _mediaService;
+        public IMediaService MediaService
+        {
+            get { return _mediaService; }
+        }
 
         #region Commands
 
@@ -31,10 +38,11 @@ namespace VrPlayer.ViewModels
 
         #endregion
 
-        public MainWindowViewModel(IApplicationState state, IApplicationConfig config )
+        public MainWindowViewModel(IApplicationState state, IApplicationConfig config, IMediaService mediaService)
         {
             _state = state;
             _config = config;
+            _mediaService = mediaService;
 
             _state.PropertyChanged += ChangeShortcutsMapping;
             _config.PropertyChanged += ChangeShortcutsMapping;

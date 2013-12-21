@@ -9,7 +9,7 @@ using VrPlayer.Models.State;
 
 namespace VrPlayer.Services
 {
-    internal class MediaService : IMediaSevice
+    internal class MediaService : IMediaService
     {
         private readonly IApplicationState _state;
         private readonly IPluginManager _pluginManager;
