@@ -43,8 +43,8 @@ namespace VrPlayer
                 _pluginManager = new DynamicPluginManager(applicationPath, pluginFolders);
                 _appState = new DefaultApplicationState(_appConfig, _pluginManager);
                 _settingsManager = new SettingsManager(_appState, _pluginManager, _appConfig, Settings.Default);
-                _mediaService = new MediaService(_appState, _pluginManager);
                 _presetsManager = new PresetsManager(_appConfig, _appState, _pluginManager);
+                _mediaService = new MediaService(_appState, _pluginManager, _presetsManager);
                 
                 ViewModelFactory = new ViewModelFactory(_appConfig, _pluginManager, _appState, _presetsManager, _mediaService);
             }

@@ -5,6 +5,7 @@ using VrPlayer.Contracts;
 using VrPlayer.Contracts.Medias;
 using VrPlayer.Helpers;
 using VrPlayer.Models.Plugins;
+using VrPlayer.Models.Presets;
 using VrPlayer.Models.State;
 
 namespace VrPlayer.Services
@@ -13,11 +14,13 @@ namespace VrPlayer.Services
     {
         private readonly IApplicationState _state;
         private readonly IPluginManager _pluginManager;
+        private readonly IPresetsManager _presetsManager;
 
-        public MediaService(IApplicationState state, IPluginManager pluginManager)
+        public MediaService(IApplicationState state, IPluginManager pluginManager, IPresetsManager presetsManager)
         {
             _state = state;
             _pluginManager = pluginManager;
+            _presetsManager = presetsManager;
         }
 
         public void Load(string source)
@@ -28,6 +31,7 @@ namespace VrPlayer.Services
                 if (uri.IsFile)
                 {
                     loadFile(uri.LocalPath);
+                    _presetsManager.LoadFromUri(uri.LocalPath + ".json");
                 }
                 else
                 {
