@@ -66,14 +66,45 @@ namespace VrPlayer
                 
                 //Load media and preset from command line arguments
                 var args = Environment.GetCommandLineArgs();
-                if (args.Length > 1 && args[1].Length > UriScheme.Length)
+
+                ////////////////////////////////////////////////////////////////////////
+                // loading sequence for vrplayer URI-schemes:
+                ////////////////////////////////////////////////////////////////////////
+                //if (args.Length > 1 && args[1].Length > UriScheme.Length)
+                if (args.Length > 1 && args[1].ToLower().StartsWith(UriScheme))
                 {
+                    ////////////////////////////////////////////////////////////////////
+                    // this is a "vrplayer:" command line parameter
+                    ////////////////////////////////////////////////////////////////////
                     var source = args[1].Remove(0, UriScheme.Length);
+
                     Logger.Instance.Info(string.Format("Loading media '{0}'...", source));
                     _mediaService.Load(source);
                 }
+                else if (args.Length > 1)
+                {
+                    /////////////////////////////////////////////////////////////////////
+                    // a command line parameter was passed, so let's assume the first one
+                    // is a media file to load and play
+                    /////////////////////////////////////////////////////////////////////
+
+                    var source = args[1];
+                    if (File.Exists(source))
+                    {
+                        Logger.Instance.Info(string.Format("Loading media '{0}'...", source));
+                        _mediaService.Load(source);
+                    }
+
+                }
                 else
+                {
+
+                    /////////////////////////////////////////////////////////////////////
+                    // CL: nothing passed, load the default media
+                    /////////////////////////////////////////////////////////////////////
                     _mediaService.Load(Path.GetFullPath(DefaultMedia));
+
+                }
 
                 if (args.Length > 2)
                 {

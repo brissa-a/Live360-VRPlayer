@@ -9,6 +9,8 @@
         Title="VR Player"
         Background="Black"
         KeyDown="Window_KeyDown"
+        AllowDrop="true"
+        Drop="Window_OnDrop"
         Closed="MainWindow_OnClosed">
     <helpers:FullScreenWindow.Resources>
         <converters:InvertBooleanToVisibilityConverter x:Key="InvertBooleanToVisibility"/>
