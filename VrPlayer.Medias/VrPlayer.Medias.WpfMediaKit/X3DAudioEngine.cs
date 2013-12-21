@@ -39,8 +39,8 @@ namespace VrPlayer.Medias.WpfMediaKit
         {
             _format = new WaveFormatExtensible(format.nSamplesPerSec, format.wBitsPerSample, format.nChannels);
             _voice = new SourceVoice(_xaudio2, _format);
-            _voice.StreamEnd += new SourceVoice.VoidAction(_voice_StreamEnd);
-            _voice.VoiceError += new Action<SourceVoice.VoiceErrorArgs>(_voice_VoiceError);
+            _voice.StreamEnd += _voice_StreamEnd;
+            _voice.VoiceError += _voice_VoiceError;
             _emitter = new Emitter
             {
                 ChannelAzimuths = GetAzimuths(_format.Channels),
@@ -56,6 +56,9 @@ namespace VrPlayer.Medias.WpfMediaKit
 
         public override void PlayBuffer(byte[] buffer)
         {
+            if (_voice.IsDisposed)
+                return;
+
             var dataStream = new DataStream(buffer.Length, true, true);
             dataStream.Write(buffer, 0, buffer.Length);
             dataStream.Position = 0;
@@ -81,7 +84,10 @@ namespace VrPlayer.Medias.WpfMediaKit
 
         private void Update()
         {
-            Listener listener = new Listener
+            if (_voice.IsDisposed)
+                return;
+
+            var listener = new Listener
             {
                 OrientFront = Vector3DToVector3(QuaternionHelper.FrontVectorFromQuaternion(Rotation)),
                 OrientTop = Vector3DToVector3(QuaternionHelper.UpVectorFromQuaternion(Rotation)),
@@ -89,7 +95,7 @@ namespace VrPlayer.Medias.WpfMediaKit
                 Velocity = new Vector3(0, 0, 0)
             };
 
-            DspSettings dspSettings = _x3dAudio.Calculate(listener, _emitter, CalculateFlags.Matrix, _format.Channels, _deviceFormat.Channels);
+            var dspSettings = _x3dAudio.Calculate(listener, _emitter, CalculateFlags.Matrix, _format.Channels, _deviceFormat.Channels);
             _voice.SetOutputMatrix(_format.Channels, _deviceFormat.Channels, dspSettings.MatrixCoefficients);
         }
 
@@ -100,7 +106,7 @@ namespace VrPlayer.Medias.WpfMediaKit
 
         void _voice_VoiceError(SourceVoice.VoiceErrorArgs obj)
         {
-            //Todo: log error
+            Logger.Instance.Error(obj.Result.ToString(), null);
             _voice_StreamEnd();
         }
 

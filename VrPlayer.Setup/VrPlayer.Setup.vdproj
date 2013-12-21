@@ -5841,7 +5841,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
         "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{A421327D-787D-43FE-AF78-2FB0070E9AEB}"
+        "PackageCode" = "8:{2743FBE0-C624-425F-87FD-CE3F657A2A7A}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
