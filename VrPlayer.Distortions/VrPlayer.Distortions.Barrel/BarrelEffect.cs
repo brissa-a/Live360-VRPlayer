@@ -20,7 +20,7 @@ namespace VrPlayer.Distortions.Barrel
         }
 
         public static readonly DependencyProperty FactorProperty =
-            DependencyProperty.Register("Factor", typeof(double), typeof(BarrelEffect), new UIPropertyMetadata(1.45D, PixelShaderConstantCallback(0)));
+            DependencyProperty.Register("Factor", typeof(double), typeof(BarrelEffect), new UIPropertyMetadata(1.8D, PixelShaderConstantCallback(0)));
         [DataMember]
         public double Factor
         {
