@@ -37,5 +37,10 @@ namespace VrPlayer.Models.Settings
         {
             return _shortcuts.Keys.Contains(key);
         }
+
+        public void Clear()
+        {
+            _shortcuts.Clear();
+        }
     }
 }

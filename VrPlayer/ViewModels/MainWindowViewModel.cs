@@ -59,7 +59,9 @@ namespace VrPlayer.ViewModels
                 && propertyChangedEventArgs.PropertyName != "TrackerPlugin" 
                 && propertyChangedEventArgs.PropertyName != "MediaPlugin") 
                 return;
-            
+
+            _state.Shortcuts.Clear();
+
             _state.Shortcuts.Register(_config.KeyFieldOfViewMinus, new DelegateCommand(DecreaseFieldOfView));
             _state.Shortcuts.Register(_config.KeyFieldOfViewPlus, new DelegateCommand(IncreaseFieldOfView));
             _state.Shortcuts.Register(_config.KeyHorizontalOffsetMinus, new DelegateCommand(DecreaseHorizontalOffset));

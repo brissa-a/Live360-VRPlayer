@@ -49,6 +49,9 @@ namespace VrPlayer.Views.Settings
             if (textBox.Text == key.ToString())
                 return;
 
+            if (key == Key.Escape)
+                return;
+
             if (_viewModel.State.Shortcuts.Contains(key))
             {
                 var response = MessageBox.Show(
