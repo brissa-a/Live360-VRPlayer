@@ -41,6 +41,12 @@ namespace VrPlayer.Trackers.MouseTracker
             if (_viewport != null) return;
             _viewport = Application.Current.MainWindow;
             _viewport.MouseMove += mouseZone_MouseMove;
+            _viewport.KeyDown += ViewportOnKeyDown;
+        }
+
+        private void ViewportOnKeyDown(object sender, KeyEventArgs keyEventArgs)
+        {
+            UpdatePositionAndRotation();
         }
 
         void mouseZone_MouseMove(object sender, MouseEventArgs e)
@@ -58,7 +64,8 @@ namespace VrPlayer.Trackers.MouseTracker
                 _pitch += dy;
                 
                 // Rotate
-                Rotation = QuaternionHelper.EulerAnglesInDegToQuaternion(_pitch * Sensitivity * 0.1, _yaw * Sensitivity * 0.1, 0);
+                RawRotation = QuaternionHelper.EulerAnglesInDegToQuaternion(_pitch * Sensitivity * 0.1, _yaw * Sensitivity * 0.1, 0);
+                UpdatePositionAndRotation();
                 
                 // Set mouse position back to the center of the viewport in screen coordinates
                 MouseUtilities.SetPosition(centerOfViewport);

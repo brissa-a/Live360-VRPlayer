@@ -156,7 +156,9 @@ namespace VrPlayer.Contracts.Trackers
         {
             var m = Matrix3D.Identity;
             m.Rotate(Rotation);
+            m.Rotate(RotationOffset);
             m.Translate(moveVector);
+            m.Rotate(RotationOffset);
             m.Rotate(Rotation);
             BasePosition = BasePosition + new Vector3D(m.OffsetX, m.OffsetY, m.OffsetZ);
         }
