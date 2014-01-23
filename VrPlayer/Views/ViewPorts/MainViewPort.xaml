@@ -128,7 +128,7 @@
         </Viewport3D>
     
     </UserControl.Resources>
-    <Border Background="Transparent" MouseDown="Border_MouseDown">
+    <Border Background="Transparent" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseWheel="OnMouseWheel" >
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

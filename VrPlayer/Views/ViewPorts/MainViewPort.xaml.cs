@@ -2,7 +2,9 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Media.Media3D;
+using System.Windows.Threading;
 using VrPlayer.Helpers;
 using VrPlayer.Models.State;
 using VrPlayer.ViewModels;
@@ -12,8 +14,9 @@ namespace VrPlayer.Views.ViewPorts
 {
     public partial class MainViewPort
     {
-        private readonly ViewPortViewModel _viewModel;
+        private static ViewPortViewModel _viewModel;
         private readonly ExternalViewPort _externalViewPort;
+        private static DispatcherTimer _clickWaitTimer;
 
         public MainViewPort()
         {
@@ -28,6 +31,13 @@ namespace VrPlayer.Views.ViewPorts
                 _externalViewPort.Closing += ExternalViewPortOnClosing;
                 _viewModel.State.PropertyChanged += StateOnPropertyChanged;
                 _viewModel.State.StereoOutput = _viewModel.State.StereoOutput;
+
+                _clickWaitTimer = new DispatcherTimer(
+                    new TimeSpan(0, 0, 0, 0, 200),
+                    DispatcherPriority.Background,
+                    mouseWaitTimer_Tick,
+                    Dispatcher.CurrentDispatcher);
+                _clickWaitTimer.Stop();
             }
             catch (Exception exc)
             {
@@ -35,10 +45,26 @@ namespace VrPlayer.Views.ViewPorts
             }
         }
 
-        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _viewModel.ToggleNavigationCommand.Execute(null);
+            switch (e.ClickCount)
+            {
+                case 1:
+                    _clickWaitTimer.Start();
+                    break;
+                case 2:
+                    _clickWaitTimer.Stop();
+                    ((FullScreenWindow)Application.Current.MainWindow).ToggleFullScreen();
+                    e.Handled = true;
+                    break;
+            }
         }
+
+        private static void mouseWaitTimer_Tick(object sender, EventArgs e)
+	    {
+		    _clickWaitTimer.Stop();
+            _viewModel.ToggleNavigationCommand.Execute(null);
+	    }
 
         private void ExternalViewPortOnClosing(object sender, CancelEventArgs cancelEventArgs)
         {
@@ -48,6 +74,18 @@ namespace VrPlayer.Views.ViewPorts
             cancelEventArgs.Cancel = true;
             ((Window)sender).Hide();
             _viewModel.State.StereoOutput = LayoutMode.MonoLeft;
+        }
+
+        private void OnMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta == 0)
+                return;
+
+            if (e.Delta > 0 && _viewModel.Config.CameraFieldOfView > 0)
+                _viewModel.Config.CameraFieldOfView--;
+
+            if (e.Delta < 0 && _viewModel.Config.CameraFieldOfView < 360)
+                _viewModel.Config.CameraFieldOfView++;
         }
 
         private void StateOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)

@@ -17,6 +17,11 @@ namespace VrPlayer.Helpers
             base.OnKeyDown(e);
         }
 
+        public void ToggleFullScreen()
+        {
+            WindowState = WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
+        }
+
         protected override void OnStateChanged(EventArgs e)
         {
             if (WindowState == WindowState.Maximized && !_inStateChange)
