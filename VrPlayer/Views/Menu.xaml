@@ -346,6 +346,7 @@
                     <Image Source="/Medias/Nuvola/16x16/kdisknav.png" />
                 </MenuItem.Icon>
                 <MenuItem Header="From file..." Click="LoadPresetMenuItem_OnClick"></MenuItem>
+                <MenuItem Header="From metadata" Click="LoadMetadataPresetMenuItem_OnClick"></MenuItem>
                 <Separator />
                 <MenuItem Header="Reset default" Command="{Binding ResetPresetCommand}"></MenuItem>
             </MenuItem>

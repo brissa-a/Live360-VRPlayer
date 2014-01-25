@@ -9,6 +9,7 @@ namespace VrPlayer.Contracts.Medias
     public abstract class MediaBase: ViewModelBase, IMedia
     {
         public abstract FrameworkElement Media { get; }
+        public string FileName { get; protected set; }
 
         public ICommand OpenFileCommand { get; protected set; }
         public ICommand OpenDiscCommand { get; protected set; }

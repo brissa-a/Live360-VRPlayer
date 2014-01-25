@@ -482,6 +482,20 @@ namespace VrPlayer.ViewModels
                 MessageBoxImage.Information);
         }
 
+        public bool LoadMediaPresetFromMetadata()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(_state.MediaPlugin.Content.FileName))
+                    return _presetsManager.LoadFromMetadata(_state.MediaPlugin.Content.FileName);
+            }
+            catch (Exception exc)
+            {
+                Logger.Instance.Error("Error while loading preset file from meta data.'", exc);
+            }
+            return false;
+        }
+
         #endregion
 
         #region Helpers
@@ -508,7 +522,7 @@ namespace VrPlayer.ViewModels
 
             try
             {
-                var presetFile = mediaFile + ".json";
+                var presetFile = Path.GetDirectoryName(mediaFile) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(mediaFile) + ".json";
                 if(File.Exists(presetFile))
                     LoadMediaPreset(presetFile);
             }
@@ -520,5 +534,6 @@ namespace VrPlayer.ViewModels
         }
 
         #endregion
-    }
+
+	}
 }

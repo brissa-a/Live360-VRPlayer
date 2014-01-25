@@ -127,6 +127,7 @@ namespace VrPlayer.Medias.WpfMediaKit
         private void OpenFile(object o)
         {
             var path = o.ToString();
+            FileName = path;
             if (string.IsNullOrEmpty(path)) return;
             try
             {

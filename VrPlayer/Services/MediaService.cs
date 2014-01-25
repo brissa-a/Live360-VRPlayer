@@ -31,7 +31,7 @@ namespace VrPlayer.Services
                 if (uri.IsFile)
                 {
                     loadFile(uri.LocalPath);
-                    _presetsManager.LoadFromUri(uri.LocalPath + ".json");
+                    _presetsManager.LoadFromUri(Path.GetDirectoryName(uri.LocalPath) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(uri.LocalPath) + ".json");
                 }
                 else
                 {

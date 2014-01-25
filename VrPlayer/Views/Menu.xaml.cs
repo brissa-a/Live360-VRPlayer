@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using VrPlayer.Helpers;
 using VrPlayer.ViewModels;
 using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace VrPlayer.Views
@@ -63,6 +64,16 @@ namespace VrPlayer.Views
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 _viewModel.LoadMediaPresetCommand.Execute(openFileDialog.FileName);
+            }
+        }
+
+        private void LoadMetadataPresetMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!_viewModel.LoadMediaPresetFromMetadata())
+            {
+                MessageBox.Show("There is no preset metadata embeded in the current file.", "Load preset from metadata",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
     }

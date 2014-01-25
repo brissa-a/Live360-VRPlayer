@@ -222,11 +222,10 @@ namespace VrPlayer.Models.Presets
             }
         }
 
-        public void LoadFromMetadata(string fileName)
+        public bool LoadFromMetadata(string fileName)
         {
             try
             {
-
                 using (var xmp = Xmp.FromFile(fileName, XmpFileMode.ReadOnly))
                 {
                     string propValue;
@@ -235,6 +234,7 @@ namespace VrPlayer.Models.Presets
                     if (!string.IsNullOrEmpty(propValue))
                     {
                         Load(propValue);
+                        return true;
                     }
                 }
             }
@@ -242,6 +242,7 @@ namespace VrPlayer.Models.Presets
             {
                 Logger.Instance.Error("Error while parsing XMP metadata.", exc);
             }
+            return false;
         }
         
         public void Load(string json)

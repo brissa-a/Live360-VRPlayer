@@ -6,6 +6,6 @@
         void SaveDeviceToFile(string fileName);
         void SaveAllToFile(string fileName);
         void LoadFromUri(string path);
-        void LoadFromMetadata(string fileName);
+        bool LoadFromMetadata(string fileName);
     }
 }

@@ -8,7 +8,8 @@ namespace VrPlayer.Contracts.Medias
     public interface IMedia : ILoadable
     {
         FrameworkElement Media { get; }
-        
+        string FileName { get; }
+
         ICommand OpenFileCommand { get; }
         ICommand OpenDiscCommand { get; }
         ICommand OpenStreamCommand { get; }
@@ -29,7 +30,7 @@ namespace VrPlayer.Contracts.Medias
         bool HasDuration { get; }
         bool HasChapters { get; }
         double Progress { get; }
-
+        
         //Todo: Extract to audio plugin
         Vector3D AudioPosition { get; set; }
         Quaternion AudioRotation { get; set; }

@@ -256,25 +256,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="Samples\2-CubeMono.jpg.json">
+    <Content Include="Samples\1-Grid.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Samples\1-Grid.jpg.json">
+    <Content Include="Samples\2-CubeMono.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Samples\3-CubeOverUnder.jpg.json">
+    <Content Include="Samples\3-CubeOverUnder.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Samples\4-CubeSideBySide.jpg.json">
+    <Content Include="Samples\4-CubeSideBySide.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Samples\5-DepthMapEffect.jpg.json">
+    <Content Include="Samples\5-DepthMapEffect.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Samples\6-SphericalOverUnder.jpg.json">
+    <Content Include="Samples\6-SphericalOverUnder.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Samples\7-CylindricalOverUnder.jpg.json">
+    <Content Include="Samples\7-CylindricalOverUnder.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="vrplayer.ico" />

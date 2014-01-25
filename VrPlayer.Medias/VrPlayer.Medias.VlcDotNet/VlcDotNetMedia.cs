@@ -185,6 +185,7 @@ namespace VrPlayer.Medias.VlcDotNet
         private void OpenFile(object o)
         {
             var path = o.ToString();
+            FileName = path;
             if (string.IsNullOrEmpty(path)) return;
             try
             {
