@@ -1486,12 +1486,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ABE956F5AC63C33C4155866D5A6DF7D1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_AB8CA3D6990E49E7812257A78F87DF39"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1565,6 +1559,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6BF8135C92A748B6AD7A4FD49B0C159D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ABE956F5AC63C33C4155866D5A6DF7D1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5840,15 +5840,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VR Player"
-        "ProductCode" = "8:{F59C176F-DD10-4E82-96B2-A3B796F26169}"
-        "PackageCode" = "8:{5B83D824-8C3B-407E-8230-DE12AC4C7CC2}"
+        "ProductCode" = "8:{31DDB528-67A7-415C-B218-B111B5FAF5DD}"
+        "PackageCode" = "8:{49C5065C-6190-44B1-9093-C43188E7B27C}"
         "UpgradeCode" = "8:{DB97BED7-EDB5-49A5-BD80-8A8733797C4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:0.5.1"
         "Manufacturer" = "8:StephaneLX"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
